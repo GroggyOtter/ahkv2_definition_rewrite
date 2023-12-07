@@ -34,22 +34,25 @@ ALL methods and functions should now have some sort of return
 Functions/methods that return an empty string ` ` by default are marked as such with `EmptyString`.  
 
 I've tried to include every option of all methods and functions.  
-This can cause certain cards (like Format(), OnEvent(), Gui.Control Opt(), etc) to be rather long.  
-It's a constant struggle to determine what information stays and what information goes.
+This can cause certain cards (like Format(), OnEvent(), Gui.Control.Opt(), etc) to be rather long.  
+It's a constant struggle to determine what information stays and what information goes.  
+This is also a source of my constant rewording.
 
 ***
 
 Extra info: 
 
 At the time of this readme creation, the current doc definition file is ~4200 lines.  
-My customized definition file is currently over 11000 lines.  
+My customized definition file is currently at 13000 lines.  
 I have a good chunk of the classes, methods, and properties done.  
-I have functions A-G completed.  
+I have functions A-N completed.  
 And I still have directives, flow control, and built-in vars to do.
+
+Updated: 20231207
 
 ***
 
-Examples:
+Screenshots of changes:
 
 Current `Format()` intellisense (top section):  
 
@@ -67,3 +70,14 @@ My updated `btn_con.OnEvent()` (Most of it):
 
 ![](https://i.imgur.com/VL69DsQ.png)  
 
+Current `Hotkey()`:
+![](https://i.imgur.com/9IFplwe.png)
+
+My updated `Hotkey()`:
+![](https://i.imgur.com/Yo2OvpI.png)
+
+Current `Msgbox()`:
+![](https://i.imgur.com/LoCx8k6.png)
+
+My updated `Msgbox()`:
+![](https://i.imgur.com/NkuYYKZ.png)
