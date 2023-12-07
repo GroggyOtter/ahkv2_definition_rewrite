@@ -55,29 +55,25 @@ Updated: 20231207
 Screenshots of changes:
 
 Current `Format()` intellisense (top section):  
-
 ![](https://i.imgur.com/1MCWJRk.png)  
 
 My updated `Format()` tooltip (top section):  
-
 ![](https://i.imgur.com/7JXsphO.png)  
 
-Current `btn_con.OnEvent()` (Full thing):
-
+Current `btn_con.OnEvent()` (Full thing):  
 ![](https://i.imgur.com/GFkv1bc.png)  
 
 My updated `btn_con.OnEvent()` (Most of it):  
-
 ![](https://i.imgur.com/VL69DsQ.png)  
 
-Current `Hotkey()`:
+Current `Hotkey()`:  
 ![](https://i.imgur.com/9IFplwe.png)
 
-My updated `Hotkey()`:
+My updated `Hotkey()`:  
 ![](https://i.imgur.com/Yo2OvpI.png)
 
-Current `Msgbox()`:
+Current `Msgbox()`:  
 ![](https://i.imgur.com/LoCx8k6.png)
 
-My updated `Msgbox()`:
+My updated `Msgbox()`:  
 ![](https://i.imgur.com/NkuYYKZ.png)
