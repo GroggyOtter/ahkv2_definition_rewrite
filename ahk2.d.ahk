@@ -7862,7 +7862,7 @@ CallbackFree(Address) => EmptyString
  * {@link https://www.autohotkey.com/docs/v2/lib/CaretGetPos.htm|`CaretGetPos()`} retrieves the current position of the text caret.  
  * @param {(VarRef)} [OutputVarX] - The variable to store the caret's X client coordinate (if provided).  
  * @param {(VarRef)} [OutputVarY] - The variable to store the caret's Y client coordinate (if provided).  
- * @returns {(Integer)} `1` if caret found, else `0`  
+ * @returns {(Boolean)} `1` if caret found, else `0`  
  * @example <caption>  
  * </caption>
  */
@@ -7942,7 +7942,7 @@ Click([Options:='Left 1']) => EmptyString
  * @param {(Integer)} [WaitForType] - Type of data to check for:  
  * `0` = Wait for text  
  * `1` = Wait for any type of data  
- * @returns {(Integer)} `0` if timed out, else `1`
+ * @returns {(Boolean)} `0` if timed out, else `1`
  * @see {@link https://www.autohotkey.com/docs/v2/lib/A_Clipboard.htm|`A_Clipboard()`}, 
  * {@link https://www.autohotkey.com/docs/v2/lib/WinWait.htm|`WinWait()`}, 
  * {@link https://www.autohotkey.com/docs/v2/lib/KeyWait.htm|`KeyWait()`}
@@ -8151,16 +8151,17 @@ ComObjValue(ComObj) => String
  * @param {(String)} Str - String to add.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(Integer)} Index of the new item  
  * @throws {(TargetError)} - Window or control could not be found  
  * Or control's class does not contain `Combo` or `List`
@@ -8183,16 +8184,17 @@ ControlAddItem(Str, Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinT
  * 0 deselects all entries of a Listbox or ComboBox.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} An empty string is always returned.  
  * @see {@link https://www.autohotkey.com/docs/v2/lib/ControlGetIndex.htm|`ControlGetIndex()`},
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlChooseString.htm|`ControlChooseString()`},
@@ -8211,16 +8213,17 @@ ControlChooseIndex(N, Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWi
  * @param {(String)} Str - The string to choose. This is not case sensitive. 
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(Integer)} The index of the chosen item.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlChooseIndex.htm|`ControlChooseIndex()`},
@@ -8245,13 +8248,13 @@ ControlChooseString(Str, Control [, WinTitle:='', WinText:='', NoWinTitle:='', N
  *   or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}  
  * 
  *       ControlClick('Button2')  
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
  * @param {(String)} [Button] - If omitted, defaults to left click.  
  * `L`/`Left`, `R`/`Right`, `M`/`Middle`, `X1` (XButton1), `X2` (XButton2)  
@@ -8265,8 +8268,9 @@ ControlChooseString(Str, Control [, WinTitle:='', WinText:='', NoWinTitle:='', N
  * - `X`\`Y`: Set the X and Y position of the click **on the control**.  
  *   The coordinates are relative to the **control's** upper left corner.  
  *   Coordinates must be decimal format.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} An empty string is always returned.  
  * @throws {(TargetError)} - The target window or target control could not be found.  
  * @throws {(OSError)} - X and Y coords were omited and control's position was undetermined.  
@@ -8286,16 +8290,17 @@ ControlClick([ConOrPos:=unset, WinTitle:='', WinText:='', Button:='Left', Count:
  * @param {(Integer)} N - The index of the item to delete.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} An empty string is always returned.  
  * @throws {(TargetError)} - Window or control could not be found  
  * Or control's class does not contain `Combo` or `List`
@@ -8318,16 +8323,17 @@ ControlDeleteItem(N, Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWin
  * The entire text must match, not just the leading part.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(Integer)} The index of the found item.  
  * If no match is found, an exception is thrown.  
  * @throws {(TargetError)} - Window or control could not be found  
@@ -8347,16 +8353,17 @@ ControlFindItem(Str, Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWin
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlFocus.htm|`ControlFocus()`} sets input focus to a given control on a window.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(Integer)} The index of the found item.  
  * @see {@link https://www.autohotkey.com/docs/v2/lib/SetControlDelay.htm|`SetControlDelay()`},
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetFocus.htm|`ControlGetFocus()`},
@@ -8373,17 +8380,18 @@ ControlFocus(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=''
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetChecked.htm|`ControlGetChecked()`} returns a non-zero value if the checkbox or radio button is checked.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
- * @returns {(Integer)} `1` if checkbox/radio is checked, else `0`  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
+ * @returns {(Boolean)} `1` if checkbox/radio is checked, else `0`  
  * @throws {(TargetError)} - Window or control could not be found  
  * @throws {(OSError)} - Message could not be sent to the control  
  * @see {@link https://www.autohotkey.com/docs/v2/lib/ControlSetChecked.htm|`ControlSetChecked()`},
@@ -8400,16 +8408,17 @@ ControlGetChecked(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTex
  * {@link |`ControlGetChoice()`} returns the name of the currently selected entry in a ListBox or ComboBox.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} The name of the selected entry in a ListBox or ComboBox  
  * @see {@link https://www.autohotkey.com/docs/v2/lib/ControlChooseIndex.htm|`ControlChooseIndex()`},
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlChooseString.htm|`ControlChooseString()`},
@@ -8428,16 +8437,17 @@ ControlGetChoice(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * This is the name of the control class followed by its sequence number.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} The ClassNN of the control  
  * @throws {(TargetError)} - A problem determining the target window or control
  * @throws {(Error|OSError)} - ClassNN could not be determined
@@ -8457,17 +8467,18 @@ ControlGetClassNN(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTex
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetEnabled.htm|`ControlGetEnabled()`} returns a non-zero value if the specified control is enabled.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
- * @returns {(Integer)} `1` if control is enabled, otherwise `0`  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
+ * @returns {(Boolean)} `1` if control is enabled, otherwise `0`  
  * @throws {(TargetError)} - The window or control could not be found  
  * @see {@link https://www.autohotkey.com/docs/v2/lib/ControlSetEnabled.htm|`ControlSetEnabled()`},
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetEnabled.htm|`WinSetEnabled()`},
@@ -8482,16 +8493,17 @@ ControlGetEnabled(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTex
 
 /**
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetFocus.htm|`ControlGetFocus()`} retrieves the focused control of the target window, if any.  
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(Integer)} The {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`handle (HWND)`} of the focused control.  
  * `0` if none of the controls have focus.  
  * @throws {(TargetError)} - Problem determining the target window or control  
@@ -8509,16 +8521,17 @@ ControlGetFocus([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => S
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetHwnd.htm|`ControlGetHwnd()`} returns the unique ID number (handle) of the specified control.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(Integer)} The {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`handle (HWND)`} of the specified control.  
  * @throws {(TargetError)} - The target window or control could not be found  
  * @see {@link https://www.autohotkey.com/docs/v2/lib/WinGetID.htm|`WinGetID()`},
@@ -8536,16 +8549,17 @@ ControlGetHwnd(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=
  * of a ListBox, ComboBox or Tab control.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(Integer)} The index of the tab or the ListBox/ComboBox selected entry.  
  * `0` if no tab/entry is selected.  
  * @throws {(TargetError)} - The window or control could not be found  
@@ -8570,16 +8584,17 @@ ControlGetIndex(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:
  * ListBox, ComboBox, or DropDownList.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(Array)} An array containing the text of each item or row.  
  * @throws {(TargetError)} - The window or control could not be found  
  * Or the control's class name does not contain "Combo" or "List"  
@@ -8605,16 +8620,17 @@ ControlGetItems(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:
  * @param {(String|Integer|Object)} [Control] - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.  
  * If omitted, the main window is targeted.  
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} An empty string is always returned.  
  * @throws {(TargetError)} - The window or control could not be found.  
  * @see {@link https://www.autohotkey.com/docs/v2/lib/ControlMove.htm|`ControlMove()`},
@@ -8625,22 +8641,23 @@ ControlGetItems(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:
  * @example <caption>  
  * </caption>
  */
-ControlGetPos([&OutX, &OutY, &OutWidth, &OutHeight, Control:=unset, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyStringString
+ControlGetPos([&OutX, &OutY, &OutWidth, &OutHeight, Control:=unset, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetStyle.htm|`ControlGetStyle()`} gets a conrol's style number.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {{Integer}} The controls' style number.
  * @throws {(TargetError)} - Window or control could not be found
  * @see {@link https://www.autohotkey.com/docs/v2/lib/ControlSetStyle.htm|`ControlSetStyle()`},
@@ -8658,16 +8675,17 @@ ControlGetStyle(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetStyle.htm|`ControlGetExStyle()`} gets a conrol's extended style number.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {{Integer}} The controls' style number.
  * @throws {(TargetError)} - Window or control could not be found
  * @see {@link https://www.autohotkey.com/docs/v2/lib/ControlSetStyle.htm|`ControlSetExStyle()`},
@@ -8685,16 +8703,17 @@ ControlGetExStyle(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTex
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetText.htm|`ControlGetText()`} retrieves text from a control.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {} 
  * @example <caption>  
  * </caption>
@@ -8705,17 +8724,18 @@ ControlGetText(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetVisible.htm|`ControlGetVisible()`} returns a non-zero value if the specified control is visible.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
- * @returns {{Integer}} `1` if control is visible, otherwise `0`
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
+ * @returns {{Boolean}} `1` if control is visible, otherwise `0`
  * @throws {(TargetError)} - The window or control could not be found  
  * @see {@link https://www.autohotkey.com/docs/v2/lib/ControlHide.htm|`ControlHide()`},
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlShow.htm|`ControlShow()`},
@@ -8732,16 +8752,17 @@ ControlGetVisible(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTex
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlHide.htm|`ControlHide()`} hides the specified control.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} An empty string is always returned.  
  * @throws {(TargetError)} - The window or control could not be found  
  * @see {@link https://www.autohotkey.com/docs/v2/lib/ControlShow.htm|`ControlShow()`},
@@ -8760,16 +8781,17 @@ ControlHide(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlHideDropDown.htm|`ControlHideDropDown()`} hides the drop-down list of a ComboBox control.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} An empty string is always returned.  
  * @throws {(TargetError)} - The window or control could not be found  
  * @throws {(OSError)} - Message could not be sent to the control
@@ -8792,16 +8814,17 @@ ControlHideDropDown(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinT
  * @param {(Integer)} [Height] - The new height of the control.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} An empty string is always returned.  
  * @throws {(TargetError)} - Window or control could not be found  
  * @throws {(OSError)} - Control's current position could not be determined  
@@ -8823,16 +8846,17 @@ ControlMove([X, Y, Width, Height, Control, WinTitle:='', WinText:='', NoWinTitle
  * @param {(String|Integer|Object)} [Control] - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.  
  * If omitted, the main window is targeted.  
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} An empty string is always returned.  
  * @throws {(TargetError)} - Window or control could not be found  
  * @see {@link https://www.autohotkey.com/docs/v2/lib/SetKeyDelay.htm|`SetKeyDelay()`},
@@ -8855,16 +8879,17 @@ ControlSend(Keys [, Control:=unset, WinTitle:='', WinText:='', NoWinTitle:='', N
  * @param {(String|Integer|Object)} [Control] - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.  
  * If omitted, the main window is targeted.  
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} An empty string is always returned.  
  * @throws {(TargetError)} - Window or control could not be found  
  * @see {@link https://www.autohotkey.com/docs/v2/lib/SetKeyDelay.htm|`SetKeyDelay()`},
@@ -8888,16 +8913,17 @@ ControlSendText(Keys [, Control:=unset, WinTitle:='', WinText:='', NoWinTitle:='
  * - `-1` = Toggle/opposite of current state
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} An empty string is always returned.  
  * @throws {(TargetError)} - Window or control could not be found  
  * @throws {(OSError)} - A message could not be sent to the control
@@ -8920,16 +8946,17 @@ ControlSetChecked(NewSetting, Control [, WinTitle:='', WinText:='', NoWinTitle:=
  * - `-1` = Toggle/opposite of current state
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} An empty string is always returned.  
  * @throws {(TargetError)} - Window or control could not be found  
  * @see {@link https://www.autohotkey.com/docs/v2/lib/ControlGetEnabled.htm|`ControlGetEnabled()`},
@@ -8952,16 +8979,17 @@ ControlSetEnabled(NewSetting, Control [, WinTitle:='', WinText:='', NoWinTitle:=
  * - `^` Toggle: '^0x80' = `NewStyle := CurrentStyle ^ Value`
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} An empty string is always returned.  
  * @throws {(TargetError)} - Window or control could not be found  
  * @throws {(OSError)} - The style could not be changed  
@@ -8986,16 +9014,17 @@ ControlSetStyle(Value, Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoW
  * - `^` Toggle: '^0x80' = `NewStyle := CurrentStyle ^ Value`
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} An empty string is always returned.  
  * @throws {(TargetError)} - Window or control could not be found  
  * @throws {(OSError)} - The style could not be changed  
@@ -9017,16 +9046,17 @@ ControlSetExStyle(Value, Control [, WinTitle:='', WinText:='', NoWinTitle:='', N
  * A blank line can be used to clear the control.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} An empty string is always returned.  
  * @throws {(TargetError)} - Window or control could not be found  
  * @see {@link https://www.autohotkey.com/docs/v2/lib/SetControlDelay.htm|`SetControlDelay()`},
@@ -9043,16 +9073,17 @@ ControlSetText(NewText, Control [, WinTitle:='', WinText:='', NoWinTitle:='', No
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlShow.htm|`ControlShow()`} shows the specified control if it was previously hidden.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} An empty string is always returned.  
  * @throws {(TargetError)} - Window or control could not be found  
  * @see {@link https://www.autohotkey.com/docs/v2/lib/ControlHide.htm|`ControlHide()`},
@@ -9071,16 +9102,17 @@ ControlShow(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlShowDropDown.htm|`ControlShowDropDown()`} shows the drop-down list of a ComboBox control.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} An empty string is always returned.  
  * @throws {(TargetError)} - Window or control could not be found  
  * @throws {(OSError)} - Message could not be sent to the control
@@ -9216,28 +9248,28 @@ DateDiff(DateTime1, DateTime2, TimeUnits) => Integer
 /**
  * {@link https://www.autohotkey.com/docs/v2/lib/DetectHiddenText.htm|`DetectHiddenText()`} determines whether invisible text in a window is "seen" for the purpose of finding the window. This affects windowing functions such as WinExist and WinActivate.  
  * By default, this is on.  
- * @param {(Integer)} NewSetting 
+ * @param {(Boolean)} NewSetting 
  * - `1` = Hidden text detected.  
  * - `0` = Hidden text ignored.  
- * @returns {(Integer)} Previous setting, `0` or `1`  
+ * @returns {(Boolean)} Previous setting, `0` or `1`  
  * @see {@link https://www.autohotkey.com/docs/v2/lib/DetectHiddenWindows.htm|`DetectHiddenWindows()`}
  * @example <caption>  
  * </caption>
  */
-DetectHiddenText(NewSetting) => String 
+DetectHiddenText(NewSetting) => Integer 
 
 /**
  * {@link https://www.autohotkey.com/docs/v2/lib/DetectHiddenWindows.htm|`DetectHiddenWindows()`} determines whether invisible windows are "seen" by the script.  
  * By default, this is off.  
- * @param {(Integer)} NewSetting 
+ * @param {(Boolean)} NewSetting 
  * - `1` = Hidden windows are detected.  
  * - `0` = Hidden windows are ignored.  
- * @returns {(Integer)} Previous setting, `0` or `1`  
+ * @returns {(Boolean)} Previous setting, `0` or `1`  
  * @see {@link https://www.autohotkey.com/docs/v2/lib/DetectHiddenText.htm|`DetectHiddenText()`}
  * @example <caption>  
  * </caption>
  */
-DetectHiddenWindows(NewSetting) => String 
+DetectHiddenWindows(NewSetting) => Integer 
 
 /**
  * {@link https://www.autohotkey.com/docs/v2/lib/DirCopy.htm|`DirCopy()`} copies a folder along with all its sub-folders and files (similar to xcopy).  
@@ -9279,7 +9311,7 @@ DirCreate(DirName) => EmptyString
  * {@link https://www.autohotkey.com/docs/v2/lib/DirDelete.htm|`DirDelete()`} deletes a folder.  
  * @param {(String)} DirName - Path to directory.  
  * If a full path isn't used, DirName is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|`A_WorkingDir`}.  
- * @param {(Integer)} Recurse - Recursively remove sub-contents:  
+ * @param {(Boolean)} Recurse - Recursively remove sub-contents:  
  * - `1` = The directory, all files, and subdirectories are removed.  
  *   Similar to cmd's {@link https://www.computerhope.com/rmdirhlp.htm#syntax|`rmdir /S`}  
  * - `0` = If directory contains anything (files or sub-directories), directory is not deleted.  
@@ -9298,7 +9330,7 @@ DirDelete(DirName [, Recurse:=0]) => String
  * @param {(String)} FilePattern - Directory path or name to check.  
  * If a full path isn't used, FilePattern is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|`A_WorkingDir`}.  
  * @returns {(String)} A string of all attributes found for the direcotry.  
- * - EmptyString = The directory wasn't found
+ * - Empty String = The directory wasn't found
  * - `R` = ReadOnly
  * - `A` = Archive
  * - `S` = System
@@ -9690,16 +9722,17 @@ Edit() => EmptyString
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentCol.htm|`EditGetCurrentCol()`} returns the column number in an Edit control where the caret (text insertion point) resides.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title must not contain this text.  
+ * @param {(String)} [NoWinText] - Window text must not contain this text.
+ * Use WindowSpy to view window text.
  * @returns {(Integer)} The column number in the Edit control where the caret resides.  
  * @throws {(Error)} - Window or control could not be found
  * @see {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentLine.htm|`EditGetCurrentLine()`},
@@ -9719,16 +9752,17 @@ EditGetCurrentCol(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTex
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentLine.htm|`EditGetCurrentLine()`} returns the line number in an Edit control where the caret (text insert point) resides.  
 * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(Integer)} The line number in the Edit control where the caret resides.  
  * @throws {(Error)} - Window or control could not be found  
  * @see {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentCol.htm|`EditGetCurrentCol()`},
@@ -9749,16 +9783,17 @@ EditGetCurrentLine(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * @param {(Integer)} N - Number of the line to get.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} Text from line N of the Edit control.  
  * May end in `` `r `` or `` `r`n ``, depending on the control.  
  * @throws {(TargetError)} - Window or control could not be found  
@@ -9781,16 +9816,17 @@ EditGetLine(N, Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetLineCount.htm|`EditGetLineCount()`} returns the number of lines in an Edit control.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(Integer)} The number of lines in an Edit control.  
  * All Edit controls have at least 1 line, even if it has no text. 
  * @throws {(TargetError)} - Window or control could not be found  
@@ -9812,16 +9848,17 @@ EditGetLineCount(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetSelectedText.htm|`EditGetSelectedText()`} returns the selected text in an Edit control.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} The selected text in the Edit control.  
  * An empty string is returned if no text is selected.  
  * @throws {(TargetError)} - Window or control could not be found  
@@ -9844,16 +9881,17 @@ EditGetSelectedText(Control [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinT
  * @param {(String)} Text - String to paste into Edit control.  
  * @param {(String|Integer|Object)} Control - A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|`Control Parameter`}.
- * @param {(String|Integer|Object)} [WinTitle] - A string containing a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`}  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
  * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
  * If the string is the letter `A`, the current active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
- * @param {(String)} [WinText] - Text is found in the window.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
  * Use WindowSpy to view window text.  
- * @param {(String)} [NoWinTitle] - Title does not contain this string.  
- * @param {(String)} [NoWinText] - Text found in the window does not contain this string.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
  * @returns {(String)} An empty string is always returned.  
  * @throws {(TargetError)} - Window or control could not be found  
  * @throws {(OSError)} - A message could not be sent to the control  
@@ -10087,7 +10125,7 @@ FileEncoding(Encoding) => String
  * @param {(String)} FilePattern - The path, filename, or file pattern to check.  
  * If a full path isn't used, FilePattern is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|`A_WorkingDir`}.  
  * @returns {(String)} A string of all attributes found for file or direcotry.  
- * - EmptyString = No file or folder was found.  
+ * - Empty String = No file or folder was found.  
  * - `R` = ReadOnly  
  * - `A` = Archive  
  * - `S` = System  
@@ -10136,7 +10174,7 @@ FileInstall(Source, Dest [, Overwrite:=0]) => EmptyString
  * If a full path isn't used, Filename is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|`A_WorkingDir`}.  
  * FileName can be omitted if inside a {@link https://www.autohotkey.com/docs/v2/lib/LoopRead.htm|`Loop-Files`} that's using an {@link https://www.autohotkey.com/docs/v2/lib/LoopRead.htm#OutputFile|`OutputFile`}.  
  * @returns {(String)} A string of all attributes found for file or direcotry.  
- * - EmptyString = No file or folder was found.  
+ * - Empty String = No file or folder was found.  
  * - `R` = ReadOnly  
  * - `A` = Archive  
  * - `S` = System  
@@ -10704,7 +10742,7 @@ Floor(Num) => Integer
  * @example <caption>  
  * </caption>
  */
-Format(FormStr [, Value1, ValueN]) => String
+Format(FormStr [, Value1:=Any, ValueN:=Any]) => String
 
 /**
  * {@link https://www.autohotkey.com/docs/v2/lib/FormatTime.htm|`FormatTime()`} transforms a YYYYMMDDHH24MISS timestamp into the specified date/time format.  
@@ -10736,7 +10774,7 @@ Format(FormStr [, Value1, ValueN]) => String
  *   - `0x80000000` = Ignore all user overrides in effect for the system's default time format.  
  * @param {(String)} [Form] - The desired format.  
  * If omitted, `Time` + `LongDate` are used.  
- * Letters and numbers that you want to be transcribed literally from Format into the final string should be enclosed in single quotes.  
+ * To put literal text in the string without having it formatted should be enclosed in single quotes.  
  * To make a literal single quote, use two in a row `''`
  * 
  *       FormatTime(A_Now, "'Date:' MM/dd/yy 'Time:' hh:mm:ss tt") => 'Date: 12/03/23 Time: 05:03:58 PM'  
@@ -10803,7 +10841,7 @@ Format(FormStr [, Value1, ValueN]) => String
  * @example <caption>  
  * </caption>
  */
-FormatTime([DateTimeStamp:=A_Now, Form:='']) => String
+FormatTime([DateTimeStamp:=A_Now, Form:=unset]) => String
 
 /**
  * {@link https://www.autohotkey.com/docs/v2/lib/GetKeyName.htm|`GetKeyName()`} retrieves the name/text of a key.  
@@ -10906,5 +10944,753 @@ GetKeySC(KeyName) => Integer
  * </caption>
  */
 GetKeyState(KeyName [, Mode]) => String
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/GetMethod.htm|`GetMethod()`} retrieves the implementation function of a method.  
+ * @param {(Any)} Value - Any value except {@link https://www.autohotkey.com/docs/v2/lib/ComObject.htm|`ComObject`}.
+ * @param {(String)} [Name] - Name of the method to retrieve.  
+ * If omitted, validation is performed on the Value param and Value is returned if successful.  
+ * @param {(Integer)} [ParamCount] - Number of parameters caller will be passing in.  
+ * This value must not be less than {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#MinParams|`Func.MinParams`} or greater than {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#MaxParams|`Func.MaxParams`}.  
+ * ParamCount should never include the hidden `this` param that all methods have.  
+ * If omitted or paramcount failed, a basic check for a `Call()` method is done.
+ * @returns {(FuncObj)} A function object containing a reference to the method.  
+ * @throws {(MethodError)} - Method was not found or cannot be retrieved
+ * @throws {(ValueError|MethodError)} - Validation failed
+ * @see {@link https://www.autohotkey.com/docs/v2/Objects.htm|`Objects`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/HasMethod.htm|`HasMethod()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/HasBase.htm|`HasBase()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/HasProp.htm|`HasProp()`}
+ * @example <caption>  
+ * </caption>
+ */
+GetMethod(Value [, Name, ParamCount]) => Func
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/GroupActivate.htm|`GroupActivate()`} activates the next window in a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`Window Group`}.  
+ * @param {(String)} GroupName - The name given to the group by {@link https://www.autohotkey.com/docs/v2/lib/GroupAdd.htm|`GroupAdd()`}.  
+ * @param {(String)} [Mode] - Which window to activate.  
+ * - Omit or Empty String = Activate the next window in the group.  
+ * - `R` = Resume. If the current active window doesn't belong to the group, go back to the most recently active group window instead of going to the next.  
+ * @returns {(Integer)} The {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`HWND (handle)`} of the activated window is returned.  
+ * `0` is returned if no window was found to activate or if the current active window is the only match.  
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/GroupAdd.htm|`GroupAdd()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/GroupDeactivate.htm|`GroupDeactivate()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/GroupClose.htm|`GroupClose()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/_WinActivateForce.htm|`#WinActivateForce`}
+ * @example <caption>  
+ * </caption>
+ */
+GroupActivate(GroupName [, Mode:='']) => Integer
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/GroupAdd.htm|`GroupAdd()`} adds a window specification to a window group, creating the group if necessary.  
+ * @param {(String)} GroupName - The name of the group to add the window ID.  
+ * The group is created if it doesn't exist and GroupName is not case-sensitive.  
+ * @param {(String|Integer|Object)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
+ * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
+ * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
+ * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
+ * If the string is the letter `A`, the current active window is used.  
+ * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|`Last Found Window`} is used.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
+ * Use WindowSpy to view window text.  
+ * @param {(String)} [NoWinTitle] - Window title does not contain the `NoWinTitle` text.  
+ * @param {(String)} [NoWinText] - Text that must not appear in the window.
+ * Use WindowSpy to view window text.
+ * @returns {(String)} An empty string is always returned.  
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/GroupActivate.htm|`GroupActivate()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/GroupDeactivate.htm|`GroupDeactivate()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/GroupClose.htm|`GroupClose()`}
+ * @example <caption>  
+ * </caption>
+ */
+GroupAdd(GroupName [, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/GroupClose.htm|`GroupClose()`} close the current active group window or all group windows.  
+ * The next window in the series is then activated.  
+ * @param {(String)} GroupName - The name given to the group by {@link https://www.autohotkey.com/docs/v2/lib/GroupAdd.htm|`GroupAdd()`}.  
+ * @param {(String)} [Mode] - Which window to close.  
+ * - Empty String = Close the active window.  
+ * - `R` = Resume. If the current active window doesn't belong to the group, go back to the most recently active group window instead closing it.  
+ * - `A` = All. Closes all members of a group.  
+ *   Same as: `WinClose('ahk_group GroupName')`
+ * @returns {(String)} An empty string is always returned.  
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/GroupActivate.htm|`GroupActivate()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/GroupDeactivate.htm|`GroupDeactivate()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/GroupAdd.htm|`GroupAdd()`}
+ * @example <caption>  
+ * </caption>
+ */
+GroupClose(GroupName [, Mode:='']) => EmptyString
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/GroupDeactivate.htm|`GroupDeactivate()`} activates the next window that does NOT belong to the group.  
+ * @param {(String)} GroupName - The name given to the group by {@link https://www.autohotkey.com/docs/v2/lib/GroupAdd.htm|`GroupAdd()`}.  
+ * @param {(String)} [Mode] - Which window to activate.  
+ * - Empty String = Activate the next window that doesn't belong to the group.  
+ * - `R` = Resume. If the current active window doesn't belong to the group, go back to the most recently active group window instead of going to the next.  
+ * @returns {(String)} An empty string is always returned.  
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/GroupActivate.htm|`GroupActivate()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/GroupClose.htm|`GroupClose()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/GroupAdd.htm|`GroupAdd()`}
+ * @example <caption>  
+ * </caption>
+ */
+GroupDeactivate(GroupName [, Mode:='']) => EmptyString
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/GuiCtrlFromHwnd.htm|`GuiCtrlFromHwnd()`} gets the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm|`GuiControl object`} of a GUI control from its HWND.  
+ * @param {(Integer)} Hwnd - The window handle (HWND) of an AHK GUI control or a child window of such a control.  
+ * @returns {(Gui.Control|String)} A GuiControl object for the specified HWND.  
+ * An empty string is returned if HWND is invalid or isn't for a GuiControl.  
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/GuiFromHwnd.htm|`GuiFromHwnd()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm|`ListView()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/TreeView.htm|`TreeView()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm|`MsgBox()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/FileSelect.htm|`FileSelect()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/DirSelect.htm|`DirSelect()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|`Control Types`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Control.htm|`Control functions`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm|`Menu object`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm|`GuiControl object`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm|`Gui object`}
+ * @example <caption>  
+ * </caption>
+ */
+GuiCtrlFromHwnd(Hwnd) => Gui.Control
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/GuiFromHwnd.htm|`GuiFromHwnd()`} retrieves the Gui object of a GUI window associated with the specified HWND.  
+ * @param {(Integer)} Hwnd - The window handle (HWND) of an AHK GUI.  
+ * If RecurseParent is true, Hwnd can be a child window of another AHK GUI.
+ * @param {(Boolean)} [RecurseParent] - If true, Hwnd can be a child window which is not a GUI.  
+ * GuiFromHwnd will search for the closest AHK GUI parent window and returns an object for it.  
+ * @returns {(Gui|String)} The {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm|`Gui object`} that belongs to Hwnd.  
+ * An empty string is returned if HWND is invalid or isn't for a Gui.  
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/GuiCtrlFromHwnd.htm|`GuiCtrlFromHwnd()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm|`ListView()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/TreeView.htm|`TreeView()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm|`MsgBox()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/FileSelect.htm|`FileSelect()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/DirSelect.htm|`DirSelect()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|`Control Types`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Control.htm|`Control functions`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm|`Menu object`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm|`GuiControl object`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm|`Gui object`}
+ * @example <caption>  
+ * </caption>
+ */
+GuiFromHwnd(Hwnd [, RecurseParent]) => Gui
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/HasBase.htm|`HasBase()`} returns a non-zero number if the specified value is derived from the specified base object.  
+ * @param {(Any)} Value - Any value of any type.  
+ * @param {(Object)} BaseObj - The object to check for in the inheritance chain of `Value`.  
+ * @returns {(Boolean)} `1` if `BaseObj` is found in the inheritance chain of `Value`, otherwise `0`.  
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#GetBase|`ObjGetBase()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/HasMethod.htm|`HasMethod()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/HasProp.htm|`HasProp()`},
+ * {@link https://www.autohotkey.com/docs/v2/Objects.htm|`Objects`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#Base|`Obj.Base`}
+ * @example <caption>  
+ * </caption>
+ */
+HasBase(Value, BaseObj) => Integer
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/HasMethod.htm|`HasMethod()`} returns a non-zero number if the specified value has a method by the specified name.  
+ * @param {(Any)} Value - Any value of any type except ComObject.  
+ * @param {(String)} [Name] - The method name to check for.  
+ * If omitted, `Value` is checked to see if it is callable.  
+ * @param {(Integer)} [ParamCount] - Number of parameters caller will be passing in.  
+ * This value must not be less than {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#MinParams|`Func.MinParams`} or greater than {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#MaxParams|`Func.MaxParams`}.  
+ * ParamCount should never include the hidden `this` param that all methods have.  
+ * If omitted or paramcount failed, a basic check for a `Call()` method is done.
+ * @returns {(Boolean)} `1` if method was found and passed validation, otherwise `0`
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/HasBase.htm|`HasBase()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/GetMethod.htm|`GetMethod()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/HasProp.htm|`HasProp()`},
+ * {@link https://www.autohotkey.com/docs/v2/Objects.htm|`Objects`},
+ * @example <caption>  
+ * </caption>
+ */
+HasMethod(Value [, Name:=unset, ParamCount:=unset]) => Integer
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/HasProp.htm|`HasProp()`} returns a non-zero number if the value passed in has a property by the specified name.  
+ * @param {(Any)} Value - Any value of any type except ComObject.  
+ * @param {(String)} [Name] - The property name to check for.  
+ * @returns {(Boolean)} `1` if property was found, otherwise `0`
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/HasBase.htm|`HasBase()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/HasMethod.htm|`HasMethod()`},
+ * {@link https://www.autohotkey.com/docs/v2/Objects.htm|`Objects`}
+ * @example <caption>  
+ * </caption>
+ */
+HasProp(Value, Name) => String
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/HotIf.htm|`HotIf()`} sets the criteria for when a subsequently created {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|`Hotkey()`}/{@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|`Hotstring()`} is enabled or disabled.  
+ * This works similarly to how {@link https://www.autohotkey.com/docs/v2/lib/_HotIf.htm|`#HotIf`} works with {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm|`Hotkey::`}.  
+ * All calls to Hotkey() or Hotstring() will resepct the last declared HotIf().  
+ * @param {(String|FuncObj)} [ExpressionOrCallback] - Something that evaluates to true or false.  
+ * When this evaluation returns true, the hotkey or hotstring is enabled and usable.  
+ * - **Omitted**  
+ *   Omitting this param resets any HotIf criteria and makes future hotkeys/hotstrings work globally.  
+ * - **Expression**  
+ *   A string expression that references an existing {@link https://www.autohotkey.com/docs/v2/lib/_HotIf.htm|`#HotIf`} expression.  
+ *   If a `#HotIf` directive for that expression doesn't exist, a Callback should be used instead.  
+ * - **Callback** (FuncObj)  
+ *   A {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|`Function Object`} that returns a true or false statement.  
+ *   The last parameter of the callback receives the hotkey/hotstring name and comes after any parameters provided by a {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|`BoundFunc`}.  
+ * 
+ *       hotkey_callback(HotName)
+ *       hotkey_callback(OtherParams, HotName)
+ *   A {@link https://www.autohotkey.com/docs/v2/Variables.htm#fat-arrow|`fat-arrow`} callback can be used to quickly define a HotIf():
+ * 
+ *       HotIf((HotName) => some_func(HotName))
+ * @returns {(String)} An empty string is always returned.  
+ * @throws {(Error)} - A parameter is invalid.  
+ * No matchine expression found or callback was invalid.  
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|`Hotkey()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|`Hotstring()`},
+ * {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm|`Hotkey::`},
+ * {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm|`::Hotstring::`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/_HotIf.htm|`#HotIf`},
+ * {@link https://www.autohotkey.com/docs/v2/misc/Threads.htm|`Threads`},
+ * @example <caption>  
+ * </caption>
+ */
+HotIf([ExpressionOrCallback]) => EmptyString
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/HotIf.htm|`HotIfWinActive()`} controls when a subsequently created {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|`Hotkey()`}/{@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|`Hotstring()`} is enabled or disabled based on a specific window being active.  
+ * @param {(String)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
+ * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
+ * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
+ * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
+ * If the string is the letter `A`, the current active window is used.  
+ * Omitting both params resets any HotIf criteria and makes future hotkeys/hotstrings work globally.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
+ * Use WindowSpy to view window text.  
+ * @returns {(String)} An empty string is always returned.  
+ * @throws {(Error)} - A parameter is invalid.  
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|`Hotkey()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|`Hotstring()`},
+ * {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm|`Hotkey::`},
+ * {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm|`::Hotstring::`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/_HotIf.htm|`#HotIf`},
+ * {@link https://www.autohotkey.com/docs/v2/misc/Threads.htm|`Threads`},
+ * @example <caption>  
+ * </caption>
+ */
+HotIfWinActive([WinTitle:='', WinText:='']) => EmptyString
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/HotIf.htm|`HotIfWinExist()`} controls when a subsequently created {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|`Hotkey()`}/{@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|`Hotstring()`} is enabled or disabled based on a specific window existing.  
+ * @param {(String)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
+ * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
+ * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
+ * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
+ * If the string is the letter `A`, the current active window is used.  
+ * Omitting both params resets any HotIf criteria and makes future hotkeys/hotstrings work globally.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
+ * Use WindowSpy to view window text.  
+ * @returns {(String)} An empty string is always returned.  
+ * @throws {(Error)} - A parameter is invalid.  
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|`Hotkey()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|`Hotstring()`},
+ * {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm|`Hotkey::`},
+ * {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm|`::Hotstring::`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/_HotIf.htm|`#HotIf`},
+ * {@link https://www.autohotkey.com/docs/v2/misc/Threads.htm|`Threads`},
+ * @example <caption>  
+ * </caption>
+ */
+HotIfWinExist([WinTitle:='', WinText:='']) => EmptyString
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/HotIf.htm|`HotIfWinNotActive()`} controls when a subsequently created {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|`Hotkey()`}/{@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|`Hotstring()`} is enabled or disabled based on a specific window not being active.  
+ * @param {(String)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
+ * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
+ * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
+ * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
+ * If the string is the letter `A`, the current active window is used.  
+ * Omitting both params resets any HotIf criteria and makes future hotkeys/hotstrings work globally.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
+ * Use WindowSpy to view window text.  
+ * @returns {(String)} An empty string is always returned.  
+ * @throws {(Error)} - A parameter is invalid.  
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|`Hotkey()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|`Hotstring()`},
+ * {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm|`Hotkey::`},
+ * {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm|`::Hotstring::`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/_HotIf.htm|`#HotIf`},
+ * {@link https://www.autohotkey.com/docs/v2/misc/Threads.htm|`Threads`},
+ * @example <caption>  
+ * </caption>
+ */
+HotIfWinNotActive([WinTitle:='', WinText:='']) => EmptyString
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/HotIf.htm|`HotIfWinNotExist()`} controls when a subsequently created {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|`Hotkey()`}/{@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|`Hotstring()`} is enabled or disabled based on a specific window not existing.  
+ * @param {(String)} [WinTitle] - A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|`WinTitle`} to match a window.  
+ * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|`ahk_exe`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|`ahk_class`}
+ * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|`ahk_id`}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|`ahk_pid`}
+ * , {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|`ahk_group`}  
+ * If the string is the letter `A`, the current active window is used.  
+ * Omitting both params resets any HotIf criteria and makes future hotkeys/hotstrings work globally.  
+ * @param {(String)} [WinText] - Text that must be found in the window.  
+ * Use WindowSpy to view window text.  
+ * @returns {(String)} An empty string is always returned.  
+ * @throws {(Error)} - A parameter is invalid.  
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|`Hotkey()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|`Hotstring()`},
+ * {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm|`Hotkey::`},
+ * {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm|`::Hotstring::`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/_HotIf.htm|`#HotIf`},
+ * {@link https://www.autohotkey.com/docs/v2/misc/Threads.htm|`Threads`},
+ * @example <caption>  
+ * </caption>
+ */
+HotIfWinNotExist([WinTitle:='', WinText:='']) => EmptyString
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|`Hotkey()`} creates, modifies, enables, or disables a hotkey.  
+ * @param {(String)} KeyName - A {@link https://www.autohotkey.com/docs/v2/KeyList.htm|`key name`}, including any {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm#Symbols|`modifier symbols`}.  
+ * If `KeyName` is already declared, the old hotkey is replaced with the new one.  
+ * Modifier order doesn't matter but `KeyName` must match the original spelling. `Escape` won't replace `Esc`.  
+ * **Modifier Symbols**  
+ * - `#` = {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm|`Window key`}  
+ * - `!` = {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm|`Alt key`}  
+ * - `^` = {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm|`Control key`}  
+ * - `+` = {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm|`Shift key`}  
+ * - `<` = Use {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm#LeftRight|`left side key`} of a key pair  
+ *   `LAlt`, `LShift`, `LControl`, `LWin`
+ * - `>` = Use {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm#LeftRight|`right side key`} of a key pair  
+ *   `RAlt`, `RShift`, `RControl`, `RWin`
+ * - `<^>!` = The {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm#AltGr|`AltGr`} key. AKA: AltGraphic, AltGraph  
+ *   Windows usually sees this as `Ctrl+Alt`  
+ * - `$` = {@link https://www.autohotkey.com/docs/v2/Hotkeys.htmprefixdollar|`Hook`} hotkey to prevent {@link https://www.autohotkey.com/docs/v2/lib/Send.htm|`Send()`} from activating this hotkey.  
+ *   Mouse button hotkeys are automatically hooked.  
+ * - `*` = {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm#wildcard|`Wildcard`} allows hotkey activation even if other keys are being held  
+ *   This option hooks the hotkey  
+ * - `~` = {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm#Tilde|`Send hotkey`} keystroke before running the hotkey `Action`  
+ *   This option hooks the hotkey  
+ * - `&` = Create a 2-key {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm#combo|`Custom Combination`}
+ *   This option hooks the hotkey  
+ * - `Up` = Hotkey activates on release instead of on press.  
+ *   The word `Up` must be 
+ *   This option hooks the hotkey  
+ * @param {(FuncObj|String)} [Action] - The action to take on hotkey activation.  
+ * This can be a callback, the name of a {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm|`Hotkey::`}, or one of the following keywords:  
+ * - `On` = The hotkey becomes enabled  
+ * - `Off` = The hotkey becomes disabled  
+ * - `Toggle` = The hotkey is switched between enabled and disabled  
+ * - Special {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm#alttab|`AltTab`} options:  
+ *   - `AltTab` = Move AltTab menu selection forward if shown, otherwise show menu  
+ *     Only works with hotkeys using two keys  
+ *   - `ShiftAltTab` = Move AltTab menu selection backward if shown, otherwise show menu  
+ *     Only works with hotkeys using two keys  
+ *   - `AltTabMenu` = Show or hide AltTab menu  
+ *   - `AltTabAndMenu` = Move AltTab menu selection forward if shown, otherwise show menu  
+ *   - `AltTabMenuDismiss` = Close the AltTab menu  
+ * 
+ * `Action` can be omitted when only updating a hotkey's `Options` parameter.  
+ * @param {(String)} [Options] - Zero or more of the following options. Space separators are optional.  
+ * - `On` = Enable hotkey
+ * - `Off` =  Disable hotkey
+ * - `B` = Buffers hotkey as described in {@link https://www.autohotkey.com/docs/v2/lib/_MaxThreadsBuffer.htm|`#MaxThreadsBuffer`}  
+ *   Use `B0` to disable this
+ * - `P#` = Set Priority of hotkey where `#` is the {@link https://www.autohotkey.com/docs/v2/misc/Threads.htm|`thread priority number`}  
+ *   The default of is `P0`
+ * - `S` = Gives the hotkey {@link https://www.autohotkey.com/docs/v2/lib/_SuspendExempt.htm|exemption} from {@link https://www.autohotkey.com/docs/v2/lib/Suspend.htm|`Suspend()`}  
+ *   Use `S0` to disable exemption
+ * - `T#` = Set Thread number, where `#` is the max number of thread to allow
+ * - `I#` = Set Input level, where `#` is the hotkey's {@link https://www.autohotkey.com/docs/v2/lib/_InputLevel.htm|`input level`}
+ * @returns {(String)} An empty string is always returned.  
+ * @throws {(ValueError)} - Invalid key name
+ * @throws {(ValueError)} - Unsupported prefix key
+ * @throws {(ValueError)} - AltTab hotkey must have exactly one modifier/prefix
+ * @throws {(ValueError)} - SltTab hotkey must specify a Left or Right side key
+ * @throws {(TargetError)} - Nonexistent hotkey
+ * @throws {(TargetError)} - Nonexistent hotkey variant
+ * @throws {(Error)} - Max amount of hotkeys created
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/HotIf.htm|`HotIf()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Suspend.htm|`Suspend()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Thread.htm|`Thread()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Critical.htm|`Critical()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/SetTimer.htm|`SetTimer()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Return.htm|`Return`},
+ * {@link https://www.autohotkey.com/docs/v2/misc/Threads.htm|`Threads`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm|`Menu object`},
+ * {@link https://www.autohotkey.com/docs/v2/Variables.htm#ThisHotkey|`A_ThisHotkey`},
+ * {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm#Symbols|`Hotkey Symbols`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/_MaxThreadsBuffer.htm|`#MaxThreadsBuffer`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/_MaxThreadsPerHotkey.htm|`#MaxThreadsPerHotkey`}
+ * @example <caption>  
+ * </caption>
+ */
+Hotkey(KeyName [, Action, Options]) => EmptyString
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|`Hotstring()`} creates, modifies, enables, or disables a hotstring.  
+ * The case used to type the hotstring (UPPERCASE, lowercase, Title Case) carries over to the auto-replce text.
+ * @param {(String)} Option  
+ * - Hotstring = The trigger string and options for a hotstring, using the {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm|`::Hotstring`} format.  
+ *   This creates (or updates an already existing) hotstring.  
+ *   Options should be placed between the double colons `::` and are listed below in the `NewOptions` section  
+ * 
+ *       ; Typing '/new' inserts #Requires and a kill switch to a new script
+ *       Hotstring(':?*:/new', '{#}Requires AutoHotkey v2.0{+}`n*Esc::ExitApp()')
+ *       ; Typing '!quit!' exits the script
+ *       Hotstring(':?*X:!quit!', (*) => ExitApp())
+ * - {@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm#EndChars|`"EndChars"`} = Set or get the string of ending characters used by hotstrings. See `Value` param.  
+ * - {@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm#MouseReset|`"MouseReset"`} = Set or get the current setting for mouse clicks resetting the hotstring recognizer. See `Value` param.  
+ * - {@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm#Reset|`"Reset"`} = Immediately reset the hotstring recognizer.  
+ * - NewOptions = A string of {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#Options|`hotstring options`} to set as the new default for future hotstrings.  
+ *   An example of each option can be found in the example section  
+ *   - `*` = {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#Asterisk|`Wildcard`}. Hotstring fires as soon as a match is made, without the need of an {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#EndChars|`EndChar`}.  
+ *   - `?` = {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#Question|`Verbatim`}. Hotstring fires whenever it is typed, including while inside another word  
+ *   - `B0` = {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#b0|`Backspacing`} disable. The replacement text from `Value` is sent without deleting the hotstring  
+ *     To re-enabled backspacing, use `B`  
+ *   - `C` = {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#C|`Case-sensitive hotstring`}. A hotstring must be typed exactly as defined to be activated.  
+ *     This can be disabled using `C0`.  
+ *   - `C1` = {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#C1|`Case mirroring`} disable. The {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#auto|`auto-replace`} text is sent **exactly** as typed.  
+ *     This overrides the default behavior where typing a hotstring in a certain case (UPPERCASE or Title Case) causes the a lowercase replacement text to conform to that case type.  
+ *     Case mirroring can be enabled using `C0`.  
+ *   - `K#` = {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#Kn|`Key-delay`}. Sets delay between {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#auto|`auto-replace`} keystrokes, where `#` is the time in ms or `-1` for no delay  
+ *     This delay includes the keystrokes for backspacing the hotstring text.  
+ *     The {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#SendMode|`send mode`} affects Key-Delay behavior:  
+ *     - `SE` SendEvent = Sets the delay between keystrokes  
+ *     - `SP` SendPlay = Sets the {@link https://www.autohotkey.com/docs/v2/lib/SetKeyDelay.htm#dur|`press duration`} of each keystroke, but not the delay between them  
+ *     - `SI` SendInput = Key-delay can only affect SendInput when it's in {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendInputUnavail|`unavailable mode`} because it defaults to SendEvent mode.  
+ *   - `O` = {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#O|`Omit`}. The {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#EndChars|`EndChar`} of an {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#auto|`auto-replace hotstring`} is omitted  
+ *   - `P#` = {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#Pn|`Priority`}. Set the {@link https://www.autohotkey.com/docs/v2/misc/Threads.htm|`priority`} level of the hotstring, where `#` is the level number  
+ *     This has no affect on {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#auto|`auto-replace hotstring`} and is rarely used.  
+ *   - `S` = {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#SuspendExempt|`Suspend`}. Makes the hotstring {@link https://www.autohotkey.com/docs/v2/lib/_SuspendExempt.htm|`exempt`} from {@link https://www.autohotkey.com/docs/v2/lib/Suspend.htm|`Suspend()`}  
+ *     Use `S1` to disable this setting, making Suspend() affect this hotstring  
+ *   - `SI` `SE` `SP` = {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#SendMode|`Send mode`}. Choose between {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendInputDetail|`SendInput`}, {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendEvent|`SendEvent`}, and {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendPlayDetail|`SendPlay`}  
+ *   - `T` `R` = {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#T|`Text`} / {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#raw|`Raw`} mode. {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#auto|`Auto-replace hotstrings`} are not converted and all keystrokes are sent as typed  
+ *     {@link https://www.autohotkey.com/docs/v2/misc/EscapeChar.htm|Escape sequences} still work and must be escaped using ``` `` ```  
+ *     [`{Text} mode`](https://www.autohotkey.com/docs/v2/lib/Send.htm#Text) is similar to [`{RAW} mode`](https://www.autohotkey.com/docs/v2/lib/Send.htm#Raw), but no attempt is made to translate characters (other than `` `n ``, `` `r ``, `` `t ``, and `` `b ``)  
+ *     `T0` and `R0` can be used to disable these modes.  
+ *     Text may be more reliable than Raw  
+ *   - `X` = {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#X|`Execute`}. Instead of replacement text, `Value` is treated as AHK code  
+ *     This allows hotstrings to activate code just like a hotkey  
+ *   - `Z` = {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#z|`Zeroize`}. When the hotstring fires, the hotstring recognizer is reset.  
+ *     All previous keystrokes are cleared, preventing them from being considered as the start of other hotstrings.  
+ * @param {(String|FuncObj)} [Value] - Depends on the current `Option` being used.  
+ * - `Hotstring` = The hotstring's replacement text or code to run (`X` option).  
+ *   This param can be omitted when working with the `Enabled` param.  
+ * - `"EndChars"` = The string of characters to use as hotstring ending chars.  
+ *   If omitted, a string of the current `EndChars` are returned by the function.  
+ * - `"MouseReset"` = Set `Value` to `1` to enable and `0` to disable.  
+ *   If omitted, the current `MouseReset` setting is returned by the function.  
+ * - `NewOptions` = The `Value` param isn't with this option.  
+ * - `"Reset"` = The `Value` param isn't with this option.  
+ * @param {(String|Integer)} [Enabled] - Only used with the hotstring `Option`.  
+ * Sets the enable state of a hotstring
+ * - `1` = Enable hotstring
+ * - `0` = Disable hotstring
+ * - `-1` `Toggle` = Switch state between enabled and disabled.
+ * @returns {(String|Integer)} If using `"EndChars"` without the `Value` param, a string of ending characters is returned.  
+ * If using `"MouseReset"` without a `Value` param, a `1` is returned for on, otherwise `0`.  
+ * An empty string is returned for everything else.  
+ * @throws {(Error)} - A parameter is invalid or memory allocation failed.  
+ * @throws {(TargetError)} - `Option` was a hotstring that hasn't previously been declared and `Value` was omitted.  
+ * The only time a hotstring value is omitted is when `Enabled` is being altered.  
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/Suspend.htm|`Suspend()`},
+  * {@link https://www.autohotkey.com/docs/v2/lib/Thread.htm|`Thread()`},
+  * {@link https://www.autohotkey.com/docs/v2/lib/Critical.htm|`Critical()`},
+  * {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm|`::Hotstring::`},
+  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#ThisHotkey|`A_ThisHotkey`},
+  * {@link https://www.autohotkey.com/docs/v2/lib/_MaxThreadsPerHotkey.htm|`#MaxThreadsPerHotkey`},
+  * {@link https://www.autohotkey.com/docs/v2/misc/Threads.htm|`Threads`},
+  * {@link https://www.autohotkey.com/docs/v2/lib/_HotIf.htm|`#HotIf`}
+ * @example <caption>  
+ * Option Examples</caption>
+ * ; * Wildcard
+ * ; Typing 'ahk' produces 'AutoHotkey' without needing an EndChar
+ * Hotstring(':*:ahk', 'AutoHotkey')
+ * 
+ * ; ? Verbatim
+ * ; Typing 'AutoHotkey ' produces 'AutoHotstring '
+ * Hotstring(':?:key', 'string')
+ * 
+ * ; B0 Backspacing (disable): 
+ * ; Typing 'for ' doesn't erase the word 'for '
+ * ; 'For' is included as part of the desired replacement
+ * Hotstring(':B0:for', 'key, value in object')
+ * 
+ * ; C Case-sensitive hotstrings
+ * ; Typing 'ABC ' activates hotstring but 'abc ' does not  
+ * Hotstring(':C:ABC', 'ALL CAPS')
+ * 
+ * ; C1 Case mirroring (disable)
+ * ; 'Case ' and 'CASE ' produce 'test '
+ * ; Normally, 'Case ' and 'CASE ' would produce 'Test ' and 'TEST '
+ * Hotstring(':C1:CASE', 'test')
+ * 
+ * ; K# Key delay
+ * ; Puts a 1/2 second pause between each keystroke  
+ * Hotstring(':SE k500:sek', 'event')
+ * ; Each keystroke is held down for 1/2 a second
+ * Hotstring(':SP k500:spk', 'play')
+ * ; Puts a 1/2 second pause between each keystroke when in unavailable mode
+ * Hotstring(':SI k500:sik', 'input')
+ * 
+ * ; O Omit
+ * ; Typing '{esc.' produces '{Escape}', ignoring the end char
+ * Hotstring(':O:`{esc', '{{}Escape{}}')
+ * 
+ * ; P Priority
+ * ; Typing '/kill' immediately exits the script  
+ * Hotstring(':XP100?*:/kill', (*) => ExitApp())
+ * 
+ * ; S Suspend exemption
+ * ; Typing '/suspend' can turn suspension both on and off
+ * ; Without S, it could not turn off suspend as the hotstring would be suspended
+ * Hotstring(':SX*:/suspend', (*) => Suspend())
+ * 
+ * ; T Text Mode
+ * ; Typing '{esc ' produces '{Escape} ' instead of sending the Escape keystroke
+ * Hotstring(':T:{esc', '{Escape}')
+ * 
+ * ; X Execution 
+ * ; Typing 'greet ' calls a boundfunc
+ * Hotstring(':X:greet', (*) => MsgBox('Hello'))
+ * 
+ * ; Z Zeroize
+ * ; Typing 'zz' produces 'zz00z' instead of 'zz00z00'
+ * ; The recognizer is reset preventing the last z from acting as the first z of another hotstring
+ * Hotstring(':B0*?XZ:zz', (*) => Send('00'))
+ */
+Hotstring(Option [, Value, Enabled]) => String
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL_Create|`IL_Create()`} creates a new ImageList that is initially empty.
+ * @param {(Integer)} [InitialCount] - The intial size of the list. Later, this can expand as needed.  
+ * The default value is 2.  
+ * @param {(Integer)} [GrowCount] - The amount of additional slots to add when list expansion is needed.  
+ * The default value is 5.  
+ * @param {(Boolean)} [LargeIcons] - Use large icons or small icons  
+ * - `0` or Omitted = ImageList will contain small icons
+ * - `1` = ImageList will contain large icons
+ * @returns {(Integer)} On success, a unique ID for the ImageList, otherwise `0`  
+ * @throws {()} - 
+ * @example <caption>__
+ * </caption>
+ */
+IL_Create([InitialCount:=2, GrowCount:=5, LargeIcons:=0]) => Integer
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL_Add|`IL_Add()`} adds an icon or picture to the specified ImageList.  
+ * @param {(Integer)} ImageListID - The identifying number of an image list generated by {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL_Create|`IL_Create()`}.
+ * @param {(String)} IconOrPic - Filename to an icon or picture file  
+ * - `Icon` = .ICO .CUR .ANI .EXE .DLL .CPL .SCR {@link https://www.autohotkey.com/docs/v2/misc/ImageHandles.htm|`Icon Handle "HICON:"`} or another icon resource
+ * - `Pic` = .BMP .GIF .JPG .PNG .TIF .Exif .WMF .EMF or a {@link https://www.autohotkey.com/docs/v2/misc/ImageHandles.htm|`Bitmap Handle "HBITMAP:"`}  
+ * @param {(Integer)} Num - Dependant on Icon or Pic
+ * - `Icon` = Num is the icon number to use  
+ *   If this is no sign, the number indicates the icon group to use  
+ *   A negative sign indicates the number is used as a resource ID for an icon inside an executable  
+ *   Num can be omitted when using an icon and will default to `1`  
+ * - `Pic` = A transparency mask color in hex  
+ *   The color white `0xFFFFFF` works well for most pictures  
+ * @param {(Boolean)} Resize  
+ * - `1` = Picture is scaled to become a single icon  
+ * - `0` = Picture is divided into a number of icons that fit inside the given width  
+ * @returns {(Integer)} On success, the ImageList index position of the icon was stored is returned
+ * @returns {(Integer)} A `0` is returned on failure  
+ * Otherwise, the index (1, 2, 3, ...) where the icon was stored in the ImageList is returned  
+ * @example <caption>__
+ * </caption>
+ * IL_Add(ImageListID, 'C:\Path\to\application.exe', 2)
+ * IL_Add(ImageListID, 'C:\Path\to\image.bmp', 0xFFFFFF, )
+ */
+IL_Add(ImageListID, IconOrPic, Num, Resize) => Integer
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL_Destroy|`IL_Destroy()`} deletes the specified ImageList.  
+ * ListViews are automatically destroyed when the ListView parent window is destroyed. Rarely do they need to be manually destroyed.  
+ * @param {(Integer)} ImageListID - The identifying number of an image list generated by {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL_Create|`IL_Create()`}.
+ * @returns {(Boolean)} `1` on success, otherwise `0`.  
+ * @example <caption>__
+ * il_id := IL_Create()
+ * result := IL_Destroy(il_id)
+ * if result
+ *     MsgBox('Image list destroyed')
+ * else MsgBox('Failed to destroy image list')
+ * </caption>
+ */
+IL_Destroy(ImageListID) => Integer
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/ImageSearch.htm|`ImageSearch()`} searches a region of the screen for an image.  
+ * @param {(VarRef)} OutputVarX - Receives the X coordinate of the upper left corner of the image match
+ * If no match is found, var is set to an empty string.  
+ * @param {(VarRef)} OutputVarY - Receives the X coordinate of the upper left corner of the image match
+ * If no match is found, var is set to an empty string.  
+ * @param {(Integer)} X1 - X coordinate of the left edge of the area to search
+ * @param {(Integer)} Y1 - Y coordinate of the top edge of the area to search
+ * @param {(Integer)} X2 - X coordinate of the right edge of the area to search
+ * @param {(Integer)} Y2 - Y coordinate of the bottom edge of the area to search
+ * @param {(String)} ImageFile - Options followed by an image file name or path to an image file.  
+ * If a full path isn't used, ImageFile is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|`A_WorkingDir`}.  
+ * Supported formats: .ANI .BMP .CUR .EMF .Exif .GIF .ICO .JPG .PNG .TIF .WMF .EXE .DLL .CPL .SCR and other icon resources  
+ * **Options**  
+ * A string of zero or options separated by spaces/tabs may be added before the file path  
+ * - `*Icon#` = Set icon group number to use, where `#` is the specific number 
+ * - `*#` = The allowed variance in color to still match the image, where `#` is between 0 and 255  
+ *   Default is 0  
+ * - `*Trans#` = Makes images easier to find by specifying a transparency color for a picture where `#` is a {@link https://www.autohotkey.com/docs/v2/misc/Colors.htm|`Valid Color Name`} or an RGB color with optional hex prefix.  
+ *   These are all the same: `*TransWhite`, `*TransFFFFFF`, `*Trans0xFFFFFF`  
+ *   Commonly used with .PNG .GIF and .TIF files that have some transparent area.  
+ *   `*TransWhite` works well for .GIF files while `*TransBlack` works well for .PNG and .TIF files  
+ * - `*W#` `*H#` = Width and Height to scale the image, where `#` is the new size in pixels.  
+ *   If both are omitted, icons load to 16x16 and pictures load to their actual size.  
+ *   To preserve aspect ratio, set a width or height and use `-1` for the other: `*W300 *H-1`  
+ * @returns {(Integer)} `1` if the image was found, otherwise `0`
+ * @throws {(ValueError)} - An invalid parameter was detected or the image could not be loaded
+ * @throws {(OSError)} - An OS internal function call failed
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/PixelSearch.htm|`PixelSearch()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/PixelGetColor.htm|`PixelGetColor()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm|`CoordMode()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/MouseGetPos.htm|`MouseGetPos()`}
+ * @example <caption>__
+ * </caption>
+ */
+ImageSearch(&OutputVarX, &OutputVarY, X1, Y1, X2, Y2, ImageFile) => Integer
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/IniDelete.htm|`IniDelete()`} deletes a value from a standard format .ini file.  
+ * @param {(String)} FileLocation - The file name or path to an .INI file.  
+ * If a full path isn't used, FileLocation is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|`A_WorkingDir`}.  
+ * @param {(String)} Section - The name of a section in the .INI file.  
+ * @param {(String)} [Key] - The name of the key-value pair to delete.  
+ * If omitted, all keys in the section are deleted.  
+ * @returns {(String)} An empty string is always returned.  
+ * @throws {(OSError)} - Thrown on failure.  
+ * Regardless of an error, {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|`A_LastError`} is set to the result of the OS's GetLastError().  
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/IniRead.htm|`IniRead()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/IniWrite.htm|`IniWrite()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/RegDelete.htm|`RegDelete()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/RegDeleteKey.htm|`RegDeleteKey()`}
+ * @example <caption>__
+ * </caption>
+ * ; Standard INI file format:
+ * 
+ * ; INI comments start with semicolons
+ * ; Just like AHK comments
+ * [Section Names Go In Square Brackets]
+ * Key_Name = Some saved data
+ * Another_Key = 0
+ */
+IniDelete(FileLocation, Section [, Key]) => EmptyString
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/IniRead.htm|`IniRead()`} reads a value, section or list of section names from a standard format .ini file.  
+ * @param {(String)} FileLocation - The file name or path to an .INI file.  
+ * If a full path isn't used, FileLocation is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|`A_WorkingDir`}.  
+ * @param {(String)} [Section] - The name of a section in the .INI file.  
+ * If `Section` is omitted, a newline delimited list of all sections in the file is returned.  
+ * @param {(String)} [Key] - The name of a key to get the value of.  
+ * If `Key` is omitted, a newline delimited list of all keys in that section is returned.  
+ * @param {(String)} [Default] - If the Key name doesn't exist in the specified Section, this value is returned.  
+ * @returns {(String)} The value of the specified `Key` is returned.  
+ * If `Key` not found, the value of `Default` is returned  
+ * If no default value was provided, an error is thrown  
+ * If `Key` is omitted, a list of all keys from the specified section is returned  
+ * If `Section` is omitted, a list of all sections from the specified INI file is returned  
+ * @throws {(OSError)} - Thrown if key doesn't exist and no default was provided  
+ * Regardless of an error, {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|`A_LastError`} is set to the result of the OS's GetLastError().  
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/IniWrite.htm|`IniWrite()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/IniDelete.htm|`IniDelete()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/RegRead.htm|`RegRead()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/FileRead.htm|`FileRead()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/LoopRead.htm|`Loop-Files`}
+ * @example <caption>__
+ * </caption>
+ * ; Standard INI file format:
+ * 
+ * ; INI comments start with semicolons
+ * ; Just like AHK comments
+ * [Section Names Go In Square Brackets]
+ * Key_Name = Some saved data
+ * Another_Key = 0 */
+IniRead(FileLocation [, Section, Key, Default]) => String
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/IniWrite.htm|`IniWrite()`} writes a value or section to a standard format .ini file.  
+ * Values longer than 65,535 characters can be written to the file, but cannot be read correctly by {@link https://www.autohotkey.com/docs/v2/lib/IniRead.htm|`IniRead()`}.  
+ * INI files are created as UTF-16 with BOM. To have the INI file encoded otherwise, create it before writing to it.  
+ * @param {(String)} Value - Either a single value to write to a key or an entire section of key=value pair(s).  
+ * If writing a section of key=value pairs, `key = value` format should be used for each line and there can be no blank lines.  
+ * @param {(String)} FileLocation - The file name or path to an .INI file.  
+ * If a full path isn't used, FileLocation is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|`A_WorkingDir`}.  
+ * @param {(String)} Section - The name of a section in the .INI file to write to.  
+ * @param {(String)} Key - The name of the key to assign `Value` to.  
+ * Key **must** be omitted when `Value` is a section of key=value pairs.  
+ * @returns {(String)} An empty string is always returned.  
+ * @throws {(OSError)} - Thrown on failure.  
+ * Regardless of an error, {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|`A_LastError`} is set to the result of the OS's GetLastError().  
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/IniRead.htm|`IniRead()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/IniDelete.htm|`IniDelete()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/RegWrite.htm|`RegWrite()`}
+ * @example <caption>__
+ * </caption>
+ * ; Writing a single value to a key
+ * IniWrite('true', A_Desktop '\test.ini', 'Test Section', 'my_key')
+ * 
+ * ; Writing multiple key=value pairs
+ * data := 'language = "AutoHotkey"'
+ *     . '`nversion = "2.0.10"'
+ *     . '`ndate = 2023-12-06'
+ * IniWrite(data, A_Desktop '\test.ini', 'Code Info')
+ * 
+ * ;=================
+ * ; INI file format:
+ * ; INI comments start with semicolons just like AHK comments
+ * [Section Names Go In Square Brackets]
+ * Key_Name = Data goes right of the = sign
+ * number_1000 = 1000
+ */
+IniWrite(Value, FileLocation, Section, Key) => String
+
+/**
+ * {@link https://www.autohotkey.com/docs/v2/lib/InputBox.htm|`InputBox()`} displays a popup box to get input from the user.  
+ * @param {(String)} [Prompt] - Text to display to the user above the edit input control.  
+ * If omitted, the text area remains blank.  
+ * @param {(String)} [Title] - A title to give to the input box GUI.  
+ * If omitted, {@link https://www.autohotkey.com/docs/v2/Variables.htm#ScriptName|`A_ScriptName`} is used.  
+ * @param {(String)} [Options] - Zero or more of the following options, separated by spaces/tabs  
+ * - `X#` `Y#` = Set the X and/or Y coordinates of the input box's upper-left corner, where `#` is a coordinate number.  
+ *   If either is omitted, the input box will be centered on that axis.  
+ * - `W#` `H#` = The width and height of the input box's client area, where `#` is the number of pixels.  
+ * - `T#` = Set a timeout to occur, where `#` is the number of seconds to wait.  
+ *   If timeout occurs, the return object sets `Result` to the word `Timeout` and `Value` to whatever the user had entered.  
+ * - `Password#` = Masks the characters of the input box to prevent others from viewing what's being typed.  
+ *   Setting `#` to a character will use that character as the symbol mask  
+ *   Using `Password*` will show a `*` each time a character is typed.  
+ *   If no character is provided after the word `Password`, a default circle is used.  
+ * @param {(String)} [DefaultText] - Specify any default text to show in the edit control of the input box.  
+ * If omitted or an empty string, no text will show in the control box.  
+ * @returns {(Object)} An object is returned with 2 properties.  
+ * `obj.Value` contains the user's submitted text  
+ * `obj.Result` contains how the input box was closed: `OK`, `Cancel`, or `Timeout`  
+ * @throws {()} - 
+ * @see {@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm|`MsgBox()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/FileSelect.htm|`FileSelect()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/DirSelect.htm|`DirSelect()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/ToolTip.htm|`ToolTip()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm|`Gui object`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm|`InputHook object`}
+ * @example <caption>__
+ * </caption>
+ */
+InputBox([Prompt:='', Title:=A_ScriptName, Options:='', DefaultText:='']) => Object
 
 ;#endregion
