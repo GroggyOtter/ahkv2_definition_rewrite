@@ -776,7 +776,6 @@ class ClipboardAll extends Buffer {
     static Call([Data:=unset, Size:=Buffer.Size]) => ClipboardAll
 }
 
-
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Class.htm|`Class`}  
  * Objects contain static methods and properties creates an object containing everything on the clipboard (such as pictures and formatting).  
@@ -12283,29 +12282,109 @@ class Primitive extends Any {
 /**
  * @description 
  */
-class Number extends Primitive {
-    
+Class String extends Primitive {
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/String.htm|`String()`}  
+     * Converts a value to string type.
+     * @param {(String|Number|Object)} Value  
+     * Dependant on object type:  
+     * - `String` = No conversion happens.
+     * - `Number` = Converted using {@link https://www.autohotkey.com/docs/v2/Concepts.htm#number-default-format|default decimal formatting}.  
+     * - `Object` = Uses a user-defined `ToString()` method.  
+     *   If ToString() has not been defined, an error is thrown.  
+     * @returns {(String)}  
+     * The value converted to a string  
+     * @throws {(MethodError)} - Invalid value type  
+     * @see
+     * {@link https://www.autohotkey.com/docs/v2/lib/Type.htm|Type()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/Integer.htm|Integer()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/Float.htm|Float()},
+     * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#values|Values},
+     * {@link https://www.autohotkey.com/docs/v2/Language.htm#expressions|Expressions},
+     * {@link https://www.autohotkey.com/docs/v2/lib/Is.htm|Is functions}
+     * @example <caption>  
+     * </caption>
+     */
+    static Call(Value) => String
 }
 
 /**
  * @description 
  */
-Class String extends Primitive {
-    
+class Number extends Primitive {
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/String.htm|`String()`}  
+     * Converts a numeric string to a pure integer or float type.
+     * @param {(String)} Value  
+     * A string representing a number.  
+     * @returns {(Integer|Float)}  
+     * An integer or float version of value.  
+     * @throws {(TypeError)} Value cannot be converted  
+     * To prevent this, use {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#number|IsNumber()} first.
+     * @see  
+     * {@link https://www.autohotkey.com/docs/v2/lib/Type.htm|Type()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/Integer.htm|Integer()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/Float.htm|Float()},
+     * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#values|Values},
+     * {@link https://www.autohotkey.com/docs/v2/Language.htm#expressions|Expressions},
+     * {@link https://www.autohotkey.com/docs/v2/lib/Is.htm|Is functions}
+     * @example <caption>  
+     * </caption>
+     */
+    static Call(Value) => Number
 }
 
 /**
  * @description 
  */
 Class Float extends Number {
-    
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Float.htm|`Float()`}  
+     * Converts a numeric string or integer value to a float type.
+     * @param {(String|Integer)} Value  
+     * A string or integer to convert to float type.  
+     * @returns {(Float)}  
+     * The numerical version of value.  
+     * @throws {(TypeError)} Value cannot be converted  
+     * To prevent this, use {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#number|IsNumber()} first.  
+     * @see  
+     * {@link https://www.autohotkey.com/docs/v2/lib/Type.htm|Type()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/Integer.htm|Integer()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/Number.htm|Number()},
+     * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#values|Values},
+     * {@link https://www.autohotkey.com/docs/v2/Language.htm#expressions|Expressions},
+     * {@link https://www.autohotkey.com/docs/v2/lib/Is.htm|Is functions}
+     * @example <caption>  
+     * </caption>
+     */
+    static Call(Value) => Float
 }
 
 /**
  * @description 
  */
 Class Integer extends Number {
-    
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Float.htm|`Float()`}  
+     * Converts a numeric string or float value to an integer type.  
+     * @param {(String|Float)} Value  
+     * A string or integer to convert to float type.  
+     * @returns {(Integer)}  
+     * The numerical version of value.  
+     * @throws {(TypeError)} Value cannot be converted  
+     * To prevent this, use {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#number|IsNumber()} first.  
+     * @see
+     * {@link https://www.autohotkey.com/docs/v2/lib/Type.htm|Type()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/Integer.htm|Integer()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/Float.htm|Float()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/Number.htm|Number()},
+     * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#values|Values},
+     * {@link https://www.autohotkey.com/docs/v2/Language.htm#expressions|Expressions},
+     * {@link https://www.autohotkey.com/docs/v2/lib/Is.htm|Is functions}
+     * @example <caption>  
+     * </caption>
+     */
+    static Call(Value) => Float
 }
 
 
