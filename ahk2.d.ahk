@@ -169,8 +169,7 @@ class Object extends Any {
      * Creates a new Object.  
      * @method
      * @example <caption>  
-     * Two ways to create a new object.</caption>
-     * ; Create a new object
+     * Different ways to create a new object.</caption>
      * my_obj1 := Object()
      * my_obj2 := Object.Call()
      * my_obj3 := {}
@@ -384,7 +383,7 @@ class Array extends Object {
      * Creates a new Array.  
      * @method
      * @example <caption>  
-     * 2 ways to create an array object</caption>
+     * Different ways to create a new array.</caption>
      * my_arr1 := Array(1, 2, 3)
      * my_arr2 := Array.Call(1, 2, 3)
      * my_arr3 := [1, 2, 3]
@@ -619,87 +618,6 @@ class Array extends Object {
  */
 class Buffer extends Object {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|`ClipboardAll`}  
-     * Creates an object containing everything on the clipboard, including binary data (like pictures).  
-     * ClipboardAll is derived from the Buffer class.  
-     * @class
-     * @see  
-     * {@link https://www.autohotkey.com/docs/v2/lib/A_Clipboard.htm|A_Clipboard},
-     * {@link https://www.autohotkey.com/docs/v2/lib/ClipWait.htm|ClipWait()},
-     * {@link https://www.autohotkey.com/docs/v2/lib/OnClipboardChange.htm|OnClipboardChange()},  
-     * {@link https://www.autohotkey.com/docs/v2/lib/_ClipboardTimeout.htm|#ClipboardTimeout},
-     * {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer}
-     */
-    class ClipboardAll extends Buffer {
-        /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Ptr|`Ptr`}  
-         * Retrieves the address of the data contained by the object.  
-         * This address is valid until the object is freed.  
-         * @property
-         * @type {(Integer)}
-         * @example <caption>  
-         * Showing a buffer pointer.</caption>
-         * clipBak := ClipboardAll()
-         * MsgBox('Data address is: ' clipBak.Ptr)
-         */
-        Ptr => Integer  
-        
-        /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Size|`Size`}  
-         * Retrieves the size, in bytes, of the raw binary data.  
-         * @property
-         * @type {(Integer)}
-         * @example <caption>  
-         * Showing size of a buffer.</caption>
-         * clipBak := ClipboardAll()
-         * MsgBox('Size of current clipboard data: ' clipBak.Size ' bytes')
-         */
-        Size => Integer
-        
-        /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/ClipboardAll.htm|`ClipboardAll()`}  
-         * Creates a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer object} and stores everything from the clipboard in it.
-         * @method
-         * @param {(Object | Integer)} [Data]  
-         * A Buffer-like object or a pure integer which is the address of the binary data.  
-         * The data must be in a {@link https://www.autohotkey.com/docs/v2/lib/ClipboardAll.htm#Remarks|specific format}, so typically it originates from a previous call to ClipboardAll().  
-         * Omitting both parameters retrieves the current contents of the clipboard.  
-         * @param {(Integer)} [Size]  
-         * The number of bytes of data to use. This is not necessary with buffer objects.  
-         * @returns {(ClipboardAll)}  
-         * A  buffer object
-         * @throws {(MemoryError)}  
-         * Memory could not be allocated.  
-         * @see  
-         * {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm|DllCall()},
-         * {@link https://www.autohotkey.com/docs/v2/lib/NumPut.htm|NumPut()},
-         * {@link https://www.autohotkey.com/docs/v2/lib/NumGet.htm|NumGet()},  
-         * {@link https://www.autohotkey.com/docs/v2/lib/StrPut.htm|StrPut()},
-         * {@link https://www.autohotkey.com/docs/v2/lib/StrGet.htm|StrGet()},
-         * {@link https://www.autohotkey.com/docs/v2/lib/File.htm#RawRead|File.RawRead()},  
-         * {@link https://www.autohotkey.com/docs/v2/lib/File.htm#RawWrite|File.RawWrite()},
-         * {@link https://www.autohotkey.com/docs/v2/lib/ClipboardAll.htm|ClipboardAll}
-
-         * @example <caption>  
-         * Clipboard backup and restore.</caption>
-         * ; Save highlighted text to variable
-         * $F1:: {
-         *     backup := ClipboardAll()
-         *     A_Clipboard := ''
-         *     Send('^c')
-         *     ClipWait(2, 0)
-         *     text := A_Clipboard
-         *     A_Clipboard := backup
-         *     MsgBox('Highlighted text saved as variable:'
-         *         '`n' text
-         *         '`nOriginal clipboard data is back on clipboard.')
-         * }
-         */
-        static Call([Data:=unset, Size:=Buffer.Size]) => ClipboardAll
-
-    }
-    
-    /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Ptr|`Ptr`}  
      * Retrieves the buffer's current memory address.  
      * @property
@@ -777,6 +695,87 @@ class Buffer extends Object {
      */
     __New(ByteCount:=unset, FillByte:=0) => EmptyString
 }
+
+/**
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|`ClipboardAll`}  
+ * Creates an object containing everything on the clipboard, including binary data (like pictures).  
+ * ClipboardAll is derived from the Buffer class.  
+ * @class
+ * @see  
+ * {@link https://www.autohotkey.com/docs/v2/lib/A_Clipboard.htm|A_Clipboard},
+ * {@link https://www.autohotkey.com/docs/v2/lib/ClipWait.htm|ClipWait()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/OnClipboardChange.htm|OnClipboardChange()},  
+ * {@link https://www.autohotkey.com/docs/v2/lib/_ClipboardTimeout.htm|#ClipboardTimeout},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer}
+ */
+class ClipboardAll extends Buffer {
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Ptr|`Ptr`}  
+     * Retrieves the address of the data contained by the object.  
+     * This address is valid until the object is freed.  
+     * @property
+     * @type {(Integer)}
+     * @example <caption>  
+     * Showing a buffer pointer.</caption>
+     * clipBak := ClipboardAll()
+     * MsgBox('Data address is: ' clipBak.Ptr)
+     */
+    Ptr => Integer  
+    
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Size|`Size`}  
+     * Retrieves the size, in bytes, of the raw binary data.  
+     * @property
+     * @type {(Integer)}
+     * @example <caption>  
+     * Showing size of a buffer.</caption>
+     * clipBak := ClipboardAll()
+     * MsgBox('Size of current clipboard data: ' clipBak.Size ' bytes')
+     */
+    Size => Integer
+    
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/ClipboardAll.htm|`ClipboardAll()`}  
+     * Creates a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer object} and stores everything from the clipboard in it.
+     * @method
+     * @param {(Object | Integer)} [Data]  
+     * A Buffer-like object or a pure integer which is the address of the binary data.  
+     * The data must be in a {@link https://www.autohotkey.com/docs/v2/lib/ClipboardAll.htm#Remarks|specific format}, so typically it originates from a previous call to ClipboardAll().  
+     * Omitting both parameters retrieves the current contents of the clipboard.  
+     * @param {(Integer)} [Size]  
+     * The number of bytes of data to use. This is not necessary with buffer objects.  
+     * @returns {(ClipboardAll)}  
+     * A  buffer object
+     * @throws {(MemoryError)}  
+     * Memory could not be allocated.  
+     * @see  
+     * {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm|DllCall()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/NumPut.htm|NumPut()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/NumGet.htm|NumGet()},  
+     * {@link https://www.autohotkey.com/docs/v2/lib/StrPut.htm|StrPut()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/StrGet.htm|StrGet()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/File.htm#RawRead|File.RawRead()},  
+     * {@link https://www.autohotkey.com/docs/v2/lib/File.htm#RawWrite|File.RawWrite()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/ClipboardAll.htm|ClipboardAll}
+
+     * @example <caption>  
+     * Clipboard backup and restore.</caption>
+     * ; Save highlighted text to variable
+     * $F1:: {
+     *     backup := ClipboardAll()
+     *     A_Clipboard := ''
+     *     Send('^c')
+     *     ClipWait(2, 0)
+     *     text := A_Clipboard
+     *     A_Clipboard := backup
+     *     MsgBox('Highlighted text saved as variable:'
+     *         '`n' text
+     *         '`nOriginal clipboard data is back on clipboard.')
+     * }
+     */
+    static Call([Data:=unset, Size:=Buffer.Size]) => ClipboardAll
+}
+
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Class.htm|`Class`}  
@@ -1725,67 +1724,6 @@ class File extends Object {
  * @class
  */
 class Func extends Object {
-
-    /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|`Enumerator`}  
-     * An type of {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} called to enumerate through each value of an object.  
-     * They are primarily used by {@link https://www.autohotkey.com/docs/v2/lib/For.htm|For-loops} and are not usually called directly.  
-     * @class
-     * @example <caption>  
-     * Different ways to use enumerators</caption>
-     * arr := ['a', 'b', 'c']
-     * 
-     * ; Enumerator that only returns the value of each element
-     * enum := arr.__Enum(1)
-     * for value in enum
-     *     MsgBox('for-loop`nvalue only: ' value)
-     * 
-     * ; Enumerator that returns the index and value of each element
-     * enum := arr.__Enum(2)
-     * for index, value in enum
-     *     MsgBox('for-loop`nindex: ' index '`nvalue: ' value)
-     * 
-     * ; Using an enumerator with a while-loop
-     * enum := arr.__Enum()
-     * while enum(&index, &value)
-     *     MsgBox('while-loop`nindex: ' index '`nvalue: ' value)
-     */
-    class Enumerator extends Func {
-        /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm#Call|`Enumerator()`}  
-         * Retrieves the next value or key and value in an enumeration.  
-         * @method
-         * @param {(VarRef)} OutputVar1  
-         * Variable to store index, key, or value.  
-         * - `__Enum(1)` - OutputVar1 receives the value of each element.  
-         * - `__Enum(2)` - OutputVar1 receives the key/index of each map/array element, respectively.  
-         * @param {(VarRef)} [OutputVar2]  
-         * Variable to store each element's value.  
-         * OutputVar2 will always contain the valuea dn only when `__Enum(2)` is used.  
-         * @returns {(Integer)}  
-         * Non-zero integer if successful or zero if there were no items remaining.  
-         * @example <caption>  
-         * Different ways to use enumerators</caption>
-         * arr := ['a', 'b', 'c']
-         * 
-         * ; Enumerator that only returns the value of each element
-         * enum := arr.__Enum(1)
-         * for value in enum
-         *     MsgBox('for-loop`nvalue only: ' value)
-         * 
-         * ; Enumerator that returns the index and value of each element
-         * enum := arr.__Enum(2)
-         * for index, value in enum
-         *     MsgBox('for-loop`nindex: ' index '`nvalue: ' value)
-         * 
-         * ; Using an enumerator with a while-loop
-         * enum := arr.__Enum()
-         * while enum(&index, &value)
-         *     MsgBox('while-loop`nindex: ' index '`nvalue: ' value)
-         */
-        Call(&OutputVar1 [,&OutputVar2]) => Integer
-    }
-    
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#Name|`Name`}  
      * Returns the function's name.  
@@ -2025,6 +1963,66 @@ class BoundFunc extends Func {
  */
 class Closure extends Func {
     
+}
+
+/**
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|`Enumerator`}  
+ * An type of {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} called to enumerate through each value of an object.  
+ * They are primarily used by {@link https://www.autohotkey.com/docs/v2/lib/For.htm|For-loops} and are not usually called directly.  
+ * @class
+ * @example <caption>  
+ * Different ways to use enumerators</caption>
+ * arr := ['a', 'b', 'c']
+ * 
+ * ; Enumerator that only returns the value of each element
+ * enum := arr.__Enum(1)
+ * for value in enum
+ *     MsgBox('for-loop`nvalue only: ' value)
+ * 
+ * ; Enumerator that returns the index and value of each element
+ * enum := arr.__Enum(2)
+ * for index, value in enum
+ *     MsgBox('for-loop`nindex: ' index '`nvalue: ' value)
+ * 
+ * ; Using an enumerator with a while-loop
+ * enum := arr.__Enum()
+ * while enum(&index, &value)
+ *     MsgBox('while-loop`nindex: ' index '`nvalue: ' value)
+ */
+class Enumerator extends Func {
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm#Call|`Enumerator()`}  
+     * @param {(VarRef)} OutputVar1  
+     * Variable reference to receive a value dependant on the type of enumerator:  
+     * - `__Enum(1)` - OutputVar1 receives the value of each element.  
+     * - `__Enum(2)` - OutputVar1 receives the value identifier (key/index/etc) of each element.  
+     * @param {(VarRef)} [OutputVar2]  
+     * Variable reference to receive a value dependant on the type of enumerator:  
+     * - `__Enum(1)` - OutputVar2 receives nothing and must be omitted.  
+     * - `__Enum(2)` - OutputVar2 receives the value of each element.  
+     * @returns {(Boolean)}  
+     * `1` the next value was successfully gotten.  
+     * `0` no more values to enumerate.  
+     * @example <caption>  
+     * Different ways to use enumerators</caption>
+     * arr := ['a', 'b', 'c']
+     * 
+     * ; Enumerator that only returns the value of each element
+     * enum := arr.__Enum(1)
+     * for value in enum
+     *     MsgBox('for-loop`nvalue only: ' value)
+     * 
+     * ; Enumerator that returns the index and value of each element
+     * enum := arr.__Enum(2)
+     * for index, value in enum
+     *     MsgBox('for-loop`nindex: ' index '`nvalue: ' value)
+     * 
+     * ; Using an enumerator with a while-loop
+     * enum := arr.__Enum()
+     * while enum(&index, &value)
+     *     MsgBox('while-loop`nindex: ' index '`nvalue: ' value)
+     */
+    Call(&OutputVar1 [,&OutputVar2]) => Integer
 }
 
 /**
@@ -8608,7 +8606,7 @@ class Gui extends Object {
      *     else control.gui.Opt('-AlwaysOnTop')
      * }
      */
-    AddGroupBox([Options:='', Label]) => Gui.GroupBox
+    AddGroupBox([Options:='', Label:='']) => Gui.GroupBox
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddHotkey()`}  
@@ -12167,7 +12165,7 @@ class RegExMatchInfo extends Object {
      * @example <caption>  
      * </caption>
      */
-    Pos[[N:=0]] => Integer
+    Pos[N:=0] => Integer
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Pos()`}  
@@ -12194,7 +12192,7 @@ class RegExMatchInfo extends Object {
      * @example <caption>  
      * </caption>
      */
-    Len[[N:=0]] => Integer
+    Len[N:=0] => Integer
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Len()`}  
@@ -12221,7 +12219,7 @@ class RegExMatchInfo extends Object {
      * @example <caption>  
      * </caption>
      */
-    Name[[N:=0]] => String
+    Name[N:=0] => String
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Name()`}  
@@ -12272,37 +12270,42 @@ class RegExMatchInfo extends Object {
      * @example <caption>  
      * </caption>
      */
-    Match[[N:=0]] => String
+    Match[N:=0] => String
 }
 
 /**
  * @description 
  */
 class Primitive extends Any {
+    
 }
 
 /**
  * @description 
  */
 class Number extends Primitive {
+    
 }
 
 /**
  * @description 
  */
 Class String extends Primitive {
+    
 }
 
 /**
  * @description 
  */
 Class Float extends Number {
+    
 }
 
 /**
  * @description 
  */
 Class Integer extends Number {
+    
 }
 
 
@@ -12311,12 +12314,14 @@ Class Integer extends Number {
  */
 class VarRef extends Any {
     
+    
 }
 
 /**
  * @description 
  */
 class ComValue extends Any {
+    
     
 }
 
@@ -12325,6 +12330,7 @@ class ComValue extends Any {
  */
 class ComObjArray extends ComValue {
     
+    
 }
 
 /**
@@ -12332,12 +12338,14 @@ class ComObjArray extends ComValue {
  */
 class ComObject extends ComValue {
     
+    
 }
 
 /**
  * @description 
  */
 class ComValueRef extends ComValue {
+    
     
 }
 
@@ -17436,7 +17444,7 @@ Is functions
  * @example <caption>__
  * </caption>
  */
-InStr(Haystack, Needle [,CaseSense:=0, StartPos:=1, Occurrence]) => Integer
+InStr(Haystack, Needle [,CaseSense:=0, StartPos:=1, Occurrence:=1]) => Integer
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#IsAlnum|`IsAlnum()`}  
@@ -19919,16 +19927,26 @@ Run(Target [,WorkingDir:=A_WorkingDir, LaunchOpt:='', &OutputPID]) => EmptyStrin
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/RunAs.htm|`RunAs()`}  
- * Specifies a set of user credentials to use for all subsequent Run and RunWait functions.  
- * @param {()} 
- * @returns {()} 
- * @throws {()} 
+ * Specifies a set of user credentials to use for all subsequent {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|Run()} and {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|RunWait()} functions.  
+ * Omit all parameters to disable RunAs() credentials.  
+ * @param {(String)} [User]  
+ * The username used to create the new process.  
+ * @param {(String)} [Password]  
+ * The password for User. 
+ * If omitted, an empty string is used.  
+ * @param {(String)} [Domain]  
+ * The User's domain.  
+ * `@ComputerName` may also work.  
+ * If omitted or an empty string, local ccount will be used.  
+ * @returns {(String)}  
+ * An empty string is always returned.  
  * @see 
-
+ * {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|`Run()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|`RunWait()`}
  * @example <caption>  
  * </caption>
  */
-RunAs() => ????
+RunAs([User, Password, Domain]) => EmptyString
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|`RunWait()`}  
@@ -22127,7 +22145,7 @@ WinActive([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
  * @example <caption>  
  * </caption>
  */
-WinClose([WinTitle:='', WinText:='', SecToWait:=unset, NoWinTitle:='', NoWinText:='']) => ????
+WinClose([WinTitle:='', WinText:='', SecToWait:=unset, NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/WinExist.htm|`WinExist()`}  
