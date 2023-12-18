@@ -52,7 +52,9 @@ Update 2023-12-18:
 All functions, classes, methods, and properties are done.  
 Added `ahk2.json` file. This includes many updates to directives and flow control statements.  
 More text will auto-complete and more menu selections have been added.  
-[Some examples can be seen here.](https://i.imgur.com/lQGyN2g.mp4)
+[Some examples can be seen here.](https://github.com/GroggyOtter/ahkv2_definition_rewrite/assets/29220773/8cafcd52-823c-4861-aa29-5f6a3452e8da)
+
+
 ***
 
 Screenshots of changes:
