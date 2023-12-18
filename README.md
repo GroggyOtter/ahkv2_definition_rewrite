@@ -48,8 +48,11 @@ I have a good chunk of the classes, methods, and properties done.
 I have functions A-N completed.  
 And I still have directives, flow control, and built-in vars to do.
 
-Updated: 20231207
-
+Update 2023-12-18:  
+All functions, classes, methods, and properties are done.  
+Added `ahk2.json` file. This includes many updates to directives and flow control statements.  
+More text will auto-complete and more menu selections have been added.  
+[Some examples can be seen here.](https://i.imgur.com/lQGyN2g.mp4)
 ***
 
 Screenshots of changes:
