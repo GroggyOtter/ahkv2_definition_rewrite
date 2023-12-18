@@ -1,0 +1,1424 @@
+{
+	"directives": [
+		{
+			"body": "#ClipboardTimeout ${1:milliseconds}",
+			"description": "Set time between retrying the clipboard in milliseconds. 0 = try once, -1 = try indefinitely, omit = default search restored.",
+			"prefix": "#ClipboardTimeout"
+		},
+		{
+			"body": "#DllLoad ${1:DLL_or_EXE}",
+			"description": "Load the DLL or EXE file before the script starts executing or omit to to reset default search strategy.",
+			"prefix": "#DllLoad"
+		},
+		{
+			"body": "#StdOut ${1|'CP0','UTF-8','UTF-8-RAW','UTF-16','UTF-16-RAW','CP###' |}",
+			"description": "Send any syntax s that prevent the script from running to stderr instead of displaying a dialog box. Omit to use CP0.",
+			"prefix": "#StdOut"
+		},
+		{
+			"body": "#HotIf ",
+			"description": "Create context-sensitive hotkeys and hotstrings that are enabled when the criteria is true. Omit to reset criteria."
+		},
+		{
+			"body": "#HotIfTimeout ${1:milliseconds}",
+			"description": "Max time spent evaluating #HotIf criteria. Default is 1000.",
+			"prefix": "#HotIfTimeout"
+		},
+		{
+			"body": "#Hotstring ${1|NoMouse ,EndChars , NewOptionString|}",
+			"description": "Change the default options for hotstrings or their ending char.",
+			"prefix": "#Hotstring"
+		},
+		{
+			"body": "#Include ${1:File_Dir_Or_LibName}",
+			"description": "File contents are inserted here when script runs, but not if already included earlier.",
+			"prefix": "#Include"
+		},
+		{
+			"body": "#IncludeAgain ${1:File_Or_Dir}",
+			"description": "File contents are inserted here when script runs, even if inserted before.",
+			"prefix": "#IncludeAgain"
+		},
+		{
+			"body": "#InputLevel ${1:Between_0_and_100}",
+			"description": "Set Input Level of any subsequently created hotkeys/hotstrings. Omit for 0.",
+			"prefix": "#InputLevel"
+		},
+		{
+			"body": "#MaxThreads ${1:Between_1_and_255}",
+			"description": "Set max number of simultaneous threads that can run. Default is 10.",
+			"prefix": "#MaxThreads"
+		},
+		{
+			"body": "#MaxThreadsBuffer ${1|true,false|}",
+			"description": "Set if hotkeys are buffered or ignored when max threads reached. Default and omit value is 1.",
+			"prefix": "#MaxThreadsBuffer"
+		},
+		{
+			"body": "#MaxThreadsPerHotkey ${1:Between_1_and_255}",
+			"description": "Set the maximum number of threads that can exist simultaneously for each hotkey or hotstring.",
+			"prefix": "#MaxThreadsPerHotkey"
+		},
+		{
+			"body": "#NoTrayIcon",
+			"description": "Removes the script's tray icon."
+		},
+		{
+			"body": "#Requires AutoHotkey${1| , >, >=, <, <=, =|}v2${2|.0,.1|}${3|.10,.9,.8,.7,.6,.5,.4,.3,.2,.1,.0|}+${4| , 32-bit, 64-bit|}",
+			"description": "The required version of AutoHotkey for the script to run otherwise script s and quits.",
+			"prefix": "#Requires"
+		},
+		{
+			"body": "#SingleInstance ${1|Force,Ignore,Prompt,Off|}",
+			"description": "Determine whether the script is allowed to run again when it is already running.",
+			"prefix": "#SingleInstance"
+		},
+		{
+			"body": "#SuspendExempt ${1|true,false|}",
+			"description": "Sets if subsequent hotkeys and hotstrings are marked as exempt from Suspend().",
+			"prefix": "#SuspendExempt"
+		},
+		{
+			"body": "#UseHook ${1|true,false|}",
+			"description": "Force the use of the hook with some/all hotkeys.",
+			"prefix": "#UseHook"
+		},
+		{
+			"body": "#Warn ${1|All,VarUnset,LocalSameAsGlobal,Unreachable|}, ${2|MsgBox,StdOut,OutputDebug,Off|}",
+			"description": "Enable or disable warnings for certain critera. Can catch multiple types of s.",
+			"prefix": "#Warn"
+		},
+		{
+			"body": "#WinActivateForce",
+			"description": "Use forceful activation by default instead of gentle activation first."
+		},
+		{
+			"body": ";@Ahk2Exe-${1|IgnoreBegin,IgnoreEnd|}",
+			"description": "You can delete code fragments from compiled scripts by wrapping them in instructions.",
+			"prefix": "@Ahk2Exe-Ignore"
+		},
+		{
+			"body": "/*@Ahk2Exe-Keep",
+			"description": "Marked code snippets are only executed in the compiled script.",
+			"prefix": "@Ahk2Exe-Keep"
+		},
+		{
+			"body": ";@Ahk2Exe-AddResource ${1:FileName [, ResourceName]}",
+			"description": "Add resources to the compiled executable file.",
+			"prefix": "@Ahk2Exe-AddResource"
+		},
+		{
+			"body": ";@Ahk2Exe-Base ${1:[Path\\]Name [, [Exe_path\\][Name], Codepage]}",
+			"description": "Specify the binary version of AutoHotkey to be included in the generated .exe file.",
+			"prefix": "@Ahk2Exe-Base"
+		},
+		{
+			"body": ";@Ahk2Exe-ConsoleApp",
+			"description": "Change the executable subsystem to console mode.",
+			"prefix": "@Ahk2Exe-ConsoleApp"
+		},
+		{
+			"body": ";@Ahk2Exe-Cont ${1:Text}",
+			"description": "Specify a continuation line for the previous instruction. This allows a long line of instructions to be formatted for easy reading in the source code.",
+			"prefix": "@Ahk2Exe-Cont"
+		},
+		{
+			"body": ";@Ahk2Exe-Debug ${1:Text}",
+			"description": "Display msgbox with supporting text for debugging.",
+			"prefix": "@Ahk2Exe-Debug"
+		},
+		{
+			"body": ";@Ahk2Exe-ExeName ${1:[Path\\][Name]}",
+			"description": "Specify the location and name of the generated .exe file.",
+			"prefix": "@Ahk2Exe-ExeName"
+		},
+		{
+			"body": ";@Ahk2Exe-Let ${1:Name = Value [, Name = Value, ...]}",
+			"description": "Create (or modify) one or more user variables, these variables can be accessed through %U_Name%, similar to built-in variables (see above).",
+			"prefix": "@Ahk2Exe-Let"
+		},
+		{
+			"body": ";@Ahk2Exe-Obey ${1:Name}, ${2:CmdOrExp [, Extra]}",
+			"description": "Execute a command or expression independent of AutoHotkey, and the result is U_Name.",
+			"prefix": "@Ahk2Exe-Obey"
+		},
+		{
+			"body": ";@Ahk2Exe-PostExec ${1:Program [parameters] [, When]}",
+			"description": "Specify the program to be executed before (or after) any compression program applied to the .exe file after successful compilation.",
+			"prefix": "@Ahk2Exe-PostExec"
+		},
+		{
+			"body": ";@Ahk2Exe-Set${1|CompanyName,Copyright,Description,FileVersion,InternalName,Language,LegalTrademarks,Name,OrigFilename,ProductName,ProductVersion,Version|} ${2:Value}",
+			"description": "Change the attributes in the version information of the compiled executable file. Note that regardless of the order in which the attributes are specified, all attributes are processed in alphabetical order.",
+			"prefix": "@Ahk2Exe-Set"
+		},
+		{
+			"body": ";@Ahk2Exe-SetMainIcon ${1:[IcoFile]}",
+			"description": "Overwrite the custom EXE icon used for compilation.",
+			"prefix": "@Ahk2Exe-SetMainIcon"
+		}
+	],
+	"keywords": [
+		{
+			"body": "AND",
+			"description": "(x AND y) Both items must be true. Same as: '&&'"
+		},
+		{
+			"body": "AS",
+			"description": ""
+		},
+		{
+			"body": "IN",
+			"description": ""
+		},
+		{
+			"body": "IS",
+			"description": "(Var IS Type) Compare value to a class type. String, Array, etc."
+		},
+		{
+			"body": "NOT",
+			"description": "(NOT false) Item must not be true. Same as: '!'."
+		},
+		{
+			"body": "OR",
+			"description": "(x OR y) One or other must be true. Same as: '||'."
+		},
+		{
+			"body": "Break${1| , [LoopLabel]|}",
+			"description": "End any [Loop/While/For] loop immediately.",
+			"prefix": "break"
+		},
+		{
+			"body": "Catch${1| , Error , MemoryError , OSError , TargetError , TimeoutError , TypeError , UnsetError , MemberError , PropertyError , MethodError , UnsetItemError , ValueError , IndexError , ZeroDivisionError |}${2| ,as OutputVar|}",
+			"description": "Specify the code to be executed when an exception is raised during the execution of the try statement.",
+			"prefix": "catch"
+		},
+		{
+			"body": "Continue${1| , [LoopLabel]|}",
+			"description": "Skip the rest of the current iteration of the loop statement, and then start a new loop.",
+			"prefix": "continue"
+		},
+		{
+			"body": "Else If ",
+			"description": "Adds another decision to check if prior were false.",
+			"prefix": "elif"
+		},
+		{
+			"body": "Else ",
+			"description": "If the result of the if statement is false, specify one or more statements to be executed.",
+			"prefix": "else"
+		},
+		{
+			"body": "Finally ",
+			"description": "Code block to run after a try/catch has completed.",
+			"prefix": "finally"
+		},
+		{
+			"body": "For id, value IN ${1:Obj}",
+			"description": "Repeat a series of functions for each key-value pair in the object.",
+			"prefix": "for"
+		},
+		{
+			"body": "Global ",
+			"description": "Mark a variable or function as global so it can be changed from inside a function or method.",
+			"perfix": "global"
+		},
+		{
+			"body": "Goto(${1:Label})",
+			"description": "Jump to the specified label and continue execution.",
+			"prefix": "goto"
+		},
+		{
+			"body": "If ",
+			"description": "Specify one or more statements to be executed when the expression evaluates to true.",
+			"prefix": "if"
+		},
+		{
+			"body": "Loop Files ${2:FilePattern}, ${1|'F','FR','D','DR','FD','FDR'|}",
+			"description": "Loop through a directory. MODES: D=Get Directories, F=Get Files, R=Recurse",
+			"prefix": "loop files"
+		},
+		{
+			"body": "Loop Parse ${1:Text}, DelimitChar, OmitChars",
+			"description": "Loop through a string by substrings. String is parsed by each char if no Delimiter is provided.",
+			"prefix": "loop parse"
+		},
+		{
+			"body": "Loop Read ${0:FilePath}, OutputFile",
+			"description": "Retrieve the lines in the text file, one line at a time.",
+			"prefix": "loop read"
+		},
+		{
+			"body": "Loop Reg ${2|'HKLM\\','HKU\\','HKCU\\','HKCR\\','HKCC\\','HKEY_LOCAL_MACHINE\\','HKEY_USERS\\','HKEY_CURRENT_USER\\','HKEY_CLASSES_ROOT\\','HKEY_CURRENT_CONFIG\\'|}, '${1|K,V,KV,KR,VR,KVR|}'",
+			"description": "Retrieve the contents of the specified registry subkey. Modes: V=Value, K=Key, R=Recurse",
+			"prefix": "loop reg"
+		},
+		{
+			"body": "Loop${0:, Count}",
+			"description": "Repeat a series of functions: you can specify a number representing the number of repetitions or until a break is encountered.",
+			"prefix": "loop"
+		},
+		{
+			"body": "Local ",
+			"description": "Sets a variable or all function variables to local scope, causing them to be private to the function. Local variables can be the same as globals.",
+			"prefix": "local"
+		},
+		{
+			"body": "Case $0: ",
+			"description": "One or more values to compare against the Switch value or evaluate if no value is provided.",
+			"prefix": "case"
+		},
+		{
+			"body": "Default: ",
+			"description": "The default code block to run if no Switch cases match.",
+			"prefix": "default"
+		},
+		{
+			"body": "Return ${0:Value}",
+			"description": "Return the flow of code to the original caller, along with an optional return value.",
+			"prefix": "return"
+		},
+		{
+			"body": "Static ",
+			"description": "A static variable or function persists through the life of the script and do not get erased at the end of a function call.",
+			"prefix": "static"
+		},
+		{
+			"body": "Throw ${1|Error,MemoryError,OSError,TargetError,TimeoutError,TypeError,UnsetError,MemberError,PropertyError,MethodError,UnsetItemError,ValueError,IndexError,ZeroDivisionError|}('${2:Message}', A_ThisFunc, 'Extra')",
+			"description": "Indicates that an error has occurred. The signal can be caught by a try-catch statement.",
+			"prefix": "throw"
+		},
+		{
+			"body": "Try ",
+			"description": "Protect one or more statements (functions or expressions) to prevent runtime s and exceptions raised by the throw statement.",
+			"prefix": "try"
+		},
+		{
+			"body": "Until($0)",
+			"description": "Apply the condition to the continuation of the loop or for loop.",
+			"prefix": "until"
+		},
+		{
+			"body": "While ($0)",
+			"description": "While expression evaluates to true, continue to run code block",
+			"prefix": "while"
+		}
+	],
+	"variables": [
+		{
+			"body": "A_AhkPath",
+			"description": "For uncompiled scripts: the full path and name of the EXE file that actually runs the current script.\nFor compiled scripts: except for obtaining the AutoHotkey directory through the registry entry HKLM\\SOFTWARE\\AutoHotkey\\InstallDir."
+		},
+		{
+			"body": "A_AhkVersion",
+			"description": "Contains the version number of the AutoHotkey main program running the current script, for example 1.0.22.\nIn the compiled script, it contains the version number of the main program used in the original compilation."
+		},
+		{
+			"body": "A_AllowMainWindow",
+			"description": "It can be used to get or set whether to allow the main window of the script to be opened through the tray icon.\nFor compiled scripts, this variable defaults to 0, but it can be overridden by assigning a value to this variable. Set it to 1 will activate the items under the View menu of the main window (such as'Lines most recently executed'), which allows you to view the source code and other information of the script.\nIf the script is not compiled, then the value of this variable is always 1. Its attempts to make changes will be ignored."
+		},
+		{
+			"body": "A_AppData",
+			"description": "The full path and name of the current user's application data folder. For example:\nC:\\Users\\<UserName>\\AppData\\Roaming"
+		},
+		{
+			"body": "A_AppDataCommon",
+			"description": "The full path and name of the application data folder for all users. For example:\nC:\\ProgramData"
+		},
+		{
+			"body": "A_Args",
+			"description": "Contains an array of command line parameters."
+		},
+		{
+			"body": "A_Clipboard",
+			"description": "Can be used to get or set the contents of the system clipboard."
+		},
+		{
+			"body": "A_ComSpec",
+			"description": "Contains the same string as the ComSpec variable of the environment. For example: \nC:\\Windows\\system32\\cmd.exe"
+		},
+		{
+			"body": "A_ComputerName",
+			"description": "The computer name seen on the network."
+		},
+		{
+			"body": "A_ControlDelay",
+			"description": "It can be used to get or set the delay of the control modification function, in milliseconds."
+		},
+		{
+			"body": "A_CoordModeCaret",
+			"description": "The area that can be used to get or set relative coordinates. Possible values ??are Window, Client or Screen."
+		},
+		{
+			"body": "A_CoordModeMenu",
+			"description": "The area that can be used to get or set relative coordinates. Possible values ??are Window, Client or Screen."
+		},
+		{
+			"body": "A_CoordModeMouse",
+			"description": "The area that can be used to get or set relative coordinates. Possible values ??are Window, Client or Screen."
+		},
+		{
+			"body": "A_CoordModePixel",
+			"description": "The area that can be used to get or set relative coordinates. Possible values ??are Window, Client or Screen."
+		},
+		{
+			"body": "A_CoordModeToolTip",
+			"description": "The area that can be used to get or set relative coordinates. Possible values ??are Window, Client or Screen."
+		},
+		{
+			"body": "A_Cursor",
+			"description": "The currently displayed mouse cursor type. Its value is one of the following words:\nAppStarting (program start, background running--arrow+wait)\nArrow(arrow, normal selection--standard cursor)\nCross( Cross, precise selection)\nHelp(Help, help selection--arrow+question mark)\nIBeam(I-cursor, text selection--input)\nIcon\nNo(No, not available--circle plus backslash)\nSize , SizeAll (all sizes, move-four-way arrow)\nSizeNESW (southeast and northwest size, diagonal adjustment 2-double arrows point to southeast and northwest)\nSizeNS (north-south size, vertical adjustment-double arrows point to north and south )\nSizeNWSE (the size of northwest and southeast, adjust 1 along the diagonal-double arrows point to northwest and southeast)\nSizeWE (size of east and west, adjust horizontally-double arrows point to east)\nUpArrow (up arrow, candidates-point up Arrow)\nWait(Waiting, busy--hourglass or circle)\nUnknown. The hand pointer (click and grab) belongs to the Unknown category."
+		},
+		{
+			"body": "A_DD",
+			"description": "The day of the current month represented by 2 digits (01-31). It has the same meaning as A_MDay."
+		},
+		{
+			"body": "A_DDD",
+			"description": "The abbreviation of the current day of the week in the language of the current user, such as Sun"
+		},
+		{
+			"body": "A_DDDD",
+			"description": "Use the full name of the current day of the week in the current user's language, for example, Sunday"
+		},
+		{
+			"body": "A_DefaultMouseSpeed",
+			"description": "Can be used to get or set the default mouse speed, an integer from 0 (fastest) to 100 (slowest)."
+		},
+		{
+			"body": "A_Desktop",
+			"description": "The full path and name of the desktop folder of the current user. For example:\nC:\\Users\\<UserName>\\Desktop"
+		},
+		{
+			"body": "A_DesktopCommon",
+			"description": "The full path and name of the desktop folder of all users. For example:\nC:\\Users\\Public\\Desktop"
+		},
+		{
+			"body": "A_DetectHiddenText",
+			"description": "Can be used to get or set whether to detect hidden text in the window."
+		},
+		{
+			"body": "A_DetectHiddenWindows",
+			"description": "Can be used to get or set whether to detect hidden windows."
+		},
+		{
+			"body": "A_EndChar",
+			"description": "The user recently pressed the termination character that triggered the non-auto-replacement hotstring."
+		},
+		{
+			"body": "A_EventInfo",
+			"description": "Each thread retains its own A_EventInfo value. It contains additional information about the following events:\nMouse wheel hotkey (WheelDown/Up/Left/Right)\nOnMessage\nRegular Expression Callouts"
+		},
+		{
+			"body": "A_FileEncoding",
+			"description": "Can be used to get or set the default encoding of various built-in functions."
+		},
+		{
+			"body": "A_HotkeyModifierTimeout",
+			"description": "Defines how long after pressing the hotkey it is assumed that (Alt/Ctrl/Win/Shift) is still pressed."
+		},
+		{
+			"body": "A_HotkeyInterval",
+			"description": "The A_MaxHotkeysPerInterval and A_HotkeyInterval variables control the rate of hotkey activation, beyond which a warning dialog will be displayed."
+		},
+		{
+			"body": "A_Hour",
+			"description": "The current hour (00-23) represented by 2 digits in the 24-hour clock (for example, 17 for 5pm). To get the time in the 12-hour clock with AM/PM prompts, please refer to this example: FormatTime(,'h:mm:ss tt')"
+		},
+		{
+			"body": "A_IconFile",
+			"description": "If a custom tray icon is specified by TraySetIcon, the value of the variable is the full path and name of the icon file, otherwise it is empty."
+		},
+		{
+			"body": "A_IconHidden",
+			"description": "Can be used to get or set whether to hide the tray icon."
+		},
+		{
+			"body": "A_IconNumber",
+			"description": "If A_IconFile is empty, the value is empty. Otherwise, its value is the number of the icon in A_IconFile (usually 1)."
+		},
+		{
+			"body": "A_IconTip",
+			"description": "It can be used to get or set the tooltip text of the tray icon, which will be displayed when the mouse hovers over it. If it is empty, the name of the script is used.\nTo create a multi-line tooltip, please click Use a newline character (`n) between each line, such as'Line1`nLine2'. Only the first 127 characters are displayed, and the text is truncated at the first tab (if it exists)."
+		},
+		{
+			"body": "A_Index",
+			"description": "Contains the number of current loop iterations, which can be assigned to any integer value by the script."
+		},
+		{
+			"body": "A_InitialWorkingDir",
+			"description": "The initial working directory of the script, determined by how it was started."
+		},
+		{
+			"body": "A_Is64bitOS",
+			"description": "The value is 1 (true) when the operating system is 64-bit, and 0 (false) when it is 32-bit."
+		},
+		{
+			"body": "A_IsAdmin",
+			"description": "If the current user has administrator rights, the value of this variable is 1. Otherwise, it is 0."
+		},
+		{
+			"body": "A_IsCompiled",
+			"description": "If the currently running script is a compiled EXE, the value of this variable is 1, otherwise it is an empty string (this will be regarded as false)."
+		},
+		{
+			"body": "A_IsCritical",
+			"description": "If the Critical of the current thread is closed, the value is 0. Otherwise, the value is an integer greater than zero, which is the message check frequency used by Critical."
+		},
+		{
+			"body": "A_IsPaused",
+			"description": "If the thread after the current thread is suspended, the value is 1, otherwise it is 0."
+		},
+		{
+			"body": "A_IsSuspended",
+			"description": "If the script is suspended, the value is 1, otherwise it is 0."
+		},
+		{
+			"body": "A_KeyDelay",
+			"description": "It can be used to get or set the delay time of the button, in milliseconds."
+		},
+		{
+			"body": "A_KeyDelayPlay",
+			"description": "It can be used to get or set the delay time of keys sent through SendPlay mode, in milliseconds."
+		},
+		{
+			"body": "A_KeyDuration",
+			"description": "It can be used to get or set the duration of the button, in milliseconds."
+		},
+		{
+			"body": "A_KeyDurationPlay",
+			"description": "It can be used to get or set the duration of the button sent through SendPlay mode, in milliseconds."
+		},
+		{
+			"body": "A_Language",
+			"description": "The default language of the current system, the value is one of these 4-digit codes. For example, if the value of A_Language is 0436, the default language of the system is Afrikaans."
+		},
+		{
+			"body": "A_Last",
+			"description": "This is usually the result of the system's GetLast() function after the script calls certain functions (such as DllCall or Run/RunWait), or the HRESULT of the last COM object call."
+		},
+		{
+			"body": "A_LineFile",
+			"description": "The full path and name of the file that A_LineNumber belongs to. Unless the current line belongs to a #Include file of an uncompiled script, it will be the same as A_ScriptFullPath."
+		},
+		{
+			"body": "A_LineNumber",
+			"description": "The line number of the line being executed in the script (or its #Include file). This line number is consistent with that displayed by ListLines; it is very useful for  reporting, such as this example: MsgBox'Could not write to log file (line number 'A_LineNumber')'.\nBecause the compiled script has merged all its #Include files into one large script, its line number may be different from when it is run in uncompiled mode."
+		},
+		{
+			"body": "A_ListLines",
+			"description": "Can be used to get or set whether to record a row."
+		},
+		{
+			"body": "A_LoopField",
+			"description": "Exists in any parsing loop, it contains the contents of the current substring (field)."
+		},
+		{
+			"body": "A_LoopFileAttrib",
+			"description": "The attributes of the currently retrieved file."
+		},
+		{
+			"body": "A_LoopFileDir",
+			"description": "The path of the directory where A_LoopFileName is located. If FilePattern contains a relative path instead of an absolute path, then the path here will also be a relative path. The root directory will not contain a backslash. For example: C:"
+		},
+		{
+			"body": "A_LoopFileExt",
+			"description": "The extension of the file (such as TXT, DOC or EXE). Do not include the period (.)."
+		},
+		{
+			"body": "A_LoopFileFullPath",
+			"description": "This is different from A_LoopFilePath as follows: 1) It always contains the absolute/full path of the file, even if the FilePattern contains a relative path; 2) Any short (8.3) folder name in the FilePattern itself will be converted to a long file Name; 3) The characters in the FilePattern will be converted to uppercase or lowercase to match the case stored in the file system. This is for the file name - for example, the file name passed into the script as a command line parameter - is converted to the resource manager The exact path name displayed is useful."
+		},
+		{
+			"body": "A_LoopFileName",
+			"description": "The name of the file or folder currently retrieved (not including the path)."
+		},
+		{
+			"body": "A_LoopFilePath",
+			"description": "The path and name of the file/folder currently retrieved. If FilePattern contains a relative path instead of an absolute path, the path here will also be a relative path."
+		},
+		{
+			"body": "A_LoopFileShortName",
+			"description": "The 8.3 short name of the file, or alternative name. If the file does not have a short file name (because the long file is shorter than 8.3, or perhaps because the NTFS file system disables the generation of short file names), A_LoopFileName will be retrieved."
+		},
+		{
+			"body": "A_LoopFileShortPath",
+			"description": "The 8.3 short path and name of the currently retrieved file/folder. For example: C:\\MYDOCU~1\\ADDRES~1.txt. If FilePattern contains a relative path instead of an absolute path, the path here will also be Is a relative path."
+		},
+		{
+			"body": "A_LoopFileSize",
+			"description": "The size of the currently retrieved file, in KB, rounded down to the nearest integer."
+		},
+		{
+			"body": "A_LoopFileSizeKB",
+			"description": "The size of the currently retrieved file, in KB, rounded down to the nearest integer."
+		},
+		{
+			"body": "A_LoopFileSizeMB",
+			"description": "The size of the currently retrieved file, in Mb, rounded down to the nearest integer."
+		},
+		{
+			"body": "A_LoopFileTimeAccessed",
+			"description": "The last time the file was accessed. The format is YYYYMMDDHH24MISS."
+		},
+		{
+			"body": "A_LoopFileTimeCreated",
+			"description": "The time when the file was created. The format is YYYYMMDDHH24MISS."
+		},
+		{
+			"body": "A_LoopFileTimeModified",
+			"description": "The time when the file was last modified. The format is YYYYMMDDHH24MISS."
+		},
+		{
+			"body": "A_LoopReadLine",
+			"description": "Exists in any file reading loop, it contains the content of the current line, excluding the carriage return and the newline (`r`n) marking the end of the line."
+		},
+		{
+			"body": "A_LoopRegKey",
+			"description": "Contains the full name of the key of the current loop item. For remote registry access, this value will not include the computer name."
+		},
+		{
+			"body": "A_LoopRegName",
+			"description": "The name of the item currently retrieved. It can be a value name or the name of a sub-item."
+		},
+		{
+			"body": "A_LoopRegTimeModified",
+			"description": "The time when the current item or any value was last modified. The format is YYYYMMDDHH24MISS."
+		},
+		{
+			"body": "A_LoopRegType",
+			"description": "The type of item currently retrieved."
+		},
+		{
+			"body": "A_MaxHotkeysPerInterval",
+			"description": "The A_MaxHotkeysPerInterval and A_HotkeyInterval variables control the rate of hotkey activation, beyond which a warning dialog will be displayed."
+		},
+		{
+			"body": "A_MDay",
+			"description": "The day of the current month represented by 2 digits (01-31)."
+		},
+		{
+			"body": "A_MenuMaskKey",
+			"description": "Control which key is used to mask Win or Alt key events."
+		},
+		{
+			"body": "A_MM",
+			"description": "The current month represented by 2 digits (01-12). It has the same meaning as A_Mon."
+		},
+		{
+			"body": "A_MMM",
+			"description": "The abbreviation of the current month in the language of the current user, such as Jul"
+		},
+		{
+			"body": "A_MMMM",
+			"description": "The full name of the current month in the language of the current user, for example July"
+		},
+		{
+			"body": "A_MSec",
+			"description": "The current three-digit number of milliseconds (000-999)."
+		},
+		{
+			"body": "A_Min",
+			"description": "The current minute in 2 digits (00-59)."
+		},
+		{
+			"body": "A_Mon",
+			"description": "The current month represented by 2 digits (01-12)."
+		},
+		{
+			"body": "A_MouseDelay",
+			"description": "Can be used to get or set the mouse delay, in milliseconds."
+		},
+		{
+			"body": "A_MouseDelayPlay",
+			"description": "It can be used to get or set the mouse delay of SendPlay, in milliseconds."
+		},
+		{
+			"body": "A_MyDocuments",
+			"description": "The full path and name of the current user's'My Documents' folder."
+		},
+		{
+			"body": "A_Now",
+			"description": "The current local time in YYYYMMDDHH24MISS format."
+		},
+		{
+			"body": "A_NowUTC",
+			"description": "The current Coordinated Universal Time (UTC) in YYYYMMDDHH24MISS format. UTC is essentially the same as Greenwich Mean Time (GMT)."
+		},
+		{
+			"body": "A_OSVersion",
+			"description": "The version number of the operating system, in the format of'major.minor.build'. For example, Windows 7 SP1 is 6.1.7601.\nApplying compatibility settings in the properties of the AutoHotkey executable file or compiled script will Cause the system to report a different version number, which will be reflected in A_OSVersion."
+		},
+		{
+			"body": "A_PriorHotkey",
+			"description": "Except for saving the name of the previous hotkey, everything else is the same as above. It will be empty if there is no one."
+		},
+		{
+			"body": "A_PriorKey",
+			"description": "The name of the last key pressed before the most recent key-press or key-release. If no suitable key is found in the key history-it will be empty. Does not include generated by AutoHotkey script To use this variable, you must first install a keyboard or mouse hook and enable key history."
+		},
+		{
+			"body": "A_PriorLine",
+			"description": "Includes the source code line immediately before the current compiler directive. Only the blank lines and comments in the middle are ignored, as well as any intermediate compiler directive lines."
+		},
+		{
+			"body": "A_ProgramFiles",
+			"description": "Program Files directory (e.g. C:\\Program Files or C:\\Program Files (x86)). This is usually the same as the ProgramFiles environment variable."
+		},
+		{
+			"body": "A_Programs",
+			"description": "The full path and name of the program folder in the start menu of the current user. For example:\nC:\\Users\\<UserName>\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs"
+		},
+		{
+			"body": "A_ProgramsCommon",
+			"description": "The full path and name of the program folder in the start menu of all users. For example:\nC:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs"
+		},
+		{
+			"body": "A_PtrSize",
+			"description": "Contains the size value of the pointer, in bytes. The value is 4 (32-bit) or 8 (64-bit), depending on the type of executor running the current script."
+		},
+		{
+			"body": "A_RegView",
+			"description": "Can be used to get or set the registry view. Possible values ??are 32, 64 and Default."
+		},
+		{
+			"body": "A_ScreenDPI",
+			"description": "The number of pixels per logical inch of screen width. In a system with multiple display monitors, this value is the same for all monitors."
+		},
+		{
+			"body": "A_ScreenHeight",
+			"description": "The height of the main monitor, in pixels"
+		},
+		{
+			"body": "A_ScreenWidth",
+			"description": "The width of the main monitor, in pixels"
+		},
+		{
+			"body": "A_ScriptDir",
+			"description": "The full path of the directory where the current script is located. Does not include the final backslash (the same is true for the root directory).\nIf the script text is read from standard input instead of from a file, variable The value is the initial working directory."
+		},
+		{
+			"body": "A_ScriptFullPath",
+			"description": "The full path of the current script, for example C:\\My Documents\\My Script.ahk\nIf the script text is read from standard input instead of from the file, the value is'* '."
+		},
+		{
+			"body": "A_ScriptHwnd",
+			"description": "The unique ID (HWND/handle) of the script's main window (hidden)."
+		},
+		{
+			"body": "A_ScriptName",
+			"description": "It can be used to get or set the default title of MsgBox, InputBox, FileSelect, DirSelect and Gui.New. If the script is not set, it defaults to the file name of the current script, excluding the path, such as MyScript.ahk."
+		},
+		{
+			"body": "A_Sec",
+			"description": "The current second in 2 digits (00-59)."
+		},
+		{
+			"body": "A_SendLevel",
+			"description": "Can be used to get or set the sending level, an integer between 0 and 100, including 0 and 100."
+		},
+		{
+			"body": "A_SendMode",
+			"description": "Can be used to get or set the sending mode. Possible values ??are Event, Input, Play and InputThenPlay."
+		},
+		{
+			"body": "A_Space",
+			"description": "Contains a single space character."
+		},
+		{
+			"body": "A_StartMenu",
+			"description": "The full path and name of the start menu folder of the current user. For example:\nC:\\Users\\<UserName>\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu"
+		},
+		{
+			"body": "A_StartMenuCommon",
+			"description": "The full path and name of the start menu folder for all users. For example:\nC:\\ProgramData\\Microsoft\\Windows\\Start Menu"
+		},
+		{
+			"body": "A_Startup",
+			"description": "The full path and name of the startup folder in the start menu of the current user. For example:\nC:\\Users\\<UserName>\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"
+		},
+		{
+			"body": "A_StartupCommon",
+			"description": "The full path and name of the startup folder in the start menu of all users. For example:\nC:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"
+		},
+		{
+			"body": "A_StoreCapsLockMode",
+			"description": "Can be used to get or set whether to restore the state of CapsLock after Send."
+		},
+		{
+			"body": "A_StringCaseSense",
+			"description": "Retrieve or set case sensitivity settings."
+		},
+		{
+			"body": "A_Tab",
+			"description": "Contains a single tab character."
+		},
+		{
+			"body": "A_Temp",
+			"description": "The full path and name of the folder where temporary files are stored. Its value is retrieved from one of the following locations (in order): 1) Environment variable TMP, TEMP or USERPROFILE; 2) Windows directory. For example: \nC:\\Users\\<UserName>\\AppData\\Local\\Temp"
+		},
+		{
+			"body": "A_ThisFunc",
+			"description": "The name of the custom function currently being executed (empty if none); For example: MyFunction."
+		},
+		{
+			"body": "A_ThisHotkey",
+			"description": "The most recently executed hotkey or non-auto-replacement hotstring (empty if there is none), such as #z. If the current thread is interrupted by other hotkeys or hotstrings, then the value of this variable will change, So in general, it is best to use the ThisHotkey parameter."
+		},
+		{
+			"body": "A_TickCount",
+			"description": "The number of milliseconds that have elapsed since the computer was started, up to 49.7 days. By saving A_TickCount to a variable, and after a period of time, subtracting that variable from the latest A_TickCount value, the elapsed time can be calculated."
+		},
+		{
+			"body": "A_TimeIdle",
+			"description": "The number of milliseconds since the last time the system received keyboard, mouse or other input. This can be used to determine whether the user has left. The user's physical input and analog input generated by any program or script (such as Send Or MouseMove function) will reset this variable to zero."
+		},
+		{
+			"body": "A_TimeIdleKeyboard",
+			"description": "If the keyboard hook is installed, this is the number of milliseconds that have passed since the system last received physical keyboard input. Otherwise, this variable is equal to A_TimeIdle."
+		},
+		{
+			"body": "A_TimeIdleMouse",
+			"description": "If the mouse hook is installed, this is the number of milliseconds that have passed since the system last received physical mouse input. Otherwise, this variable is equal to A_TimeIdle."
+		},
+		{
+			"body": "A_TimeIdlePhysical",
+			"description": "Similar to the above, but after installing the corresponding hook (keyboard or mouse), the simulated keystrokes and/or mouse clicks will be ignored; that is, this variable only responds to physical events. (This avoids Simulate keystrokes and mouse clicks and mistakenly believe that the user exists.) If both hooks are not installed, this variable is equivalent to A_TimeIdle. If only one hook is installed, then only this type of physical input will work on A_TimeIdlePhysical ( Another input/no hook installed, both physical and simulated, will be ignored)."
+		},
+		{
+			"body": "A_TimeSincePriorHotkey",
+			"description": "The number of milliseconds that have elapsed since A_PriorHotkey was pressed. If A_PriorHotkey is empty, the value of this variable is -1."
+		},
+		{
+			"body": "A_TimeSinceThisHotkey",
+			"description": "The number of milliseconds that have elapsed since A_ThisHotkey was pressed. If A_ThisHotkey is empty, the value of this variable is -1."
+		},
+		{
+			"body": "A_TitleMatchMode",
+			"description": "Can be used to get or set the title matching mode. Possible values ??are 1, 2, 3 and RegEx."
+		},
+		{
+			"body": "A_TitleMatchModeSpeed",
+			"description": "Can be used to get or set the title matching speed. The possible values ??are fast and slow."
+		},
+		{
+			"body": "A_TrayMenu",
+			"description": "Returns the menu object that can be used to modify or display the tray menu."
+		},
+		{
+			"body": "A_UserName",
+			"description": "The login name of the user running the current script."
+		},
+		{
+			"body": "A_WDay",
+			"description": "One digit represents the elapsed days of the current week (1-7). In all locales, 1 means Sunday."
+		},
+		{
+			"body": "A_WinDelay",
+			"description": "Can be used to get or set the delay of the window function, in milliseconds."
+		},
+		{
+			"body": "A_WinDir",
+			"description": "Windows directory. For example: C:\\Windows"
+		},
+		{
+			"body": "A_WorkFileName",
+			"description": "The special variable A_WorkFileName also holds the temporary name of the processed .exe file. This can be used to pass the file name as a parameter to any PostExec command that needs to access the generated .exe file."
+		},
+		{
+			"body": "A_WorkingDir",
+			"description": "Can be used to get or set the current working directory of the script, which is the default path for accessing files. Unless it is the root directory, the path does not contain a backslash at the end. Two examples: C:\\ and C:\\My Documents. Use SetWorkingDir or assign a path to A_WorkingDir to change the current working directory.\nNo matter how the script is started, the script's working directory defaults to A_ScriptDir."
+		},
+		{
+			"body": "A_YDay",
+			"description": "The number of days elapsed in the current year (1-366). The value of the variable will not be filled with zeros, for example, 9, instead of 009."
+		},
+		{
+			"body": "A_YWeek",
+			"description": "The current year and week according to the ISO 8601 standard (e.g. 200453)."
+		},
+		{
+			"body": "A_YYYY",
+			"description": "The current year represented by 4 digits (for example, 2004). It has the same meaning as A_Year."
+		},
+		{
+			"body": "A_Year",
+			"description": "The current year represented by 4 digits (e.g. 2004)."
+		},
+		{
+			"body": "true",
+			"description": "Boolean value'true', same as value 1."
+		},
+		{
+			"body": "false",
+			"description": "Boolean value'false', same as value 0."
+		},
+		{
+			"body": "unset",
+			"description": "Within a function call, array literal or object literal, the keyword unset can be used to explicitly omit the parameter or value."
+		}
+	],
+	"texts": [
+		{
+			"body": "ahk_class",
+			"description": "The window class is a set of attributes used by the system as a template for creating windows. In other words, the class name of the window identifies the type of window. To use the window class, please specify ahk_class ExactClassName, as shown in Window Spy .ExactClassName can be retrieved through WinGetClass."
+		},
+		{
+			"body": "ahk_exe",
+			"description": "Use ahk_exe to identify windows belonging to any process with a given name or path."
+		},
+		{
+			"body": "ahk_group",
+			"description": "Use ahk_group to identify one or more windows that match the rules contained in the previously defined window group."
+		},
+		{
+			"body": "ahk_id",
+			"description": "Each window or control has a unique ID, also known as HWND (short for window handle)."
+		},
+		{
+			"body": "ahk_pid",
+			"description": "Use ahk_pid to identify the window belonging to a specific process. The process identifier (PID) is usually retrieved by WinGet, Run or Process."
+		},
+		{
+			"body": "AlwaysOnTop",
+			"description": "Keep the window above all other windows."
+		},
+		{
+			"body": "AutoSize",
+			"description": "Resize the window to only accommodate its currently visible controls. This is useful for adjusting the window size after adding new controls or adjusting the size of existing controls, hiding or unhiding them."
+		},
+		{
+			"body": "Border",
+			"description": "Provide a thin border around the control. Most controls do not need this because they already have a type-specific border. When adding a border to an existing control, you may need to increase the width and height of the control by 1 Pixels."
+		},
+		{
+			"body": "Caption",
+			"description": "Provide title bar and thick window border/edge."
+		},
+		{
+			"body": "Center",
+			"description": "Center the text of the control within its available width."
+		},
+		{
+			"body": "DropFiles",
+			"description": "Start when a file/folder is dragged and dropped onto the window as part of a drag-and-drop operation (but if this callback is already running, the drag-and-drop event will be ignored)."
+		}
+	],
+	"keys": [
+		{
+			"body": "Alt"
+		},
+		{
+			"body": "AltTab",
+			"description": "If the alt-tab menu is visible, then move forward in the menu. Otherwise, display the menu (only when the hotkey is two keys connected by'&'; otherwise, it does nothing)."
+		},
+		{
+			"body": "AltTabAndMenu",
+			"description": "If the alt-tab menu is visible, move forward. Otherwise, display the menu."
+		},
+		{
+			"body": "AltTabMenu",
+			"description": "Show or hide the alt-tab menu."
+		},
+		{
+			"body": "AltTabMenuDismiss",
+			"description": "Close the Alt-tab menu."
+		},
+		{
+			"body": "AppsKey",
+			"description": "Menu. This is the key to call the right-click context menu."
+		},
+		{
+			"body": "BackSpace"
+		},
+		{
+			"body": "BS",
+			"description": "Short version of Backspace."
+		},
+		{
+			"body": "Browser_Back",
+			"description": "Back"
+		},
+		{
+			"body": "Browser_Favorites",
+			"description": "Favorites"
+		},
+		{
+			"body": "Browser_Forward",
+			"description": "Forward"
+		},
+		{
+			"body": "Browser_Home",
+			"description": "Homepage"
+		},
+		{
+			"body": "Browser_Refresh",
+			"description": "Refresh"
+		},
+		{
+			"body": "Browser_Search",
+			"description": "Search"
+		},
+		{
+			"body": "Browser_Stop",
+			"description": "Stop"
+		},
+		{
+			"body": "CapsLock"
+		},
+		{
+			"body": "Control"
+		},
+		{
+			"body": "Ctrl",
+			"description": "Short version of Control."
+		},
+		{
+			"body": "CtrlBreak",
+			"description": "Ctrl+Pause or Ctrl+ScrollLock"
+		},
+		{
+			"body": "Delete"
+		},
+		{
+			"body": "Del",
+			"description": "Short version of Delete."
+		},
+		{
+			"body": "Down"
+		},
+		{
+			"body": "End"
+		},
+		{
+			"body": "Enter"
+		},
+		{
+			"body": "Escape"
+		},
+		{
+			"body": "Esc",
+			"description": "Short version of Escape."
+		},
+		{
+			"body": "F1"
+		},
+		{
+			"body": "F10"
+		},
+		{
+			"body": "F11"
+		},
+		{
+			"body": "F12"
+		},
+		{
+			"body": "F13"
+		},
+		{
+			"body": "F14"
+		},
+		{
+			"body": "F15"
+		},
+		{
+			"body": "F16"
+		},
+		{
+			"body": "F17"
+		},
+		{
+			"body": "F18"
+		},
+		{
+			"body": "F19"
+		},
+		{
+			"body": "F2"
+		},
+		{
+			"body": "F20"
+		},
+		{
+			"body": "F21"
+		},
+		{
+			"body": "F22"
+		},
+		{
+			"body": "F23"
+		},
+		{
+			"body": "F24"
+		},
+		{
+			"body": "F3"
+		},
+		{
+			"body": "F4"
+		},
+		{
+			"body": "F5"
+		},
+		{
+			"body": "F6"
+		},
+		{
+			"body": "F7"
+		},
+		{
+			"body": "F8"
+		},
+		{
+			"body": "F9"
+		},
+		{
+			"body": "Home"
+		},
+		{
+			"body": "Insert"
+		},
+		{
+			"body": "Ins",
+			"description": "Short version of Insert."
+		},
+		{
+			"body": "Joy1"
+		},
+		{
+			"body": "Joy10"
+		},
+		{
+			"body": "Joy11"
+		},
+		{
+			"body": "Joy12"
+		},
+		{
+			"body": "Joy13"
+		},
+		{
+			"body": "Joy14"
+		},
+		{
+			"body": "Joy15"
+		},
+		{
+			"body": "Joy16"
+		},
+		{
+			"body": "Joy17"
+		},
+		{
+			"body": "Joy18"
+		},
+		{
+			"body": "Joy19"
+		},
+		{
+			"body": "Joy2"
+		},
+		{
+			"body": "Joy20"
+		},
+		{
+			"body": "Joy21"
+		},
+		{
+			"body": "Joy22"
+		},
+		{
+			"body": "Joy23"
+		},
+		{
+			"body": "Joy24"
+		},
+		{
+			"body": "Joy25"
+		},
+		{
+			"body": "Joy26"
+		},
+		{
+			"body": "Joy27"
+		},
+		{
+			"body": "Joy28"
+		},
+		{
+			"body": "Joy29"
+		},
+		{
+			"body": "Joy3"
+		},
+		{
+			"body": "Joy30"
+		},
+		{
+			"body": "Joy31"
+		},
+		{
+			"body": "Joy32"
+		},
+		{
+			"body": "Joy4"
+		},
+		{
+			"body": "Joy5"
+		},
+		{
+			"body": "Joy6"
+		},
+		{
+			"body": "Joy7"
+		},
+		{
+			"body": "Joy8"
+		},
+		{
+			"body": "Joy9"
+		},
+		{
+			"body": "JoyAxes"
+		},
+		{
+			"body": "JoyButtons"
+		},
+		{
+			"body": "JoyInfo"
+		},
+		{
+			"body": "JoyName"
+		},
+		{
+			"body": "JoyPOV"
+		},
+		{
+			"body": "JoyR"
+		},
+		{
+			"body": "JoyU"
+		},
+		{
+			"body": "JoyV"
+		},
+		{
+			"body": "JoyX"
+		},
+		{
+			"body": "JoyY"
+		},
+		{
+			"body": "JoyZ"
+		},
+		{
+			"body": "LAlt"
+		},
+		{
+			"body": "Launch_App1"
+		},
+		{
+			"body": "Launch_App2"
+		},
+		{
+			"body": "Launch_Mail"
+		},
+		{
+			"body": "Launch_Media"
+		},
+		{
+			"body": "LButton"
+		},
+		{
+			"body": "LControl"
+		},
+		{
+			"body": "LCtrl",
+			"description": "Short version of LControl."
+		},
+		{
+			"body": "Left"
+		},
+		{
+			"body": "LShift"
+		},
+		{
+			"body": "LWin"
+		},
+		{
+			"body": "MButton"
+		},
+		{
+			"body": "Media_Next"
+		},
+		{
+			"body": "Media_Play_Pause"
+		},
+		{
+			"body": "Media_Prev"
+		},
+		{
+			"body": "Media_Stop"
+		},
+		{
+			"body": "NumLock"
+		},
+		{
+			"body": "Numpad0"
+		},
+		{
+			"body": "Numpad1"
+		},
+		{
+			"body": "Numpad2"
+		},
+		{
+			"body": "Numpad3"
+		},
+		{
+			"body": "Numpad4"
+		},
+		{
+			"body": "Numpad5"
+		},
+		{
+			"body": "Numpad6"
+		},
+		{
+			"body": "Numpad7"
+		},
+		{
+			"body": "Numpad8"
+		},
+		{
+			"body": "Numpad9"
+		},
+		{
+			"body": "NumpadAdd"
+		},
+		{
+			"body": "NumpadClear"
+		},
+		{
+			"body": "NumpadDel"
+		},
+		{
+			"body": "NumpadDiv"
+		},
+		{
+			"body": "NumpadDot"
+		},
+		{
+			"body": "NumpadDown"
+		},
+		{
+			"body": "NumpadEnd"
+		},
+		{
+			"body": "NumpadEnter"
+		},
+		{
+			"body": "NumpadHome"
+		},
+		{
+			"body": "NumpadIns"
+		},
+		{
+			"body": "NumpadLeft"
+		},
+		{
+			"body": "NumpadMult"
+		},
+		{
+			"body": "NumpadPgdn"
+		},
+		{
+			"body": "NumpadPgup"
+		},
+		{
+			"body": "NumpadRight"
+		},
+		{
+			"body": "NumpadSub"
+		},
+		{
+			"body": "NumpadUp"
+		},
+		{
+			"body": "PgDn"
+		},
+		{
+			"body": "PgUp"
+		},
+		{
+			"body": "PrintScreen"
+		},
+		{
+			"body": "RAlt"
+		},
+		{
+			"body": "RButton"
+		},
+		{
+			"body": "RControl"
+		},
+		{
+			"body": "RCtrl",
+			"description": "Short version of RControl."
+		},
+		{
+			"body": "Right"
+		},
+		{
+			"body": "RShift"
+		},
+		{
+			"body": "RWin"
+		},
+		{
+			"body": "ScrollLock"
+		},
+		{
+			"body": "Shift"
+		},
+		{
+			"body": "ShiftAltTab"
+		},
+		{
+			"body": "Space"
+		},
+		{
+			"body": "Tab"
+		},
+		{
+			"body": "Up"
+		},
+		{
+			"body": "Volume_Down"
+		},
+		{
+			"body": "Volume_Mute"
+		},
+		{
+			"body": "Volume_Up"
+		},
+		{
+			"body": "WheelDown"
+		},
+		{
+			"body": "WheelLeft"
+		},
+		{
+			"body": "WheelRight"
+		},
+		{
+			"body": "WheelUp"
+		},
+		{
+			"body": "XButton1"
+		},
+		{
+			"body": "XButton2"
+		}
+	]
+}
