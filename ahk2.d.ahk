@@ -3,13 +3,12 @@
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm|`Any`}  
  * The root (top most) class of AutoHotkey's type hierarchy.  
  * All other types are a sub-type of Any.
- * @class
+ * @property {(Prototype)} Base - Retrieves the value's {@link https://www.autohotkey.com/docs/v2/Objects.htm#delegation|base object}.  
  */
 class Any {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#Base|`Base`}  
      * Retrieves or sets the value's {@link https://www.autohotkey.com/docs/v2/Objects.htm#delegation|base object}.  
-     * @property
      * The base object must be an Object.  
      * @type {(Prototype)}
      * @see  
@@ -29,7 +28,6 @@ class Any {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#GetMethod|`GetMethod()`}  
      * Retrieves the implementation function of a method.  
-     * @method
      * @param {(String)} [Name]  
      * The name of the method to retrieve.  
      * Omit this parameter to perform validation on the object itself and return object if successful.  
@@ -62,7 +60,6 @@ class Any {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#HasBase|`HasBase()`}  
      * Checks if BaseObj is in this Value's chain of base objects
-     * @method
      * @param {(Object | Primitive)} Baseobj  
      * The potential base object to test.  
      * @returns {(Boolean)}  
@@ -83,7 +80,6 @@ class Any {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#HasMethod|`HasMethod()`}  
      * Returns a non-zero number if the specified value has a method by the specified name.  
-     * @method
      * @param {(String)} [Name]  
      * The method name to check for.  
      * Omit this parameter to check whether Value itself is callable.  
@@ -108,7 +104,6 @@ class Any {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#HasProp|`HasProp()`}  
      * Returns true if the value has an attribute with this name, otherwise it returns false.  
-     * @method
      * @param {(String)} Name  
      * The property name to check for.  
      * @returns {(Boolean)}  
@@ -127,17 +122,16 @@ class Any {
     HasProp(Name) => Integer
     
     /**
-     * @method
      */
     __Init() => String
 }
 
 /**
- * @description Object is the basic class from which other AutoHotkey object classes derive.  
- * Each instance of Object consists of a set of "own properties" and a base object,  
- * from which more properties are inherited.  
- * Objects also have methods. These act identically to functions but are just callable properties.  
- * @class
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object}  
+ * Object is the basic class from which any AutoHotkey object class is derived from.  
+ * Each Object consists of any inherited properties and methods.  
+ * Any added properteris are considered part of the object's "own properties".  
+ * @property {(Prototype)} Base - Retrieves or sets an object's base object.
  * @example
  * my_obj := Object()
  * MsgBox('my_obj type is: ' Type(my_obj))
@@ -147,7 +141,6 @@ class Object extends Any {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#Base|`Base`}  
      * Retrieves or sets the value's {@link https://www.autohotkey.com/docs/v2/Objects.htm#delegation|base object}.  
      * The base object must be an Object.  
-     * @property
      * @type {(Prototype)}
      * @see  
      * {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#GetBase|ObjGetBase()},
@@ -167,7 +160,6 @@ class Object extends Any {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#Call|`Object()`}  
      * Creates a new Object.  
-     * @method
      * @example <caption>  
      * Different ways to create a new object.</caption>
      * my_obj1 := Object()
@@ -185,7 +177,6 @@ class Object extends Any {
      * - Object **references** are copied. The objects themselves are not duplicated.  
      *   Meaning the original and the clone will have references to the same object.  
      * - Dynamic properties are copied but not invoked.   
-     * @method
      * @returns {(Object)}  
      * Shallow copy of the object
      * @example <caption>  
@@ -204,7 +195,6 @@ class Object extends Any {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#DefineProp|`DefineProp()`}  
      * Defines a new own property for the object.  
-     * @method
      * @param {(String)} Name  
      * Name of the property  
      * @param {(Object)} DescriptorObject  
@@ -229,7 +219,6 @@ class Object extends Any {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#DeleteProp|`DeleteProp()`}  
      * Removes an own property from an object.  
-     * @method
      * @param {(String)} Name  
      * A property name
      * @returns {(Any)}  
@@ -247,7 +236,6 @@ class Object extends Any {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#GetOwnPropDesc|`GetOwnPropDesc()`}  
      * Returns a descriptor for a given own property, compatible with {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#DefineProp|DefineProp}.  
-     * @method
      * @param {(String)} Name  
      * A property name.  
      * @returns {(Object)}  
@@ -266,7 +254,6 @@ class Object extends Any {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#HasOwnProp|`HasOwnProp()`}  
      * Returns true if the object has a property by the specified Name.  
-     * @method
      * @param {(String)} Name  
      * The name of a property.  
      * This method is also defined as a function: ObjHasOwnProp(objectName, propertyName)
@@ -284,7 +271,6 @@ class Object extends Any {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#OwnProps|`OwnProps()`}  
      * Returns an enumerator for an object's own properties.  
      * This is normally used with a {@link https://www.autohotkey.com/docs/v2/lib/For.htm|for-loop} to iterate through the the object's properties.  
-     * @method
      * @returns {(Enumerator)}
      * @example <caption>  
      * Creates an enumerator with each property of the object</caption>
@@ -300,8 +286,9 @@ class Object extends Any {
  * Is an object containsing a list or sequence of values.  
  * Each element of an array has an index.  
  * Unlike most common languages, AHK indices start at 1, not 0.  
- * @class
- * @returns {(Array)}
+ * @property {(Integer)} Length - Retrieves or sets the length of an array.
+ * @property {(Integer)} Capacity - Retrieves or sets the current capacity of an array.
+ * @property {(Any)} Default - Defines the default value to return when an index has no value or does not exist.
  */
 class Array extends Object {
     /**
@@ -310,7 +297,6 @@ class Array extends Object {
      * Length includes elements which have no value.  
      * Setting Length higher will add enough unset values to the array to equal the new length.  
      * Setting Length lower will truncate everything past the defined index.  
-     * @property
      * @type {(Integer)}
      * @example <caption>  
      * Setting an array's length.</caption>
@@ -330,7 +316,6 @@ class Array extends Object {
      * Capacity is the total amount of elements the array can hold before it needs to be expanded.  
      * Length is the total amount of elements in use.  
      * A capacity lower than Length will truncate eveything past the capacity total.  
-     * @property
      * @type {(Integer)}
      * @example <caption>  
      * Showing Capacity differs from Length.</caption>
@@ -348,7 +333,6 @@ class Array extends Object {
      * Defines the default value returned when an unset element is requested.  
      * Default is unset by default and must be set by the user.  
      * Setting a default value does not prevent an error being thrown when index is out of range.  
-     * @property
      * @type {(Any)} Can be any type of value
      * @throws {(UnsetItemError)}  
      * An attempt was made to read the value of an item, but there was no value.  
@@ -364,7 +348,6 @@ class Array extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#__Item|`__Item`}  
      * Retrieves or sets the value of an array element.  
      * Item syntax uses bracket notation: `arr[item]`
-     * @property
      * @param {(Integer)} Index  
      * Index to insert value(s).  
      * An index of 0 is the same as `array.Length + 1` and works identical to `Push()`.  
@@ -381,14 +364,15 @@ class Array extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Call|`Call()`}  
      * Creates a new Array.  
-     * @method
+     * @param {(Any)} [ValueN]  
+     * Zero or more parameters containing any value to add to the array.  
      * @example <caption>  
      * Different ways to create a new array.</caption>
      * my_arr1 := Array(1, 2, 3)
      * my_arr2 := Array.Call(1, 2, 3)
      * my_arr3 := [1, 2, 3]
      */
-    static Call([Value1, ..., ValueN]) => Array
+    static Call([ValueN*]) => Array
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Clone|`Clone()`}  
@@ -399,7 +383,6 @@ class Array extends Object {
      * - Object **references** are copied. The objects themselves are not duplicated.  
      *   Meaning the original and clone will reference the same objects.  
      * - Dynamic properties are copied but not invoked.   
-     * @method
      * @returns {(Array)}  
      * Shallow copy of array
      * @example <caption>  
@@ -416,7 +399,6 @@ class Array extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Delete|`Delete()`}  
      * Removes the value of an array element, leaving that index without a value.  
-     * @method
      * @param {(Integer)} Index  
      * Index to insert value(s).  
      * An index of 0 is the same as `array.Length + 1` and works identical to `Push()`.  
@@ -434,7 +416,6 @@ class Array extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Get|`Get()`}  
      * Returns the value at a given index, or a default value if one is provided.  
-     * @method
      * @param {(Integer)} Index  
      * The number of the element to get from the array.  
      * Using `0` is the same as using Push().  
@@ -461,7 +442,6 @@ class Array extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Has|`Has()`}  
      * Returns true if the specified index is valid and there is a value at that position.  
-     * @method
      * @param {(Integer)} Index  
      * Index to insert value(s).  
      * An index of 0 is the same as `array.Length + 1` and works identical to `Push()`.  
@@ -479,7 +459,6 @@ class Array extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#InsertAt|`InsertAt()`}  
      * Inserts one or more values at a given position in the array.  
-     * @method
      * @param {(Integer)} Index  
      * Index to insert value(s).  
      * An index of 0 is the same as `array.Length + 1` and works identical to `Push()`.  
@@ -514,7 +493,6 @@ class Array extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Pop|`Pop()`}  
      * Removes and returns the last array element.  
-     * @method
      * @returns {(Any)}  
      * Value of element removed
      * @throws {Error} - Cannot remove an element from an empty array.  
@@ -530,7 +508,6 @@ class Array extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Push|`Push()`}  
      * Appends value(s) to the end of an array.  
-     * @method
      * @param {(Any)} Value  
      * Any value
      * @param {(Any)} AdditionalValues  
@@ -549,7 +526,6 @@ class Array extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#RemoveAt|`RemoveAt()`}  
      * Removes itmes from an array.  
-     * @method
      * @param {(Integer)} Index  
      * Index to insert value(s).  
      * An index of 0 is the same as `array.Length + 1` and works identical to `Push()`.  
@@ -573,7 +549,6 @@ class Array extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#__New|`__New()`}  
      * Appends items and is equivalent to {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Push|Push()}.  
      * This method exists to support {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Call|Call()}, and is not intended to be called directly.  
-     * @method
      * @param {(Any)} Value  
      * Value to insert.  
      * An array of values can passed if the variable is marked with a `*`  
@@ -593,7 +568,6 @@ class Array extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#__Enum|`__Enum()`}  
      * Creates an enumerator to iterate through an array's elements.  
      * This method is typically not called directly as enumerable objects can be directly passed to a for-loop.  
-     * @method
      * @returns {(Enumerator)}  
      * Enumerable function object.  
      * @see  
@@ -614,13 +588,22 @@ class Array extends Object {
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|`Buffer`}  
  * Encapsulates a block of memory for use with memory sensitive actions such as DllCall, structures, StrPut, and raw file I/O.  
  * Buffer objects are typically created by calling Buffer(), but can also be returned by FileRead with the "RAW" option.  
- * @class
+ * @property {(Integer)} Ptr - Retrieves the buffer's current memory address.
+ * @property {(Integer)} Size - Retrieves or sets the buffer's size, in bytes.
+ * @see  
+ * {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm|DllCall()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/NumPut.htm|NumPut()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/NumGet.htm|NumGet()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/StrPut.htm|StrPut()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/StrGet.htm|StrGet()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/File.htm#RawRead|File.RawRead()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/File.htm#RawWrite|File.RawWrite()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/ClipboardAll.htm|ClipboardAll}
  */
 class Buffer extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Ptr|`Ptr`}  
      * Retrieves the buffer's current memory address.  
-     * @property
      * @type {(Integer)}
      * @example <caption>  
      * Showing and using a buffer pointer.</caption>
@@ -634,7 +617,6 @@ class Buffer extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Size|`Size`}  
      * Retrieves or sets the buffer's size, in bytes.  
-     * @property
      * @type {(Integer)}
      * @throws {(MemoryError)}  
      * Memory could not be allocated.  
@@ -649,7 +631,6 @@ class Buffer extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|`Buffer()`}  
      * Creates a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer object}.  
      * @constructs Buffer
-     * @method
      * @param {(Integer)} [ByteCount]  
      * Number of bytes to allocate.  
      * If omitted, the Buffer is created with a null (zero) Ptr and zero Size.  
@@ -671,7 +652,6 @@ class Buffer extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#__New|`__New()`}  
      * Allocates or reallocates the buffer and optionally fills it.  
      * This method exists to support {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Call|Call()}, and is not usually called directly.  
-     * @method
      * @param {(Integer)} [ByteCount]  
      * Number of bytes to allocate, reallocate, or free the buffer.  
      * This is equivalent to assigning {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Size|Size}.  
@@ -693,14 +673,15 @@ class Buffer extends Object {
      * n := NumGet(buff, 'Int')
      * MsgBox('n value: ' n)
      */
-    __New(ByteCount:=unset, FillByte:=0) => EmptyString
+    __New([ByteCount:=unset, FillByte:=0]) => EmptyString
 }
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|`ClipboardAll`}  
  * Creates an object containing everything on the clipboard, including binary data (like pictures).  
  * ClipboardAll is derived from the Buffer class.  
- * @class
+ * @property {(Integer)} Ptr - The address of the data contained by the object. This address is valid until the object is freed.
+ * @property {(Integer)} Size - The size, in bytes, of the raw binary data.
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/A_Clipboard.htm|A_Clipboard},
  * {@link https://www.autohotkey.com/docs/v2/lib/ClipWait.htm|ClipWait()},
@@ -713,7 +694,6 @@ class ClipboardAll extends Buffer {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Ptr|`Ptr`}  
      * Retrieves the address of the data contained by the object.  
      * This address is valid until the object is freed.  
-     * @property
      * @type {(Integer)}
      * @example <caption>  
      * Showing a buffer pointer.</caption>
@@ -725,7 +705,6 @@ class ClipboardAll extends Buffer {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Size|`Size`}  
      * Retrieves the size, in bytes, of the raw binary data.  
-     * @property
      * @type {(Integer)}
      * @example <caption>  
      * Showing size of a buffer.</caption>
@@ -737,7 +716,6 @@ class ClipboardAll extends Buffer {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/ClipboardAll.htm|`ClipboardAll()`}  
      * Creates a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer object} and stores everything from the clipboard in it.
-     * @method
      * @param {(Object | Integer)} [Data]  
      * A Buffer-like object or a pure integer which is the address of the binary data.  
      * The data must be in a {@link https://www.autohotkey.com/docs/v2/lib/ClipboardAll.htm#Remarks|specific format}, so typically it originates from a previous call to ClipboardAll().  
@@ -778,29 +756,29 @@ class ClipboardAll extends Buffer {
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Class.htm|`Class`}  
- * Objects contain static methods and properties creates an object containing everything on the clipboard (such as pictures and formatting).  
- * @class
+ * Represents a class definition; it contains static methods and properties.  
+ * Classes can also create instances of itself containing non-static methods and properties.  
+ * @property {(Prototype)} Prototype - Retrieves or sets the object on which all instances of the class are based.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/A_Clipboard.htm|A_Clipboard},
  * {@link https://www.autohotkey.com/docs/v2/lib/ClipWait.htm|ClipWait()},
- * {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer},
  * {@link https://www.autohotkey.com/docs/v2/lib/OnClipboardChange.htm|OnClipboardChange()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer},
  * {@link https://www.autohotkey.com/docs/v2/lib/_ClipboardTimeout.htm|#ClipboardTimeout}
  */
 class Class extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Class.htm#Call|`Class()`}  
      * Constructs a new instance of the class.  
-     * @method
-     * @param params - Any amount of parameters.  
-     * @returns {(Class)}
+     * @param Params - Any amount of predetermined parameters.  
+     * @returns {(Class)} A class object is returned.  
      * @example <caption>  
      * Multiple ways to make an object.</caption>
      * obj1 := {}
      * obj2 := Object()
      * obj3 := Object.Call()
      */
-    Call(params*) => Class
+    Call(Params*) => Class
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Class.htm#Prototype|`Prototype`}  
@@ -810,7 +788,6 @@ class Class extends Object {
      * 
      *     ClassObj.Prototype.base == ClassObj.base.Prototype
      * Prototype is automatically defined as an own property of any class object created by a class definition.  
-     * @property
      * @type {(Prototype)}
      */
     Prototype => Prototype
@@ -818,23 +795,22 @@ class Class extends Object {
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm|`Error`}  
- * Objects are {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} by built-in code when a runtime error occurs, and may also be thrown explicitly by the script.  
+ * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} by when a runtime error occurs, and may also be thrown explicitly by the script.  
+ * Contains information about the error.  
  * Specific error types:  
- * - MemoryError - A memory allocation failed.  
- * - OSError - An internal function call to a Win32 function failed. Message includes an error code and description generated by the operating system. OSErrors have an additional Number property which contains the error code.  
- *   Calling OSError(code) with a numeric code sets Number and Message based on the given OS-defined error code. If code is omitted it defaults to A_LastError.  
- * - TargetError - A function failed because its target could not be found. Message indicates what kind of target, such as a window, control, menu or status bar.  
- * - TimeoutError - SendMessage timed out.  
- * - TypeError - An unexpected type of value was used as input for a function, property assignment, or some other operation. Usually Message indicates the expected and actual type, and Extra contains a string representing the errant value.  
- * - UnsetError - An attempt was made to read the value of a variable, property or item, but there was no value.  
- *   - MemberError
- *     - PropertyError
- *     - MethodError
- *   - UnsetItemError
- * - ValueError - An unexpected value was used as input for a function, property assignment, or some other operation. Usually Message indicates which expectation was broken, and Extra contains a string representing the errant value.  
- *   - IndexError - The index parameter of an object's __Item property was invalid or out of range.  
- * - ZeroDivisionError - Division by zero was attempted in an expression or with the Mod function.  
- * @class
+ * |                     |                  |               |
+ * | :---                | :---             | :---          |
+ * | `MemoryError`       | `TimeoutError`   | `MethodError` |
+ * | `PropertyError`     | `TargetError`    | `MemberError` |
+ * | `UnsetItemError`    | `UnsetError`     | `IndexError`  |
+ * | `ZeroDivisionError` | `ValueError`     | `TypeError`   |
+ * | `OSError`           |                  |               |
+ * @property {(String)} Message - The general error message.  
+ * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
+ * @property {(String)} Extra - Extra information to be included about the error.  
+ * @property {(String)} File - The full path of the script file containing the line of code that caused the error.  
+ * @property {(Integer)} Line - The number of the line of code that caused the error.  
+ * @property {(String)} Stack - A string representing the call stack at the time of error.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|Throw},
  * {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try},
@@ -847,7 +823,6 @@ class Error extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`Message`}  
      * Contains a description of the error.
-     * @property
      * @type {(String)}
      */
     Message => String
@@ -856,7 +831,6 @@ class Error extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`What`}  
      * Contains the name of the thing that threw the error. Usually a function name.  
      * Is blank when an exception is thrown inside an expression. Example: `('a' / 1)`
-     * @property
      * @type {(String)}
      */
     What => String
@@ -866,7 +840,6 @@ class Error extends Object {
      * Contains any additional information about the error.  
      * If a non-empty string is passed, the error message will include a line that says:  
      * `Specifically: ` followed by the provided text.
-     * @property
      * @type {(String)}
      */
     Extra => String
@@ -874,7 +847,6 @@ class Error extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`File`}  
      * Is the full path of the script file containing the line at which the error occurred or where the Error object was constructed.  
-     * @property
      * @type {(String)}
      */
     File => String
@@ -882,7 +854,6 @@ class Error extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`Line`}  
      * Is number of the line at which the error occurred or where the Error object was constructed.  
-     * @property
      * @type {(Integer)}
      */
     Line => Integer
@@ -900,7 +871,6 @@ class Error extends Object {
      * * `... N more`  
      *   Indicates that the stack trace was truncated, and there are N more stack entries not shown.  
      *   Currently the Stack property cannot exceed 2047 characters.
-     * @property
      * @type {(String)}
      */
     Stack => String
@@ -908,7 +878,6 @@ class Error extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#error-types|`Error()`}  
      * Creates an Error object.  
-     * @method
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -947,11 +916,27 @@ class Error extends Object {
     static Call([Message:='Error', What:=A_ThisFunc, Extra:=unset]) => Error
 }
 
+/**
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#MemoryError|`MemoryError`}  
+ * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when a memory allocation fails.
+ * @property {(String)} Message - The general error message.  
+ * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
+ * @property {(String)} Extra - Extra information to be included about the error.  
+ * @property {(String)} File - The full path of the script file containing the line of code that caused the error.  
+ * @property {(Integer)} Line - The number of the line of code that caused the error.  
+ * @property {(String)} Stack - A string representing the call stack at the time of error.  
+ * @see  
+ * {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|Throw},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Catch.htm|Catch},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Finally.htm|Finally},  
+ * {@link https://www.autohotkey.com/docs/v2/lib/OnError.htm|OnError()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#error-types|Error Types}
+ */
 class MemoryError extends Error {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#MemoryError|`MemoryError()`}  
      * A memory allocation failed.  
-     * @method
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -966,6 +951,23 @@ class MemoryError extends Error {
     static Call([Message:='MemoryError', What:=A_ThisFunc, Extra:='']) => MemoryError
 }
 
+/**
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#OSError|`OSError`}  
+ * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an internal function call to a Win32 function fails.
+ * @property {(String)} Message - The general error message.  
+ * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
+ * @property {(String)} Extra - Extra information to be included about the error.  
+ * @property {(String)} File - The full path of the script file containing the line of code that caused the error.  
+ * @property {(Integer)} Line - The number of the line of code that caused the error.  
+ * @property {(String)} Stack - A string representing the call stack at the time of error.  
+ * @see  
+ * {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|Throw},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Catch.htm|Catch},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Finally.htm|Finally},  
+ * {@link https://www.autohotkey.com/docs/v2/lib/OnError.htm|OnError()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#error-types|Error Types}
+ */
 class OSError extends Error {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#OSError|`OSError()`}  
@@ -974,7 +976,6 @@ class OSError extends Error {
      * OSErrors have an additional Number property which contains the error code.  
      * Calling OSError(code) with a numeric code sets Number and Message based on the given OS-defined error code.  
      * If code is omitted it defaults to A_LastError.  
-     * @method
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -989,12 +990,28 @@ class OSError extends Error {
     static Call([Message:='(0)', What:=A_ThisFunc, Extra:='']) => OSError
 }
 
+/**
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#TargetError|`TargetError`}  
+ * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when a function fails because its target could not be found.
+ * @property {(String)} Message - The general error message.  
+ * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
+ * @property {(String)} Extra - Extra information to be included about the error.  
+ * @property {(String)} File - The full path of the script file containing the line of code that caused the error.  
+ * @property {(Integer)} Line - The number of the line of code that caused the error.  
+ * @property {(String)} Stack - A string representing the call stack at the time of error.  
+ * @see  
+ * {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|Throw},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Catch.htm|Catch},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Finally.htm|Finally},  
+ * {@link https://www.autohotkey.com/docs/v2/lib/OnError.htm|OnError()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#error-types|Error Types}
+ */
 class TargetError extends Error {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#TargetError|`TargetError()`}  
      * A function failed because its target could not be found.  
      * Message indicates what kind of target, such as a window, control, menu or status bar.  
-     * @method
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -1009,11 +1026,27 @@ class TargetError extends Error {
     static Call([Message:='TargetError', What:=A_ThisFunc, Extra:='']) => TargetError
 }
 
+/**
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#TimeoutError|`TimeoutError`}  
+ * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when {@link https://www.autohotkey.com/docs/v2/lib/SendMessage.htm|SendMessage()} times out.
+ * @property {(String)} Message - The general error message.  
+ * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
+ * @property {(String)} Extra - Extra information to be included about the error.  
+ * @property {(String)} File - The full path of the script file containing the line of code that caused the error.  
+ * @property {(Integer)} Line - The number of the line of code that caused the error.  
+ * @property {(String)} Stack - A string representing the call stack at the time of error.  
+ * @see  
+ * {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|Throw},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Catch.htm|Catch},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Finally.htm|Finally},  
+ * {@link https://www.autohotkey.com/docs/v2/lib/OnError.htm|OnError()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#error-types|Error Types}
+ */
 class TimeoutError extends Error {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#TimeoutError|`TimeoutError()`}  
      * {@link https://www.autohotkey.com/docs/v2/lib/SendMessage.htm|SendMessage()} timed out.  
-     * @method
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -1028,12 +1061,28 @@ class TimeoutError extends Error {
     static Call([Message:='TimeoutError', What:=A_ThisFunc, Extra:='']) => TimeoutError
 }
 
+/**
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#TypeError|`TypeError`}  
+ * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an unexpected type of value was used as input for a function, property assignment, or some other operation.  
+ * @property {(String)} Message - The general error message.  
+ * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
+ * @property {(String)} Extra - Extra information to be included about the error.  
+ * @property {(String)} File - The full path of the script file containing the line of code that caused the error.  
+ * @property {(Integer)} Line - The number of the line of code that caused the error.  
+ * @property {(String)} Stack - A string representing the call stack at the time of error.  
+ * @see  
+ * {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|Throw},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Catch.htm|Catch},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Finally.htm|Finally},  
+ * {@link https://www.autohotkey.com/docs/v2/lib/OnError.htm|OnError()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#error-types|Error Types}
+ */
 class TypeError extends Error {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#TypeError|`TypeError()`}  
      * An unexpected type of value was used as input for a function, property assignment, or some other operation.  
      * Usually, Message indicates the expected and actual type, and Extra contains a string representing the errant value.  
-     * @method
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -1048,12 +1097,28 @@ class TypeError extends Error {
     static Call([Message:='TypeError', What:=A_ThisFunc, Extra:='']) => TypeError
 }
 
+/**
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#UnsetError|`UnsetError`}  
+ * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when a variable, property, method, or item is accessed without having a value assigned to it.
+ * @property {(String)} Message - The general error message.  
+ * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
+ * @property {(String)} Extra - Extra information to be included about the error.  
+ * @property {(String)} File - The full path of the script file containing the line of code that caused the error.  
+ * @property {(Integer)} Line - The number of the line of code that caused the error.  
+ * @property {(String)} Stack - A string representing the call stack at the time of error.  
+ * @see  
+ * {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|Throw},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Catch.htm|Catch},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Finally.htm|Finally},  
+ * {@link https://www.autohotkey.com/docs/v2/lib/OnError.htm|OnError()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#error-types|Error Types}
+ */
 class UnsetError extends Error {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#UnsetError|`UnsetError()`}  
      * An attempt was made to read the value of a variable, property or item, but there was no value.  
      * Or an attempt was made to access a method that does not exist.  
-     * @method
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -1068,12 +1133,28 @@ class UnsetError extends Error {
     static Call([Message:='UnsetError', What:=A_ThisFunc, Extra:='']) => UnsetError
 }
 
+/**
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#MemberError|`MemberError`}  
+ * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an object property or method is accessed without having a value assigned to it.
+ * @property {(String)} Message - The general error message.  
+ * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
+ * @property {(String)} Extra - Extra information to be included about the error.  
+ * @property {(String)} File - The full path of the script file containing the line of code that caused the error.  
+ * @property {(Integer)} Line - The number of the line of code that caused the error.  
+ * @property {(String)} Stack - A string representing the call stack at the time of error.  
+ * @see  
+ * {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|Throw},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Catch.htm|Catch},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Finally.htm|Finally},  
+ * {@link https://www.autohotkey.com/docs/v2/lib/OnError.htm|OnError()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#error-types|Error Types}
+ */
 class MemberError extends UnsetError {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#MemberError|`MemberError()`}  
      * Either an attempt was made to read the value of a property or item, but there was no value,  
      * or an attempt was made to access a method that does not exist.  
-     * @method
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -1088,11 +1169,27 @@ class MemberError extends UnsetError {
     static Call([Message:='MemberError', What:=A_ThisFunc, Extra:='']) => MemberError
 }
 
+/**
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#PropertyError|`PropertyError`}  
+ * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an object property is accessed without having a value assigned to it.  
+ * @property {(String)} Message - The general error message.  
+ * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
+ * @property {(String)} Extra - Extra information to be included about the error.  
+ * @property {(String)} File - The full path of the script file containing the line of code that caused the error.  
+ * @property {(Integer)} Line - The number of the line of code that caused the error.  
+ * @property {(String)} Stack - A string representing the call stack at the time of error.  
+ * @see  
+ * {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|Throw},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Catch.htm|Catch},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Finally.htm|Finally},  
+ * {@link https://www.autohotkey.com/docs/v2/lib/OnError.htm|OnError()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#error-types|Error Types}
+ */
 class PropertyError extends MemberError {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#PropertyError|`PropertyError()`}  
      * An attempt was made to read the value of a property but there was no value.  
-     * @method
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -1107,11 +1204,27 @@ class PropertyError extends MemberError {
     static Call([Message:='PropertyError', What:=A_ThisFunc, Extra:='']) => PropertyError
 }
 
+/**
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#MethodError|`MethodError`}  
+ * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an object method is accessed without having a value assigned to it.
+ * @property {(String)} Message - The general error message.  
+ * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
+ * @property {(String)} Extra - Extra information to be included about the error.  
+ * @property {(String)} File - The full path of the script file containing the line of code that caused the error.  
+ * @property {(Integer)} Line - The number of the line of code that caused the error.  
+ * @property {(String)} Stack - A string representing the call stack at the time of error.  
+ * @see  
+ * {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|Throw},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Catch.htm|Catch},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Finally.htm|Finally},  
+ * {@link https://www.autohotkey.com/docs/v2/lib/OnError.htm|OnError()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#error-types|Error Types}
+ */
 class MethodError extends MemberError {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#MethodError|`MethodError()`}  
      * An attempt was made to access a method that does not exist.  
-     * @method
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -1126,11 +1239,27 @@ class MethodError extends MemberError {
     static Call([Message:='MethodError', What:=A_ThisFunc, Extra:='']) => MethodError
 }
 
+/**
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#UnsetItemError|`UnsetItemError`}  
+ * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an object item is accessed without having a value assigned to it.  
+ * @property {(String)} Message - The general error message.  
+ * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
+ * @property {(String)} Extra - Extra information to be included about the error.  
+ * @property {(String)} File - The full path of the script file containing the line of code that caused the error.  
+ * @property {(Integer)} Line - The number of the line of code that caused the error.  
+ * @property {(String)} Stack - A string representing the call stack at the time of error.  
+ * @see  
+ * {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|Throw},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Catch.htm|Catch},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Finally.htm|Finally},  
+ * {@link https://www.autohotkey.com/docs/v2/lib/OnError.htm|OnError()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#error-types|Error Types}
+ */
 class UnsetItemError extends UnsetError {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#UnsetItemError|`UnsetItemError()`}  
      * An attempt was made to read the value of a an item, but there was no value.  
-     * @method
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -1145,12 +1274,28 @@ class UnsetItemError extends UnsetError {
     static Call([Message:='UnsetItemError', What:=A_ThisFunc, Extra:='']) => UnsetItemError
 }
 
+/**
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#ValueError|`ValueError`}  
+ * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an unexpected value was used as input for a function, property or other operation.
+ * @property {(String)} Message - The general error message.  
+ * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
+ * @property {(String)} Extra - Extra information to be included about the error.  
+ * @property {(String)} File - The full path of the script file containing the line of code that caused the error.  
+ * @property {(Integer)} Line - The number of the line of code that caused the error.  
+ * @property {(String)} Stack - A string representing the call stack at the time of error.  
+ * @see  
+ * {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|Throw},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Catch.htm|Catch},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Finally.htm|Finally},  
+ * {@link https://www.autohotkey.com/docs/v2/lib/OnError.htm|OnError()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#error-types|Error Types}
+ */
 class ValueError extends Error {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#ValueError|`ValueError()`}  
      * An unexpected value was used as input for a function, property assignment, or some other operation.  
      * Usually Message indicates which expectation was broken, and Extra contains a string representing the errant value.  
-     * @method
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -1165,11 +1310,27 @@ class ValueError extends Error {
     static Call([Message:='ValueError', What:=A_ThisFunc, Extra:='']) => ValueError
 }
 
+/**
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#IndexError|`IndexError`}  
+ * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an object's {@link https://www.autohotkey.com/docs/v2/Objects.htm#__Item|__Item property} is used with an index that is invalid or out of range.
+ * @property {(String)} Message - The general error message.  
+ * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
+ * @property {(String)} Extra - Extra information to be included about the error.  
+ * @property {(String)} File - The full path of the script file containing the line of code that caused the error.  
+ * @property {(Integer)} Line - The number of the line of code that caused the error.  
+ * @property {(String)} Stack - A string representing the call stack at the time of error.  
+ * @see  
+ * {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|Throw},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Catch.htm|Catch},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Finally.htm|Finally},  
+ * {@link https://www.autohotkey.com/docs/v2/lib/OnError.htm|OnError()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#error-types|Error Types}
+ */
 class IndexError extends ValueError {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#IndexError|`IndexError()`}  
      * The index parameter of an object's {@link https://www.autohotkey.com/docs/v2/Objects.htm#__Item|__Item property} was invalid or out of range.  
-     * @method
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -1184,11 +1345,27 @@ class IndexError extends ValueError {
     static Call([Message:='IndexError', What:=A_ThisFunc, Extra:='']) => IndexError
 }
 
+/**
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#ZeroDivisionError|`ZeroDivisionError`}  
+ * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when division by zero is attempted.
+ * @property {(String)} Message - The general error message.  
+ * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
+ * @property {(String)} Extra - Extra information to be included about the error.  
+ * @property {(String)} File - The full path of the script file containing the line of code that caused the error.  
+ * @property {(Integer)} Line - The number of the line of code that caused the error.  
+ * @property {(String)} Stack - A string representing the call stack at the time of error.  
+ * @see  
+ * {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|Throw},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Catch.htm|Catch},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Finally.htm|Finally},  
+ * {@link https://www.autohotkey.com/docs/v2/lib/OnError.htm|OnError()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#error-types|Error Types}
+ */
 class ZeroDivisionError extends Error {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#ZeroDivisionError|`ZeroDivisionError()`}  
      * Divison by zero was attempted in an expression or with the Mod function.  
-     * @method
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -1206,8 +1383,12 @@ class ZeroDivisionError extends Error {
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm|`File Object`}  
  * Provides an interface for file input/output.  
+ * @property {(Integer)} Pos - Retrieves or sets the position of the file pointer.
+ * @property {(Integer)} Length - Retrieves or sets the size of the file.
+ * @property {(Integer)} AtEOF - Retrieves a non-zero number if the file pointer has reached the end of the file.
+ * @property {(String)} Encoding - Retrieves or sets the text encoding used by this file object.
+ * @property {(Integer)} Handle - Retrieves a system file handle, intended for use with DllCall.
  * {@link https://www.autohotkey.com/docs/v2/lib/FileOpen.htm|FileOpen()} returns a File object.  
- * @class
  */
 class File extends Object {
     /**
@@ -1215,7 +1396,6 @@ class File extends Object {
      * Retrieves or sets the position of the file pointer.  
      * The position is a byte offset from the beginning of the file, where 0 is the first byte.  
      * When data is written to or read from the file, the file pointer automatically moves to the next byte after that data.  
-     * @property
      * @type {(Integer)}
      * @example <caption>  
      * Get start position of script source's 3rd line.</caption>
@@ -1232,7 +1412,6 @@ class File extends Object {
      * Retrieves or sets the size of the file.  
      * Length is represented in bytes.  
      * This property should be used only with an actual file.  
-     * @property
      * @type {(Integer)}
      * @example <caption>  
      * Checking the size of the current script file.</caption>
@@ -1246,7 +1425,6 @@ class File extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#AtEOF|`AtEOF`}  
      * Retrieves a non-zero value if the file pointer has reached the end of the file.  
      * This property should be used only with an actual file.  
-     * @property
      * @type {(Integer)}
      * @example <caption>  
      * Check if AT End Of File.</caption>
@@ -1264,7 +1442,6 @@ class File extends Object {
      * - `UTF-16`: Unicode UTF-16 with little endian byte order, equivalent to CP1200.  
      * - `CPnnn`: a code page where `nnn` is a numeric identifier.  
      * Setting a new encoding never causes a BOM to be added or removed, as the BOM is normally written to the file when it is first created.  
-     * @property
      * @type {(NumberString )}
      * @example <caption>  
      * Showing a file's encoding type.</caption>
@@ -1280,7 +1457,6 @@ class File extends Object {
      * File objects internally buffer reads or writes.  
      * If data has been written into the object's internal buffer, it is committed to disk before the handle is returned.  
      * If the buffer contains data read from file, it is discarded and the actual file pointer is reset to the logical position indicated by {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Pos|FileObj.Pos}.  
-     * @property
      * @type {(Integer)}
      * @example <caption>  
      * Showing a file's encoding type.</caption>
@@ -1293,7 +1469,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Read|`Read()`}  
      * Reads a string of characters from the file and advances the file pointer.  
-     * @method
      * @param {(Integer)} [Characters]  
      * The maximum number of characters to read.  
      * If omitted, the rest of the file is read and returned as one string.  
@@ -1312,7 +1487,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Write|`Write()`}  
      * Writes a string of characters to the file and advances the file pointer.  
-     * @method
      * @param {(String)} String  
      * The string of characters to write.  
      * @returns {(Integer)}  
@@ -1333,7 +1507,6 @@ class File extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadLine|`ReadLine()`}  
      * Reads a line of text from the file and advances the file pointer.  
      * A max of 65,534 characters per line can be read in at a time and subsequent calls to ReadLine() will get the remaining characters.  
-     * @method
      * @returns {(String)}  
      * Next line of text from the file excluding the end character.  
      * @example <caption>  
@@ -1349,7 +1522,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteLine|`WriteLine()`}  
      * Writes a string of characters followed by a new line `` `n `` or carraige return+new line `` `r`n `` (depending on the flags used to open the file), and advances the file pointer.  
-     * @method
      * @param {(String)} [Text]  
      * An optional string to write.  
      * If no parameter is passed, an empty line is inserted.  
@@ -1372,7 +1544,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadUInt()`}  
      * Reads a 32-bit (4 byte) unsigned integer from the file and advances the file pointer.  
-     * @method
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of UInt, the missing bytes are assumed to be zero.  
@@ -1387,7 +1558,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadInt()`}  
      * Reads a 32-bit (4 byte) integer from the file and advances the file pointer.  
-     * @method
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of Int, the missing bytes are assumed to be zero.  
@@ -1402,7 +1572,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadInt64()`}  
      * Reads a 64-bit (8 byte) integer from the file and advances the file pointer.  
-     * @method
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of Int64, the missing bytes are assumed to be zero.  
@@ -1417,7 +1586,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadShort()`}  
      * Reads a 16-bit (2 byte) short integer from the file and advances the file pointer.  
-     * @method
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of Short, the missing bytes are assumed to be zero.  
@@ -1432,7 +1600,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadUShort()`}  
      * Reads a 16-bit (2 byte) unsigned short integer from the file and advances the file pointer.  
-     * @method
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of UShort, the missing bytes are assumed to be zero.  
@@ -1447,7 +1614,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadChar()`}  
      * Reads an 8-bit (1 byte) char from the file and advances the file pointer.  
-     * @method
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of Char, the missing bytes are assumed to be zero.  
@@ -1462,7 +1628,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadUChar()`}  
      * Reads an 8-bit (1 byte) unsigned char from the file and advances the file pointer.  
-     * @method
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of UChar, the missing bytes are assumed to be zero.  
@@ -1477,7 +1642,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadDouble()`}  
      * Reads a 64-bit (8 byte) floating point number from the file and advances the file pointer.  
-     * @method
      * @returns {(Float|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of Double, the missing bytes are assumed to be zero.  
@@ -1492,7 +1656,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadFloat()`}  
      * Reads a 32-bit (4 byte) floating point number from the file and advances the file pointer.  
-     * @method
      * @returns {(Float|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of Float, the missing bytes are assumed to be zero.  
@@ -1507,7 +1670,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteUInt()`}  
      * Writes a 32-bit (4 byte) unsigned integer to the file and advances the file pointer.  
-     * @method
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1521,7 +1683,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteInt()`}  
      * Writes a 32-bit (4 byte) integer to the file and advances the file pointer.  
-     * @method
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1535,7 +1696,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteInt64()`}  
      * Writes a 64-bit (8 byte) integer to the file and advances the file pointer.  
-     * @method
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1549,7 +1709,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteShort()`}  
      * Writes a 16-bit (2 byte) short integer to the file and advances the file pointer.  
-     * @method
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1563,7 +1722,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteUShort()`}  
      * Writes a 16-bit (2 byte) unsigned short integer to the file and advances the file pointer.  
-     * @method
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1577,7 +1735,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteChar()`}  
      * Writes an 8-bit (1 byte) char to the file and advances the file pointer.  
-     * @method
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1591,7 +1748,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteUChar()`}  
      * Writes an 8-bit (1 byte) unsigned char to the file and advances the file pointer.  
-     * @method
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1605,7 +1761,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteDouble()`}  
      * Writes a 64-bit (8 byte) floating point number to the file and advances the file pointer.  
-     * @method
      * @returns {(Number)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1619,7 +1774,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteFloat()`}  
      * Writes a 32-bit (4 byte) floating point number to the file and advances the file pointer.  
-     * @method
      * @returns {(Number)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1633,7 +1787,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#RawRead|`RawRead()`}  
      * Reads raw binary data from the file into memory and advances the file pointer.  
-     * @method
      * @param {(Integer)} Buffer  
      * Either a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer-like} object or the memory address which will receive the data.  
      * @param {(Integer)} [Bytes]  
@@ -1654,7 +1807,6 @@ class File extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#RawWrite|`RawWrite()`}  
      * Writes raw binary data to the file and advances the file pointer.  
-     * @method
      * @param {(Buffer|String|Integer)} Buffer  
      * Either a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer-like} object, a string containing binary data, or a memory address containing the data.  
      * @param {(Integer)} [Bytes]  
@@ -1720,7 +1872,11 @@ class File extends Object {
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm|`Func`}  
  * Represents a user-defined or built-in function.  
  * The Closure class extends Func but does not define any new properties.  
- * @class
+ * @property {(String)} Name - Returns the function's name.
+ * @property {(Integer)} IsBuiltIn - Returns 1 (true) if the function is built-in, otherwise 0 (false).
+ * @property {(Integer)} IsVariadic - Returns 1 (true) if the function is variadic, otherwise 0 (false).
+ * @property {(Integer)} MinParams - Returns the number of required parameters.
+ * @property {(Integer)} MaxParams - Returns the number of formally-declared parameters for a user-defined function or maximum parameters for a built-in function.
  */
 class Func extends Object {
     /**
@@ -1801,7 +1957,6 @@ class Func extends Object {
 
     /**
      * {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#Call|Call()} calls the function.  
-     * @method
      * @param {(Any)} [Params]  
      * Any amount of parameters, separated by commas.  
      * Each parameter must be separated by a comma.  
@@ -1809,13 +1964,12 @@ class Func extends Object {
      * Return values, if any, are defined within each function.  
      * An empty string is returned if no return value is explicitly provided.
      */
-    Call([Params]) => Any
+    Call([Params*]) => Any
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#Bind|`Bind()`}  
      * Binds parameters to the function and returns a {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc object}.  
      * For details and examples, see {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc object}.  
-     * @method
      * @param {(Any)} [Param1]  
      * Provide a predefined value for the first param of the function.  
      * @param {(Any)} [ParamN]  
@@ -1834,12 +1988,11 @@ class Func extends Object {
      * farewell := MsgBox.Bind('Goodbye, world.', 'Bye-bye!')
      * SetTimer(farewell, -3000)
      */
-    Bind([Param1, ParamN]) => BoundFunc
+    Bind([Param1, ParamN*]) => BoundFunc
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#IsByRef|`IsByRef()`}  
      * Determines whether a parameter is ByRef.  
-     * @method
      * @param {(Integer)} [ParamIndex]  
      * The index number of the parameter, starting at 1.  
      * If ParamIndex is omitted, all parameters are checked.  
@@ -1865,7 +2018,6 @@ class Func extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#IsOptional|`IsOptional()`}  
      * Determines whether a parameter is optional.  
-     * @method
      * @param {(Integer)} [ParamIndex]  
      * The index number of the parameter, starting at 1.  
      * If ParamIndex is omitted, all parameters are checked.  
@@ -1914,7 +2066,6 @@ class Func extends Object {
  * {@link https://www.autohotkey.com/docs/v2/lib/Sort.htm|Sort},
  * {@link https://www.autohotkey.com/docs/v2/lib/For.htm|For-loops},
  * {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|Gui events},
- * @class
  * @example <caption>  
  * Autofire using a boundfunc and settimer.</caption>
  * *LButton::auto_click('LButton')
@@ -1936,7 +2087,6 @@ class BoundFunc extends Func {
  * Free variables are variables from the outer function which are also used by the closure function.  
  * Closures allow nested functions to share variables with the outer function, even after the outer function has returned.  
  * To create a closure, simply define a function inside another function and have the inner function reference a variable from the outer function.  
- * @class
  * @example <caption>  
  * Demonstrating closure vs static function</caption>
  * outer_func()
@@ -1968,7 +2118,6 @@ class Closure extends Func {
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|`Enumerator`}  
  * An type of {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} called to enumerate through each value of an object.  
  * They are primarily used by {@link https://www.autohotkey.com/docs/v2/lib/For.htm|For-loops} and are not usually called directly.  
- * @class
  * @example <caption>  
  * Different ways to use enumerators</caption>
  * arr := ['a', 'b', 'c']
@@ -2029,9 +2178,15 @@ class Enumerator extends Func {
  * Provides the ability to create and manage custom windows and controls.  
  * Such windows can be used for a multitude of things, including data entry, hotkeys, file trees, or any other custom user interfaces.  
  * Gui objects can be created with Gui() and retrieved with {@link https://www.autohotkey.com/docs/v2/lib/GuiFromHwnd.htm|GuiFromHwnd()}.  
- * @class
- * @example
- * goo := Gui([Options:='', Title:=A_ScriptName, EventObj:=unset]) => Gui
+ * @property {(Integer)} BackColor - Retrieves or sets the background color of the window.
+ * @property {(GuiCtrl)} FocusedCtrl - Retrieves the GuiControl object of the window's focused control.
+ * @property {(Integer)} Hwnd - Retrieves the window handle (HWND) of the window.
+ * @property {(Integer)} MarginX - Retrieves or sets the size of horizontal margins between sides and subsequently created controls.
+ * @property {(Integer)} MarginY - Retrieves or sets the size of vertical margins between sides and subsequently created controls.
+ * @property {(MenuBar)} MenuBar - Retrieves or sets the window's menu bar.
+ * @property {(String)} Name - Retrieves or sets a custom name for the window.
+ * @property {(String)} Title - Retrieves or sets the window's title.
+ * @property {(GuiCtrl)} __Item - Retrieves the GuiControl object associated with the specified name, text, ClassNN or HWND.
  */
 class Gui extends Object {
     /**
@@ -2041,7 +2196,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#ClassNN|`ClassNN`}  
          * Retrieves the class name and sequence number (ClassNN) of the control.  
-         * @property
          * @type {(String)}
          * @see  
          * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetClassNN.htm|ControlGetClassNN}
@@ -2055,7 +2209,6 @@ class Gui extends Object {
          * * `0`: disabled  
          * 
          * For Tab controls, this will also enable or disable all of the tab's sub-controls.  
-         * @property
          * @type {(Integer)}
          */
         Enabled => Integer
@@ -2067,7 +2220,6 @@ class Gui extends Object {
          * * `0`: not focused  
          * 
          * To focus the control, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Focus|Focus()} method.
-         * @property
          * @type {(Integer)}
          */
         Focused => Integer
@@ -2075,7 +2227,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Gui|`Gui`}  
          * Retrieves a reference to the control's parent {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm|GUI object}.  
-         * @property
          * @type {(Gui)}
          */
         Gui => Gui
@@ -2088,7 +2239,6 @@ class Gui extends Object {
          * {@link https://www.autohotkey.com/docs/v2/lib/SendMessage.htm|SendMessage()},
          * {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm|DllCall()},
          * {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control parameter}
-         * @property
          * @type {(Integer)}
          */
         Hwnd => Integer
@@ -2103,7 +2253,6 @@ class Gui extends Object {
          * - Add with the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|Opt()} method:  
          * 
          *       GuiControl.Opt('vExitBtn')
-         * @property
          * @type {(String)}
          */
         Name => String
@@ -2123,7 +2272,6 @@ class Gui extends Object {
          *   The text in the control.
          * - StatusBar:  
          *   The text of the first section.  
-         * @property
          * @type {(String)}
          */
         Text => String
@@ -2143,7 +2291,6 @@ class Gui extends Object {
          * | `DDL`       | `Progress`  | `TreeView`  |
          * | `Edit`      | `Radio`     | `UpDown`    |
          * | `GroupBox`  |
-         * @property
          * @type {(String)}
          */
         Type => String
@@ -2177,7 +2324,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|`Visible`}  
          * Retrieves the current visibility state of the control, or shows or hides it.  
-         * @property
          * @type {(Integer)}
          */
         Visible => Integer
@@ -2187,7 +2333,6 @@ class Gui extends Object {
          * Sets the keyboard focus to this control.  
          * To be effective, the window generally must not be minimized or hidden.  
          * To retrieve the focus state of the control, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Focused|Focused} property.  
-         * @method
          * @returns {(String)}  
          * An empty string is always returned.  
          * @example <caption>  
@@ -2209,7 +2354,6 @@ class Gui extends Object {
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#GetPos|`GetPos()`}  
          * Retrieves the position and size of the control.  
          * Unlike {@link https://www.autohotkey.com/docs/v2/lib/ControlGetPos.htm|ControlGetPos()}, this method applies {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#DPIScale|DPI scaling} to the returned coordinates.  
-         * @method
          * @param {(VarRef)} [X]  
          * Variable reference to receive x coordinate of GUI control
          * @param {(VarRef)} [Y]  
@@ -2254,7 +2398,6 @@ class Gui extends Object {
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Move|`Move()`}  
          * Moves and/or resizes the control.  
          * Unlike {@link https://www.autohotkey.com/docs/v2/lib/ControlMove.htm|ControlMove()}, this method applies {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#DPIScale|DPI scaling} to the returned coordinates.  
-         * @method
          * @param {(Integer)} [X]  
          * New x coordinate.  
          * @param {(Integer)} [Y]  
@@ -2298,7 +2441,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#OnCommand|`OnCommand()`}  
          * Registers a function or method to be called when a control notification is received via the {@link https://learn.microsoft.com/windows/win32/menurc/wm-command|WM_COMMAND message}.  
-         * @method
          * @param {(Integer)} NotifyCode  
          * The control-defined notification code to monitor.  
          * @param {(String|FuncObj)} Callback  
@@ -2323,7 +2465,6 @@ class Gui extends Object {
          * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The control's value changes.  
@@ -2388,7 +2529,6 @@ class Gui extends Object {
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnNotify.htm|`OnNotify()`}  
          * Registers a function or method to be called when a control notification  
          * is received via the {@link https://learn.microsoft.com/windows/win32/controls/wm-notify|WM_NOTIFY} message.  
-         * @method
          * @param {(Integer)} NotifyCode  
          * The control-defined notification code to monitor.  
          * @param {(String|FuncObj)} Callback  
@@ -2412,14 +2552,13 @@ class Gui extends Object {
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
          * Sets various options to change a control's appearance or behaviors.  
-         * @method
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Common Styles and Other Options**  
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *       GuiControl.Opt('+VMyControl')  
          *       GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -2442,7 +2581,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -2554,7 +2693,6 @@ class Gui extends Object {
          * Repaints the region of the GUI window occupied by the control.  
          * Redrawing solves problems such as groupbox artifacting.  
          * If called repeatedly, this may cause GUI flickering.  
-         * @method
          * @example <caption>  
          * Call Redraw() if a control needs redrawn.</caption>
          * control_obj.Redraw()
@@ -2566,7 +2704,6 @@ class Gui extends Object {
          * Sets the font typeface, size, style, and/or color for the control.  
          * Omitting both parameters sets the control font to the current Gui.SetFont() values.  
          * If Gui.SetFont() has not been set, the system default values are used.
-         * @method
          * @param {(String)} [Options]  
          * Zero or more options separated by spaces.  
          * Styling words. These are executed in order so specifying `norm italic` would reset the text to normal and then italicize it.  
@@ -2624,7 +2761,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#ActiveX|`ActiveX`}  
      * ActiveX components, such as the {@link https://learn.microsoft.com/en-us/dotnet/desktop/winforms/controls/webbrowser-control-overview?view=netframeworkdesktop-4.8|MSIE browser control}, can be embedded into a GUI window.  
-     * @class
      */
     class ActiveX extends Gui.Control {
         /**
@@ -2655,7 +2791,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#Button|`Button`}  
      * A pushbutton, which can be pressed to trigger an action.
-     * @class
      */
     class Button extends Gui.Control {
         /**
@@ -2688,7 +2823,6 @@ class Gui extends Object {
          * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The Button is clicked.  
@@ -2767,7 +2901,6 @@ class Gui extends Object {
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
          * Sets various options to change a control's appearance or behaviors.  
-         * @method
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Positioning and Sizing of Controls**  
@@ -2777,14 +2910,14 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *       GuiControl.Opt('+VMyControl')  
          *       GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -2868,7 +3001,6 @@ class Gui extends Object {
          * `0`: Unchecked  
          * `-1`: Grey checked/undetermined ({@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#CheckBox|Check3} option must be enabled)  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|Text property} to set/get the control text.
-         * @property
          * @type {(Integer)}
          */
         Value => Integer
@@ -2878,7 +3010,6 @@ class Gui extends Object {
          * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The CheckBox is clicked.  
@@ -2945,7 +3076,7 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -2965,7 +3096,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -3016,7 +3147,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class Custom extends Gui.Control {
         /**
@@ -3032,7 +3162,7 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -3051,7 +3181,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -3102,7 +3232,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class DateTime extends Gui.Control {
         /**
@@ -3132,7 +3261,6 @@ class Gui extends Object {
          * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The DateTime's value changes.  
@@ -3221,7 +3349,7 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -3240,7 +3368,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -3290,7 +3418,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#DateTime_SetFormat|`SetFormat()`}  
          * Sets the display format of a {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#DateTime|DateTime} control.  
-         * @method 
          * @param {(String)} [DateFormat]  
          * Sets the desired {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#DateTimeFormat|display format} of a DateTime control.
          * - `ShortDate`: Locale short date format. Example: 6/1/2005  
@@ -3308,7 +3435,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class Edit extends Gui.Control {
         /**
@@ -3346,7 +3472,6 @@ class Gui extends Object {
          * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The Edit's value changes.  
@@ -3440,7 +3565,7 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -3459,7 +3584,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -3507,7 +3632,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class GroupBox extends Gui.Control {
         /**
@@ -3543,7 +3667,6 @@ class Gui extends Object {
          * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the GroupBox or presses  
@@ -3604,7 +3727,7 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -3623,7 +3746,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -3675,7 +3798,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class Hotkey extends Gui.Control {
         /**
@@ -3693,7 +3815,6 @@ class Gui extends Object {
          * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The Edit's value changes.  
@@ -3768,7 +3889,7 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -3787,7 +3908,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -3833,7 +3954,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class Link extends Gui.Control {
         /**
@@ -3863,7 +3983,6 @@ class Gui extends Object {
          * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The Link is clicked.  
@@ -3930,7 +4049,7 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -3949,7 +4068,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -3998,14 +4117,12 @@ class Gui extends Object {
     
     /**
      * Class for grouping the list controls: ComboBox, DropDownList, ListBox, and Tab
-     * @class
      */
     class List extends Gui.Control {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`}  
          * Appends items to a multi-item control (ListBox, DropDownList, ComboBox, or Tab).  
          * To replace/overwrite the list, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|Delete()} method beforehand.
-         * @method
          * @param {(Array)} Items  
          * An array of strings to be inserted as items at the end of the control's list.
          * @returns {(String)}  
@@ -4022,7 +4139,6 @@ class Gui extends Object {
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`}  
          * Selects an item in a multi-item control (ListBox, DropDownList, ComboBox, or Tab).  
          * Unlike One of the following event(s). Expected callback format is included. event.  
-         * @method
          * @param {(Integer|String)} Value  
          * Specify the number of the item. 1 for first item, 2 for second.  
          * If value is a `0` or `EmptyString`, any selected value is deselected.  
@@ -4037,7 +4153,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|`Delete()`}  
          * Removes one or all items from a multi-item control (ListBox, DropDownList, ComboBox, or Tab).  
-         * @method
          * @param {(Integer)} Value  
          * Item number to be deleted. `1` is first item, `2` is second, etc.  
          * If value is omitted, all items are deleted.  
@@ -4052,7 +4167,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class ComboBox extends Gui.List {
         /**
@@ -4071,7 +4185,6 @@ class Gui extends Object {
          * 0 indicates nothing is selected and no matches were made.  
          * Setting the property to 0 clears any selected item.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|Text property} to set/get the control text.
-         * @property
          * @type {(Integer)}
          */
         Value => Integer
@@ -4079,7 +4192,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`}  
          * Appends the specified entries to the control.  
-         * @method
          * @param {(Array)} Items  
          * An array of strings to appened to the list.  
          * To replace the list with a new one, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|Delete()} method first and then add the list.  
@@ -4099,7 +4211,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`}  
          * Sets a value from the ComboBox to selected.  
-         * @method
          * @param {(Integer|String)} Value  
          * Specify the number of the item. 1 for first item, 2 for second.  
          * If value is a `0` or `EmptyString`, any selected value is deselected.  
@@ -4112,7 +4223,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|`Delete()`}  
          * Removes the specified entry or all entries from the ComboBox.  
-         * @method
          * @param {(Integer)} [Value]  
          * The index number of the item to delete or all items if value is omitted.  
          * @returns {(String)}  
@@ -4128,7 +4238,6 @@ class Gui extends Object {
          * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The ComboBox's value changes.  
@@ -4213,7 +4322,7 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -4235,7 +4344,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -4284,7 +4393,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class DDL extends Gui.List {
         /**
@@ -4303,7 +4411,6 @@ class Gui extends Object {
          * 0 means nothing is selected.  
          * Setting Value to 0 clears any selected item.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|Text property} to set/get the control text.
-         * @property
          * @type {(Integer)}
          */
         Value => Integer
@@ -4311,7 +4418,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`}  
          * Appends the specified entries to the DropDownList.  
-         * @method
          * @param {(Array)} Items  
          * An array of strings to appened to the list.  
          * To replace the list with a new one, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|Delete()} method first and then add the list.  
@@ -4331,7 +4437,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`}  
          * Sets a value from the DropDownList to selected.  
-         * @method
          * @param {(Integer|String)} Value  
          * Specify the number of the item. 1 for first item, 2 for second.  
          * If value is a `0` or `EmptyString`, any selected value is deselected.  
@@ -4350,7 +4455,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|`Delete()`}  
          * Removes the specified entry or all entries from the DropDownList.  
-         * @method
          * @param {(Integer)} [Value]  
          * The index number of the item to delete or all items if value is omitted.  
          * @returns {(String)}  
@@ -4366,7 +4470,6 @@ class Gui extends Object {
          * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The DropDownList's value changes.  
@@ -4444,7 +4547,7 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -4466,7 +4569,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -4515,7 +4618,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class DropDownList extends Gui.List {
         /**
@@ -4534,7 +4636,6 @@ class Gui extends Object {
          * 0 means nothing is selected.  
          * Setting Value to 0 clears any selected item.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|Text property} to set/get the control text.
-         * @property
          * @type {(Integer)}
          */
         Value => Integer
@@ -4542,7 +4643,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`}  
          * Appends the specified entries to the DropDownList.  
-         * @method
          * @param {(Array)} Items  
          * An array of strings to appened to the list.  
          * To replace the list with a new one, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|Delete()} method first and then add the list.  
@@ -4562,7 +4662,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`}  
          * Sets a value from the DropDownList to selected.  
-         * @method
          * @param {(Integer|String)} Value  
          * Specify the number of the item. 1 for first item, 2 for second.  
          * If value is a `0` or `EmptyString`, any selected value is deselected.  
@@ -4581,7 +4680,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|`Delete()`}  
          * Removes the specified entry or all entries from the DropDownList.  
-         * @method
          * @param {(Integer)} [Value]  
          * The index number of the item to delete or all items if value is omitted.  
          * @returns {(String)}  
@@ -4597,7 +4695,6 @@ class Gui extends Object {
          * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The DropDownList's value changes.  
@@ -4675,7 +4772,7 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -4697,7 +4794,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -4746,7 +4843,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class ListBox extends Gui.List {
         /**
@@ -4768,7 +4864,6 @@ class Gui extends Object {
          * When setting Value, only integers can be used.  
          * To set multiple items, loop through them and use the  
          * {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|Choose()} method to select each item.  
-         * @property
          * @type {(Integer|Array)}
          */
         Value => Array
@@ -4776,7 +4871,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`}  
          * Appends the specified entries to the control.  
-         * @method
          * @param {(Array)} Items  
          * An array of strings to appened to the list.  
          * To replace the list with a new one, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|Delete()} method first and then add the list.  
@@ -4802,7 +4896,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`}  
          * Selects an item in a multi-item control.
-         * @method
          * @param {(Integer|String)} Value  
          * Specify the number of the item. 1 for first item, 2 for second.  
          * If value is a `0` or `EmptyString`, any selected value is deselected.  
@@ -4837,7 +4930,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|`Delete()`}  
          * Removes the specified entry or all entries from the ListBox.  
-         * @method
          * @param {(Integer)} [Value]  
          * The index number of the item to delete or all items if value is omitted.  
          * @returns {(String)}  
@@ -4853,7 +4945,6 @@ class Gui extends Object {
          * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The ListBox's value changes.  
@@ -4947,7 +5038,7 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -4968,7 +5059,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -5016,7 +5107,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class Tab extends Gui.List {
         /**
@@ -5035,7 +5125,6 @@ class Gui extends Object {
          * A Value of 0 means no tab is selected.  
          * A Value **can** be set to 0.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|Text property} to set/get the control text.
-         * @property
          * @type {(Integer)}
          */
         Value => Integer
@@ -5043,7 +5132,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`}  
          * Appends the specified tabs to the control.  
-         * @method
          * @param {(Array)} Items  
          * An array of strings to appened to the tabs.  
          * To replace the list with a new one, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|Delete()} method first and then add the list.  
@@ -5063,7 +5151,6 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`}  
          * Selects a tab.  
-         * @method
          * @param {(Integer|String)} Value  
          * Specify the number of the item. 1 for first item, 2 for second.  
          * If value is a `0` or `EmptyString`, any selected value is deselected.  
@@ -5088,7 +5175,6 @@ class Gui extends Object {
          * Deleting a tab removes only the tab title and does not affect that tab's sub-controls. Instead, the tabs names are shifted left and the last tab's controls are deleted.  
          * Because of this behavior, if you need a deleteable tab, it should placed at the end of the tab list. Otherwise, the only way to rearrange tabs is to delete and rebuild the tab control.  
          * The example code below demonstrates this behavior. Tab B is removed, the remaining tabs are shifted left, and tab B's control are now under the C tab. The final tab's controls, tab D, are deleted.  
-         * @method
          * @param {(Integer)} [Value]  
          * The index number of the item to delete or all items if value is omitted.  
          * @returns {(String)}  
@@ -5112,7 +5198,6 @@ class Gui extends Object {
          * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The Tab's value changes.  
@@ -5194,7 +5279,7 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -5215,7 +5300,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -5261,7 +5346,6 @@ class Gui extends Object {
     }
         
     /**
-     * @class
      */
     class ListView extends Gui.Control {
         /**
@@ -5306,7 +5390,7 @@ class Gui extends Object {
          * 
          * goo.Show()
          */
-        Add([Options:='', Col1, ColN]) => Integer
+        Add([Options:='', Col1, ColN*]) => Integer
         
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#Delete|`Delete()`}  
@@ -5451,7 +5535,7 @@ class Gui extends Object {
          * 
          * goo.Show()
          */
-        Insert(RowNumber [,Options:='', Col1, ColN]) => Integer
+        Insert(RowNumber [,Options:='', Col1, ColN*]) => Integer
         
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#InsertCol|`InsertCol()`}  
@@ -5528,7 +5612,7 @@ class Gui extends Object {
          * @example <caption>  
          * </caption>
          */
-        Modify(RowNumber [,Options:='', Col1, ColN]) => EmptyString
+        Modify(RowNumber [,Options:='', Col1, ColN*]) => EmptyString
         
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#ModifyCol|`ModifyCol()`}  
@@ -5552,7 +5636,6 @@ class Gui extends Object {
          * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The Listview is clicked.  
@@ -5685,7 +5768,7 @@ class Gui extends Object {
          * - `IconSmall`: Shows a small-icon view.  
          * - `List`: Shows a small-icon view in list format, which displays the icons in columns. The number of columns depends on the width of the control and the width of the widest text item in it.  
          * - `Report`: Switches back to report view, which is the initial default. For example: LV.Opt("+Report").  
-         *
+         * 
          * **Positioning and Sizing of Controls**  
          * - speical row info
          * - `W#` or `H#`: Width or Height where `#` is a number of pixels.  
@@ -5706,7 +5789,7 @@ class Gui extends Object {
          * Prefixing with `+` adds/enables an option and `-` removes it. If no sign is provided, `+` is assumed.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -5764,7 +5847,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class MonthCal extends Gui.Control {
         /**
@@ -5784,7 +5866,6 @@ class Gui extends Object {
          * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The MonthCal's value changes.  
@@ -5851,7 +5932,7 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -5871,7 +5952,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -5917,7 +5998,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class Pic extends Gui.Control {
         /**
@@ -5947,7 +6027,6 @@ class Gui extends Object {
          * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object},
          * or {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc}  
          * to be called when the specified event is raised.    
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The Picture is clicked.  
@@ -6005,7 +6084,9 @@ class Gui extends Object {
          * - `R#`: Rows of height where `#` is the number of rows. This number can be a float.  
          *   `R` takes precedence over `H`.  
          * - `W#`: Width of control where `#` is a number of pixels.  
+         *   Specify `-1` to set height and keep aspect ratio
          * - `H#`: Height of control where `#` is a number of pixels.  
+         *   Specify `-1` to set height and keep aspect ratio
          * - `WP+#` or `HP+#`: Use previous control's width `WP` or height `HP`.  
          *   Width or height can be adjusted by adding `+#` or `-#` where `#` is a number of pixels.  
          * - `X#` or `Y#`: Static `X` or `Y` coordinates where `#` is the pixel location on the Gui.  
@@ -6022,7 +6103,7 @@ class Gui extends Object {
          * **Common Styles and Other Options**  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -6032,7 +6113,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -6081,7 +6162,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class Picture extends Gui.Control {
         /**
@@ -6111,7 +6191,6 @@ class Gui extends Object {
          * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object},
          * or {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc}  
          * to be called when the specified event is raised.    
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The Picture is clicked.  
@@ -6169,7 +6248,9 @@ class Gui extends Object {
          * - `R#`: Rows of height where `#` is the number of rows. This number can be a float.  
          *   `R` takes precedence over `H`.  
          * - `W#`: Width of control where `#` is a number of pixels.  
+         *   Specify `-1` to set height and keep aspect ratio
          * - `H#`: Height of control where `#` is a number of pixels.  
+         *   Specify `-1` to set height and keep aspect ratio
          * - `WP+#` or `HP+#`: Use previous control's width `WP` or height `HP`.  
          *   Width or height can be adjusted by adding `+#` or `-#` where `#` is a number of pixels.  
          * - `X#` or `Y#`: Static `X` or `Y` coordinates where `#` is the pixel location on the Gui.  
@@ -6186,7 +6267,7 @@ class Gui extends Object {
          * **Common Styles and Other Options**  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -6196,7 +6277,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -6245,7 +6326,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class Progress extends Gui.Control {
         /**
@@ -6265,7 +6345,6 @@ class Gui extends Object {
          * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object},
          * or {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc}  
          * to be called when the specified event is raised.    
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the Progress bar or presses  
@@ -6333,7 +6412,7 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -6352,7 +6431,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -6398,7 +6477,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class Radio extends Gui.Control {
         /**
@@ -6432,7 +6510,6 @@ class Gui extends Object {
          * `1`: Checked  
          * `0`: Unchecked  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|Text property} to set/get the control text.
-         * @property
          * @type {(Integer)}
          */
         Value => Integer
@@ -6444,7 +6521,6 @@ class Gui extends Object {
          * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object}`,
          * or {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc}`  
          * to be called when the specified event is raised.    
-         * @method
          * @param {(String)} EventName  
          * One of the following events:  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The Radio button is clicked.  
@@ -6521,7 +6597,7 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -6540,7 +6616,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -6591,7 +6667,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class Slider extends Gui.Control {
         /**
@@ -6611,7 +6686,6 @@ class Gui extends Object {
          * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object}`,
          * or {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc}`  
          * to be called when the specified event is raised.    
-         * @method
          * @param {(String)} EventName  
          * One of the following events:  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The Slider's value changes.  
@@ -6701,7 +6775,7 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -6710,7 +6784,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -6756,7 +6830,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class StatusBar extends Gui.Control {
         /**
@@ -6790,7 +6863,6 @@ class Gui extends Object {
          * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object}`,
          * or {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc}`  
          * to be called when the specified event is raised.    
-         * @method
          * @param {(String)} EventName  
          * One of the following events:  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The StatusBar is clicked.  
@@ -6858,14 +6930,14 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -6909,7 +6981,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class Text extends Gui.Control {
         /**
@@ -6953,7 +7024,6 @@ class Gui extends Object {
          * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object}`,
          * or {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc}`  
          * to be called when the specified event is raised.    
-         * @method
          * @param {(String)} EventName  
          * One of the following events:  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The Text is clicked.  
@@ -7020,7 +7090,7 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -7039,7 +7109,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -7091,7 +7161,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class TreeView extends Gui.Control {
         /**
@@ -7099,7 +7168,6 @@ class Gui extends Object {
          * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
-         * @method
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The TreeView is clicked.  
@@ -7206,7 +7274,7 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -7225,7 +7293,7 @@ class Gui extends Object {
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -7271,7 +7339,6 @@ class Gui extends Object {
     }
     
     /**
-     * @class
      */
     class UpDown extends Gui.Control {
         /**
@@ -7291,7 +7358,6 @@ class Gui extends Object {
          * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object}`,
          * or {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc}`  
          * to be called when the specified event is raised.    
-         * @method
          * @param {(String)} EventName  
          * One of the following events:  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The UpDown's value changes.  
@@ -7375,14 +7441,14 @@ class Gui extends Object {
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
-         *
+         * 
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-         *
+         * 
          *       con.Opt('+Disabled0')
          *       var := 1, con.Opt('+Disabled' var)
          * - `Hidden`: The control is initially invisible.  
@@ -7426,7 +7492,6 @@ class Gui extends Object {
      *   - Default color: The word `default` or an empty string.  
      * When retrieving backcolor, a string containing the hex value of the current color is returned.  
      * To set the color of a One of the following event(s). Expected callback format is included. method.  
-     * @property
      * @type {(Number|String)}
      * @example <caption>  
      * Changing background color with Drop Down List of colors.</caption>
@@ -7449,7 +7514,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#FocusedCtrl|`FocusedCtrl`}  
      * Retrieves the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm|GuiControl object}` of the Gui's focused control.  
      * If the window is minimized or hidden, this property may not be effective.  
-     * @property
      * @type {(GuiControl)}
      * @example <caption>  
      * Focusing a specific control.</caption>
@@ -7469,7 +7533,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Hwnd|`Hwnd`}  
      * Retrieves the window handle (HWND) of the GUI window.  
-     * @property
      * @type {(Integer)}
      * @example <caption>  
      * A GUI that can be hidden and shown with F1.</caption>
@@ -7498,7 +7561,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#MarginX|`MarginX`}  
      * Retrieves or sets the size of horizontal margins between sides and subsequently created controls.  
-     * @property
      * @type {(Integer)}
      * @example <caption>  
      * Showing how margin settings affect padding.</caption>
@@ -7516,7 +7578,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#MarginY|`MarginY`}  
      * Retrieves or sets the size of vertical margins between sides and subsequently created controls.  
-     * @property
      * @type {(Integer)}
      * @example <caption>  
      * Showing how margin settings affect padding.</caption>
@@ -7534,7 +7595,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#MenuBar|`MenuBar`}  
      * Retrieves or sets the window's menu bar.  
-     * @property
      * @type {(MenuBar)}
      * @example <caption>  
      * Creating a custom GUI menu.</caption>
@@ -7575,7 +7635,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Name|`Name`}  
      * Retrieves or sets a custom name for the GUI window.  
-     * @property
      * @type {(String)}
      * @example <caption>  
      * Setting and retrieving a GUI name.</caption>
@@ -7589,7 +7648,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Title|`Title`}  
      * Retrieves or sets the GUI's title.  
-     * @property
      * @type {(String)}
      * @example <caption>  
      * Make an edit box that lets you change the GUI title.</caption>
@@ -7599,7 +7657,7 @@ class Gui extends Object {
      * goo.Edit.SetFont('s10 cWhite' ,'Courier New')
      * goo.Edit.OnEvent('Change', update_title)
      * goo.Show('AutoSize')
-     *
+     * 
      * update_title(con, info) {
      *     if (con.Value = '')
      *         con.gui.title := A_ScriptName
@@ -7611,7 +7669,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#__Item|`__Item`}  
      * Is the name of  the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm|GuiControl object}` associated with the specified {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|name}`, {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|text}`, {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#ClassNN|ClassNN}` or {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Hwnd|HWND}`.  
-     * @property
      * @type {(GuiControl)}
      */
     __Item[Name] => Gui.Control
@@ -7619,7 +7676,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm|`GUI`}  
      * Creates a new Gui object.  
-     * @method
      * @param {(String)} [Options]  
      * Zero or more Gui options, separated by spaces and/or tabs.  
      * For best performance, set all options in 1 call and do so before the window is created.  
@@ -7674,7 +7730,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`Add()`}  
      * Creates and adds a control to the Gui, such as text, a button, or a checkbox.  
      * Each control type has it's own `AddType()` function such as `AddButton()` or `AddText()`.
-     * @method
      * @param {(String)} ControlType  
      * One of the following control types:  
      * - {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#ActiveX|`ActiveX`}
@@ -7745,7 +7800,7 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -7768,7 +7823,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -7865,7 +7920,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddActiveX()`}  
      * Adds an ActiveX control to the Gui.  
      * When the control is created, the ActiveX object can be retrieved via GuiCtrl.Value
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Positioning and Sizing of Controls**  
@@ -7890,14 +7944,14 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -7943,7 +7997,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddButton()`}  
      * Adds a push button, which can be pressed to trigger an action.  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces or tabs.  
      * **Positioning and Sizing of Controls**  
@@ -7968,14 +8021,14 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -8036,7 +8089,6 @@ class Gui extends Object {
      * Adds a Checkbox control that can be  
      * checked or unchecked to represent a toggleable state.  
      * If the {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#CheckBox|Check3}` option is used, checkboxes have a 3rd "graycheck" state.
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -8069,7 +8121,7 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -8088,7 +8140,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -8153,7 +8205,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddCustom()`}  
      * Add a custom control that is not directly supported by AutoHotkey. To do so, include the word "Class" followed by the {@link https://learn.microsoft.com/en-us/windows/win32/controls/individual-control-info|Win32 class name}` of the desired control in the options field.  
      *  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Positioning and Sizing of Controls**  
@@ -8178,14 +8229,14 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -8237,7 +8288,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddDateTime()`}  
      * Adds a DateTime control to the Gui that provides a single-lined   
      * control for the date and/or time along with a calander dropdown button.  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -8281,7 +8331,7 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -8300,7 +8350,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -8362,7 +8412,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddEdit()`}  
      * Adds a control that provides a free-form text area for the user to type in.  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -8414,7 +8463,7 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -8433,7 +8482,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -8484,7 +8533,7 @@ class Gui extends Object {
      * goo.Edit.SetFont('s10 cWhite' ,'Courier New')
      * goo.Edit.OnEvent('Change', update_title)
      * goo.Show('AutoSize')
-     *
+     * 
      * update_title(con, info) {
      *     if (con.Value = '')
      *         con.gui.title := A_ScriptName
@@ -8497,7 +8546,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddGroupBox()`}  
      * Adds a rectangular border/frame control that can  
      * be labeled and used to group related controls.  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Positioning and Sizing of Controls**  
@@ -8522,7 +8570,7 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -8541,7 +8589,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -8611,7 +8659,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddHotkey()`}  
      * Adds a Hotkey control to the Gui that looks similar  
      * to an edit control but will detect and show what keys are being pressed.  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -8647,7 +8694,7 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -8666,7 +8713,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -8727,7 +8774,6 @@ class Gui extends Object {
      * Adds a text control that accepts hyperlinks.  
      * Use {@link https://www.w3schools.com/tags/tag_a.asp|HTML anchor tags `<a></a>`} to create a hyperlink.  
      * `<a href="http://google.com">Google Search</a>`
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Positioning and Sizing of Controls**  
@@ -8752,7 +8798,7 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -8771,7 +8817,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -8831,7 +8877,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddListView()`}  
      * Adds an elbaorate control that handles  
      * rows and columns of information in a grid. Similar to Windows Explorer in Detail View mode.  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -8888,7 +8933,7 @@ class Gui extends Object {
      * - `IconSmall`: Shows a small-icon view.  
      * - `List`: Shows a small-icon view in list format, which displays the icons in columns. The number of columns depends on the width of the control and the width of the widest text item in it.  
      * - `Report`: Switches back to report view, which is the initial default. For example: LV.Opt("+Report").  
-     *
+     * 
      * **Positioning and Sizing of Controls**  
      * - speical row info
      * - `W#` or `H#`: Width or Height where `#` is a number of pixels.  
@@ -8909,7 +8954,7 @@ class Gui extends Object {
      * Prefixing with `+` adds/enables an option and `-` removes it. If no sign is provided, `+` is assumed.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -8961,7 +9006,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddMonthCal()`}  
      * Adds a tall and wide control that displays all  
      * the days of the month in calendar format. The user may select a single date or a range of dates.  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -8999,7 +9043,7 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -9019,7 +9063,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -9074,7 +9118,6 @@ class Gui extends Object {
      * Adds control containing an image.  
      * Types: `ICO`,`CUR`,`ANI`,`EXE`,`DLL`,`CPL`,`SCR`,`PNG`,`TIF`,`Exif`,`WMF`,`EMF`, Other Icon Resources  
      * GDIPlus (AltSubmit): `GIF`,`JPG`,`BMP`,`ICO`,`CUR`,`ANI`,`PNG`,`TIF`,`Exif`,`WMF`,`EMF`  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -9084,7 +9127,9 @@ class Gui extends Object {
      * - `R#`: Rows of height where `#` is the number of rows. This number can be a float.  
      *   `R` takes precedence over `H`.  
      * - `W#`: Width of control where `#` is a number of pixels.  
+     *   Specify `-1` to set height and keep aspect ratio
      * - `H#`: Height of control where `#` is a number of pixels.  
+     *   Specify `-1` to set height and keep aspect ratio
      * - `WP+#` or `HP+#`: Use previous control's width `WP` or height `HP`.  
      *   Width or height can be adjusted by adding `+#` or `-#` where `#` is a number of pixels.  
      * - `X#` or `Y#`: Static `X` or `Y` coordinates where `#` is the pixel location on the Gui.  
@@ -9101,7 +9146,7 @@ class Gui extends Object {
      * **Common Styles and Other Options**  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -9111,7 +9156,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -9171,7 +9216,6 @@ class Gui extends Object {
      * Adds control containing an image.  
      * Types: `ICO`,`CUR`,`ANI`,`EXE`,`DLL`,`CPL`,`SCR`,`PNG`,`TIF`,`Exif`,`WMF`,`EMF`, Other Icon Resources  
      * GDIPlus (AltSubmit): `GIF`,`JPG`,`BMP`,`ICO`,`CUR`,`ANI`,`PNG`,`TIF`,`Exif`,`WMF`,`EMF`  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -9181,7 +9225,9 @@ class Gui extends Object {
      * - `R#`: Rows of height where `#` is the number of rows. This number can be a float.  
      *   `R` takes precedence over `H`.  
      * - `W#`: Width of control where `#` is a number of pixels.  
+     *   Specify `-1` to set height and keep aspect ratio
      * - `H#`: Height of control where `#` is a number of pixels.  
+     *   Specify `-1` to set height and keep aspect ratio
      * - `WP+#` or `HP+#`: Use previous control's width `WP` or height `HP`.  
      *   Width or height can be adjusted by adding `+#` or `-#` where `#` is a number of pixels.  
      * - `X#` or `Y#`: Static `X` or `Y` coordinates where `#` is the pixel location on the Gui.  
@@ -9198,7 +9244,7 @@ class Gui extends Object {
      * **Common Styles and Other Options**  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -9208,7 +9254,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -9298,7 +9344,7 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -9317,7 +9363,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -9389,7 +9435,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddRadio()`}  
      * Adds a small button that can be clicked.  
      * Radio buttons are added in groups and only 1 button in the group can be active at a time.  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -9418,7 +9463,7 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -9437,7 +9482,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -9503,7 +9548,6 @@ class Gui extends Object {
      * Adds a sliding bar (Trackbar) the user can move  
      * along a vertical or horizontal track to adjust values between a defined range.  
      * Window's volume bar is an example of a commonly used slider.
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -9551,7 +9595,7 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -9560,7 +9604,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -9622,7 +9666,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddStatusBar()`}  
      * Adds a row of text and/or icons to the bottom  
      * of a window and typically reports conditions and information about the GUI.
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Positioning and Sizing of Controls**  
@@ -9647,14 +9690,14 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -9717,7 +9760,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddText()`}  
      * Adds a control for text that the user cannot edit.  
      * Often used to label other controls or give details/instructions.  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Positioning and Sizing of Controls**  
@@ -9742,7 +9784,7 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -9761,7 +9803,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -9830,7 +9872,6 @@ class Gui extends Object {
      * Adds a TreeView display to represent a hierarchy of items  
      * by indenting child items beneath their parents.  
      * Window's Explorer drive/folder tree is a common example of a TreeView.  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -9869,7 +9910,7 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -9888,7 +9929,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -9951,7 +9992,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddUpDown()`}  
      * Attaches a pair of clickable arrow buttons to the  
      * previous control (called a `Buddy`) that can increase or decrease the Buddy's value.  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -9996,14 +10036,14 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -10055,7 +10095,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddComboBox()`}  
      * Adds a control that is combination of a DropDownList  
      * and an edit control.  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -10091,7 +10130,7 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -10113,7 +10152,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -10176,7 +10215,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddDDL()`}  
      * Adds a single-lined control that, when clicked,  
      * produces a list of items to select from.  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -10209,7 +10247,7 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -10231,7 +10269,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -10295,7 +10333,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddDropDownList()`}  
      * Adds a single-line control that, when clicked, drops down a list of choices to select from.  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -10328,7 +10365,7 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -10350,7 +10387,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -10415,7 +10452,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddListBox()`}  
      * Adds a box control containing a list of choices  
      * that can be chosen from. This is the same list type used with {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#ComboBox|Simple ComboBoxes}`.  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -10457,7 +10493,7 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -10478,7 +10514,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -10545,7 +10581,6 @@ class Gui extends Object {
      * `AddTab()` and `AddTab2()` are for backward compatibility only.  
      * {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|AddTab()} adds a large control used to contain organize other controls.  
      * Each tab acts as it's own "page" of individual controls.  
-     * @method
      */
     AddTab([Options:='', TabTitles:=[]]) => Gui.Tab
     
@@ -10562,7 +10597,6 @@ class Gui extends Object {
      * Adds a large control used to contain organize other controls.  
      * Each tab acts as it's own "page" of individual controls.  
      * Avoid using AddTab() and AddTab2() as they're only kept for backward compatability.  
-     * @method
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -10599,7 +10633,7 @@ class Gui extends Object {
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
-     *
+     * 
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
@@ -10620,7 +10654,7 @@ class Gui extends Object {
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
-     *
+     * 
      *       con.Opt('+Disabled0')
      *       var := 1, con.Opt('+Disabled' var)
      * - `Hidden`: The control is initially invisible.  
@@ -10676,7 +10710,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Destroy|`Destroy()`}  
      * Removes the window and all its controls, freeing the corresponding memory and system resources.  
-     * @method
      * @returns {(String)}  
      * An empty string is always returned.  
      * @example <caption>  
@@ -10696,7 +10729,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Flash|`Flash()`}  
      * Causes the Gui's title bar and taskbar to blink.  
      * This is done by inverting their colors once per call. By calling flash multiple times, the button and window appear to "blink".  
-     * @method
      * @param {(Boolean)} [Blink]  
      * Any true value will cause the color inversion to continue.  
      * Setting Blink to false will reset the flash by removing the color inversion if present.  
@@ -10719,7 +10751,6 @@ class Gui extends Object {
      * Retrieves the position and size of the window's client area.  
      * Client area is the main area of a program and it excludes the window's title bar, standard menus, and window borders.  
      * Unlike {@link https://www.autohotkey.com/docs/v2/lib/WinGetClientPos.htm|WinGetClientPos}`, this method applies {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#DPIScale|DPI scaling}` to width and height.  
-     * @method
      * @param {(VarRef)} [X]  
      * Variable to store the x coordinate of the client area. 
      * This is the left edge of the area.  
@@ -10760,7 +10791,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#GetPos|`GetPos()`}  
      * Retrieves the position and size of the window.  
      * Unlike {@link https://www.autohotkey.com/docs/v2/lib/WinGetClientPos.htm|WinGetClientPos}`, this method applies {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#DPIScale|DPI scaling}` to width and height.  
-     * @method
      * @param {(VarRef)} [X]  
      * Variable to store the x coordinate of the Gui.  
      * This is the left edge of the Gui.  
@@ -10800,7 +10830,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Hide|`Hide()`}  
      * Hides the Gui window from view but does not destroy it.  
-     * @method
      * @returns {(String)}  
      * An empty string is always returned.  
      * @example <caption>  
@@ -10830,7 +10859,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Maximize|`Maximize()`}  
      * Unhides the window if hidden and then maximizes it.  
-     * @method
      * @returns {(String)}  
      * An empty string is always returned.  
      * @example <caption>  
@@ -10849,7 +10877,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Minimize|`Minimize()`}  
      * Unhides the window if hidden and then minimizes it.  
-     * @method
      * @returns {(String)}  
      * An empty string is always returned.  
      * @example <caption>  
@@ -10869,7 +10896,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Move|`Move()`}  
      * Used to adjust the poisition (x,y coords), height, and/or width of the GUI.  
      * Unlike {@link https://www.autohotkey.com/docs/v2/lib/WinMove.htm|WinMove}`, this method applies {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#DPIScale|DPI scaling}` to width and height.  
-     * @method
      * @param {(Integer)} [X]  
      * New x coordinate of the Gui.  
      * @param {(Integer)} [Y]  
@@ -10901,7 +10927,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OnEvent|`OnEvent()`}  
      * Registers a function or method to be called when the given event occurs.  
-     * @method
      * @param {(String)} EventName  
      * One of the following event(s). Expected callback format is included.  
      * Gui Events:
@@ -10951,7 +10976,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Opt|`Opt()`}  
      * Sets various options and styles for the appearance and behavior of the window.  
-     * @method
      * @param {(String)} ControlType  
      * One of the following control types:  
      * {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#ActiveX|`ActiveX`},
@@ -10981,7 +11005,6 @@ class Gui extends Object {
      * {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#Text|`Text`},
      * {@link https://www.autohotkey.com/docs/v2/lib/TreeView.htm|`TreeView`},
      * {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#UpDown|`UpDown`}
-     * @method
      * @param {(String)} Options  
      * Zero or more Gui options, separated by spaces and/or tabs.  
      * For best performance, set all options in 1 call and do so before the window is created.  
@@ -11027,7 +11050,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Restore|`Restore()`}  
      * Unhides and restores the window, if it was minimized or maximized beforehand.  
-     * @method
      * @returns {(String)}  
      * An empty string is always returned.  
      * @example <caption>  
@@ -11046,7 +11068,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#SetFont|`SetFont()`}  
      * Sets the typeface, size, style, and text color for subsequently created controls.  
-     * @method
      * @param {(String)} [Options]  
      * Zero or more options separated by spaces.  
      * Styling words. These are executed in order so specifying `norm italic` would reset the text to normal and then italicize it.  
@@ -11099,7 +11120,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Show|`Show()`}  
      * Makes the window visible, unminimizes it (if necessary) and {@link https://www.autohotkey.com/docs/v2/lib/WinActivate.htm|activates} it.  
-     * @method
      * @param {(String)} [Options]  
      * Zero or more option sseparated by spaces.  
      * If X, Y, W, and H are omitted, the Gui will retrain its previous size and position otherwise it will be auto-centered.  
@@ -11146,7 +11166,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Submit|`Submit()`}  
      * Collects the values from named controls and composes them into an {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object}. Optionally hides the window.  
-     * @method
      * @param {(Boolean)} [Hide]  
      * If omitted or true, window is hidden. If false, the window will not be hidden.  
      * @returns {(Object)}  
@@ -11178,7 +11197,6 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#__Enum|`__Enum()`}  
      * Creates an enumerator and allows the iteraiton of a Gui's controls.  
      * Enumerators are usually used with for-loops and not called directly. Guis can be passed directly to a for-loop.  
-     * @method
      * @example <caption>  
      * For-looop through all controls using GUI enumerator.</caption>
      * goo := Gui()
@@ -11202,7 +11220,6 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#__New|`__New()`}  
      * Constructs a new Gui instance.  
-     * @method
      * @param {(String)} [Options]  
      * Zero or more Gui options, separated by spaces and/or tabs.  
      * For best performance, set all options in 1 call and do so before the window is created.  
@@ -11248,7 +11265,26 @@ class Gui extends Object {
 }
 
 /**
- * 
+ * {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm|InputHook}  
+ * An object which can be used to collect or intercept keyboard input.  
+ * @property {(String)} EndKey - Returns the name of the end key which was pressed to terminate the Input.
+ * @property {(String)} EndMods - Returns a string of the modifiers which were logically down when Input was terminated.
+ * @property {(String)} EndReason - Returns an EndReason string indicating how Input was terminated.
+ * @property {(Boolean)} InProgress - Returns 1 (true) if the Input is in progress, otherwise 0 (false).
+ * @property {(String)} Input - Returns any text collected since the last time Input was started.
+ * @property {(String)} Match - Returns the MatchList item which caused the Input to terminate.
+ * @property {(FuncObj)} OnEnd - Retrieves or sets the function object which is called when Input is terminated.
+ * @property {(FuncObj)} OnChar - Retrieves or sets the function object which is called after a character is added to the input buffer.
+ * @property {(FuncObj)} OnKeyDown - Retrieves or sets the function object which is called when a notification-enabled key is pressed.
+ * @property {(FuncObj)} OnKeyUp - Retrieves or sets the function object which is called when a notification-enabled key is released.
+ * @property {(Boolean)} BackspaceIsUndo - Controls whether the Backspace key removes the most recently pressed character from the end of the Input buffer.
+ * @property {(Boolean)} CaseSensitive - Controls whether MatchList is case-sensitive.
+ * @property {(Boolean)} FindAnywhere - Controls whether each match can be a substring of the input text.
+ * @property {(Integer)} MinSendLevel - Retrieves or sets the minimum send level of input to collect.
+ * @property {(Boolean)} NotifyNonText - Controls whether the OnKeyDown and OnKeyUp callbacks are called whenever a non-text key is pressed.
+ * @property {(Float)} Timeout - Retrieves or sets the timeout value in seconds.
+ * @property {(Boolean)} VisibleNonText - Controls whether keys or key combinations which do not produce text are visible (not blocked).
+ * @property {(Boolean)} VisibleText - Controls whether keys or key combinations which produce text are visible (not blocked).
  */
 class InputHook extends Object {
     /**
@@ -11450,29 +11486,20 @@ class InputHook extends Object {
      * @description {@link |`Call()`}  
      * @param {(String)} [Options]  
      * A string of zero or more options, with optional spaces between:  
-     * - `B`  
-     *   Sets the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#BackspaceIsUndo|BackspaceIsUndo} property to `0`. Backspace is ignored. 
-     * - `C`  
-     *   Sets the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#CaseSensitive|CaseSensitive} property to `1`, making the MatchList parameter case-sensitive.  
-     * - `E`  
-     *   Handle single-character end keys by character code instead of by keycode.  
+     * - `B` = Sets the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#BackspaceIsUndo|BackspaceIsUndo} property to `0`. Backspace is ignored. 
+     * - `C` = Sets the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#CaseSensitive|CaseSensitive} property to `1`, making the MatchList parameter case-sensitive.  
+     * - `E` = Handle single-character end keys by character code instead of by keycode.  
      *   That can provide more consistent results in some cases.  
-     * - `I#`  
-     *   Sets the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#MinSendLevel|MinSendLevel} property, where `#` is the new {@link https://www.autohotkey.com/docs/v2/lib/SendLevel.htm|send level}.  
-     * - `L#`  
-     *   Sent maximum length of InputHook, where `#` is the max amount of characters to capture.  
+     * - `I#` = Sets the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#MinSendLevel|MinSendLevel} property, where `#` is the new {@link https://www.autohotkey.com/docs/v2/lib/SendLevel.htm|send level}.  
+     * - `L#` = Sent maximum length of InputHook, where `#` is the max amount of characters to capture.  
      *   If max length is reached, {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#EndReason|EndReason} is set to `Max`.  
      *   Max length is 1023.  
-     * - `M`  
-     *   Ctrl+a through ctrl+z keystrokes are transcribed to ASCII characters if they have an associated value.  
-     * - `T#`  
-     *   Sets the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#Timeout|timeout} property, in seconds, to wait after starting an InputHook.  
+     * - `M` = Ctrl+a through ctrl+z keystrokes are transcribed to ASCII characters if they have an associated value.  
+     * - `T#` = Sets the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#Timeout|timeout} property, in seconds, to wait after starting an InputHook.  
      *   This number can be a float.  
-     * - `V`  
-     *   Sets the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#VisibleText|VisibleText} and {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#VisibleNonText|VisibleNonText} properties to `1`.  
+     * - `V` = Sets the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#VisibleText|VisibleText} and {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#VisibleNonText|VisibleNonText} properties to `1`.  
      *   Sends the user's keystrokes through instead of blocking them when captured.  
-     * - `*`  
-     *   Wildcard. Sets the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#FindAnywhere|FindAnywhere} property to `1`.  
+     * - `*` = Wildcard. Sets the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#FindAnywhere|FindAnywhere} property to `1`.  
      *   Allows matches to found at any point during Input.  
      * @param {(String)} [EndKeys]  
      * List of zero or more keys that will end the running InputHook.  
@@ -11509,24 +11536,16 @@ class InputHook extends Object {
      * Use `{All}` to apply `KeyOptions` to all VK and all SC.  
      * @param {(String)} KeyOptions  
      * One or more of the following, separated by spaces/tabs.  
-     * - `-`  
-     *   Removes any listed options until a `+` is encountered.  
-     * - `+`  
-     *   Cancels the removal affect of `-`.  
-     * - `E`  
-     *   Set End key to terminate InputHook.  
+     * Use `-` to remove options and `+` to add them:  
+     * - `E` = Set End key to terminate InputHook.  
      *   Sets {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#EndReason|EndReason} prop to the word `EndKey`.  
      *   The {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#EndKey|EndKey} property is set to the keys normalized name.  
-     * - `I`  
-     *   Ignore. This key's text is ignored and treated like {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#VisibleNonText|nonvisible text}.  
-     * - `N`  
-     *   Notify. {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#OnKeyDown|OnKeyDown} and {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#OnKeyUp|OnKeyUp} callbacks are called on key press.  
-     * - `S`  
-     *   Suppress. Blocks key after processing it.  
+     * - `I` = Ignore. This key's text is ignored and treated like {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#VisibleNonText|nonvisible text}.  
+     * - `N` = Notify. {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#OnKeyDown|OnKeyDown} and {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#OnKeyUp|OnKeyUp} callbacks are called on key press.  
+     * - `S` = Suppress. Blocks key after processing it.  
      *   Overrides {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#VisibleText|VisibleText} and {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#VisibleNonText|VisibleNonText} properties until `-S` is used.  
      *   `+S` implies `-V`
-     * - `V`  
-     *   Visible. Prevents a key from being suppressed.  
+     * - `V` = Visible. Prevents a key from being suppressed.  
      *   Overrides {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#VisibleText|VisibleText} and {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#VisibleNonText|VisibleNonText} properties until `-S` is used.  
      *   `+V` implies `-S`
      * @returns {(String)} An empty string is always returned.  
@@ -11557,17 +11576,25 @@ class InputHook extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#Wait|`Wait()`}  
-     * Waits until the InputHook is terminated/{@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#InProgress|InProgress} property is false.  
-     * @returns {(String)} An empty string is always returned.  
+     * Waits until the InputHook is terminated.  
+     * Same as {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#InProgress|InProgress} property being false.  
+     * @prop {(Float)} MaxTime -  The maximum number of seconds to wait.  
+     * If omitted, wait time is indefinite.  
+     * @returns {(String)} The {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#EndReason|EndReason}.  
      * @example <caption>  
      * </caption>
      */
-    Wait() => EmptyString
+    Wait([MaxTime:=unset]) => String
 }
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm|`Map`}  
- * @class
+ * An object that stores data using an associated key.  
+ * Keys can be strings, integers, or object references.  
+ * @property {(Integer)} Count - Retrieves the number of key-value pairs present in a map.
+ * @property {(Integer)} Capacity - Retrieves or sets the current capacity of a map.
+ * @property {(Integer)} CaseSense - Retrieves or sets a map's case sensitivity setting.
+ * @property {(Any)} Default - Defines the default value returned when a key is not found.
  */
 class Map extends Object {
     /**
@@ -11592,7 +11619,7 @@ class Map extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#CaseSense|`CaseSense`}  
      * Retrieves or sets a map's case sensitivity setting.  
-     * `1` or `On` for enabled, otherwise `0` or `Off`.  
+     * `1` or `On` to enable case sensitivity, otherwise `0` or `Off`.  
      * @type {(String|Integer)}
      * @example <caption>  
      * </caption>
@@ -11622,16 +11649,19 @@ class Map extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Call|`Map()`}  
      * Creates a new Map object and optionally populates it.  
-     * @param {(KeyN)}  
+     * @param {(String|Integer|Object)} [KeyN]  
      * The identifying key of the value.  
      * Any number of `Key, Value,` pairs can be added.  
-     * @param {(ValueN)}  
+     * @param {(Any)} [ValueN]  
      * The value to associate with the key.  
      * Any number of `Key, Value,` pairs can be added.  
      * @example <caption>  
      * </caption>
+     * empty_map := Map()
+     * phonetic_map := Map('a', 'Alpha', 'b', 'Bravo', )
+     * MsgBox('b is pronounced: ' phonetic_map['b'])
      */
-    static Call([KeyN, ValueN])
+    static Call([KeyN, ValueN*]) => Map
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Clear|`Clear()`}  
@@ -11661,7 +11691,7 @@ class Map extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Delete|`Delete()`}  
      * Removes a key-value pair from a map.
-     * @param {(Primitive|Object)} Key  
+     * @param {(String|Integer|Object)} Key  
      * The identifying key of the key-value pair to delete.  
      * @returns {(Any)}  
      * The removed map element value is returned.  
@@ -11670,12 +11700,12 @@ class Map extends Object {
      * @example <caption>  
      * </caption>
      */
-    Delete() => Any
+    Delete(Key) => Any
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Get|`Get()`}  
      * Returns the value associated with a key, or a default value if one is provided.  
-     * @param {(Primitive|Object)} Key  
+     * @param {(String|Integer|Object)} Key  
      * The identifying key of the key-value pair to delete.  
      * @param {(Any)} [Default]  
      * A default value to use if the provided Key is not found.  
@@ -11694,23 +11724,23 @@ class Map extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Has|`Has()`}  
      * Returns true if the specified key has an associated value within a map.
-     * @param {(Primitive|Object)} Key  
+     * @param {(String|Integer|Object)} Key  
      * The identifying key of the key-value pair to delete.  
      * @returns {(Boolean)}  
      * `1` if the map contains the provided key, otherwise `0`.  
      * @example <caption>  
      * </caption>
      */
-    Has(Key) => ?
+    Has(Key) => Integer
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Set|`Set()`}  
      * Sets zero or more key-value pairs.  
      * If all parameters are omitted, Capacity is autom
-     * @param {(KeyN)}  
+     * @param {(String|Integer|Object)} [KeyN]  
      * The identifying key of the value.  
      * Any number of `Key, Value,` pairs can be added.  
-     * @param {(ValueN)}  
+     * @param {(Any)} [ValueN]  
      * The value to associate with the key.  
      * Any number of `Key, Value,` pairs can be added.  
      * @returns {(Map)}  
@@ -11718,7 +11748,7 @@ class Map extends Object {
      * @example <caption>  
      * </caption>
      */
-    Set([KeyN, ValueN]) => Map
+    Set([KeyN, ValueN*]) => Map
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#__Enum|`__Enum()`}  
@@ -11736,26 +11766,28 @@ class Map extends Object {
     __Enum() => Enumerator
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#__New|`__New()`}  
-     * Sets items and is equivalent to {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Set|Set()}.  
-     * This method supports {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Call|Call()} and is not meant to be called directly.  
-     * @param {(KeyN)}  
-     * The identifying key of the value.  
-     * Any number of `Key, Value,` pairs can be added.  
-     * @param {(ValueN)}  
-     * The value to associate with the key.  
-     * Any number of `Key, Value,` pairs can be added.  
-     * @returns {(Map)}  
-     * A reference to the map is always returned.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#__Enum|`__Enum()`}  
+     * Enumerates a map's key-value pairs.  
+     * This is normally passed directly to a {@link https://www.autohotkey.com/docs/v2/lib/For.htm|for-loops}.  
+     * 
+     *     ; For-loops automatically call __Enum()
+     *     For key, value in some_map
+     *         MsgBox(key ': ' value)
+     * @returns {(Enumerator)}  
+     * An enumerator object is returned.  
      * @example <caption>  
      * </caption>
      */
-    __New([KeyN, ValueN]) => Map
+    __New([KeyN, ValueN*]) => Map
 }
-
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm|`Menu`}  
+ * An object used to define, modify, and display popup menus.  
+ * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Call|Menu()}, {@link https://www.autohotkey.com/docs/v2/lib/MenuFromHandle.htm|MenuFromHandle()} and {@link https://www.autohotkey.com/docs/v2/Variables.htm#TrayMenu|A_TrayMenu} return an object of this type.  
+ * @property {(Integer)} ClickCount - Retrieves or sets how many times the tray icon must be clicked to select its default menu item.
+ * @property {(Any)} Default - Retrieves or sets the default menu item.
+ * @property {(Integer)} Handle - Retrieves the menu's Win32 handle.
  */
 class Menu extends Object {
     /**
@@ -12063,6 +12095,10 @@ class Menu extends Object {
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm|`MenuBar`}  
+ * An object used to define and modify a Gui's menu bar through the {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#MenuBar|Gui.MenuBar property}.
+ * @property {(Integer)} ClickCount - Retrieves or sets how many times the tray icon must be clicked to select its default menu item.
+ * @property {(Any)} Default - Retrieves or sets the default menu item.
+ * @property {(Integer)} Handle - Retrieves the menu's Win32 handle.
  */
 class MenuBar extends Menu {
     /**
@@ -12151,35 +12187,25 @@ class MenuBar extends Menu {
 }
 
 /**
- * @description 
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObjec|`RegExMatchInfo`}
+ * An object with multiple properties containing information about a {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|RegExMatch()} result.  
+ * @property {(Integer)} Count - Returns the total number of captured subpatterns.
+ * @property {(Integer)} Len - The length of the overall match or a captured subpattern.
+ * @property {(Integer)} Mark - Returns the NAME of the last encountered `(*MARK:NAME)`, when applicable.
+ * @property {(Integer)} Match - Returns the overall match or a captured subpattern.
+ * @property {(Integer)} Name - The name of the overall match or a captured subpattern, if it has one.
  */
 class RegExMatchInfo extends Object {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Pos[]`}  
-     * The string position of the overall match or a captured subpattern.
-     * @param {(Integer|String)} [N]  
-     * The name or number of a captured subpattern.  
-     * If omitted or `0`, the overall match is returned.  
-     * @type {(Integer)}  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Count`}
+     * Returns the total number of captured subpatterns.  
+     * This is also the max number [N] can be for any other method or property calls.  
+     * @type {(Integer)}
      * @example <caption>  
      * </caption>
      */
-    Pos[N:=0] => Integer
+    Count => Integer
     
-    /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Pos()`}  
-     * The string position of the overall match or a captured subpattern.
-     * @param {(Integer|String)} [N]  
-     * The number of a captured subpattern.  
-     * Named subpatterns can be referenced by number or name.  
-     * If omitted or `0`, the overall match is returned.  
-     * @returns {(Integer)}  
-     * The string position of the specified subpattern or overall match.  
-     * @example <caption>  
-     * </caption>
-     */
-    Pos([N:=0]) => Integer
-
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Len[]`}  
      * The length of the overall match or a captured subpattern.
@@ -12194,57 +12220,6 @@ class RegExMatchInfo extends Object {
     Len[N:=0] => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Len()`}  
-     * The length of the overall match or a captured subpattern.
-     * @param {(Integer|String)} [N]  
-     * The number of a captured subpattern.  
-     * Named subpatterns can be referenced by number or name.  
-     * If omitted or `0`, the overall match is returned.  
-     * @returns {(Integer)}  
-     * The length of the specified subpattern or overall match.  
-     * @example <caption>  
-     * </caption>
-     */
-    Len([N:=0]) => Integer
-    
-    /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Name[]`}  
-     * The name of the overall match or a captured subpattern, if it has one.  
-     * @param {(Integer|String)} [N]  
-     * The number of a captured subpattern.  
-     * Named subpatterns can be referenced by number or name.  
-     * If omitted or `0`, the overall match is returned.  
-     * @type {(String)}  
-     * @example <caption>  
-     * </caption>
-     */
-    Name[N:=0] => String
-    
-    /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Name()`}  
-     * Returns the name of the given subpattern, if it has one.
-     * @param {(Integer|String)} [N]  
-     * The number of a captured subpattern.  
-     * Named subpatterns can be referenced by number or name.  
-     * If omitted or `0`, the overall match is returned.  
-     * @returns {(String)}  
-     * The captured text.  
-     * @example <caption>  
-     * </caption>
-     */
-    Name([N:=0]) => String
-
-    /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Count`}
-     * Returns the total number of captured subpatterns.  
-     * This is also the max number [N] can be for any other method or property calls.  
-     * @type {(Integer)}
-     * @example <caption>  
-     * </caption>
-     */
-    Count => Integer
-    
-    /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|Mark}
      * Returns the NAME of the last encountered `(*MARK:NAME)`, when applicable.  
      * Mark can be used for internal engine backtracking.  
@@ -12253,7 +12228,7 @@ class RegExMatchInfo extends Object {
      * </caption>
      */
     Mark => String
-
+    
     /**
      * @description {@link |`Match`}
      * Returns the overall match or a captured subpattern.
@@ -12270,18 +12245,79 @@ class RegExMatchInfo extends Object {
      * </caption>
      */
     Match[N:=0] => String
+    
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Name[]`}  
+     * The name of the overall match or a captured subpattern, if it has one.  
+     * @param {(Integer|String)} [N]  
+     * The number of a captured subpattern.  
+     * Named subpatterns can be referenced by number or name.  
+     * If omitted or `0`, the overall match is returned.  
+     * @type {(String)}  
+     * @example <caption>  
+     * </caption>
+     */
+    Name[N:=0] => String
+    
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Pos[]`}  
+     * The string position of the overall match or a captured subpattern.
+     * @param {(Integer|String)} [N]  
+     * The name or number of a captured subpattern.  
+     * If omitted or `0`, the overall match is returned.  
+     * @type {(Integer)}  
+     * @example <caption>  
+     * </caption>
+     */
+    Pos[N:=0] => Integer
+    
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Len()`}  
+     * The length of the overall match or a captured subpattern.
+     * @param {(Integer|String)} [N]  
+     * The number of a captured subpattern.  
+     * Named subpatterns can be referenced by number or name.  
+     * If omitted or `0`, the overall match is returned.  
+     * @returns {(Integer)}  
+     * The length of the specified subpattern or overall match.  
+     * @example <caption>  
+     * </caption>
+     */
+    Len([N:=0]) => Integer
+    
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Name()`}  
+     * Returns the name of the given subpattern, if it has one.
+     * @param {(Integer|String)} [N]  
+     * The number of a captured subpattern.  
+     * Named subpatterns can be referenced by number or name.  
+     * If omitted or `0`, the overall match is returned.  
+     * @returns {(String)}  
+     * The captured text.  
+     * @example <caption>  
+     * </caption>
+     */
+    Name([N:=0]) => String
+    
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Pos()`}  
+     * The string position of the overall match or a captured subpattern.
+     * @param {(Integer|String)} [N]  
+     * The number of a captured subpattern.  
+     * Named subpatterns can be referenced by number or name.  
+     * If omitted or `0`, the overall match is returned.  
+     * @returns {(Integer)}  
+     * The string position of the specified subpattern or overall match.  
+     * @example <caption>  
+     * </caption>
+     */
+    Pos([N:=0]) => Integer
 }
 
-/**
- * @description 
- */
 class Primitive extends Any {
     
 }
 
-/**
- * @description 
- */
 Class String extends Primitive {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/String.htm|`String()`}  
@@ -12308,9 +12344,6 @@ Class String extends Primitive {
     static Call(Value) => String
 }
 
-/**
- * @description 
- */
 class Number extends Primitive {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/String.htm|`String()`}  
@@ -12334,9 +12367,6 @@ class Number extends Primitive {
     static Call(Value) => Number
 }
 
-/**
- * @description 
- */
 Class Float extends Number {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Float.htm|`Float()`}  
@@ -12360,9 +12390,6 @@ Class Float extends Number {
     static Call(Value) => Float
 }
 
-/**
- * @description 
- */
 Class Integer extends Number {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Float.htm|`Float()`}  
@@ -12384,15 +12411,10 @@ Class Integer extends Number {
      * @example <caption>  
      * </caption>
      */
-    static Call(Value) => Float
+    static Call(Value) => Integer
 }
 
-
-/**
- * @description 
- */
 class VarRef extends Any {
-    
     
 }
 
@@ -12400,8 +12422,50 @@ class VarRef extends Any {
  * @description 
  */
 class ComValue extends Any {
-    
-    
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|`ComValue`}  
+     * Wraps a value, SafeArray or COM object for use by the script or for passing to a COM method.
+     * @param {(Integer)} VarType - An integer to incidcate the {@link https://www.autohotkey.com/docs/v2/lib/ComObjType.htm#vt|type of value}.  
+     * \- `0` VT_EMPTY = No value  
+     * \- `1` VT_NULL = SQL-style Null  
+     * \- `2` VT_I2 = 16-bit signed int  
+     * \- `3` VT_I4 = 32-bit signed int  
+     * \- `4` VT_R4 = 32-bit floating-point number  
+     * \- `5` VT_R8 = 64-bit floating-point number  
+     * \- `6` VT_CY = Currency  
+     * \- `7` VT_DATE = Date  
+     * \- `8` VT_BSTR = COM string (Unicode string with length prefix)  
+     * \- `9` VT_DISPATCH = COM object  
+     * \- `0xA` VT_ERROR = Error code (32-bit integer)  
+     * \- `0xB` VT_BOOL = Boolean True (-1) or False (0)  
+     * \- `0xC` VT_VARIANT = VARIANT (used with VT_ARRAY or VT_BYREF)  
+     * \- `0xD` VT_UNKNOWN = IUnknown interface pointer  
+     * \- `0xE` VT_DECIMAL = (not supported)  
+     * \- `0x10` VT_I1 = 8-bit signed int  
+     * \- `0x11` VT_UI1 = 8-bit unsigned int  
+     * \- `0x12` VT_UI2 = 16-bit unsigned int  
+     * \- `0x13` VT_UI4 = 32-bit unsigned int  
+     * \- `0x14` VT_I8 = 64-bit signed int  
+     * \- `0x15` VT_UI8 = 64-bit unsigned int  
+     * \- `0x16` VT_INT = Signed machine int  
+     * \- `0x17` VT_UINT = Unsigned machine int  
+     * \- `0x24` VT_RECORD = User-defined type -- NOT SUPPORTED  
+     * \- `0x2000` VT_ARRAY = SAFEARRAY  
+     * \- `0x4000` VT_BYREF = Pointer to another type of value  
+     * @param {(Any)} Value - The value to wrap.  
+     * @param {(Integer)} [Flags] - {@link https://www.autohotkey.com/docs/v2/lib/ComObjFlags.htm|Flags} affecting the behaviour of the wrapper object.  
+     * @see
+     * {@link https://www.autohotkey.com/docs/v2/lib/ComObjFromPtr.htm|ComObjFromPtr()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/ComObject.htm|ComObject()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/ComObjGet.htm|ComObjGet()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/ComObjConnect.htm|ComObjConnect()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/ComObjFlags.htm|ComObjFlags()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/ObjAddRef.htm|ObjAddRef()/ObjRelease()},
+     * {@link https://www.autohotkey.com/docs/v2/lib/ComObjQuery.htm|ComObjQuery()},
+     * {@link https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-getactiveobject|GetActiveObject (Microsoft Docs)}
+     * @returns {()} 
+     */
+    static Call(VarType, Value [,Flags:=unset]) => Object
 }
 
 /**
@@ -12429,6 +12493,15 @@ class ComValueRef extends ComValue {
 }
 
 ;#endregion
+
+
+
+
+
+
+
+
+
 
 ;#region functions
 
@@ -12489,9 +12562,7 @@ ATan(Num) => Number
  * Disables or enables the user's  
  * ability to interact with the computer via keyboard and mouse.  
  * @param {(String|Integer)} [Mode]  
- * Each of the 3 mode  
- * groups 
- * operate independently of each other.  
+ * Each of the 3 mode groups operate independently of each other.  
  * - **OnOff**
  *   - `On` or `1` = Mouse and keyboard input is disabled.  
  *   - `Off` or `0` = Mouse and keyboard input is enabled.  
@@ -12531,8 +12602,8 @@ BlockInput([Mode]) => EmptyString
  *   Typically omitted because standard calling is much more common for callbacks.  
  * - `&` = Causes the address of the parameter list to be passed to Function.  
  *   Parameter values can be retrieved using NumGet. 
- When using the standard 32-bit calling convention, 
- ParamCount must specify the size of the parameter list in DWORDs (the number of bytes divided by 4).
+ *   When using the standard 32-bit calling convention, 
+ *   ParamCount must specify the size of the parameter list in DWORDs (the number of bytes divided by 4).
  * @param {(Integer)} ParamCount  
  * If omitted, {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#MinParams|Function.MinParams} is used.  
  *  Otherwise, the number of parameters that Address' caller will pass to it.  
@@ -12694,10 +12765,10 @@ ClipWait([TimeoutInSec:=unset, WaitForType:=0]) => String
  * - {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#ptr|`Pointer`}: `Ptr`, `* or P [suffix]`  
  * - {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#HRESULT|`COM`}: `HRESULT`  
  * 
- * There can be be multiple `type, arg` pairs listed sequentially.  
+ * There can be be multiple `type, arg` parameter pairs listed subsequently.  
  * @param {(String)} [ArgN]  
  * The argument being passed.  
- * There can be be multiple `type, arg` pairs listed sequentially.  
+ * There can be be multiple `type, arg` parameter pairs listed subsequently.  
  * @param {(String)} [ReturnType]  
  * If omitted, return type defaults to {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#HRESULT|HRESULT}  
  * If there is no return type (such as C's `void`), specify `Int` or another numeric type.  
@@ -12835,7 +12906,6 @@ ComObjFromPtr(DispPtr) => String
  * </caption>
  */
 ComObjGet(Name) => ComObject
-
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjQuery.htm|`ComObjQuery()`}  
@@ -14335,7 +14405,6 @@ Cos(Num) => Float
  * </caption>
  */
 Critical([Setting:='On']) => Integer
-
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/DateAdd.htm|`DateAdd()`}  
@@ -16152,7 +16221,7 @@ Floor(Num) => Integer
  * - The expected width in characters after any changes are made.  
  *   Value is padded with spaces and right-aligned.  
  *   Use `-` flag to align left and `0` flag to pad with zeroes.  
- *
+ * 
  *       Format('{1:7d}', 1234) => '   1234'
  *       Format('{1:-7d}', 1234) => '1234   '
  *       Format('{1:07d}', 1234) => '0001234'
@@ -16162,15 +16231,15 @@ Floor(Num) => Integer
  *   Dependant on `DataType`:  
  *   - `f` `e` `E` = Set decimal point length.  
  *     Default: 6
- *
+ * 
  *         Format('{1:.3f}', 0.123456) => '0.123'
  *         Format('{1:.0f}', 42) => '42.0'
  *   - `g` `G` = Sets max signficant digits.  
  *     Default: 6
- *
+ * 
  *         Format('{1:.4g}', 123456) => '1235e+05'
  *   - `s` = Set max number of characters to use.  
- *
+ * 
  *         Format('{1:.7s}', 'Hello World') => 'Hello W'
  *   - `d` `i` `u` `x` `X` `o` = Set width, pad with zeroes.  
  *     This will override `0` Flag + Width.  
@@ -16246,14 +16315,13 @@ Floor(Num) => Integer
  *         Format('{:c}{:c}{:c}', 65, 72, 75) => 'AHK'  
  *         Format('¯\_({1:c})_/¯', 0x30C4) => '¯\_(ツ)_/¯'  
  * @param {(Primitive|Array)} [Value1]  
- * A primitive value.  
- * This is `ParamNum` 1, going up by one for each additional Value parameter.  
- * Value1 can be an array of primitives if declared {@link https://www.autohotkey.com/docs/v2/Functions.htm#VariadicCall|variadic}:
+ * `ParamNum` 1 for the `FormStr`
+ * This can also be an array of primitives if it's declared {@link https://www.autohotkey.com/docs/v2/Functions.htm#VariadicCall|variadic}:
  * 
  *     arr := ['World', 'Hello']
  *     Format('{2}, {1}!', arr*) => 'Hello, World!'
  * @param {(Primitive)} [ValueN]  
- * Any number of additional parameters containing primitive values.  
+ * Any number of additional parameters, used as `ParamNum` 2, 3, etc.  
  * @returns {(String)}  
  * The string after formatting.  
  * @see  
@@ -16261,7 +16329,7 @@ Floor(Num) => Integer
  * @example <caption>  
  * </caption>
  */
-Format(FormStr [,Value1:=Any, ValueN:=Any]) => String
+Format(FormStr [,Value1, ValueN*]) => String
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/FormatTime.htm|`FormatTime()`}  
@@ -17126,7 +17194,7 @@ Hotkey(KeyName [,Action, Options]) => EmptyString
  * Hotstring(':X:greet', (*) => MsgBox('Hello'))
  * 
  * ; Z Zeroize
- * ; Typing 'zz' produces 'zz00z' instead of 'zz00z00'
+ * ; Typing 'zzz' produces 'zz00z' instead of 'zz00z00'
  * ; The recognizer is reset preventing the last z from acting as the first z of another hotstring
  * Hotstring(':B0*?XZ:zz', (*) => Send('00'))
  */
@@ -17322,7 +17390,8 @@ IniDelete(FileLocation, Section [,Key]) => EmptyString
  * ; Just like AHK comments
  * [Section Names Go In Square Brackets]
  * Key_Name = Some saved data
- * Another_Key = 0 */
+ * Another_Key = 0
+ */
 IniRead(FileLocation [,Section, Key, Default]) => String
 
 /**
@@ -17518,8 +17587,8 @@ InstallMouseHook([Install:=1, Force:=0]) => EmptyString
  * @throws {(ValueError)}  
  * `Occurrence` or `StartPos` is not a number greater than 0
  * @see
-RegExMatch
-Is functions
+ * {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm|RegExMatch()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Is.htm|Is functions}
  * @example <caption>__
  * </caption>
  */
@@ -18071,16 +18140,19 @@ LTrim(Str [,OmitChars:=' `t']) => String
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Max|`Max()`}  
  * Returns the highest number from a set of numbers.  
  * @param {(Number|Array)} Value1  
- * A number or an array of numbers  
- * To pass an {@link https://www.autohotkey.com/docs/v2/lib/Array.htm|array}, mark the variable as {@link https://www.autohotkey.com/docs/v2/Functions.htm#Variadic|variadic}. `Max(arr*)`
+ * The first number of the set.  
+ * This can be an {@link https://www.autohotkey.com/docs/v2/lib/Array.htm|array} of numbers if declared {@link https://www.autohotkey.com/docs/v2/Functions.htm#Variadic|variadic} and is the only parameter used.  
+ * 
+ *     arr := [2, 9, 7, 1]
+ *     Max(arr*) => 9
  * @param {(Number)} [ValueN]  
- * Any amount of additional numbers. 
+ * Any amount of additional numbers.  
  * @returns {(Number)}  
  * The highest number provided is returned. 
  * @example <caption>__
  * </caption>
  */
-Max(Value1 [,ValueN]) => Number
+Max(Value1 [,ValueN*]) => Number
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/MenuFromHandle.htm|`MenuFromHandle()`}  
@@ -18152,16 +18224,19 @@ MenuSelect(WinTitle, WinText, MenuName [,SubMenu1:=unset, SubMenuN:=unset, NoWin
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Min|`Min()`}  
  * Returns the lowest number from a set of numbers.  
  * @param {(Number|Array)} Value1  
- * A number or an array of numbers  
- * To pass an {@link https://www.autohotkey.com/docs/v2/lib/Array.htm|array}, mark the variable as {@link https://www.autohotkey.com/docs/v2/Functions.htm#Variadic|variadic}. `Min(arr*)`
+ * The first number of the set.  
+ * This can be an {@link https://www.autohotkey.com/docs/v2/lib/Array.htm|array} of numbers if declared {@link https://www.autohotkey.com/docs/v2/Functions.htm#Variadic|variadic} and is the only parameter used.  
+ * 
+ *     arr := [2, 9, 7, 1]
+ *     Min(arr*) => 1
  * @param {(Number)} [ValueN]  
- * Any amount of additional numbers
+ * Any amount of additional numbers.  
  * @returns {(Number)}  
  * The lowest number provided is returned
  * @example <caption>__
  * </caption>
  */
-Min(Value1 [,ValueN]) => Number
+Min(Value1 [,ValueN*]) => Number
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Mod|`Mod()` (modulo)}  
@@ -18179,7 +18254,7 @@ Min(Value1 [,ValueN]) => Number
  * @example <caption>__
  * </caption>
  */
-Mod() => Number
+Mod(Dividend, Divisor) => Number
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/MonitorGet.htm|`MonitorGet()`}  
@@ -18470,7 +18545,7 @@ MouseMove(X, Y [,Speed, Relative]) => EmptyString
  *   The string values can be used instead by including them with the string options. `MsgBox('Hi',, '0x4 Icon!')`  
  *   Hex value must be prefixed with a 0x: `0x4`  
  *   Other than Group #5, only one option should be used from each group:  
- *
+ * 
  *     | -Option Groups-                                | -Dec-     | -Hex-       | -String Value-                              |
  *     | :---                                           | :--:      | :--:        | :---                                        |
  *     | **Group #1:**                                  |           |             | Change button names                         |
@@ -18502,7 +18577,7 @@ MouseMove(X, Y [,Speed, Relative]) => EmptyString
  *     | Add {@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm#Help|Help button} | `16384` | `0x4000` | N/A            |
  *     | `Right-justified` text                         | `524288`  | `0x80000`   | N/A                                         |
  *     | `Right-to-left` text direction                 | `1048576` | `0x100000`  | N/A                                         |
- *
+ * 
  * @returns {(String)}  
  * The button name clicked is returned  
  * - Empty String = The dialog box couldn't be displayed  
@@ -18537,7 +18612,6 @@ MouseMove(X, Y [,Speed, Relative]) => EmptyString
  * </caption>
  */
 MsgBox([Text:='', Title:=A_ScriptName, Options:=0]) => String
-
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/NumGet.htm|`NumGet()`}  
@@ -18651,6 +18725,28 @@ ObjAddRef(Ptr) => Integer
 ObjBindMethod(Obj [,Method, Params]) => BoundFunc
 
 /**
+ * @description {@link https://www.autohotkey.com/docs/v2/Objects.htm#ObjFromPtr|`ObjFromPtr()`}  
+ * Create an object reference from an object's memory address.  
+ * @param {(Integer)} Address - The memory address of an object.
+ * @returns {(Object)} A reference to the object at that address.
+ * @example <caption>  
+ * </caption>
+ */
+ObjFromPtr(Address) => Object
+
+/**
+ * @description {@link https://www.autohotkey.com/docs/v2/Objects.htm#ObjFromPtr|`ObjFromPtrAddRef()`}  
+ * Creates an object from a pointer and adds that object reference to the reference count.  
+ * @param {()} Address - The memory address of an object.  
+ * @returns {(Object)} A reference to the object at that address.  
+ * @example <caption>  
+ * These two lines are equal.</caption>
+ * ObjAddRef(address), myObject := ObjFromPtr(address)
+ * myObject := ObjFromPtrAddRef(address)
+ */
+ObjFromPtrAddRef(Address) => Object
+
+/**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#HasOwnProp|`ObjHasOwnProp()`}  
  * Checks if an object has a property of the specified name.  
  * This function is equivalent to the built-in {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} method `Obj.HasOwnProp()`.  
@@ -18735,6 +18831,30 @@ ObjOwnPropCount(Obj) => Integer
  * </caption>
  */
 ObjOwnProps(obj) => Enumerator
+
+/**
+ * @description {@link |`ObjPtr()`}  
+ * Rretrieve the memory address of an object.  
+ * @param {(Object)} Obj - An object to get the memory address of.  
+ * @returns {(Integer)} The pointer address of the object.  
+ * @example <caption>  
+ * </caption>
+ */
+ObjPtr(Obj) => Integer
+
+/**
+ * @description {@link https://www.autohotkey.com/docs/v2/Objects.htm#ObjPtr|`ObjPtrAddRef()`}  
+ * Increments an object's {@link https://www.autohotkey.com/docs/v2/Objects.htm#Reference_Counting|reference count}.  
+ * @param {(Object)} Obj  
+ * An unmanaged object pointer of COM interface pointer.  
+ * @returns {(Integer)}  
+ * The memory address of the object.  
+ * @see  
+ * {@link https://www.autohotkey.com/docs/v2/Objects.htm#Reference_Counting|Reference Counting}
+ * @example <caption>  
+ * </caption>
+ */
+ObjPtrAddRef(Obj) => Integer
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/ObjAddRef.htm|`ObjRelease()`}  
@@ -18837,7 +18957,7 @@ OnClipboardChange(Callback [,AddRemove:=1]) => EmptyString
  *     The program will exit.  
  * 
  *         clipboard_func(ThrownValue, ErrorMode) ; Callback format
- *
+ * 
  * The callback can return one of the following values:  
  * - `0` Omit ` ` (Space) = Allow error handling to proceed as normal.  
  * - `1` = Suppress the default error dialog and any remaining error callbacks.  
@@ -18876,7 +18996,7 @@ OnError(Callback [,AddRemove:=1]) => ReturnValue
  * - `ExitCode` = The code that was passed to {@link https://www.autohotkey.com/docs/v2/lib/Exit.htm|Exit()} or {@link https://www.autohotkey.com/docs/v2/lib/ExitApp.htm|ExitApp()}  
  * 
  *         OnExit(ExitReason, ExitCode) ; Callback format
- *
+ * 
  * The callback can return a non-zero integer to prevent the script from exiting and calling more callbacks.  
  * Otherwise, the script exits after all registered callbacks are called.  
  * @param {(Integer)} [AddRemove]  
@@ -19709,8 +19829,6 @@ RegExMatch(Haystack, RegExNeedle [,&MatchObj, StartPos]) => Integer
  * | `$$`                   | Literal dollar sign                         |
  * | `$n`                   | nth capture group                           |
  * | `${#:1:0}`             | Conditional group replace                   |
-
-
  * @example <caption>  
  * </caption>
  */
@@ -20384,7 +20502,8 @@ SendPlay(Keys) => EmptyString
  * {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm|::Hotstrings::},
  * {@link https://www.autohotkey.com/docs/v2/misc/EscapeChar.htm|Escape sequences}
  * @example <caption>  
- * </caption> */
+ * </caption>
+ */
 SendText(Keys) => EmptyString
 
 /**
@@ -21196,7 +21315,7 @@ SoundSetVolume(NewSetting [,Component:='', Device:='']) => EmptyString
  *     '`nOutNameNoX: ' OutNameNoX ; AutoHotkey_2.0.10
  *     '`nOutDrive: ' OutDrive     ; https://www.autohotkey.com
  * )
- *
+ * 
  * Path := 'C:\Program Files\AutoHotkey\UX\launcher.ahk'
  * SplitPath(path, &OutName, &OutDir, &OutExt, &OutNameNoX, &OutDrive)
  * MsgBox('OutName: ' OutName      ; launcher.ahk
@@ -21807,7 +21926,7 @@ SysGetIPAddresses() => Array
  * Tangent Example.</caption>
  * Tan(1.2) => 2.572152
  */
-Tan() => Float
+Tan(Num) => Float
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Thread.htm|`Thread()`}  
@@ -21939,11 +22058,11 @@ TraySetIcon([FileName:=unset, IconNumber:=1, Freeze:=unset]) => EmptyString
  * Icons will not show if a TrayTip lacks a title.  
  * Defaults to `0`.  
  * | -Function-        | -Dec- | -Hex-  | -String- |
- * | :---              | :---  | :---   | :---     |
+ * | ---:              | :--:  | :--:   | :---     |
  * | `No icon`         | `0`   | `0x0`  | `N/A`    |
- * | `Info icon`       | `1`   | `0x1`  | `Iconi`  |
+ * | `Info icon`       | `1`   | `0x1`  | `IconI`  |
  * | `Warning icon`    | `2`   | `0x2`  | `Icon!`  |
- * | `Error icon`      | `3`   | `0x3`  | `Iconx`  |
+ * | `Error icon`      | `3`   | `0x3`  | `IconX`  |
  * | `Tray icon`       | `4`   | `0x4`  | `N/A`    |
  * | `No notify sound` | `16`  | `0x10` | `Mute`   |
  * | `Use large icon`  | `32`  | `0x20` | `N/A`    |
