@@ -1,7 +1,7 @@
 ;#region classes
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm|`Any`}  
- * The root (top most) class of AutoHotkey's type hierarchy.  
+ * The root (topmost) class of AutoHotkey's type hierarchy.  
  * All other types are a sub-type of Any.
  * @property {(Prototype)} Base - Retrieves the value's {@link https://www.autohotkey.com/docs/v2/Objects.htm#delegation|base object}.  
  */
@@ -130,7 +130,7 @@ class Any {
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object}  
  * Object is the basic class from which any AutoHotkey object class is derived from.  
  * Each Object consists of any inherited properties and methods.  
- * Any added properteris are considered part of the object's "own properties".  
+ * Any added properties are considered part of the object's "own properties".  
  * @property {(Prototype)} Base - Retrieves or sets an object's base object.
  * @example
  * my_obj := Object()
@@ -270,7 +270,7 @@ class Object extends Any {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#OwnProps|`OwnProps()`}  
      * Returns an enumerator for an object's own properties.  
-     * This is normally used with a {@link https://www.autohotkey.com/docs/v2/lib/For.htm|for-loop} to iterate through the the object's properties.  
+     * This is normally used with a {@link https://www.autohotkey.com/docs/v2/lib/For.htm|for-loop} to iterate through the object's properties.  
      * @returns {(Enumerator)}
      * @example <caption>  
      * Creates an enumerator with each property of the object</caption>
@@ -283,9 +283,9 @@ class Object extends Any {
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm|`Array`}  
- * Is an object containsing a list or sequence of values.  
+ * An object containing a sequence, or list, of values.  
  * Each element of an array has an index.  
- * Unlike most common languages, AHK indices start at 1, not 0.  
+ * Unlike a lot of languages, AHK's starting index is 1, not 0.  
  * @property {(Integer)} Length - Retrieves or sets the length of an array.
  * @property {(Integer)} Capacity - Retrieves or sets the current capacity of an array.
  * @property {(Any)} Default - Defines the default value to return when an index has no value or does not exist.
@@ -315,7 +315,7 @@ class Array extends Object {
      * Retrieves or sets the capacity of an array.  
      * Capacity is the total amount of elements the array can hold before it needs to be expanded.  
      * Length is the total amount of elements in use.  
-     * A capacity lower than Length will truncate eveything past the capacity total.  
+     * A capacity lower than Length will truncate everything past the capacity total.  
      * @type {(Integer)}
      * @example <caption>  
      * Showing Capacity differs from Length.</caption>
@@ -353,7 +353,7 @@ class Array extends Object {
      * An index of 0 is the same as `array.Length + 1` and works identical to `Push()`.  
      * A negative index starts at the last element. `-1` last, `-2` second from last, etc.  
      * @throws {(IndexError)}  
-     * Using an out of bounds index.  
+     * Using an out-of-bounds index.  
      * @example <caption>  
      * Using the __item property.</caption>
      * arr := ['a','b','c']
@@ -525,7 +525,7 @@ class Array extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#RemoveAt|`RemoveAt()`}  
-     * Removes itmes from an array.  
+     * Removes items from an array.  
      * @param {(Integer)} Index  
      * Index to insert value(s).  
      * An index of 0 is the same as `array.Length + 1` and works identical to `Push()`.  
@@ -533,7 +533,7 @@ class Array extends Object {
      * @param {(Integer)} Length  
      * The number of consecutive elements to remove.  
      * @returns {(Any)}  
-     * The value removed is returned if no Length is provied.  
+     * The value removed is returned if no Length is provided.  
      * Otherwise, an empty string is returned.  
      * @throws {ValueError} - If index is out of range.  
      * @example <caption>  
@@ -566,8 +566,8 @@ class Array extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#__Enum|`__Enum()`}  
-     * Creates an enumerator to iterate through an array's elements.  
-     * This method is typically not called directly as enumerable objects can be directly passed to a for-loop.  
+     * Creates an {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|enumerator object} that iterates through each element of the array.  
+     * This method is typically not called but instead is used by a {@link https://www.autohotkey.com/docs/v2/lib/For.htm|for-loop} to get each element and its index number.
      * @returns {(Enumerator)}  
      * Enumerable function object.  
      * @see  
@@ -575,11 +575,13 @@ class Array extends Object {
      * @example <caption>  
      * Manually using an enumerator.</caption>
      * arr := ['a', 'b', 'c']
-     * e := arr.__Enum()
-     * While e(&i, &v)
-     *     MsgBox('Index: ' i '`nValue: ' v)
-     * for i, v in arr
-     *     MsgBox('Index: ' i '`nValue: ' v)
+     * 
+     * For index, value in arr
+     *     MsgBox('index: ' index '`nvalue: ' value)
+     * 
+     * enum := arr.__Enum()
+     * While enum(&index, &value)
+     *     MsgBox('Index: ' index '`nValue: ' value)
      */
     __Enum() => Enumerator
 }
@@ -643,7 +645,7 @@ class Buffer extends Object {
      * @throws {(MemoryError)}  
      * If the memory could not be allocated.  
      * @example <caption>  
-     * Creating a new 8 byte buffer.</caption>
+     * Creating a new 8-byte buffer.</caption>
      * buff := Buffer(8)
      */
     static Call([ByteCount:=unset, FillByte:=unset]) => Buffer
@@ -665,7 +667,7 @@ class Buffer extends Object {
      * Expanding, storing, and retrieving a number from a buffer.</caption>
      * num := 65536
      * buff := Buffer(2, 0)
-     * ; 2 byte can only store up to 65535
+     * ; 2-byte can only store up to 65535
      * ; Increase buffer to 4 bytes and fill with zeroes
      * buff.__New(4 ,0)
      * NumPut('uInt', num, buff)
@@ -846,21 +848,21 @@ class Error extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`File`}  
-     * Is the full path of the script file containing the line at which the error occurred or where the Error object was constructed.  
+     * The full path of the script file containing the line at which the error occurred or where the Error object was constructed.  
      * @type {(String)}
      */
     File => String
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`Line`}  
-     * Is number of the line at which the error occurred or where the Error object was constructed.  
+     * Line number at which the error occurred or where the Error object was constructed.  
      * @type {(Integer)}
      */
     Line => Integer
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`Stack`}  
-     * Is the full call stack at the time of error or error object construction.  
+     * The full call stack at the time of error or error object construction.  
      * A stack line is formatted as follows:  
      * * ``[FilePath] ([Line]) : [What] SourceCode`r`n``  
      *   Represents a call to the function What.  
@@ -1259,7 +1261,7 @@ class MethodError extends MemberError {
 class UnsetItemError extends UnsetError {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#UnsetItemError|`UnsetItemError()`}  
-     * An attempt was made to read the value of a an item, but there was no value.  
+     * An attempt was made to read the value of an item, but there was no value.  
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -1521,7 +1523,7 @@ class File extends Object {
 
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteLine|`WriteLine()`}  
-     * Writes a string of characters followed by a new line `` `n `` or carraige return+new line `` `r`n `` (depending on the flags used to open the file), and advances the file pointer.  
+     * Writes a string of characters followed by a new line `` `n `` or carriage return+new line `` `r`n `` (depending on the flags used to open the file), and advances the file pointer.  
      * @param {(String)} [Text]  
      * An optional string to write.  
      * If no parameter is passed, an empty line is inserted.  
@@ -1543,7 +1545,7 @@ class File extends Object {
 
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadUInt()`}  
-     * Reads a 32-bit (4 byte) unsigned integer from the file and advances the file pointer.  
+     * Reads a 32-bit (4-byte) unsigned integer from the file and advances the file pointer.  
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of UInt, the missing bytes are assumed to be zero.  
@@ -1557,7 +1559,7 @@ class File extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadInt()`}  
-     * Reads a 32-bit (4 byte) integer from the file and advances the file pointer.  
+     * Reads a 32-bit (4-byte) integer from the file and advances the file pointer.  
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of Int, the missing bytes are assumed to be zero.  
@@ -1571,7 +1573,7 @@ class File extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadInt64()`}  
-     * Reads a 64-bit (8 byte) integer from the file and advances the file pointer.  
+     * Reads a 64-bit (8-byte) integer from the file and advances the file pointer.  
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of Int64, the missing bytes are assumed to be zero.  
@@ -1585,7 +1587,7 @@ class File extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadShort()`}  
-     * Reads a 16-bit (2 byte) short integer from the file and advances the file pointer.  
+     * Reads a 16-bit (2-byte) short integer from the file and advances the file pointer.  
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of Short, the missing bytes are assumed to be zero.  
@@ -1599,7 +1601,7 @@ class File extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadUShort()`}  
-     * Reads a 16-bit (2 byte) unsigned short integer from the file and advances the file pointer.  
+     * Reads a 16-bit (2-byte) unsigned short integer from the file and advances the file pointer.  
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of UShort, the missing bytes are assumed to be zero.  
@@ -1613,7 +1615,7 @@ class File extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadChar()`}  
-     * Reads an 8-bit (1 byte) char from the file and advances the file pointer.  
+     * Reads an 8-bit (1-byte) char from the file and advances the file pointer.  
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of Char, the missing bytes are assumed to be zero.  
@@ -1627,7 +1629,7 @@ class File extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadUChar()`}  
-     * Reads an 8-bit (1 byte) unsigned char from the file and advances the file pointer.  
+     * Reads an 8-bit (1-byte) unsigned char from the file and advances the file pointer.  
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of UChar, the missing bytes are assumed to be zero.  
@@ -1641,7 +1643,7 @@ class File extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadDouble()`}  
-     * Reads a 64-bit (8 byte) floating point number from the file and advances the file pointer.  
+     * Reads a 64-bit (8-byte) floating point number from the file and advances the file pointer.  
      * @returns {(Float|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of Double, the missing bytes are assumed to be zero.  
@@ -1655,7 +1657,7 @@ class File extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadFloat()`}  
-     * Reads a 32-bit (4 byte) floating point number from the file and advances the file pointer.  
+     * Reads a 32-bit (4-byte) floating point number from the file and advances the file pointer.  
      * @returns {(Float|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of Float, the missing bytes are assumed to be zero.  
@@ -1669,7 +1671,7 @@ class File extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteUInt()`}  
-     * Writes a 32-bit (4 byte) unsigned integer to the file and advances the file pointer.  
+     * Writes a 32-bit (4-byte) unsigned integer to the file and advances the file pointer.  
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1682,7 +1684,7 @@ class File extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteInt()`}  
-     * Writes a 32-bit (4 byte) integer to the file and advances the file pointer.  
+     * Writes a 32-bit (4-byte) integer to the file and advances the file pointer.  
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1695,7 +1697,7 @@ class File extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteInt64()`}  
-     * Writes a 64-bit (8 byte) integer to the file and advances the file pointer.  
+     * Writes a 64-bit (8-byte) integer to the file and advances the file pointer.  
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1708,7 +1710,7 @@ class File extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteShort()`}  
-     * Writes a 16-bit (2 byte) short integer to the file and advances the file pointer.  
+     * Writes a 16-bit (2-byte) short integer to the file and advances the file pointer.  
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1721,7 +1723,7 @@ class File extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteUShort()`}  
-     * Writes a 16-bit (2 byte) unsigned short integer to the file and advances the file pointer.  
+     * Writes a 16-bit (2-byte) unsigned short integer to the file and advances the file pointer.  
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1734,7 +1736,7 @@ class File extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteChar()`}  
-     * Writes an 8-bit (1 byte) char to the file and advances the file pointer.  
+     * Writes an 8-bit (1-byte) char to the file and advances the file pointer.  
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1747,11 +1749,11 @@ class File extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteUChar()`}  
-     * Writes an 8-bit (1 byte) unsigned char to the file and advances the file pointer.  
+     * Writes an 8-bit (1-byte) unsigned char to the file and advances the file pointer.  
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
-     * Writing a 8-bit unsigned integer to the start of a file.</caption>
+     * Writing an 8-bit unsigned integer to the start of a file.</caption>
      * fob := FileOpen('c:\some\path\test.bin', 'rw')
      * num := fob.WriteUChar(-42)
      * fob.Close()
@@ -1760,7 +1762,7 @@ class File extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteDouble()`}  
-     * Writes a 64-bit (8 byte) floating point number to the file and advances the file pointer.  
+     * Writes a 64-bit (8-byte) floating point number to the file and advances the file pointer.  
      * @returns {(Number)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1773,7 +1775,7 @@ class File extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteFloat()`}  
-     * Writes a 32-bit (4 byte) floating point number to the file and advances the file pointer.  
+     * Writes a 32-bit (4-byte) floating point number to the file and advances the file pointer.  
      * @returns {(Number)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1794,7 +1796,7 @@ class File extends Object {
      * This parameter is optional if Buffer is an object.  
      * @returns {(Integer)}  
      * Number of bytes that were read.  
-     * @throws {Error} - If bytes exceeds the size of the buffer.  
+     * @throws {Error} - If bytes exceed the size of the buffer.  
      * @example <caption>  
      * Getting the first 64 bytes of data from a file.</caption>
      * fob := FileOpen('c:\some\path\test.bin', 'r')
@@ -1814,7 +1816,7 @@ class File extends Object {
      * This parameter is optional if Buffer is an object or a string.  
      * @returns {(Integer)}  
      * Number of bytes that were read.  
-     * @throws {Error} - If bytes exceeds the size of the buffer.  
+     * @throws {Error} - If bytes exceed the size of the buffer.  
      * @example <caption>  
      * Writing binary data to a file.</caption>
      * fob := FileOpen('c:\some\path\test.bin', 'rw')
@@ -1904,10 +1906,10 @@ class Func extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#IsVariadic|`IsVariadic`}  
      * Is set to 1 if the function is {@link https://www.autohotkey.com/docs/v2/Functions.htm#Variadic|variadic}, otherwise 0.  
-     * Only the last parameter of a function can be variadiac.
+     * Only the last parameter of a function can be variadic.
      * @type {(Integer)}
      * @example <caption>  
-     * Check if the last parameter is variadiac.</caption>
+     * Check if the last parameter is variadic.</caption>
      * if my_func.IsVariadic
      *     MsgBox('The last parameter of this function is variadic.')
      *  
@@ -2116,8 +2118,8 @@ class Closure extends Func {
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|`Enumerator`}  
- * An type of {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} called to enumerate through each value of an object.  
- * They are primarily used by {@link https://www.autohotkey.com/docs/v2/lib/For.htm|For-loops} and are not usually called directly.  
+ * A type of {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} called to enumerate through each value of an object.  
+ * They are primarily used by {@link https://www.autohotkey.com/docs/v2/lib/For.htm|for-loops} and are not usually called directly.  
  * @example <caption>  
  * Different ways to use enumerators</caption>
  * arr := ['a', 'b', 'c']
@@ -2141,11 +2143,11 @@ class Enumerator extends Func {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm#Call|`Enumerator()`}  
      * @param {(VarRef)} OutputVar1  
-     * Variable reference to receive a value dependant on the type of enumerator:  
+     * Variable reference to receive a value dependent on the type of enumerator:  
      * - `__Enum(1)` - OutputVar1 receives the value of each element.  
      * - `__Enum(2)` - OutputVar1 receives the value identifier (key/index/etc) of each element.  
      * @param {(VarRef)} [OutputVar2]  
-     * Variable reference to receive a value dependant on the type of enumerator:  
+     * Variable reference to receive a value dependent on the type of enumerator:  
      * - `__Enum(1)` - OutputVar2 receives nothing and must be omitted.  
      * - `__Enum(2)` - OutputVar2 receives the value of each element.  
      * @returns {(Boolean)}  
@@ -2706,12 +2708,14 @@ class Gui extends Object {
          * If Gui.SetFont() has not been set, the system default values are used.
          * @param {(String)} [Options]  
          * Zero or more options separated by spaces.  
-         * Styling words. These are executed in order so specifying `norm italic` would reset the text to normal and then italicize it.  
+         * Styling words are applied in order.  
+         * `norm italic` would disable all options and apply only italics  
          * - `bold` - Adds a heavy weight/boldness to text.  
          * - `italic` - Italicizes text.  
          * - `strike` - Strikes out text by adding a horizontal line through it.  
          * - `underline` - Underlines text.  
-         * - `norm`- Disables all aforementioned settings. It is possible to use norm to turn off all attributes and then selectively turn on others. For example, specifying norm italic would set the font to normal then to italic.  
+         * - `norm`- Disables all aforementioned settings.  
+         * 
          * Other options:  
          * - `C#`: Set text color where `#` is one of the following:  
          *   - RGB hex value (0x prefix is optional):  
@@ -2847,7 +2851,7 @@ class Gui extends Object {
          *     - `RightClicked`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependant (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -3034,7 +3038,7 @@ class Gui extends Object {
          *     - `RightClicked`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependant (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -3237,7 +3241,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`}  
          * The formatted text of the control.  
-         * To change the date-time, set the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|Value property} with a new date-time stampe in {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|YYYYMMDDHH24MISS} format.
+         * To change the date-time, set the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|Value property} with a new date-time stamp in {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|YYYYMMDDHH24MISS} format.
          * @type {(String)}
          * @example <caption>  
          * </caption>
@@ -3282,7 +3286,7 @@ class Gui extends Object {
          *     - `RightClicked`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependant (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -3309,7 +3313,7 @@ class Gui extends Object {
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
-         * - `Choose`: Pre-selects a date or time other than the current date/time.  
+         * - `Choose`: Pre-select a date or time other than the current date/time.  
          *   Choose should be followed by a DTS in {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|YYYYMMDDHHMISS format}`.  
          *   When setting the time, the full date and time must be provided.  
          *   `ChooseNone` adds a checkbox to toggle usable state (similar to a checkbox greycheck).  
@@ -3424,8 +3428,8 @@ class Gui extends Object {
          *   ShortDate is used if DateFormat is omitted or is an empty string  
          * - `LongDate`: Locale long date format. Example: Wednesday, June 01, 2005  
          * - `Time`: Shows locale time only. Example: 9:37:45 PM  
-         *   The date is still present in the control even thought it's not shown.  
-         *   It  will be retrieved along with the time in the YYYYMMDDHH24MISS format.  
+         *   The date is still present in the control even though it's not shown.  
+         *   It will be retrieved along with the time in the YYYYMMDDHH24MISS format.  
          * - `Custom`: Any combination of {@link https://www.autohotkey.com/docs/v2/lib/FormatTime.htm|date and time formats}.  
          * @param {String} [Format] - Sets the display format of a DateTime control.  
          * @returns {(String)}  
@@ -3490,7 +3494,7 @@ class Gui extends Object {
          *     - `RightClicked`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependant (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -3679,7 +3683,7 @@ class Gui extends Object {
          *     - `RightClicked`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependant (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -3830,7 +3834,7 @@ class Gui extends Object {
          *     - `RightClicked`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependant (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -4001,7 +4005,7 @@ class Gui extends Object {
          *     - `RightClicked`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependant (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -4137,12 +4141,12 @@ class Gui extends Object {
         
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`}  
-         * Selects an item in a multi-item control (ListBox, DropDownList, ComboBox, or Tab).  
+         * Select an item in a multi-item control (ListBox, DropDownList, ComboBox, or Tab).  
          * Unlike One of the following event(s). Expected callback format is included. event.  
          * @param {(Integer|String)} Value  
          * Specify the number of the item. 1 for first item, 2 for second.  
-         * If value is a `0` or `EmptyString`, any selected value is deselected.  
-         * If Value is a string (including a numeric string), the list item that matches the most leading characters is selected. This search is not case sensitive.  
+         * If Value is a `0` or `EmptyString`, any selected value is deselected.  
+         * If Value is a string (including a numeric string), the list item that matches the most leading characters is selected. This search is not case-sensitive.  
          * If the ListBox is multi-select, all matching items are selected.  
          * @returns {(String)}  
          * An empty string is always returned.  
@@ -4172,7 +4176,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`}  
          * The text of the selected item or the text of the item to select (case insensitive).
-         * If no item selected,the control's edit field is retrieved instead.  
+         * If no item selected, the control's edit field is retrieved instead.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|Value} property to select an item by its position number.  
          * @type {(String)}
          */
@@ -4193,7 +4197,7 @@ class Gui extends Object {
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`}  
          * Appends the specified entries to the control.  
          * @param {(Array)} Items  
-         * An array of strings to appened to the list.  
+         * An array of strings to append to the list.  
          * To replace the list with a new one, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|Delete()} method first and then add the list.  
          * To pre-select an item, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|Choose()} method.  
          * @returns {(String)}  
@@ -4213,8 +4217,8 @@ class Gui extends Object {
          * Sets a value from the ComboBox to selected.  
          * @param {(Integer|String)} Value  
          * Specify the number of the item. 1 for first item, 2 for second.  
-         * If value is a `0` or `EmptyString`, any selected value is deselected.  
-         * If Value is a string (including a numeric string), the list item that matches the most leading characters is selected. This search is not case sensitive.  
+         * If Value is a `0` or `EmptyString`, any selected value is deselected.  
+         * If Value is a string (including a numeric string), the list item that matches the most leading characters is selected. This search is not case-sensitive.  
          * @returns {(String)}  
          * An empty string is always returned.  
          */
@@ -4263,7 +4267,7 @@ class Gui extends Object {
          *     - `RightClicked`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependant (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -4290,7 +4294,7 @@ class Gui extends Object {
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
-         * - `Choose#`: Pre-selects an item where `#` is the line number of the item.  
+         * - `Choose#`: Pre-select an item where `#` is the line number of the item.  
          * - `Uppercase` or `Lowercase`: Converts all items in the list to uppercase or lowercase.  
          * - `Sort`: Item list is sorted alphabetically. This option also enables incremental searching.  
          *   Meaning an item can be selected by typing its name.  
@@ -4419,7 +4423,7 @@ class Gui extends Object {
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`}  
          * Appends the specified entries to the DropDownList.  
          * @param {(Array)} Items  
-         * An array of strings to appened to the list.  
+         * An array of strings to append to the list.  
          * To replace the list with a new one, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|Delete()} method first and then add the list.  
          * To pre-select an item, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|Choose()} method.  
          * @returns {(String)}  
@@ -4439,8 +4443,8 @@ class Gui extends Object {
          * Sets a value from the DropDownList to selected.  
          * @param {(Integer|String)} Value  
          * Specify the number of the item. 1 for first item, 2 for second.  
-         * If value is a `0` or `EmptyString`, any selected value is deselected.  
-         * If Value is a string (including a numeric string), the list item that matches the most leading characters is selected. This search is not case sensitive.  
+         * If Value is a `0` or `EmptyString`, any selected value is deselected.  
+         * If Value is a string (including a numeric string), the list item that matches the most leading characters is selected. This search is not case-sensitive.  
          * @returns {(String)}  
          * An empty string is always returned.  
          * @example <caption>  
@@ -4491,7 +4495,7 @@ class Gui extends Object {
          *     - `RightClicked`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependant (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -4518,7 +4522,7 @@ class Gui extends Object {
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
-         * - `Choose#`: Pre-selects an item where `#` is the line number of the item.  
+         * - `Choose#`: Pre-select an item where `#` is the line number of the item.  
          * - `Uppercase` or `Lowercase`: Converts all items in the list to uppercase or lowercase.  
          * - `Sort`: Item list is sorted alphabetically. 
          * 
@@ -4565,7 +4569,7 @@ class Gui extends Object {
          *     | `Teal`    | `Aqua`    | `Navy`    | `Blue`    |
          *     
          *   - Reset/Default: `CDefault` or `C`  
-         *   Text color does not apply to the dropped down list.  
+         *   Text color does not apply to the dropped-down list.  
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
@@ -4597,7 +4601,7 @@ class Gui extends Object {
          *     | `Teal`    | `Aqua`    | `Navy`    | `Blue`    |
          *     
          *   - Reset/Default: `BackgroundDefault` or `-Background`  
-         *   Background color does not apply to the dropped down list.  
+         *   Background color does not apply to the dropped-down list.  
          * - `Border`: Provides a thin-line border around the control. Adding a border to an  
          *   existing control might require increasing the control's width and height by 1 pixel.  
          * - `Redraw`: Enable/disable redrawing (visual updates) of a control (Uses: {@link https://learn.microsoft.com/en-us/windows/win32/gdi/wm-setredraw|WM_SETREDRAW}).  
@@ -4644,7 +4648,7 @@ class Gui extends Object {
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`}  
          * Appends the specified entries to the DropDownList.  
          * @param {(Array)} Items  
-         * An array of strings to appened to the list.  
+         * An array of strings to append to the list.  
          * To replace the list with a new one, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|Delete()} method first and then add the list.  
          * To pre-select an item, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|Choose()} method.  
          * @returns {(String)}  
@@ -4664,8 +4668,8 @@ class Gui extends Object {
          * Sets a value from the DropDownList to selected.  
          * @param {(Integer|String)} Value  
          * Specify the number of the item. 1 for first item, 2 for second.  
-         * If value is a `0` or `EmptyString`, any selected value is deselected.  
-         * If Value is a string (including a numeric string), the list item that matches the most leading characters is selected. This search is not case sensitive.  
+         * If Value is a `0` or `EmptyString`, any selected value is deselected.  
+         * If Value is a string (including a numeric string), the list item that matches the most leading characters is selected. This search is not case-sensitive.  
          * @returns {(String)}  
          * An empty string is always returned.  
          * @example <caption>  
@@ -4716,7 +4720,7 @@ class Gui extends Object {
          *     - `RightClicked`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependant (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -4743,7 +4747,7 @@ class Gui extends Object {
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
-         * - `Choose#`: Pre-selects an item where `#` is the line number of the item.  
+         * - `Choose#`: Pre-select an item where `#` is the line number of the item.  
          * - `Uppercase` or `Lowercase`: Converts all items in the list to uppercase or lowercase.  
          * - `Sort`: Item list is sorted alphabetically. 
          * 
@@ -4790,7 +4794,7 @@ class Gui extends Object {
          *     | `Teal`    | `Aqua`    | `Navy`    | `Blue`    |
          *     
          *   - Reset/Default: `CDefault` or `C`  
-         *   Text color does not apply to the dropped down list.  
+         *   Text color does not apply to the dropped-down list.  
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
          *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
@@ -4822,7 +4826,7 @@ class Gui extends Object {
          *     | `Teal`    | `Aqua`    | `Navy`    | `Blue`    |
          *     
          *   - Reset/Default: `BackgroundDefault` or `-Background`  
-         *   Background color does not apply to the dropped down list.  
+         *   Background color does not apply to the dropped-down list.  
          * - `Border`: Provides a thin-line border around the control. Adding a border to an  
          *   existing control might require increasing the control's width and height by 1 pixel.  
          * - `Redraw`: Enable/disable redrawing (visual updates) of a control (Uses: {@link https://learn.microsoft.com/en-us/windows/win32/gdi/wm-setredraw|WM_SETREDRAW}).  
@@ -4872,7 +4876,7 @@ class Gui extends Object {
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`}  
          * Appends the specified entries to the control.  
          * @param {(Array)} Items  
-         * An array of strings to appened to the list.  
+         * An array of strings to append to the list.  
          * To replace the list with a new one, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|Delete()} method first and then add the list.  
          * To pre-select an item, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|Choose()} method.  
          * @returns {(String)}  
@@ -4895,11 +4899,11 @@ class Gui extends Object {
     
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`}  
-         * Selects an item in a multi-item control.
+         * Select an item in a multi-item control.
          * @param {(Integer|String)} Value  
          * Specify the number of the item. 1 for first item, 2 for second.  
-         * If value is a `0` or `EmptyString`, any selected value is deselected.  
-         * If Value is a string (including a numeric string), the list item that matches the most leading characters is selected. This search is not case sensitive.  
+         * If Value is a `0` or `EmptyString`, any selected value is deselected.  
+         * If Value is a string (including a numeric string), the list item that matches the most leading characters is selected. This search is not case-sensitive.  
          * If the ListBox is multi-select, all matching items are selected.  
          * {@link https://www.autohotkey.com/docs/v2/lib/PostMessage.htm|PostMessage()} can be used to select or deselect all items. See {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose_Remarks|example}.  
          * @returns {(String)}  
@@ -4968,12 +4972,12 @@ class Gui extends Object {
          *     - `Info`: Position number of the focused item on double click  
          *     - `ItemPos`: Position number of the focused item  
          *     - `Item`: Position number of current focused item  
-         *       Right clicking a standard ListBox does not focus an item  
+         *       Right-clicking a standard ListBox does not focus an item  
          *       Meaning this may not be the clicked item  
          *     - `RightClicked`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependant (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -5000,7 +5004,7 @@ class Gui extends Object {
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
-         * - `Choose#`: Pre-selects an item where `#` is the line number of the item.  
+         * - `Choose#`: Pre-select an item where `#` is the line number of the item.  
          * - `Multi`: Multiple items can be selected via Ctrl+Clicking and Shift+Clicking.  
          *   Using Style `+0x8` {@link https://learn.microsoft.com/en-us/windows/win32/controls/list-box-styles#LBS_MULTIPLESEL|LBS_MULTIPLESEL}`, item highlighting is toggled on clicked.  
          * - `ReadOnly`: Items will not be visibly highlighted when selected but still register  
@@ -5010,7 +5014,7 @@ class Gui extends Object {
          * - `T#`: Sets each tab's distance, where `#` is number of dialogue units (a unit determined by the OS) to use.  
          *   If one tab stop is set, that distance is used between all tabs.  
          *   If multiple tab stops are set, each marks the distance the corresponding tab will extend to.  
-         * - `0x100`: Adds the {@link https://www.autohotkey.com/docs/v2/misc/Styles.htm#LBS_NOINTEGRALHEIGHT|LBS_NOINTEGRALHEIGHT}` style to the listbox, preventing a partial  
+         * - `0x100`: Adds the {@link https://www.autohotkey.com/docs/v2/misc/Styles.htm#LBS_NOINTEGRALHEIGHT|LBS_NOINTEGRALHEIGHT}` style to the ListBox, preventing a partial  
          *   row from appearing at the bottom and from shrinking when the font is changed.  
          * 
          * **Positioning and Sizing of Controls**  
@@ -5133,7 +5137,7 @@ class Gui extends Object {
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`}  
          * Appends the specified tabs to the control.  
          * @param {(Array)} Items  
-         * An array of strings to appened to the tabs.  
+         * An array of strings to append to the tabs.  
          * To replace the list with a new one, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|Delete()} method first and then add the list.  
          * To pre-select an item, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|Choose()} method.  
          * @returns {(String)}  
@@ -5150,11 +5154,11 @@ class Gui extends Object {
     
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`}  
-         * Selects a tab.  
+         * Select a tab.  
          * @param {(Integer|String)} Value  
          * Specify the number of the item. 1 for first item, 2 for second.  
-         * If value is a `0` or `EmptyString`, any selected value is deselected.  
-         * If Value is a string (including a numeric string), the list item that matches the most leading characters is selected. This search is not case sensitive.  
+         * If Value is a `0` or `EmptyString`, any selected value is deselected.  
+         * If Value is a string (including a numeric string), the list item that matches the most leading characters is selected. This search is not case-sensitive.  
          * {@link https://www.autohotkey.com/docs/v2/lib/PostMessage.htm|PostMessage()} can be used to select or deselect all items. See example.  
          * @returns {(String)}  
          * An empty string is always returned.  
@@ -5219,7 +5223,7 @@ class Gui extends Object {
          *     - `RightClicked`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependant (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -5246,13 +5250,13 @@ class Gui extends Object {
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
-         * - `Choose#`: Pre-selects a Tab where `#` is the tab's positional number.  
+         * - `Choose#`: Pre-select a Tab where `#` is the tab's positional number.  
          * - `Buttons`: The Tabs are replaced with clickable buttons. 
          * - `Left`/`Right`/`Bottom`: Specify the side of the control to show the tabs.  
          *   See {@link https://www.autohotkey.com/docs/v2/misc/Styles.htm#TCS_VERTICAL|TCS_VERTICAL}` for Left/Right limitations.  
          * - `Wrap`: Specify `-Wrap` to keep all tabs on a single row. Scroll buttons are added if there are too many tabs.  
          *   If there are too many tabs, scroll buttons are added to navigate through them.  
-         * - `Tab Icons`: Icons may be added next to tab's via {@link https://www.autohotkey.com/docs/v2/lib/SendMessage.htm|SendMessage}` as demonstrated in {@link https://www.autohotkey.com/board/topic/5692-icons-in-tabs/|this post}`.  
+         * - `Tab Icons`: Icons may be added next to tabs via {@link https://www.autohotkey.com/docs/v2/lib/SendMessage.htm|SendMessage}` as demonstrated in {@link https://www.autohotkey.com/board/topic/5692-icons-in-tabs/|this post}`.  
          *  
          * **Positioning and Sizing of Controls**  
          * - `R#`: Max amount of items to show in the control list without needing to scroll,  
@@ -5455,7 +5459,7 @@ class Gui extends Object {
          * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#GetNext|`GetNext()`}  
          * Returns the row number of the next selected, checked, or focused row.  
          * @param {(Integer)} StartingRowNumber  
-         * The number of the row to being the search.  
+         * The number of the row to begin the search.  
          * If omitted or less than 1, search starts at top of list.  
          * @param {(String)} RowType  
          * - Omit or Empty String 
@@ -5616,20 +5620,61 @@ class Gui extends Object {
         
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#ModifyCol|`ModifyCol()`}  
-         * Modifies Stringthe attributes and/or text of the specified column and its header.  
+         * Modifies the attributes and/or text of the specified column and its header.  
+         * If all params are omitted, all columns are auto-adjusted to fit contents.  
          * @param {(Integer)} [ColumnNumber]  
          * The number of the column to modify.  
-         * If all parameters are omitted, all columns adjust width to fit contents.  
          * @param {(String)} [Options]  
+         * **General options**  
+         *   - `#` = New column width where `#` is the number of pixels.
+         *     This can be a pure number if it's the only option.  
+         *   - `Auto` = Adjust column width to fit contents. 
+         *     Only works in {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#View|Report view mode}.  
+         *   - `AutoHdr` = Adjust column width to fit contents, including the header.  
+         *     Only works in {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#View|Report view mode}.  
+         *   - `Icon#` = Display icon next to column header, where `#` is the icon numberr of the {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL|ImageList}.  
+         *   - `IconRight` = Icon is displayed on the right side of the column.
+         * 
+         * **Column data type**  
+         *   - `Text` = Text-mode sorting, which is the initial default for every column. 
+         *     Only the first 8190 characters are used when sorting (4094 if using Logical).  
+         *     Text can perform up to x25 slower than Integer.  
+         *   - `Integer` = Contains decimal or hexadecimal integers.  
+         *     Non-integer values are considered 0 when sorting.  
+         *   - `Float` = Contains floating point numbers.  
+         *     Float can perform up to x25 slower than Integer.  
+         * 
+         * **Alignment**  
+         * Alignment should come after data type
+         *   - `Center` = Centers the text in the column. 
+         *   - `Left` = Left-aligns the column's text.  
+         *     Default for Text.  
+         *   - `Right` = Right-aligns the column's text.  
+         *     Default for Integer and Float.  
+         This attribute need not be specified for Integer and Float columns 
+         because they are right-aligned by default. 
+         That default can be overridden by specifying something such as "Integer Left" 
+         or "Float Center".
+         * 
+         * **Sorting**  
+         *   - `Case` = The sorting of the column is case-sensitive (affects only text columns). If the options Case, CaseLocale, and Logical are all omitted, the uppercase letters A-Z are considered identical to their lowercase counterparts for the purpose of the sort.
+         *   - `CaseLocale` = The sorting of the column is case-insensitive based on the current user's locale (affects only text columns). For example, most English and Western European locales treat the letters A-Z and ANSI letters like Ä and Ü as identical to their lowercase counterparts. This method also uses a "word sort", which treats hyphens and apostrophes in such a way that words like "coop" and "co-op" stay together.
+         *   - `Desc` = Descending order. The column starts off in descending order the first time the user sorts it.
+         *   - `Logical` = Same as CaseLocale except that any sequences of digits in the text are treated as true numbers rather than mere characters. For example, the string "T33" would be considered greater than "T4". Logical and Case are currently mutually exclusive: only the one most recently specified will be in effect.
+         *   - `NoSort` = Prevents a user's click on this column from having any automatic sorting effect. However, the ColClick event is still raised, so the script can respond with a custom sort or other action. To disable sorting for all columns rather than only a subset, include NoSort in the ListView's options.
+         *   - `Sort` = Immediately sorts the column in ascending order (even if it has the Desc option).
+         *   - `SortDesc` = Immediately sorts the column in descending order.
+         *   - `Uni` = Unidirectional sort. This prevents a second click on the same column from reversing the sort direction.
          * 
          * @param {(String)} [ColumnTitle]  
-         * 
+         * The new header of the column.  
+         * If omitted, the header is left unchanged.  
          * @returns {()}  
          * @see  
          * @example <caption>  
          * </caption>
          */
-        ModifyCol([ColumnNumber, Options, ColumnTitle]) => String
+        ModifyCol([ColumnNumber:=unset, Options:=unset, ColumnTitle:=unset]) => String
         
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
@@ -5770,7 +5815,6 @@ class Gui extends Object {
          * - `Report`: Switches back to report view, which is the initial default. For example: LV.Opt("+Report").  
          * 
          * **Positioning and Sizing of Controls**  
-         * - speical row info
          * - `W#` or `H#`: Width or Height where `#` is a number of pixels.  
          *    If omitted, width is calculated automatically.  
          * - `WP+#` or `HP+#`: Use previous control's width `WP` or height `HP`.  
@@ -6416,7 +6460,7 @@ class Gui extends Object {
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
-         * - `C#`: Sets the color of the mian bar where `#` is one of the following:  
+         * - `C#`: Sets the color of the main bar where `#` is one of the following:  
          *   - RGB hex value (0x prefix is optional):  
          *     `C0x000000` to `CFFffFF`  
          *   - {@link https://www.autohotkey.com/docs/v2/misc/Colors.htm|Valid Color Name}:  
@@ -6779,7 +6823,7 @@ class Gui extends Object {
          *         GuiControl.Opt('+VMyControl')  
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
-         * - `AltSubmit`: While dragging the slider (thumb), the {@link |`change event`} fires continuously.  
+         * - `AltSubmit`: While dragging the slider (thumb), the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`change event`} fires continuously.  
          *   Normally, the change event only fires on mouse release.  
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
          *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
@@ -7245,7 +7289,7 @@ class Gui extends Object {
          * - `ImageList#`: Add icons to a TreeView where `#` is the {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL|ImageListID}` returned from a previous call to {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL_Create|IL_Create()}`.  
          *   This option can only be used when creating a TreeView. Use {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#SetImageList|SetImageList()}`.  
          * - `Lines`: Specify `-Lines` disables the connecting lines between parents and children.  
-         *   This also prevents the `+` and `-` buttons from being shown for top-level items.  zzz
+         *   This also prevents the `+` and `-` buttons from being shown for top-level items.  
          * - `ReadOnly`: Specify `-ReadOnly` to allow the editing of each item.  
          *   The items can be edited with F2 (see {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#WantF2|WantF2}) or by clicking the label,  
          *   waiting a brief moment, then clicking again.  
@@ -7485,7 +7529,7 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#BackColor|`BackColor`}  
      * Retrieves or sets the background color of the window.  
-     * When setting backcolor, a string or number can be used:
+     * When setting BackColor, a string or number can be used:
      *   - Hex value: String or number. `0x000000` to `0xFFFFFF`.  
      *     If value is a string, the 0x prefix is optional.  
      *   - {@link https://www.autohotkey.com/docs/v2/misc/Colors.htm|Color name}`: Black, Silver, Gray, White, Maroon, Red, Purple, Fuchsia, Green, Lime, Olive, Yellow, Navy, Blue, Teal, Aqua
@@ -8291,7 +8335,7 @@ class Gui extends Object {
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options separated by spaces/tabs.  
      * **Control Specific Options**  
-     * - `Choose`: Pre-selects a date or time other than the current date/time.  
+     * - `Choose`: Pre-select a date or time other than the current date/time.  
      *   Choose should be followed by a DTS in {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|YYYYMMDDHHMISS format}`.  
      *   When setting the time, the full date and time must be provided.  
      *   `ChooseNone` adds a checkbox to toggle usable state (similar to a checkbox greycheck).  
@@ -8395,8 +8439,8 @@ class Gui extends Object {
      * - `ShortDate`: Locale short date format. Example: 6/1/2005  
      * - `LongDate`: Locale long date format. Example: Wednesday, June 01, 2005  
      * - `Time`: Shows locale time only. Example: 9:37:45 PM  
-     *   The date is still present in the control even thought it's not shown.  
-     *   It  will be retrieved along with the time in the YYYYMMDDHH24MISS format.  
+     *   The date is still present in the control even though it's not shown.  
+     *   It will be retrieved along with the time in the YYYYMMDDHH24MISS format.  
      * - `Custom`: Any combination of {@link https://www.autohotkey.com/docs/v2/lib/FormatTime.htm|date and time formats}`.  
      * @returns {(Gui.DateTime)}  
      * DateTime Control Object
@@ -8875,7 +8919,7 @@ class Gui extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddListView()`}  
-     * Adds an elbaorate control that handles  
+     * Adds an elaborate control that handles  
      * rows and columns of information in a grid. Similar to Windows Explorer in Detail View mode.  
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
@@ -8935,7 +8979,6 @@ class Gui extends Object {
      * - `Report`: Switches back to report view, which is the initial default. For example: LV.Opt("+Report").  
      * 
      * **Positioning and Sizing of Controls**  
-     * - speical row info
      * - `W#` or `H#`: Width or Height where `#` is a number of pixels.  
      *    If omitted, width is calculated automatically.  
      * - `WP+#` or `HP+#`: Use previous control's width `WP` or height `HP`.  
@@ -9348,7 +9391,7 @@ class Gui extends Object {
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
-     * - `C#`: Sets the color of the mian bar where `#` is one of the following:  
+     * - `C#`: Sets the color of the main bar where `#` is one of the following:  
      *   - RGB hex value (0x prefix is optional):  
      *     `C0x000000` to `CFFffFF`  
      *   - {@link https://www.autohotkey.com/docs/v2/misc/Colors.htm|Valid Color Name}:  
@@ -9406,7 +9449,7 @@ class Gui extends Object {
      * @returns {(Gui.Progress)}  
      * Progress Control Object
      * @example <caption>  
-     * Using a Progress Bar to simluate a loading bar.</caption>
+     * Using a Progress Bar to simulate a loading bar.</caption>
      * goo := Gui()
      * goo.btn := goo.AddButton('xm ym w100 h30 Center', 'Start')
      * goo.btn.OnEvent('Click', btn_click)
@@ -9599,7 +9642,7 @@ class Gui extends Object {
      *         GuiControl.Opt('+VMyControl')  
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
-     * - `AltSubmit`: While dragging the slider (thumb), the {@link |`change event`} fires continuously.  
+     * - `AltSubmit`: While dragging the slider (thumb), the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`change event`} fires continuously.  
      *   Normally, the change event only fires on mouse release.  
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
@@ -9881,7 +9924,7 @@ class Gui extends Object {
      * - `ImageList#`: Add icons to a TreeView where `#` is the {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL|ImageListID}` returned from a previous call to {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL_Create|IL_Create()}`.  
      *   This option can only be used when creating a TreeView. Use {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#SetImageList|SetImageList()}`.  
      * - `Lines`: Specify `-Lines` disables the connecting lines between parents and children.  
-     *   This also prevents the `+` and `-` buttons from being shown for top-level items.  zzz
+     *   This also prevents the `+` and `-` buttons from being shown for top-level items.  
      * - `ReadOnly`: Specify `-ReadOnly` to allow the editing of each item.  
      *   The items can be edited with F2 (see {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#WantF2|WantF2}) or by clicking the label,  
      *   waiting a brief moment, then clicking again.  
@@ -10098,7 +10141,7 @@ class Gui extends Object {
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
-     * - `Choose#`: Pre-selects an item where `#` is the line number of the item.  
+     * - `Choose#`: Pre-select an item where `#` is the line number of the item.  
      * - `Uppercase` or `Lowercase`: Converts all items in the list to uppercase or lowercase.  
      * - `Sort`: Item list is sorted alphabetically. This option also enables incremental searching.  
      *   Meaning an item can be selected by typing its name.  
@@ -10218,7 +10261,7 @@ class Gui extends Object {
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
-     * - `Choose#`: Pre-selects an item where `#` is the line number of the item.  
+     * - `Choose#`: Pre-select an item where `#` is the line number of the item.  
      * - `Uppercase` or `Lowercase`: Converts all items in the list to uppercase or lowercase.  
      * - `Sort`: Item list is sorted alphabetically. 
      * 
@@ -10265,7 +10308,7 @@ class Gui extends Object {
      *     | `Teal`    | `Aqua`    | `Navy`    | `Blue`    |
      *     
      *   - Reset/Default: `CDefault` or `C`  
-     *   Text color does not apply to the dropped down list.  
+     *   Text color does not apply to the dropped-down list.  
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
@@ -10297,7 +10340,7 @@ class Gui extends Object {
      *     | `Teal`    | `Aqua`    | `Navy`    | `Blue`    |
      *     
      *   - Reset/Default: `BackgroundDefault` or `-Background`  
-     *   Background color does not apply to the dropped down list.  
+     *   Background color does not apply to the dropped-down list.  
      * - `Border`: Provides a thin-line border around the control. Adding a border to an  
      *   existing control might require increasing the control's width and height by 1 pixel.  
      * - `Redraw`: Enable/disable redrawing (visual updates) of a control (Uses: {@link https://learn.microsoft.com/en-us/windows/win32/gdi/wm-setredraw|WM_SETREDRAW}).  
@@ -10336,7 +10379,7 @@ class Gui extends Object {
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
-     * - `Choose#`: Pre-selects an item where `#` is the line number of the item.  
+     * - `Choose#`: Pre-select an item where `#` is the line number of the item.  
      * - `Uppercase` or `Lowercase`: Converts all items in the list to uppercase or lowercase.  
      * - `Sort`: Item list is sorted alphabetically. 
      * 
@@ -10383,7 +10426,7 @@ class Gui extends Object {
      *     | `Teal`    | `Aqua`    | `Navy`    | `Blue`    |
      *     
      *   - Reset/Default: `CDefault` or `C`  
-     *   Text color does not apply to the dropped down list.  
+     *   Text color does not apply to the dropped-down list.  
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
      *   Control can be enabled using `-Disabled` or setting {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|GuiCtrl.Enabled} to true.  
      *   A `0` for enabled or `1` for disabled can immediately follow `Disabled`.  
@@ -10415,7 +10458,7 @@ class Gui extends Object {
      *     | `Teal`    | `Aqua`    | `Navy`    | `Blue`    |
      *     
      *   - Reset/Default: `BackgroundDefault` or `-Background`  
-     *   Background color does not apply to the dropped down list.  
+     *   Background color does not apply to the dropped-down list.  
      * - `Border`: Provides a thin-line border around the control. Adding a border to an  
      *   existing control might require increasing the control's width and height by 1 pixel.  
      * - `Redraw`: Enable/disable redrawing (visual updates) of a control (Uses: {@link https://learn.microsoft.com/en-us/windows/win32/gdi/wm-setredraw|WM_SETREDRAW}).  
@@ -10455,7 +10498,7 @@ class Gui extends Object {
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
-     * - `Choose#`: Pre-selects an item where `#` is the line number of the item.  
+     * - `Choose#`: Pre-select an item where `#` is the line number of the item.  
      * - `Multi`: Multiple items can be selected via Ctrl+Clicking and Shift+Clicking.  
      *   Using Style `+0x8` {@link https://learn.microsoft.com/en-us/windows/win32/controls/list-box-styles#LBS_MULTIPLESEL|LBS_MULTIPLESEL}`, item highlighting is toggled on clicked.  
      * - `ReadOnly`: Items will not be visibly highlighted when selected but still register  
@@ -10465,7 +10508,7 @@ class Gui extends Object {
      * - `T#`: Sets each tab's distance, where `#` is number of dialogue units (a unit determined by the OS) to use.  
      *   If one tab stop is set, that distance is used between all tabs.  
      *   If multiple tab stops are set, each marks the distance the corresponding tab will extend to.  
-     * - `0x100`: Adds the {@link https://www.autohotkey.com/docs/v2/misc/Styles.htm#LBS_NOINTEGRALHEIGHT|LBS_NOINTEGRALHEIGHT}` style to the listbox, preventing a partial  
+     * - `0x100`: Adds the {@link https://www.autohotkey.com/docs/v2/misc/Styles.htm#LBS_NOINTEGRALHEIGHT|LBS_NOINTEGRALHEIGHT}` style to the ListBox, preventing a partial  
      *   row from appearing at the bottom and from shrinking when the font is changed.  
      * 
      * **Positioning and Sizing of Controls**  
@@ -10554,7 +10597,7 @@ class Gui extends Object {
      * - {@link https://learn.microsoft.com/en-us/windows/win32/winmsg/extended-window-styles|ExStyle Number} `+E0x0`: Specify a plus or minus sign  
      *   followed immediately by the letter E and a decimal or hexadecimal extended style number.  
      * @param {(Array)} [List]  
-     * Array of strings to populate the listbox.  
+     * Array of strings to populate the ListBox.  
      * @returns {(Gui.ListBox)}  
      * ListBox Control Object
      * @example <caption>  
@@ -10600,7 +10643,7 @@ class Gui extends Object {
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
-     * - `Choose#`: Pre-selects a Tab where `#` is the tab's positional number.  
+     * - `Choose#`: Pre-select a Tab where `#` is the tab's positional number.  
      * - `Buttons`: The Tabs are replaced with clickable buttons. 
      * - `Left`/`Right`/`Bottom`: Specify the side of the control to show the tabs.  
      *   See {@link https://www.autohotkey.com/docs/v2/misc/Styles.htm#TCS_VERTICAL|TCS_VERTICAL}` for Left/Right limitations.  
@@ -11070,12 +11113,14 @@ class Gui extends Object {
      * Sets the typeface, size, style, and text color for subsequently created controls.  
      * @param {(String)} [Options]  
      * Zero or more options separated by spaces.  
-     * Styling words. These are executed in order so specifying `norm italic` would reset the text to normal and then italicize it.  
+     * Styling words are applied in order.  
+     * `norm italic` would disable all options and apply only italics  
      * - `bold` - Adds a heavy weight/boldness to text.  
      * - `italic` - Italicizes text.  
      * - `strike` - Strikes out text by adding a horizontal line through it.  
      * - `underline` - Underlines text.  
-     * - `norm`- Disables all aforementioned settings. It is possible to use norm to turn off all attributes and then selectively turn on others. For example, specifying norm italic would set the font to normal then to italic.  
+     * - `norm`- Disables all aforementioned settings.
+     * 
      * Other options:  
      * - `C#`: Set text color where `#` is one of the following:  
      *   - RGB hex value (0x prefix is optional):  
@@ -11195,24 +11240,29 @@ class Gui extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#__Enum|`__Enum()`}  
-     * Creates an enumerator and allows the iteraiton of a Gui's controls.  
-     * Enumerators are usually used with for-loops and not called directly. Guis can be passed directly to a for-loop.  
+     * Creates an {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|enumerator object} that iterates through each control of the GUI.  
+     * This method is typically not called but instead is used by a {@link https://www.autohotkey.com/docs/v2/lib/For.htm|for-loop} to get each control and its index number.
+     * @returns {(Enumerator)}  
+     * Enumerable function object.  
+     * @see  
+     * {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|Enumerator Object}
      * @example <caption>  
      * For-looop through all controls using GUI enumerator.</caption>
+     * 
      * goo := Gui()
      * goo.text := goo.AddText('xm +Border', 'Basic text control')
      * goo.text.Name := 'TextControl'
      * goo.combo := goo.AddEdit('xm w100', 'Combo Box Text')
      * goo.combo.Name := 'EditControl'
-     * goo.ddl := goo.AddDDL('xm choose2', ['Apple', 'Banana', 'Cherry'])
+     * goo.ddl := goo.AddDDL('xm choose2 AltSubmit', ['Apple', 'Banana', 'Cherry'])
      * goo.ddl.Name := 'DDLControl'
      * goo.Show('y200 AutoSize')
      * 
      * str := 'Control Info'
-     * for hwnd, control in gu
+     * for hwnd, control in goo
      *     str .= '`n`nName: ' control.Name
      *         . '`nHandle: ' hwnd
-     *         . '`nValue: ' control.Value
+     *         . '`nText: ' control.Text
      * MsgBox(str)
      */
     __Enum() => Enumerator
@@ -11483,7 +11533,7 @@ class InputHook extends Object {
     VisibleText => Integer
 
     /**
-     * @description {@link |`Call()`}  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm|`Call()`}  
      * @param {(String)} [Options]  
      * A string of zero or more options, with optional spaces between:  
      * - `B` = Sets the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#BackspaceIsUndo|BackspaceIsUndo} property to `0`. Backspace is ignored. 
@@ -11752,31 +11802,35 @@ class Map extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#__Enum|`__Enum()`}  
-     * Enumerates a map's key-value pairs.  
-     * This is normally passed directly to a {@link https://www.autohotkey.com/docs/v2/lib/For.htm|for-loops}.  
-     * 
-     *     ; For-loops automatically call __Enum()
-     *     For key, value in some_map
-     *         MsgBox(key ': ' value)
+     * Creates an {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|enumerator object} that iterates through each key-value pair of the map.  
+     * This method is typically not called but instead is used by a {@link https://www.autohotkey.com/docs/v2/lib/For.htm|for-loop} to get each value and its index number.
      * @returns {(Enumerator)}  
-     * An enumerator object is returned.  
+     * Enumerable function object.  
+     * @see  
+     * {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|Enumerator Object}
      * @example <caption>  
-     * </caption>
+     * Manually using an enumerator.</caption>
+     * mapo := Map('v1.0', 'Good', 'v1.1', 'Great', 'v2.0', 'Best')
+     * 
+     * For key, value in mapo
+     *     MsgBox('key: ' key '`nvalue: ' value)
+     * 
+     * enum := mapo.__Enum()
+     * While enum(&key, &value)
+     *     MsgBox('Key: ' key '`nValue: ' value)
      */
     __Enum() => Enumerator
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#__Enum|`__Enum()`}  
-     * Enumerates a map's key-value pairs.  
-     * This is normally passed directly to a {@link https://www.autohotkey.com/docs/v2/lib/For.htm|for-loops}.  
-     * 
-     *     ; For-loops automatically call __Enum()
-     *     For key, value in some_map
-     *         MsgBox(key ': ' value)
-     * @returns {(Enumerator)}  
-     * An enumerator object is returned.  
-     * @example <caption>  
-     * </caption>
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#__New|`__New()`}  
+     * Sets items. Equivalent to {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Set|Set}.  
+     * This method exists to support {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Call|Call()}, and is not intended to be called directly.
+     * @param {(String|Integer|Object)} [KeyN]  
+     * The identifying key of the value.  
+     * Any number of `Key, Value,` pairs can be added.  
+     * @param {(Any)} [ValueN]  
+     * The value to associate with the key.  
+     * Any number of `Key, Value,` pairs can be added.  
      */
     __New([KeyN, ValueN*]) => Map
 }
@@ -12230,7 +12284,7 @@ class RegExMatchInfo extends Object {
     Mark => String
     
     /**
-     * @description {@link |`Match`}
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Match`}
      * Returns the overall match or a captured subpattern.
      * @param {(Integer|String)} [N]  
      * The number of a captured subpattern.  
@@ -12323,7 +12377,7 @@ Class String extends Primitive {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/String.htm|`String()`}  
      * Converts a value to string type.
      * @param {(String|Number|Object)} Value  
-     * Dependant on object type:  
+     * Dependent on object type:  
      * - `String` = No conversion happens.
      * - `Number` = Converted using {@link https://www.autohotkey.com/docs/v2/Concepts.htm#number-default-format|default decimal formatting}.  
      * - `Object` = Uses a user-defined `ToString()` method.  
@@ -12425,7 +12479,8 @@ class ComValue extends Any {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|`ComValue`}  
      * Wraps a value, SafeArray or COM object for use by the script or for passing to a COM method.
-     * @param {(Integer)} VarType - An integer to incidcate the {@link https://www.autohotkey.com/docs/v2/lib/ComObjType.htm#vt|type of value}.  
+     * @param {(Integer)} VarType  
+     * An integer to incidcate the {@link https://www.autohotkey.com/docs/v2/lib/ComObjType.htm#vt|type of value}.  
      * \- `0` VT_EMPTY = No value  
      * \- `1` VT_NULL = SQL-style Null  
      * \- `2` VT_I2 = 16-bit signed int  
@@ -12454,7 +12509,7 @@ class ComValue extends Any {
      * \- `0x4000` VT_BYREF = Pointer to another type of value  
      * @param {(Any)} Value - The value to wrap.  
      * @param {(Integer)} [Flags] - {@link https://www.autohotkey.com/docs/v2/lib/ComObjFlags.htm|Flags} affecting the behaviour of the wrapper object.  
-     * @see
+     * @see  
      * {@link https://www.autohotkey.com/docs/v2/lib/ComObjFromPtr.htm|ComObjFromPtr()},
      * {@link https://www.autohotkey.com/docs/v2/lib/ComObject.htm|ComObject()},
      * {@link https://www.autohotkey.com/docs/v2/lib/ComObjGet.htm|ComObjGet()},
@@ -12463,25 +12518,124 @@ class ComValue extends Any {
      * {@link https://www.autohotkey.com/docs/v2/lib/ObjAddRef.htm|ObjAddRef()/ObjRelease()},
      * {@link https://www.autohotkey.com/docs/v2/lib/ComObjQuery.htm|ComObjQuery()},
      * {@link https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-getactiveobject|GetActiveObject (Microsoft Docs)}
-     * @returns {()} 
+     * @returns {(Object)}  
+     * A wrapper object containing the {@link https://www.autohotkey.com/docs/v2/lib/ComObjType.htm#vt|variant type}
      */
     static Call(VarType, Value [,Flags:=unset]) => Object
 }
 
 /**
  * @description 
+ * @see  
+ * {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|ComValue},
+ * {@link https://www.autohotkey.com/docs/v2/lib/ComObjType.htm|ComObjType},
+ * {@link https://www.autohotkey.com/docs/v2/lib/ComObjValue.htm|ComObjValue},
+ * {@link https://www.autohotkey.com/docs/v2/lib/ComObjActive.htm|ComObjActive},
+ * {@link https://www.autohotkey.com/docs/v2/lib/ComObjFlags.htm|ComObjFlags},
+ * {@link https://learn.microsoft.com/previous-versions/windows/desktop/automat/array-manipulation-functions|Array Manipulation Functions (Microsoft Docs)}
  */
 class ComObjArray extends ComValue {
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|`ComValue()`}
+     * @param {(Integer)} VarType  
+     * An integer to incidcate the {@link https://www.autohotkey.com/docs/v2/lib/ComObjType.htm#vt|type of value}.  
+     * \- `0` VT_EMPTY = No value  
+     * \- `1` VT_NULL = SQL-style Null  
+     * \- `2` VT_I2 = 16-bit signed int  
+     * \- `3` VT_I4 = 32-bit signed int  
+     * \- `4` VT_R4 = 32-bit floating-point number  
+     * \- `5` VT_R8 = 64-bit floating-point number  
+     * \- `6` VT_CY = Currency  
+     * \- `7` VT_DATE = Date  
+     * \- `8` VT_BSTR = COM string (Unicode string with length prefix)  
+     * \- `9` VT_DISPATCH = COM object  
+     * \- `0xA` VT_ERROR = Error code (32-bit integer)  
+     * \- `0xB` VT_BOOL = Boolean True (-1) or False (0)  
+     * \- `0xC` VT_VARIANT = VARIANT (used with VT_ARRAY or VT_BYREF)  
+     * \- `0xD` VT_UNKNOWN = IUnknown interface pointer  
+     * \- `0xE` VT_DECIMAL = (not supported)  
+     * \- `0x10` VT_I1 = 8-bit signed int  
+     * \- `0x11` VT_UI1 = 8-bit unsigned int  
+     * \- `0x12` VT_UI2 = 16-bit unsigned int  
+     * \- `0x13` VT_UI4 = 32-bit unsigned int  
+     * \- `0x14` VT_I8 = 64-bit signed int  
+     * \- `0x15` VT_UI8 = 64-bit unsigned int  
+     * \- `0x16` VT_INT = Signed machine int  
+     * \- `0x17` VT_UINT = Unsigned machine int  
+     * \- `0x24` VT_RECORD = User-defined type -- NOT SUPPORTED  
+     * \- `0x2000` VT_ARRAY = SAFEARRAY  
+     * \- `0x4000` VT_BYREF = Pointer to another type of value  
+     * @param {(Integer)} ArrSize1  
+     * The size of the first array.  
+     * @param {(Integer)} [ArrSize2to8]  
+     * The size of each additiona array dimension.  
+     * Up to 8 dimensions are supported.  
+     * @returns {(ComObjArray)}  
+     * A wrapper object containing a new SafeArray.
+     */
+    Call(VarType, ArrSize1 [,ArrSize2to8*]) => ComObjArray
     
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjArray.htm#Methods|`MaxIndex()`}  
+     * Returns the upper bound of the dimension.  
+     * @param [ArrDim]  
+     * The dimension (depth) of the array to use.  
+     * If ArrDim is omitted, it defaults to 1.
+     * @returns {(Integer)}  
+     * 
+     */
+    MaxIndex([ArrDim:=1]) => Integer
     
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjArray.htm#Methods|`MinIndex()`}  
+     * Returns the lower bound of the nth dimension. If n is omitted, it defaults to 1.
+     * @param [ArrDim]  
+     * The dimension (depth) of the array to use.  
+     * If ArrDim is omitted, it defaults to 1.
+     * @returns {(Integer)}  
+     * 
+     */
+    MinIndex([ArrDim:=1]) => Integer
+    
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjArray.htm#Methods|`Clone()`}  
+     * Returns a copy of the array.
+     * @returns {(ComObjArray)}  
+     * A copy of the current ComObjArray.  
+     */
+    Clone() => ComObjArray
+    
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjArray.htm#Methods|`__Enum()`}  
+     * Creates an {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|enumerator object} that iterates through each element pair of the SafeArray.  
+     * This method is typically not called but instead is used by a {@link https://www.autohotkey.com/docs/v2/lib/For.htm|for-loop} to get each element and its index number.  
+     * @returns {(Enumerator)}  
+     * Enumerable function object.  
+     * @see  
+     * {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|Enumerator Object}
+     */
+    __Enum() => Enumerator
 }
 
 /**
  * @description 
  */
 class ComObject extends ComValue {
-    
-    
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObject.htm|`ComObject`}  
+     * Creates a COM object.  
+     * @param {(String)} CLSID  
+     * CLSID or human-readable Prog ID of the COM object to create.
+     * @param {(String)} [IID]  
+     * Specify the identifier of the interface to return.  
+     * If omitted, it defaults to IID_IDispatch.  
+     * `{00020400-0000-0000-C000-000000000046}`
+     * @returns {(Object)}  
+     * A COM wrapper object. Type is dependent on the IID parameter.  
+     * \- IID_IDispatch = {@link https://www.autohotkey.com/docs/v2/lib/ComObject.htm|ComObject} = VT_DISPATCH (9)  
+     * \- Any other IID = {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|ComValue} = VT_UNKNOWN (13)  
+     */
+    ComObject(CLSID [,IID:='{00020400-0000-0000-C000-000000000046}']) => Object
 }
 
 /**
@@ -13073,7 +13227,7 @@ ControlChooseIndex(N, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWin
  * Sets the selection in a ListBox or ComboBox  
  * to be the first entry that matches the specified string.  
  * @param {(String)} Str  
- * The string to choose. This is not case sensitive. 
+ * The string to choose. This is not case-sensitive. 
  * @param {(String|Integer|Object)} Control  
  * A control's ClassNN,  
  * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
@@ -13217,7 +13371,7 @@ ControlDeleteItem(N, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinT
  * Returns the entry number of a ListBox or ComboBox  
  * that is a complete match for the specified string.  
  * @param {(String)} Str  
- * The string to find. This is not case sensitive.  
+ * The string to find. This is not case-sensitive.  
  * The entire text must match, not just the leading part.  
  * @param {(String|Integer|Object)} Control  
  * A control's ClassNN,  
@@ -13334,7 +13488,7 @@ ControlFocus(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']
 ControlGetChecked(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link |`ControlGetChoice()`}  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetChoice.htm|`ControlGetChoice()`}  
  * Returns the name of the currently selected entry in a ListBox or ComboBox.  
  * @param {(String|Integer|Object)} Control  
  * A control's ClassNN,  
@@ -15422,7 +15576,7 @@ Exp(N) => String
  * @param {(String|Object)} Text  
  * Text to append to file.  
  * If no text is provided, a new, blank file is still created.  
- * A {@link |`buffer-like`} object can be passed to append raw binary data.  
+ * A {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|`buffer-like`} object can be passed to append raw binary data.  
  * Any object using {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Ptr|Ptr} and {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Size|Size} properties can be used.  
  * BOM (byte order mark) is only written if `UTF-8` or `UTF-16` encoding is used.  
  * @param {(String)} [Filename]  
@@ -16200,7 +16354,7 @@ Floor(Num) => Integer
  * 
  *       Format('{1: 04i}', 1) => ' 001'
  * - `#` = Show prefix or decimal  
- *   Dependant on `DataType`:  
+ *   Dependent on `DataType`:  
  *   - `c` `d` `i` `u` `s` = No effect.  
  *   - `o` = Add octal `0` prefix.  
  * 
@@ -16228,7 +16382,7 @@ Floor(Num) => Integer
  * 
  * ### .Precision 
  * - Precision of the value. The dot `.` is required.  
- *   Dependant on `DataType`:  
+ *   Dependent on `DataType`:  
  *   - `f` `e` `E` = Set decimal point length.  
  *     Default: 6
  * 
@@ -17231,7 +17385,7 @@ IL_Create([InitialCount:=2, GrowCount:=5, LargeIcons:=0]) => Integer
  * - `Icon` = .ICO .CUR .ANI .EXE .DLL .CPL .SCR {@link https://www.autohotkey.com/docs/v2/misc/ImageHandles.htm|Icon Handle "HICON:"} or another icon resource
  * - `Pic` = .BMP .GIF .JPG .PNG .TIF .Exif .WMF .EMF or a {@link https://www.autohotkey.com/docs/v2/misc/ImageHandles.htm|Bitmap Handle "HBITMAP:"}  
  * @param {(Integer)} Num  
- * Dependant on Icon or Pic
+ * Dependent on Icon or Pic
  * - `Icon` = Num is the icon number to use  
  *   If this is no sign, the number indicates the icon group to use  
  *   A negative sign indicates the number is used as a resource ID for an icon inside an executable  
@@ -18769,7 +18923,7 @@ ObjHasOwnProp(Obj, Name) => Integer
  * Any value.  
  * @returns {(Prototype)}  
  * The base of the object.  
- * If there is no base, the return value is an empty string.  
+ * An empty string is returned if no base exists.  
  * Only the {@link https://www.autohotkey.com/docs/v2/lib/Any.htm|`Any`} prototype has no base.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#SetBase|ObjSetBase()},
@@ -18833,7 +18987,7 @@ ObjOwnPropCount(Obj) => Integer
 ObjOwnProps(obj) => Enumerator
 
 /**
- * @description {@link |`ObjPtr()`}  
+ * @description {@link https://www.autohotkey.com/docs/v2/Objects.htm#ObjPtr|`ObjPtr()`}  
  * Rretrieve the memory address of an object.  
  * @param {(Object)} Obj - An object to get the memory address of.  
  * @returns {(Integer)} The pointer address of the object.  
@@ -20621,8 +20775,8 @@ SendMode(Mode) => String
  * @returns {(String)}  
  * An empty string is always returned.  
  * @see  
- * {@link |`SetStoreCapsLockMode()`},
- * {@link |`GetKeyState()`}
+ * {@link https://www.autohotkey.com/docs/v2/lib/SetStoreCapsLockMode.htm|`SetStoreCapsLockMode()`},
+ * {@link https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm|`GetKeyState()`}
  * @example <caption>  
  * </caption>
  */
@@ -20758,7 +20912,7 @@ SetMouseDelay(Delay [,Play]) => Integer
  * @returns {(String)}  
  * An empty string is always returned.  
  * @see  
- * {@link |`GetKeyState()`}
+ * {@link https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm|`GetKeyState()`}
  * @example <caption>  
  * </caption>
  */
@@ -20777,7 +20931,7 @@ SetNumLockState([State]) => EmptyString
  * @returns {(String)}  
  * An empty string is always returned.  
  * @see  
- * {@link |`GetKeyState()`}
+ * {@link https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm|`GetKeyState()`}
  * @example <caption>  
  * </caption>
  */
@@ -21947,7 +22101,7 @@ Tan(Num) => Float
  *   By default, every new launched thread is uninterruptible for 15 milliseconds or 1000 lines of the script have executed (whichever comes first).  
  *   This is a global setting and calling this affects all subsequent threads.  
  * @param {(Integer)} [NewSetting]  
- * Dependant on the option in use:
+ * Dependent on the option in use:
  * - `NoTimers`  
  *   If omitted, `1` is used.  
  *   - `1` = Timers cannot interrupt this thread.  
