@@ -6,7 +6,7 @@
 			"prefix": "#ClipboardTimeout"
 		},
 		{
-			"body": "#DllLoad ${1:DLL_or_EXE}",
+			"body": "#DllLoad${1| ,A_ScriptDir '\\\\'|}",
 			"description": "Load the DLL or EXE file before the script starts executing or omit to to reset default search strategy.",
 			"prefix": "#DllLoad"
 		},
@@ -16,8 +16,9 @@
 			"prefix": "#StdOut"
 		},
 		{
-			"body": "#HotIf ",
-			"description": "Create context-sensitive hotkeys and hotstrings that are enabled when the criteria is true. Omit to reset criteria."
+			"body": "#HotIf ${1| ,WinActive(WinTitle\\, Wintitle),WinExist(WinTitle\\, Wintitle),(WinTitle\\, Wintitle),WinNotExist(WinTitle\\, Wintitle)|}",
+			"description": "Create context-sensitive hotkeys and hotstrings that are enabled when the criteria is true. Omit to reset criteria.",
+			"prefix": "#Hotif"
 		},
 		{
 			"body": "#HotIfTimeout ${1:milliseconds}",
@@ -64,7 +65,7 @@
 			"description": "Removes the script's tray icon."
 		},
 		{
-			"body": "#Requires AutoHotkey${1| , >, >=, <, <=, =|}v2${2|.0,.1|}${3|.10,.9,.8,.7,.6,.5,.4,.3,.2,.1,.0|}+${4| , 32-bit, 64-bit|}",
+			"body": "#Requires AutoHotkey${1| , >, >=, <, <=, =|}v2${2|.0,.1|}${3|.11,.10,.9,.8,.7,.6,.5,.4,.3,.2,.1,.0|}${4|+,+ 32-bit,+ 64-bit|}",
 			"description": "The required version of AutoHotkey for the script to run otherwise script s and quits.",
 			"prefix": "#Requires"
 		},
@@ -103,7 +104,7 @@
 			"prefix": "@Ahk2Exe-Keep"
 		},
 		{
-			"body": ";@Ahk2Exe-AddResource ${1:FileName [, ResourceName]}",
+			"body": ";@Ahk2Exe-AddResource ${2:FileName}${1| , RT_BITMAP, RT_MENU, RT_DIALOG, RT_STRING, RT_ACCELERATORS, RT_RCDATA, RT_MESSAGETABLE, RT_GROUP_CURSOR, RT_GROUP_ICON, RT_HTML, RT_MANIFEST|}",
 			"description": "Add resources to the compiled executable file.",
 			"prefix": "@Ahk2Exe-AddResource"
 		},
@@ -128,12 +129,12 @@
 			"prefix": "@Ahk2Exe-Debug"
 		},
 		{
-			"body": ";@Ahk2Exe-ExeName ${1:[Path\\][Name]}",
+			"body": ";@Ahk2Exe-ExeName ${1:[Path\\]Name}",
 			"description": "Specify the location and name of the generated .exe file.",
 			"prefix": "@Ahk2Exe-ExeName"
 		},
 		{
-			"body": ";@Ahk2Exe-Let ${1:Name = Value [, Name = Value, ...]}",
+			"body": ";@Ahk2Exe-Let ${1:Name = Value [, NameN = ValueN]}",
 			"description": "Create (or modify) one or more user variables, these variables can be accessed through %U_Name%, similar to built-in variables (see above).",
 			"prefix": "@Ahk2Exe-Let"
 		},
@@ -148,14 +149,79 @@
 			"prefix": "@Ahk2Exe-PostExec"
 		},
 		{
-			"body": ";@Ahk2Exe-Set${1|CompanyName,Copyright,Description,FileVersion,InternalName,Language,LegalTrademarks,Name,OrigFilename,ProductName,ProductVersion,Version|} ${2:Value}",
-			"description": "Change the attributes in the version information of the compiled executable file. Note that regardless of the order in which the attributes are specified, all attributes are processed in alphabetical order.",
-			"prefix": "@Ahk2Exe-Set"
-		},
-		{
 			"body": ";@Ahk2Exe-SetMainIcon ${1:[IcoFile]}",
 			"description": "Overwrite the custom EXE icon used for compilation.",
 			"prefix": "@Ahk2Exe-SetMainIcon"
+		},
+		{
+			"body": ";@Ahk2Exe-SetCompanyName ${1:CompanyName}",
+			"description": "Changes the company name.",
+			"prefix": ";@Ahk2Exe-SetCompanyName"
+		},
+		{
+			"body": ";@Ahk2Exe-SetCopyright ${1:CopyrightInfo}",
+			"description": "Changes the legal copyright information.",
+			"prefix": ";@Ahk2Exe-SetCopyright"
+		},
+		{
+			"body": ";@Ahk2Exe-SetDescription ${1:Description}",
+			"description": "Changes the file description and changes script's name in Task Manager under \"Processes\".",
+			"prefix": ";@Ahk2Exe-SetDescription"
+		},
+		{
+			"body": ";@Ahk2Exe-SetFileVersion ${1:Version}",
+			"description": "Changes the file version, in both text and raw binary format.",
+			"prefix": ";@Ahk2Exe-SetFileVersion"
+		},
+		{
+			"body": ";@Ahk2Exe-SetInternalName ${1:InternalName}",
+			"description": "Changes the internal name.",
+			"prefix": ";@Ahk2Exe-SetInternalName"
+		},
+		{
+			"body": ";@Ahk2Exe-SetLanguage ${1:0x0409}",
+			"description": "Changes the language code. Must include 0x prefix.",
+			"prefix": ";@Ahk2Exe-SetLanguage"
+		},
+		{
+			"body": ";@Ahk2Exe-SetLegalTrademarks ${1:Trademark}",
+			"description": "Changes the legal trademarks information.",
+			"prefix": ";@Ahk2Exe-SetLegalTrademarks"
+		},
+		{
+			"body": ";@Ahk2Exe-SetName ${1:Name}",
+			"description": "Changes the product name and the internal name.",
+			"prefix": ";@Ahk2Exe-SetName"
+		},
+		{
+			"body": ";@Ahk2Exe-SetOrigFilename ${1:OriginalFilename}",
+			"description": "Changes the original filename information.",
+			"prefix": ";@Ahk2Exe-SetOrigFilename"
+		},
+		{
+			"body": ";@Ahk2Exe-SetProductName ${1:ProductName}",
+			"description": "Changes the product name.",
+			"prefix": ";@Ahk2Exe-SetProductName"
+		},
+		{
+			"body": ";@Ahk2Exe-SetProductVersion ${1:Version}",
+			"description": "Changes the product version, in both text and raw binary format.",
+			"prefix": ";@Ahk2Exe-SetProductVersion"
+		},
+		{
+			"body": ";@Ahk2Exe-SetVersion ${1:Version}",
+			"description": "Changes the file version and the product version, in both text and raw binary format.",
+			"prefix": ";@Ahk2Exe-SetVersion"
+		},
+		{
+			"body": ";@Ahk2Exe-UpdateManifest ${1|0,1,2|}${2| ,[\\, Name\\, Version\\, UIAccess]|}",
+			"description": "Changes details in the .exe's manifest. This directive is for specialised use only.",
+			"prefix": ";@Ahk2Exe-UpdateManifest"
+		},
+		{
+			"body": ";@Ahk2Exe-UseResourceLang ${1:0x0409}",
+			"description": "Changes the resource language used by ;@Ahk2Exe-AddResource.",
+			"prefix": ";@Ahk2Exe-UseResourceLang"
 		}
 	],
 	"keywords": [
@@ -184,97 +250,96 @@
 			"description": "(x OR y) One or other must be true. Same as: '||'."
 		},
 		{
-			"body": "Break${1| , [LoopLabel]|}",
+			"body": "break${1| , [LoopLabel]|}",
 			"description": "End any [Loop/While/For] loop immediately.",
 			"prefix": "break"
 		},
 		{
-			"body": "Catch${1| , Error , MemoryError , OSError , TargetError , TimeoutError , TypeError , UnsetError , MemberError , PropertyError , MethodError , UnsetItemError , ValueError , IndexError , ZeroDivisionError |}${2| ,as OutputVar|}",
+			"body": "catch${1| , Error , MemoryError , OSError , TargetError , TimeoutError , TypeError , UnsetError , MemberError , PropertyError , MethodError , UnsetItemError , ValueError , IndexError , ZeroDivisionError |}${2| ,as OutputVar|}",
 			"description": "Specify the code to be executed when an exception is raised during the execution of the try statement.",
 			"prefix": "catch"
 		},
 		{
-			"body": "Continue${1| , [LoopLabel]|}",
+			"body": "continue${1| , [LoopLabel]|}",
 			"description": "Skip the rest of the current iteration of the loop statement, and then start a new loop.",
 			"prefix": "continue"
 		},
 		{
-			"body": "Else If ",
+			"body": "else If ",
 			"description": "Adds another decision to check if prior were false.",
 			"prefix": "elif"
 		},
 		{
-			"body": "Else ",
+			"body": "else ",
 			"description": "If the result of the if statement is false, specify one or more statements to be executed.",
 			"prefix": "else"
 		},
 		{
-			"body": "Finally ",
+			"body": "finally ",
 			"description": "Code block to run after a try/catch has completed.",
 			"prefix": "finally"
 		},
 		{
-			"body": "For id, value IN ${1:Obj}",
+			"body": "for id, value IN ${1:Obj}",
 			"description": "Repeat a series of functions for each key-value pair in the object.",
 			"prefix": "for"
 		},
 		{
-			"body": "Global ",
+			"body": "global ",
 			"description": "Mark a variable or function as global so it can be changed from inside a function or method.",
 			"perfix": "global"
 		},
 		{
-			"body": "Goto(${1:Label})",
+			"body": "goto(${1:Label})",
 			"description": "Jump to the specified label and continue execution.",
 			"prefix": "goto"
 		},
 		{
-			"body": "If ",
+			"body": "if ",
 			"description": "Specify one or more statements to be executed when the expression evaluates to true.",
 			"prefix": "if"
 		},
 		{
-			"body": "Loop Files ${2:FilePattern}, ${1|'F','FR','D','DR','FD','FDR'|}",
+			"body": "loop Files ${2:FilePattern}, ${1|'F','FR','D','DR','FD','FDR'|}",
 			"description": "Loop through a directory. MODES: D=Get Directories, F=Get Files, R=Recurse",
 			"prefix": "loop files"
 		},
 		{
-			"body": "Loop Parse ${1:Text}, DelimitChar, OmitChars",
+			"body": "loop Parse ${1:Text}, DelimitChar, OmitChars",
 			"description": "Loop through a string by substrings. String is parsed by each char if no Delimiter is provided.",
 			"prefix": "loop parse"
 		},
 		{
-			"body": "Loop Read ${0:FilePath}, OutputFile",
+			"body": "loop Read ${0:FilePath}, OutputFile",
 			"description": "Retrieve the lines in the text file, one line at a time.",
 			"prefix": "loop read"
 		},
 		{
-			"body": "Loop Reg ${2|'HKLM\\','HKU\\','HKCU\\','HKCR\\','HKCC\\','HKEY_LOCAL_MACHINE\\','HKEY_USERS\\','HKEY_CURRENT_USER\\','HKEY_CLASSES_ROOT\\','HKEY_CURRENT_CONFIG\\'|}, '${1|K,V,KV,KR,VR,KVR|}'",
+			"body": "loop Reg ${2|'HKLM','HKU','HKCU','HKCR','HKCC','HKEY_LOCAL_MACHINE','HKEY_USERS','HKEY_CURRENT_USER','HKEY_CLASSES_ROOT','HKEY_CURRENT_CONFIG'|}\\, '${1|K,V,KV,KR,VR,KVR|}'",
 			"description": "Retrieve the contents of the specified registry subkey. Modes: V=Value, K=Key, R=Recurse",
 			"prefix": "loop reg"
 		},
 		{
-			"body": "Loop${0:, Count}",
+			"body": "loop${1: ,\\, Count}",
 			"description": "Repeat a series of functions: you can specify a number representing the number of repetitions or until a break is encountered.",
 			"prefix": "loop"
 		},
 		{
-			"body": "Local ",
-			"description": "Sets a variable or all function variables to local scope, causing them to be private to the function. Local variables can be the same as globals.",
-			"prefix": "local"
+			"body": "local",
+			"description": "Sets a variable or all function variables to local scope, causing them to be private to the function. Local variables can be the same as globals."
 		},
 		{
-			"body": "Case $0: ",
+			"body": "case $0: ",
 			"description": "One or more values to compare against the Switch value or evaluate if no value is provided.",
 			"prefix": "case"
 		},
 		{
-			"body": "Default: ",
+			"body": "default: ",
 			"description": "The default code block to run if no Switch cases match.",
-			"prefix": "default"
+			"prefix": "default:"
 		},
 		{
-			"body": "Return ${0:Value}",
+			"body": "return${1| ,Value|}",
 			"description": "Return the flow of code to the original caller, along with an optional return value.",
 			"prefix": "return"
 		},
