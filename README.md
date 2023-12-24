@@ -52,8 +52,15 @@ Update 2023-12-18:
 All functions, classes, methods, and properties are done.  
 Added `ahk2.json` file. This includes many updates to directives and flow control statements.  
 More text will auto-complete and more menu selections have been added.  
-[Some examples can be seen here.](https://github.com/GroggyOtter/ahkv2_definition_rewrite/assets/29220773/8cafcd52-823c-4861-aa29-5f6a3452e8da)
+[Some examples can be seen here.](https://github.com/GroggyOtter/ahkv2_definition_rewrite/assets/29220773/8cafcd52-823c-4861-aa29-5f6a3452e8da)  
 
+Update 2023-12-24:
+Fixed a bunch of typos and errors.  
+Fixed functions/methods with variadic parameters.  
+Added string, integer, number, and float call tags.  
+Added comobjarray, comobject, and comvalue class calls.  
+Cleaned up a lot of tags to try and make them more compact.  
+Update ahk2.json with new version for #Requires.  
 
 ***
 
