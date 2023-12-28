@@ -7585,7 +7585,7 @@ class Gui extends Object {
      * toggle_gui()
      * 
      * toggle_gui() {
-     *     static gu := make_gui()
+     *     static goo := make_gui()
      *     if WinExist('ahk_id ' goo.hwnd)
      *         goo.Hide()
      *     else goo.Show()
@@ -7596,7 +7596,7 @@ class Gui extends Object {
      *         goo.AddText('xm ym w150', 'Press F1 to hide/show GUI.')
      *         goo.btn_exit := goo.AddButton('xm w150', 'Click to close Script')
      *         goo.btn_exit.OnEvent('Click', (*) => ExitApp())
-     *         return gu
+     *         return goo
      *     }
      * }
      */
@@ -9038,8 +9038,7 @@ class Gui extends Object {
      * loop files A_ScriptDir '\*.*'
      *     lv.Add('', A_LoopFileName, A_LoopFileDir, A_LoopFileExt)
      * 
-     * loop 3
-     *     lv.ModifyCol(A_Index, 'Auto')
+     * lv.ModifyCol()
      * 
      * goo.Show()
      */
@@ -9463,11 +9462,11 @@ class Gui extends Object {
      *     }
      * }
      * 
-     * fill_bar(gu) {
+     * fill_bar(goo) {
      *     goo.prog_bar.Value += Random(2, 10)
      *     if (goo.prog_bar.Value < 100)
      *         goo.btn.Text := goo.prog_bar.Value '%'
-     *         ,callback := fill_bar.Bind(gu)
+     *         ,callback := fill_bar.Bind(goo)
      *         ,SetTimer(callback, -400)
      *     else goo.btn.Text := 'Finished!'
      * }
@@ -10812,11 +10811,11 @@ class Gui extends Object {
      * Getting active info on a Window.</caption>
      * WM_MOVE := 0x0003
      * 
-     * gu := Gui('+Resize')
+     * goo := Gui('+Resize')
      * goo.txt := goo.AddText('xm ym w300 h400')
      * goo.Show('x100 y100 w300 h400')
      * 
-     * callback := update_pos_info.Bind(gu)
+     * callback := update_pos_info.Bind(goo)
      * callback()
      * goo.OnEvent('Size', callback)
      * OnMessage(WM_MOVE, callback)
@@ -10852,11 +10851,11 @@ class Gui extends Object {
      * Getting active info on a Window.</caption>
      * WM_MOVE := 0x0003
      * 
-     * gu := Gui('+Resize')
+     * goo := Gui('+Resize')
      * goo.txt := goo.AddText('xm ym w300 h400')
      * goo.Show('x100 y100 w300 h400')
      * 
-     * callback := update_pos_info.Bind(gu)
+     * callback := update_pos_info.Bind(goo)
      * callback()
      * goo.OnEvent('Size', callback)
      * OnMessage(WM_MOVE, callback)
@@ -10882,7 +10881,7 @@ class Gui extends Object {
      * toggle_gui()
      * 
      * toggle_gui() {
-     *     static gu := make_gui()
+     *     static goo := make_gui()
      *     if WinExist('ahk_id ' goo.hwnd)
      *         goo.Hide()
      *     else goo.Show()
@@ -10893,7 +10892,7 @@ class Gui extends Object {
      *         goo.AddText('xm ym w150', 'Press F1 to hide/show GUI.')
      *         goo.btn_exit := goo.AddButton('xm w150', 'Click to close Script')
      *         goo.btn_exit.OnEvent('Click', (*) => ExitApp())
-     *         return gu
+     *         return goo
      *     }
      * }
      */
@@ -11169,13 +11168,15 @@ class Gui extends Object {
      * Zero or more option sseparated by spaces.  
      * If X, Y, W, and H are omitted, the Gui will retrain its previous size and position otherwise it will be auto-centered.  
      * Only decimal numbers should be used. Hex is invalid.  
+     * **Options**
      * - `W#` and `H#`: The Width/Height of the window's client area in pixels. This does not include the window area, border, or title bar.  
      * - `X#` and `Y#`: The Window's X/Y position on the screen in pixels.  
      * - `Center`: Centers the window horizontally and vertically on the screen.  
      * - `xCenter`: Centers the window horizontally on the screen.  
      * - `yCenter`: Centers the window vertically on the screen.  
      * - `AutoSize`: Resizes the window to accommodate only its currently visible controls.  
-     * Only one of the following may be present:
+     * 
+     * **Only one of the following Options can be included**  
      * - `Minimize`: Minimizes the window and activates the one beneath it.  
      * - `Maximize`: Maximizes and activates the window.  
      * - `Restore`: Unminimizes or unmaximizes the window, if necessary. The window is also shown and activated, if necessary.  
@@ -11191,7 +11192,7 @@ class Gui extends Object {
      * *F1::toggle_gui()
      * 
      * toggle_gui() {
-     *     static gu := make_gui()
+     *     static goo := make_gui()
      *     if WinExist('ahk_id ' goo.hwnd)
      *         goo.Hide()
      *     else goo.Show()
@@ -11202,7 +11203,7 @@ class Gui extends Object {
      *         goo.AddText('xm ym w150', 'Press F1 to hide/show GUI.')
      *         goo.btn_exit := goo.AddButton('xm w150', 'Click to close Script')
      *         goo.btn_exit.OnEvent('Click', (*) => ExitApp())
-     *         return gu
+     *         return goo
      *     }
      * }
      */
@@ -12582,7 +12583,6 @@ class ComObjArray extends ComValue {
      * The dimension (depth) of the array to use.  
      * If ArrDim is omitted, it defaults to 1.
      * @returns {(Integer)}  
-     * 
      */
     MaxIndex([ArrDim:=1]) => Integer
     
@@ -12628,14 +12628,33 @@ class ComObject extends ComValue {
      * CLSID or human-readable Prog ID of the COM object to create.
      * @param {(String)} [IID]  
      * Specify the identifier of the interface to return.  
-     * If omitted, it defaults to IID_IDispatch.  
+     * If omitted, it defaults to IID_IDispatch:  
      * `{00020400-0000-0000-C000-000000000046}`
      * @returns {(Object)}  
      * A COM wrapper object. Type is dependent on the IID parameter.  
      * \- IID_IDispatch = {@link https://www.autohotkey.com/docs/v2/lib/ComObject.htm|ComObject} = VT_DISPATCH (9)  
      * \- Any other IID = {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|ComValue} = VT_UNKNOWN (13)  
+     * @example <caption>  
+     * Toggle active window taskbar button.</caption>
+     * $F1::toggle_taskbutton('hide')
+     * $F2::toggle_taskbutton('show')
+     * 
+     * toggle_taskbutton(opt:='') {
+     *     ; ITaskbarList
+     *     ; https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-itaskbarlist
+     *     CLSID_TaskbarList := '{56FDF344-FD6D-11d0-958A-006097C9A090}'
+     *     IID_ITaskbarList  := '{56FDF342-FD6D-11d0-958A-006097C9A090}'
+     *     tbl := ComObject(CLSID_TaskbarList, IID_ITaskbarList)
+     *     activeHwnd := WinExist('A')
+     *     ComCall(3, tbl)
+     *     switch opt {
+     *         case 'hide': ComCall(5, tbl, 'ptr', activeHwnd)
+     *         case 'show': ComCall(4, tbl, 'ptr', activeHwnd)
+     *     }
+     *     tbl := ''
+     * }
      */
-    ComObject(CLSID [,IID:='{00020400-0000-0000-C000-000000000046}']) => Object
+    static Call(CLSID [,IID:='{00020400-0000-0000-C000-000000000046}']) => Object
 }
 
 /**
@@ -12668,7 +12687,11 @@ class ComValueRef extends ComValue {
  * @returns {(Number)}  
  * Absolute value of number
  * @example <caption>  
- * </caption>
+ * Absolute value examples.</caption>
+ * x := Abs(-50)   ; => 50
+ * y := Abs(15)    ; => 15
+ * z := Abs(-5.5)  ; => 5.5
+ * MsgBox(x '`n' y '`n' z)
  */
 Abs(Num) => Number
 
@@ -12682,6 +12705,9 @@ Abs(Num) => Number
  * Arcsine in radians.  
  * @example <caption>  
  * </caption>
+ * ASin(0.2) ; => 0.201358
+ * ASin(0) ; => 0.0
+ * ASin(1) ; => 1.570796
  */
 ASin(Num) => Number
 
@@ -12695,8 +12721,12 @@ ASin(Num) => Number
  * Arccosine in radians.  
  * @example <caption>  
  * </caption>
+ * ACos(0.2) ; => 1.369438
+ * ACos(0) ; => 1.570796
+ * ACos(1) ; => 0.0
  */
 ACos(Num) => Number
+
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#ATan|`ATan()`}  
@@ -12708,6 +12738,9 @@ ACos(Num) => Number
  * Arctangent in radians.  
  * @example <caption>  
  * </caption>
+ * ATan(1.2) ; => 0.876058
+ * ATan(0) ; => 0.0
+ * ATan(1) ; => 1.557408
  */
 ATan(Num) => Number
 
@@ -12718,26 +12751,33 @@ ATan(Num) => Number
  * @param {(String|Integer)} [Mode]  
  * Each of the 3 mode groups operate independently of each other.  
  * - **OnOff**
- *   - `On` or `1` = Mouse and keyboard input is disabled.  
- *   - `Off` or `0` = Mouse and keyboard input is enabled.  
+ *   - `1` or `On` = Mouse and keyboard input is disabled.  
+ *   - `0` or `Off` = Mouse and keyboard input is enabled.  
+ * 
  * - **SendMouse**
- *   - `Send` = Keyboard and mouse input is disabled while a {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendEvent|SendEvent} is running.  
- *     This prevents the disruption of keys being sent.  
- *   - `Mouse` = Keyboard and mouse input is disabled while {@link https://www.autohotkey.com/docs/v2/lib/Click.htm|Click()}  
- *     , {@link https://www.autohotkey.com/docs/v2/lib/MouseMove.htm|MouseMove()}
- *     , {@link https://www.autohotkey.com/docs/v2/lib/MouseClick.htm|MouseClick()}
- *     , or {@link https://www.autohotkey.com/docs/v2/lib/MouseClickDrag.htm|MouseClickDrag()} is running.  
- *     Prevents user mouse input from disrupting mouse events.  
- *   - `SendAndMouse` = Enables both of the modes mentioned above.
+ *   - `Send` = Keyboard and mouse input is disabled while a {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendEvent|SendEvent} is running, preventing disruption of keys being sent.  
+ *   - `Mouse` = Keyboard and mouse input is disabled while {@link https://www.autohotkey.com/docs/v2/lib/Click.htm|Click()}, {@link https://www.autohotkey.com/docs/v2/lib/MouseMove.htm|MouseMove()}, {@link https://www.autohotkey.com/docs/v2/lib/MouseClick.htm|MouseClick()}, or {@link https://www.autohotkey.com/docs/v2/lib/MouseClickDrag.htm|MouseClickDrag()} is running and prevents user input from disrupting mouse events.  
+ *   - `SendAndMouse` = Enables both `Send` and `Mouse` modes.  
  *   - `Default` = Disables both `Send` and `Mouse` modes if they're on.  
+ *     This is the "Off" setting for SendMouse modes.  
+ * 
  * - **MouseMove**  
  *   - `MouseMove` = User mouse movement is disabled.  
  *     DirectInput applications are a possible exception.  
  *   - `MouseMoveOff` = Disables `MouseMove` if it's enabled.  
+ *     This is the "Off" setting for Mouse modes.  
  * @returns {(String)}  
  * An empty string is always returned.  
  * @example <caption>  
- * </caption>
+ * Hotkey to toggle keyboard and mouse input on/off.</caption>
+ * *F1:: {
+ *     Static lock := 0
+ *     lock := !lock
+ *     TrayTip(lock)
+ *     if lock
+ *         BlockInput(1)
+ *     else BlockInput('Off')
+ * }
  */
 BlockInput([Mode]) => EmptyString
 
@@ -12765,7 +12805,27 @@ BlockInput([Mode]) => EmptyString
  * @returns {(Integer)}  
  * A machine code address.  
  * @example <caption>  
- * </caption>
+ * Enumerating through all windows.</caption>
+ * enumerate_windows()
+ * 
+ * enumerate_windows() {
+ *     output := 'HWND`tTitle`tClass`n'
+ *     callback := CallbackCreate(EnumWindowsProc, 'Fast')
+ *     DetectHiddenWindows(true)
+ *     DllCall('EnumWindows', 'Ptr', callback, 'Ptr')
+ *     MsgBox(Output)
+ *     CallbackFree(callback)
+ *     return
+ *     
+ *     EnumWindowsProc(hwnd, lParam){
+ *         win_title := WinGetTitle(hwnd)
+ *         if win_title
+ *             Output .= 'HWND: ' hwnd
+ *                 . '`tTitle: ' win_title
+ *                 . '`tClass: ' WinGetClass(hwnd) '`n'
+ *         return true
+ *     }
+ * }
  */
 CallbackCreate(Function [,Options:='', ParamCount:=unset]) => Integer
 
@@ -12777,7 +12837,27 @@ CallbackCreate(Function [,Options:='', ParamCount:=unset]) => Integer
  * @returns {(String)}  
  * An empty string is always returned.  
  * @example <caption>  
- * </caption>
+ * Enumerating through all windows.</caption>
+ * enumerate_windows()
+ * 
+ * enumerate_windows() {
+ *     output := 'HWND`tTitle`tClass`n'
+ *     callback := CallbackCreate(EnumWindowsProc, 'Fast')
+ *     DetectHiddenWindows(true)
+ *     DllCall('EnumWindows', 'Ptr', callback, 'Ptr')
+ *     MsgBox(Output)
+ *     CallbackFree(callback)
+ *     return
+ *     
+ *     EnumWindowsProc(hwnd, lParam){
+ *         win_title := WinGetTitle(hwnd)
+ *         if win_title
+ *             Output .= 'HWND: ' hwnd
+ *                 . '`tTitle: ' win_title
+ *                 . '`tClass: ' WinGetClass(hwnd) '`n'
+ *         return true
+ *     }
+ * }
  */
 CallbackFree(Address) => EmptyString
 
@@ -12803,7 +12883,13 @@ CaretGetPos([&OutputVarX, &OutputVarY]) => Integer
  * @returns {(Integer)}  
  * The rounded up integer.  
  * @example <caption>  
- * </caption>
+ * Show caret position at all times.</caption>
+ * SetTimer(WatchCaret, 100)
+ * WatchCaret() {
+ *     if CaretGetPos(&x, &y)
+ *         ToolTip('x' x ', y' y, x, y - 20)
+ *     else ToolTip('No caret')
+ * }
  */
 Ceil(Num) => Integer
 
@@ -12818,9 +12904,12 @@ Ceil(Num) => Integer
  * The character(s) of the UnicodeNumber.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Ord.htm|Ord()},
- * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#string-encoding|String Encoding}
+ * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#string-encoding|String Encoding},
+ * {@link https://raw.githubusercontent.com/GroggyOtter/GroggyRepo/master/AHK/Groggy's%20ASCII%20Tables.txt|ASCII Table}
  * @example <caption>  
- * </caption>
+ * Convert char codes to characters.</caption>
+ * MsgBox(Chr(65) Chr(72) Chr(75)) ; => AHK
+ * MsgBox(Chr(0xCA0) '_' Chr(0xCA0)) ; => ಠ_ಠ
  */
 Chr(UnicodeNumber) => String
 
@@ -12828,35 +12917,43 @@ Chr(UnicodeNumber) => String
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Click.htm|`Click()`}  
  * Sends a click event to a specified cooridnate.  
  * Alternatively, all options can be passed in as a single string.  
+ * If 3 numbers are passed, the first two are X and Y and the last is Count.  
+ * Omit all parameters to send a single left click.  
  * @param {(String)} [Button]  
  * Mouse button to click:  
- *   - `L`/`Left`, `R`/`Right`, `M`/`Middle`
- *   - `X1` (XButton1), `X2` (XButton2)  
- *   - `WU`/`WheelUp`, `WD`/`WheelDown`, `WR`/`WheelRight`, `WL`/`WheelLeft`  
+ * - `Left` or `L`
+ * - `Right` or `R`
+ * - `Middle` or `M`
+ * - `X1` (aka Mouse4)
+ * - `X2` (aka Mouse5)
+ * - `WheelUp` or `WU`
+ * - `WheelDown` or `WD`
+ * - `WheelRight` or `WR`
+ * - `WheelLeft` or `WL`
  * @param {(Integer)} [X]  
  * The X coordinate to click at.  
  * {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm|CoordMode()} dictates where x0 y0 starts at  
- * `Client` is suggested unless working with the desktop  
- * If `Relative` is used, x0 y0 is the mouse cursor.  
- * If omitted, the current mouse X value is used
+ * Client is suggested.  
+ * If `Relative` param is used, x0 y0 starts at mouse cursor.  
+ * If omitted, the mouse's current X value is used.  
  * @param {(Integer)} [Y]  
  * The Y coordinate to click at  
  * {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm|CoordMode()} dictates where x0 y0 starts at  
- * `Client` is suggested unless working with the desktop  
- * If `Relative` is used, x0 y0 is the mouse cursor.  
- * If omitted, the current mouse Y value is used
+ * Client is suggested.  
+ * If `Relative` param is used, x0 y0 starts at mouse cursor.  
+ * If omitted, the mouse's current Y value is used.  
  * @param {(Integer)} [Count]  
- * The number of times to click  
+ * Number of clicks to send  
  * If omitted, `1` is used  
  * @param {(String)} [State]  
- * Send the up state, down state, or full click.  
- * - Omit = A full click is sent  
- * - `D` = Down event. The button is logically held down.  
- * - `U` = Up event. The button is logically released.  
+ * Set the button's logical state to down (held) or up (released).  
+ * - Omit = A full click (down then up) is sent.  
+ * - `D` or `Down` = The button is logically held down.  
+ * - `U` or `Up` = The button is logically released.  
  * @param {(String)} [Relative]  
- * Include the word `Rel` to click relative to the current mouse position.  
- * `X` and `Y` parameters are used as offsets from the current mouse position.  
- * In other words, the mouse cursor becomes x0 y0.  
+ * - `Rel` or `Relative` = Click relative to the mouse cursor.  
+ *   Mouse cursor becomes x0 y0.  
+ *   `X` and `Y` parameters are offsets from there.  
  * @returns {(String)}  
  * An empty string is always returned.  
  * @see  
@@ -12871,9 +12968,30 @@ Chr(UnicodeNumber) => String
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlClick.htm|ControlClick()},
  * {@link https://www.autohotkey.com/docs/v2/lib/BlockInput.htm|BlockInput()}
  * @example <caption>__
- * </caption>
+ * Different Click() examples.</caption>
+ * ; Left click
+ * Click()
+ * 
+ * ; Right click
+ * Click('R')
+ * 
+ * ; Double left click
+ * Click('Left',)
+ * 
+ * ; Hold down XButton1
+ * Click('X1 D')
+ * 
+ * ; Move cursor without clicking
+ * Click('100 500 0')
+ * 
+ * ; Left click 10 pixels rigth and 10 pixels up from cursor
+ * Click('10 -10 Rel')
+ * 
+ * ; Move cursor 50 pixels to the right
+ * Click('0 50 0 Rel')
  */
-Click([Button:='L', X:=CurrentX, Y:=CurrentY, Count:=1, Speed:=2, State:=unset, Relative:=unset]) => EmptyString
+Click([Button:='L', X:=unset, Y:=unset, Count:=1, State:=unset, Relative:=unset]) => EmptyString
+; Click([Button X Y Count Speed State Relative]) => EmptyString
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/ClipWait.htm|`ClipWait()`}  
@@ -12885,16 +13003,31 @@ Click([Button:='L', X:=CurrentX, Y:=CurrentY, Count:=1, Speed:=2, State:=unset, 
  * If omitted, function will wait indefinitely.  
  * @param {(Integer)} [WaitForType]  
  * Type of data to check for:  
- * `0` = Wait for text  
- * `1` = Wait for any type of data  
+ * - `0` = Wait for text  
+ * - `1` = Wait for any type of data  
  * @returns {(Boolean)}  
- * `0` if timed out, else `1`
+ * `0` if timed out, otherwise `1`. 
  * @see  
- * {@link https://www.autohotkey.com/docs/v2/lib/A_Clipboard.htm|A_Clipboard()}, 
- * {@link https://www.autohotkey.com/docs/v2/lib/WinWait.htm|WinWait()}, 
+ * {@link https://www.autohotkey.com/docs/v2/lib/A_Clipboard.htm|A_Clipboard()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/WinWait.htm|WinWait()},
  * {@link https://www.autohotkey.com/docs/v2/lib/KeyWait.htm|KeyWait()}
  * @example <caption>  
- * </caption>
+ * Copy highlighted text to variable.</caption>
+ * *F1:: {
+ *     str := save_clip()
+ *     MsgBox(str)
+ * }
+ * 
+ * save_clip() {
+ *     backup := ClipboardAll()
+ *     A_Clipboard := ''
+ *     Send('^c')
+ *     if !ClipWait(1, 1)
+ *         return (A_Clipboard := backup)
+ *     txt := A_Clipboard
+ *     A_Clipboard := backup
+ *     return txt
+ * }
  */
 ClipWait([TimeoutInSec:=unset, WaitForType:=0]) => String
 
@@ -12938,7 +13071,24 @@ ClipWait([TimeoutInSec:=unset, WaitForType:=0]) => String
  * {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|ComValue},
  * {@link https://www.autohotkey.com/docs/v2/lib/CallbackCreate.htm|CallbackCreate()}
  * @example <caption>  
- * </caption>
+ * Toggle active window taskbar button.</caption>
+ * $F1::toggle_taskbutton('hide')
+ * $F2::toggle_taskbutton('show')
+ * 
+ * toggle_taskbutton(opt:='') {
+ *     ; ITaskbarList
+ *     ; https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-itaskbarlist
+ *     static CLSID_TaskbarList := '{56FDF344-FD6D-11d0-958A-006097C9A090}'
+ *         , IID_ITaskbarList  := '{56FDF342-FD6D-11d0-958A-006097C9A090}'
+ *     tbl := ComObject(CLSID_TaskbarList, IID_ITaskbarList)
+ *     activeHwnd := WinExist('A')
+ *     ComCall(3, tbl)
+ *     switch opt {
+ *         case 'hide': ComCall(5, tbl, 'ptr', activeHwnd)
+ *         case 'show': ComCall(4, tbl, 'ptr', activeHwnd)
+ *     }
+ *     tbl := ''
+ * }
  */
 ComCall(Index, ComObj [,TypeN:=unset, ArgN:=unset, ReturnType:='HRESULT']) => String | Integer
 
@@ -12961,7 +13111,7 @@ ComCall(Index, ComObj [,TypeN:=unset, ArgN:=unset, ReturnType:='HRESULT']) => St
  * {@link https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-getactiveobject|GetActiveObject (Microsoft Docs)}
  * @example <caption>  
  * Use {@link https://learn.microsoft.com/office/vba/api/Word.Application|`Word COM`} to view the current opened MS Word doc.</caption>  
- * word_com := ComObjActive("Word.Application")
+ * word_com := ComObjActive('Word.Application')
  * if !word_com
  *     MsgBox("Word isn't open.")
  * else
@@ -12982,7 +13132,7 @@ ComObjActive(CLSID) => ComObject
  * Or an {@link https://www.autohotkey.com/docs/v2/lib/ComObjConnect.htm#event-sink|event sink object} with static methods for each event handler.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @see
+ * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ComObject.htm|ComObject},
  * {@link https://www.autohotkey.com/docs/v2/lib/ComObjGet.htm|ComObjGet()},
  * {@link https://www.autohotkey.com/docs/v2/lib/ComObjActive.htm|ComObjActive()},
@@ -12999,8 +13149,10 @@ ComObjConnect(ComObj [,PrefixOrSink:=unset]) => EmptyString
  * @param {(Object)} ComObj  
  * A COM wrapper object. See {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|ComValue}.  
  * @param {(Integer)} NewFlags  
- * New values for the flags identified  
- * by Mask, or flags to add or remove.  
+ * New values for the flags identified by Mask, or flags to add or remove.  
+ * - `1` = F_OWNVALUE
+ *   - SafeArray = SafeArray is destroyed when wrapper object is freed.  
+ *   - BSTR = BSTR is freed when wrapper object is freed.  
  * @param {(Integer)} Mask  
  * A bitmask of flags to change.  
  * @returns {(Integer)}  
@@ -13012,7 +13164,12 @@ ComObjConnect(ComObj [,PrefixOrSink:=unset]) => EmptyString
  * {@link https://www.autohotkey.com/docs/v2/lib/ComObjActive.htm|ComObjActive()},
  * {@link https://www.autohotkey.com/docs/v2/lib/ComObjArray.htm|ComObjArray()}
  * @example <caption>  
- * </caption>
+ * Checks for the F_OWNVALUE flag.</caption>
+ * arr := ComObjArray(0xC, 1)
+ * if ComObjFlags(arr) & 1
+ *     MsgBox('arr will be automatically destroyed.')
+ * else
+ *     MsgBox('arr will not be automatically destroyed.')
  */
 ComObjFlags(ComObj [,NewFlags:=unset, Mask:=unset]) => Integer
 
@@ -13045,8 +13202,8 @@ ComObjFromPtr(DispPtr) => String
  * Returns a reference to an  object  
  * provided by a COM component.  
  * @param {(String)} Name  
- * The display name of the object  
- * to be retrieved. See: {@link https://learn.microsoft.com/windows/win32/api/objbase/nf-objbase-mkparsedisplayname|MkParseDisplayName (Microsoft Docs)}  
+ * The display name of the object to be retrieved.  
+ * See: {@link https://learn.microsoft.com/windows/win32/api/objbase/nf-objbase-mkparsedisplayname|MkParseDisplayName (Microsoft Docs)}  
  * @returns {(ComObject)}  
  * A new COM wrapper object with  
  * the {@link https://www.autohotkey.com/docs/v2/lib/ComObjType.htm#vt|variant type VT_DISPATCH (9)}.
@@ -13057,7 +13214,17 @@ ComObjFromPtr(DispPtr) => String
  * {@link https://www.autohotkey.com/docs/v2/lib/ComObjQuery.htm|ComObjQuery()},
  * {@link https://learn.microsoft.com/windows/win32/api/objbase/nf-objbase-cogetobject|CoGetObject (Microsoft Docs)}
  * @example <caption>  
- * </caption>
+ * Hotkey to show launch command line</caption>
+ * +Esc:: {
+ *     pid := WinGetPID('A')
+ *     wmi := ComObjGet('winmgmts:')
+ *     query := 'Select * from Win32_Process where ProcessId=' pid
+ *     queryEnum := wmi.ExecQuery(query)._NewEnum()
+ *     if queryEnum(&proc)
+ *         MsgBox(proc.CommandLine, 'Command line', 0)
+ *     else
+ *         MsgBox('Process not found!')
+ * }
  */
 ComObjGet(Name) => ComObject
 
@@ -13115,6 +13282,13 @@ ComObjQuery(ComObj, IIDorSID, IID) => Object
  * {@link https://www.autohotkey.com/docs/v2/lib/ComObjGet.htm|ComObjGet()}
  * @example <caption>  
  * </caption>
+ * d := ComObject('Scripting.Dictionary')
+ * MsgBox('Variant type:`t' ComObjType(d)
+ *     '`nInterface name:`t' ComObjType(d, 'Name')
+ *     '`nInterface ID:`t' ComObjType(d, 'IID')
+ *     '`nClass name:`t' ComObjType(d, 'Class')
+ *     '`nClass ID (CLSID):`t' ComObjType(d, 'CLSID')
+ * )
  */
 ComObjType(ComObj [,InfoType:=unset]) => Integer | String
 
@@ -13150,7 +13324,8 @@ ComObjValue(ComObj) => String
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13178,7 +13353,18 @@ ComObjValue(ComObj) => String
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle Window Matching},
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}
  * @example <caption>  
- * </caption>
+ * Adding an item to a ListBox.</caption>
+ * goo := Gui()
+ * goo.AddButton('xm ym vbtn_add','Add Item')
+ * goo['btn_add'].OnEvent('Click', add_item)
+ * goo.AddListBox('x+5 ym vListBox', ['Alpha', 'Bravo'])
+ * goo.Show('w200 h100')
+ * 
+ * add_item(control, info) {
+ *     ib := InputBox('Item to add to ListBox:',,,'Charlie')
+ *     if (ib.Result = 'OK')
+ *         ControlAddItem(ib.Value, control.gui['ListBox'])
+ * }
  */
 ControlAddItem(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
@@ -13195,7 +13381,8 @@ ControlAddItem(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13218,7 +13405,20 @@ ControlAddItem(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle Window Matching},
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}
  * @example <caption>  
- * </caption>
+ * Selecting item(s) in a ListBox.</caption>
+ * items := ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo']
+ * goo := Gui()
+ * goo.AddButton('xm ym vbtn_add','Select Item(s)')
+ * goo['btn_add'].OnEvent('Click', choose_item)
+ * goo.AddListBox('x+5 ym vListBox Multi r5', items)
+ * goo.Show('w250 h100')
+ * 
+ * choose_item(control, info) {
+ *     ib := InputBox('One or more numbers separated by spaces:')
+ *     if (ib.Result = 'OK')
+ *         loop parse ib.value, ' '
+ *             ControlChooseIndex(A_LoopField, control.gui['ListBox'])
+ * }
  */
 ControlChooseIndex(N, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
@@ -13234,7 +13434,8 @@ ControlChooseIndex(N, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWin
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13257,7 +13458,20 @@ ControlChooseIndex(N, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWin
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle Window Matching},
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}
  * @example <caption>  
- * </caption>
+ * Choosing ListBox string(s).</caption>
+ * items := ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo']
+ * goo := Gui()
+ * goo.AddButton('xm ym vbtn_add','Select Item(s)')
+ * goo['btn_add'].OnEvent('Click', choose_item)
+ * goo.AddListBox('x+5 ym vListBox Multi r5', items)
+ * goo.Show('w250 h100')
+ * 
+ * choose_item(control, info) {
+ *     ib := InputBox('One or more strings separated by commas:')
+ *     if (ib.Result = 'OK')
+ *         loop parse ib.value, ',', ' '
+ *             ControlChooseString(A_LoopField, control.gui['ListBox'])
+ * }
  */
 ControlChooseString(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
@@ -13276,7 +13490,8 @@ ControlChooseString(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', No
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13291,11 +13506,12 @@ ControlChooseString(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', No
  * 
  * - Omitted: Down and then up events are sent to the middle of the control.  
  * - `NA`: May improve {@link https://www.autohotkey.com/docs/v2/lib/ControlClick.htm#Reliability|reliability}.  
- * - `D`/`U`: Set button state to **D**own (hold) or **U**p (release).  
+ * - `D`: Set mouse button state to Down (hold).  
+ * - `U`: Set mouse button state to Up (release).  
  * - `Pos`: Forces the `ConOrPos` variable to be Position (coordinates).  
- * - `X`\`Y`: Set the X and Y position of the click **on the control**.  
- *   The coordinates are relative to the **control's** upper left corner.  
- *   Coordinates must be decimal format.  
+ * - `X`\`Y`: Set the X and Y position of the click on the control itself.  
+ *   The coordinates of a control start at the upper left corner of it (0,0).  
+ *   Coordinates must be in decimal format.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -13320,6 +13536,16 @@ ControlChooseString(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', No
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}
  * @example <caption>  
  * </caption>
+ * ; Click on the 2nd edit field of the active window
+ * ControlClick('Edit2', 'A')
+ * ; Click at x200 y300 in My Program
+ * ControlClick('x200 y300', 'My Program ahk_exe myprog.exe')
+ * ; Send a double click to the target window
+ * ControlClick( , 'ahk_class my_prog', , 'Left', 2)
+ * ; Click and hold right mouse button on the first radio
+ * ControlClick('Radio1', 'A', , 'Right', , 'D')
+ * ; Click the upperleft-most part of a button
+ * ControlClick('Button3', 'A', , , , , 'x0 y0')
  */
 ControlClick([ConOrPos:=unset, WinTitle:='', WinText:='', Button:='Left', Count:=1, Options:=unset, NoWinTitle:='', NoWinText:='']) => EmptyString
 
@@ -13334,7 +13560,8 @@ ControlClick([ConOrPos:=unset, WinTitle:='', WinText:='', Button:='Left', Count:
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13379,7 +13606,8 @@ ControlDeleteItem(N, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinT
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13420,7 +13648,8 @@ ControlFindItem(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinT
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13457,7 +13686,8 @@ ControlFocus(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13496,7 +13726,8 @@ ControlGetChecked(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13534,7 +13765,8 @@ ControlGetChoice(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13575,7 +13807,8 @@ ControlGetClassNN(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13610,7 +13843,8 @@ ControlGetEnabled(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13649,7 +13883,8 @@ ControlGetFocus([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => I
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13687,7 +13922,8 @@ ControlGetHwnd(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13732,7 +13968,8 @@ ControlGetIndex(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13781,7 +14018,8 @@ ControlGetItems(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13818,7 +14056,8 @@ ControlGetPos([&OutX, &OutY, &OutWidth, &OutHeight, Control:=unset, WinTitle:=''
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13855,7 +14094,8 @@ ControlGetStyle(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13892,7 +14132,8 @@ ControlGetExStyle(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13927,7 +14168,8 @@ ControlGetText(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -13964,7 +14206,8 @@ ControlGetVisible(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -14003,7 +14246,8 @@ ControlHide(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=''])
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -14051,7 +14295,8 @@ ControlHideDropDown(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -14095,7 +14340,8 @@ ControlMove([X, Y, Width, Height, Control, WinTitle:='', WinText:='', NoWinTitle
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -14139,7 +14385,8 @@ ControlSend(Keys [,Control:=unset, WinTitle:='', WinText:='', NoWinTitle:='', No
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -14184,7 +14431,8 @@ ControlSendText(Keys [,Control:=unset, WinTitle:='', WinText:='', NoWinTitle:=''
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -14228,7 +14476,8 @@ ControlSetChecked(NewSetting, Control [,WinTitle:='', WinText:='', NoWinTitle:='
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -14272,7 +14521,8 @@ ControlSetEnabled(NewSetting, Control [,WinTitle:='', WinText:='', NoWinTitle:='
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -14319,7 +14569,8 @@ ControlSetStyle(Value, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWi
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -14363,7 +14614,8 @@ ControlSetExStyle(Value, Control [,WinTitle:='', WinText:='', NoWinTitle:='', No
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -14400,7 +14652,8 @@ ControlSetText(NewText, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoW
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -14439,7 +14692,8 @@ ControlShow(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=''])
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -14833,7 +15087,7 @@ DirSelect([StartingFolder:=A_MyDocuments, Options:=1, Prompt:='Select Folder - '
  * Performance can be increased by {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#load|preloading DLLs}. 
  * An integer function address can be used.  
  * If an object is passed, the `Ptr` property value is used.  
- * @param {(String|Integer)} [TypeN]  
+ * @param {(String|Integer)} [Type1]  
  * Arg's data type.  
  * - {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#str|`String`}: `Str`, `WStr`, `AStr`  
  * - {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#Int|`Integer`}: `Int64`, `Int`, `Short`, `Char`  
@@ -14842,10 +15096,10 @@ DirSelect([StartingFolder:=A_MyDocuments, Options:=1, Prompt:='Select Folder - '
  * - {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#ptr|`Pointer`}: `Ptr`, `* or P [suffix]`  
  * - {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#HRESULT|`COM`}: `HRESULT`  
  * 
- * There can be be multiple `type, arg` pairs listed sequentially.  
- * @param {(String)} [ArgN]  
+ * @param {(String)} [Arg1]  
  * The argument being passed.  
- * There can be be multiple `type, arg` pairs listed sequentially.  
+ * @param {(String|Integer)} [Type_Arg_Pairs]  
+ * Any additional `type, arg,` parameters.  
  * @param {(String)} [ReturnType]  
  * Specify the expected returned data type.  
  * ReturnType can be omitted if the return type is `Int`, `BOOL`, or nothing,  
@@ -14894,7 +15148,7 @@ DirSelect([StartingFolder:=A_MyDocuments, Options:=1, Prompt:='Select Folder - '
  * @example <caption>  
  * </caption>
  */
-DllCall(DLLNameOrPath [,TypeN:=unset, ArgN:=unset, ReturnType:='Int']) => String
+DllCall(DLLNameOrPath [,Type1, Arg1, Type_Arg_Pairs*, ReturnType:='Int']) => String
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Download.htm|`Download()`}  
@@ -15235,7 +15489,8 @@ Edit() => EmptyString
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -15274,7 +15529,8 @@ EditGetCurrentCol(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -15316,7 +15572,8 @@ EditGetCurrentLine(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinTex
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -15361,7 +15618,8 @@ EditGetLine(N, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -15404,7 +15662,8 @@ EditGetLineCount(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -15449,7 +15708,8 @@ EditGetSelectedText(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -16768,7 +17028,8 @@ GroupActivate(GroupName [,Mode:='']) => Integer
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -16999,7 +17260,8 @@ HotIf([ExpressionOrCallback]) => EmptyString
  * @param {(String)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * Omitting both params resets any HotIf criteria and makes future hotkeys/hotstrings work globally.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -17031,7 +17293,8 @@ HotIfWinActive([WinTitle:='', WinText:='']) => EmptyString
  * @param {(String)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * Omitting both params resets any HotIf criteria and makes future hotkeys/hotstrings work globally.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -17063,7 +17326,8 @@ HotIfWinExist([WinTitle:='', WinText:='']) => EmptyString
  * @param {(String)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * Omitting both params resets any HotIf criteria and makes future hotkeys/hotstrings work globally.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -17095,7 +17359,8 @@ HotIfWinNotActive([WinTitle:='', WinText:='']) => EmptyString
  * @param {(String)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * Omitting both params resets any HotIf criteria and makes future hotkeys/hotstrings work globally.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -18171,7 +18436,8 @@ ListVars() => EmptyString
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -18332,7 +18598,8 @@ MenuFromHandle(Handle) => Menu
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -18700,37 +18967,37 @@ MouseMove(X, Y [,Speed, Relative]) => EmptyString
  *   Hex value must be prefixed with a 0x: `0x4`  
  *   Other than Group #5, only one option should be used from each group:  
  * 
- *     | -Option Groups-                                | -Dec-     | -Hex-       | -String Value-                              |
- *     | :---                                           | :--:      | :--:        | :---                                        |
- *     | **Group #1:**                                  |           |             | Change button names                         |
- *     | `OK`                                           | `0`       | `0x0`       | `OK` or `O`                                 |
- *     | `OK`, `Cancel`                                 | `1`       | `0x1`       | `OKCancel`, `O/C`, or `OC`                  |
- *     | `Abort`, `Retry`, `Ignore`                     | `2`       | `0x2`       | `AbortRetryIgnore`, `A/R/I`, or `ARI`       |
- *     | `Yes`, `No`, `Cancel`                          | `3`       | `0x3`       | `YesNoCancel`, `Y/N/C`, or `YNC`            |
- *     | `Yes`, `No`                                    | `4`       | `0x4`       | `YesNo`, `Y/N`, or `YN`                     |
- *     | `Retry`, `Cancel`                              | `5`       | `0x5`       | `RetryCancel`, `R/C`, or `RC`               |
- *     | `Cancel`, `Try Again`, `Continue`              | `6`       | `0x6`       | `CancelTryAgainContinue`, `C/T/C`, or `CTC` |
- *     |                                                |           |             |                                             |
- *     | **Group #2:**                                  |           |             | Add Icon                                    |
- *     | `Hand` (Stop/Error)                            | `16`      | `0x10`      | `Iconx`                                     |
- *     | `Question` (?)                                 | `32`      | `0x20`      | `Icon?`                                     |
- *     | `Exclamation` (!)                              | `48`      | `0x30`      | `Icon!`                                     |
- *     | `Asterisk` (Info)                              | `64`      | `0x40`      | `Iconi`                                     |
- *     |                                                |           |             |                                             |
- *     | **Group #3:**                                  |           |             | Set Default Focused Button                  |
- *     | `2nd` button                                   | `256`     | `0x100`     | `Default2`                                  |
- *     | `3rd` button                                   | `512`     | `0x200`     | `Default3`                                  |
- *     | `4th` button ({@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm#Help|Help button} required) | `768` | `0x300` | `Default4` |
- *     |                                                |           |             |                                             |
- *     | **Group #4:**                                  |           |             | Set Modality of Window                      |
- *     | `System Modal` (always on top)                 | `4096`    | `0x1000`    | N/A                                         |
- *     | `Task Modal`                                   | `8192`    | `0x2000`    | N/A                                         |
- *     | `System Modal, no title bar icon`              | `262144`  | `0x40000`   | N/A                                         |
- *     |                                                |           |             |                                             |
- *     | **Group #5:**                                  |           |             | Extras (Include any/all)                    |
- *     | Add {@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm#Help|Help button} | `16384` | `0x4000` | N/A            |
- *     | `Right-justified` text                         | `524288`  | `0x80000`   | N/A                                         |
- *     | `Right-to-left` text direction                 | `1048576` | `0x100000`  | N/A                                         |
+ *     | -Option Groups-              | -Hex-       | -String Value-                           |
+ *     | ---:                         | ---:        | :---                                     |
+ *     | **Group #1: Button Names**   |             |                                          |
+ *     | OK                           | `0x0`       | `O`, `OK`                                |
+ *     | OK, Cancel                   | `0x1`       | `OC`, `O/C`, `OKCancel`                  |
+ *     | Abort, Retry, Ignore         | `0x2`       | `ARI`, `A/R/I`, `AbortRetryIgnore`       |
+ *     | Yes, No, Cancel              | `0x3`       | `YNC`, `Y/N/C`, `YesNoCancel`            |
+ *     | Yes, No                      | `0x4`       | `YN`, `Y/N`, `YesNo`                     |
+ *     | Retry, Cancel                | `0x5`       | `RC`, `R/C`, `RetryCancel`               |
+ *     | Cancel, Try Again, Continue  | `0x6`       | `CTC`, `C/T/C`, `CancelTryAgainContinue` |
+ *     |                              |             |                                          |
+ *     | **Group #2: Icon**           |             |                                          |
+ *     | Hand (Stop/Error)            | `0x10`      | `IconX`                                  |
+ *     | Question (?)                 | `0x20`      | `Icon?`                                  |
+ *     | Exclamation (!)              | `0x30`      | `Icon!`                                  |
+ *     | Asterisk (Info)              | `0x40`      | `Iconi`                                  |
+ *     |                              |             |                                          |
+ *     | **Group #3: Default Button** |             |                                          |
+ *     | Focus button 2               | `0x100`     | `Default2`                               |
+ *     | Focus button 3               | `0x200`     | `Default3`                               |
+ *     | Focus button 4({@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm#Help|Help button} required) | `0x300` | `Default4` |
+ *     |                              |             |                                          |
+ *     | **Group #4: Modality**       |             |                                          |
+ *     | System Modal (Always on top) | `0x1000`    | N/A                                      |
+ *     | Task Modal                   | `0x2000`    | N/A                                      |
+ *     | System Modal (No title icon) | `0x40000`   | N/A                                      |
+ *     |                              |             |                                          |
+ *     | **Group #5: Other**          |             |                                          |
+ *     | Add {@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm#Help|Help button} | `0x4000` | N/A |
+ *     | Right-justified text         | `0x80000`   | N/A                                      |
+ *     | Right-to-left text direction | `0x100000`  | N/A                                      |
  * 
  * @returns {(String)}  
  * The button name clicked is returned  
@@ -19072,8 +19339,7 @@ ObjSetCapacity(Obj, MaxProps) => ReturnValue
  * - `1` = Clipboard contains text.
  * - `2` = Clipboard Contains binary data (such as a picture).
  * 
- *     clipboard_func(DataType) ; Callback format
- *     clipboard_func(*) ; Using a variadic param
+ *       clipboard_func(DataType) ; Expected callback format
  * @param {(Integer)} [AddRemove]  
  * - `1` = Callback after any previously registered callbacks.  
  * - `-1` = Callback before any previously registered callbacks.  
@@ -19229,7 +19495,8 @@ OnMessage(MsgNumber, Callback [,MaxThreads:=1]) => EmptyString
  * If `Str` begins with a {@link https://learn.microsoft.com/en-us/windows/win32/intl/surrogates-and-supplementary-characters|Unicode supplementary character}, the corresponding Unicode char is sent (between 0x10000 and 0x10FFFF)  
  * If the string is empty, `0` is returned.  
  * @see  
- * {@link https://www.autohotkey.com/docs/v2/lib/Chr.htm|Chr()}
+ * {@link https://www.autohotkey.com/docs/v2/lib/Chr.htm|Chr()},
+ * {@link https://raw.githubusercontent.com/GroggyOtter/GroggyRepo/master/AHK/Groggy's%20ASCII%20Tables.txt|ASCII Table}
  * @example <caption>  
  * </caption>
  * Ord("t") => 116
@@ -19388,7 +19655,8 @@ PixelSearch(&OutputX, &OutputY, X1, Y1, X2, Y2, ColorID [,Variation:=0]) => Inte
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -20697,7 +20965,8 @@ SendLevel(Level) => Integer
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -21513,7 +21782,8 @@ Sqrt(Num) => Float
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -21564,7 +21834,8 @@ StatusBarGetText([Section:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -22343,7 +22614,8 @@ VerCompare(VersionA, VersionB) => Integer
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -22385,7 +22657,8 @@ WinActivate([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Empty
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -22421,7 +22694,8 @@ WinActivateBottom([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =>
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -22459,7 +22733,8 @@ WinActive([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -22506,7 +22781,8 @@ WinClose([WinTitle:='', WinText:='', SecToWait:=unset, NoWinTitle:='', NoWinText
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -22544,7 +22820,8 @@ WinExist([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -22597,7 +22874,8 @@ WinGetClass([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Strin
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -22634,7 +22912,8 @@ WinGetClientPos([&OutX, &OutY, &OutWidth, &OutHeight, WinTitle:='', WinText:='',
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -22669,7 +22948,8 @@ WinGetControls([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Ar
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -22704,7 +22984,8 @@ WinGetControlsHwnd([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -22736,7 +23017,8 @@ WinGetCount([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integ
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -22778,7 +23060,8 @@ WinGetID([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -22815,7 +23098,8 @@ WinGetIDLast([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Inte
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -22849,7 +23133,8 @@ WinGetList([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Array
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -22889,7 +23174,8 @@ WinGetMinMax([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Inte
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -22939,7 +23225,8 @@ WinGetPID([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -22971,7 +23258,8 @@ WinGetPos([&OutX, &OutY, &OutWidth, &OutHeight, WinTitle:='', WinText:='', NoWin
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23010,7 +23298,8 @@ WinGetProcessName([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =>
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23049,7 +23338,8 @@ WinGetProcessPath([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =>
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23089,7 +23379,8 @@ WinGetStyle([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integ
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23127,7 +23418,8 @@ WinGetExStyle([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Int
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23164,7 +23456,8 @@ WinGetText([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => String
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23203,7 +23496,8 @@ WinGetTitle([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Strin
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23249,7 +23543,8 @@ WinGetTransColor([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => 
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23294,7 +23589,8 @@ WinGetTransparent([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =>
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23334,7 +23630,8 @@ WinHide([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyStri
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23379,7 +23676,8 @@ WinKill([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyStri
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23421,7 +23719,8 @@ WinMaximize([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Empty
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23510,7 +23809,8 @@ WinMinimizeAllUndo() => EmptyString
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23556,7 +23856,8 @@ WinMove([X, Y, Width, Height, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23593,7 +23894,8 @@ WinMoveBottom([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Emp
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23631,7 +23933,8 @@ WinMoveTop([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyS
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23666,7 +23969,8 @@ WinRedraw([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptySt
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23705,7 +24009,8 @@ WinRestore([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyS
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23745,7 +24050,8 @@ WinSetAlwaysOnTop([NewSetting:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoW
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23794,7 +24100,8 @@ WinSetEnabled([NewSetting:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23842,7 +24149,8 @@ WinSetRegion([Options:='', WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23889,7 +24197,8 @@ WinSetStyle(Value [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23928,7 +24237,8 @@ WinSetExStyle(Value [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=''])
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -23973,7 +24283,8 @@ WinSetTitle(NewTitle [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -24012,7 +24323,8 @@ WinSetTransColor(Color [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -24047,7 +24359,8 @@ WinSetTransparent(NewSetting [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinT
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -24081,7 +24394,8 @@ WinShow([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyStri
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -24120,7 +24434,8 @@ WinWait([WinTitle:='', WinText:='', Timeout:=unset, NoWinTitle:='', NoWinText:='
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -24158,7 +24473,8 @@ WinWaitActive([WinTitle:='', WinText:='', Timeout:=unset, NoWinTitle:='', NoWinT
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
@@ -24196,7 +24512,8 @@ WinWaitNotActive([WinTitle:='', WinText:='', Timeout:=unset, NoWinTitle:='', NoW
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * If the string is the letter `A`, the current active window is used.  
+ * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
