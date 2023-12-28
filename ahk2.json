@@ -6,19 +6,27 @@
 			"prefix": "#ClipboardTimeout"
 		},
 		{
-			"body": "#DllLoad${1| ,A_ScriptDir '\\\\'|}",
-			"description": "Load the DLL or EXE file before the script starts executing or omit to to reset default search strategy.",
-			"prefix": "#DllLoad"
+			"body": "#DllLoad ",
+			"description": "Load the DLL or EXE file before the script starts executing or omit to to reset default search strategy."
 		},
 		{
-			"body": "#StdOut ${1|'CP0','UTF-8','UTF-8-RAW','UTF-16','UTF-16-RAW','CP###' |}",
-			"description": "Send any syntax s that prevent the script from running to stderr instead of displaying a dialog box. Omit to use CP0.",
-			"prefix": "#StdOut"
+			"body": "#ErrorStdOut ${1|'CP0','UTF-8','UTF-8-RAW','UTF-16','UTF-16-RAW','CP###'|}",
+			"description": "Syntax errors that prevent a script from launching as sent to standard error stream (stderr).",
+			"prefix": "#ErrorStdOut"
 		},
 		{
-			"body": "#HotIf ${1| ,WinActive(WinTitle\\, Wintitle),WinExist(WinTitle\\, Wintitle),(WinTitle\\, Wintitle),WinNotExist(WinTitle\\, Wintitle)|}",
-			"description": "Create context-sensitive hotkeys and hotstrings that are enabled when the criteria is true. Omit to reset criteria.",
-			"prefix": "#Hotif"
+			"body": "#HotIf ",
+			"description": "Create context-sensitive hotkeys and hotstrings that are enabled when the criteria is true. Use #HotIf to reset criteria."
+		},
+		{
+			"body": "#HotIf WinActive(${3:'Title' }${1|'ahk_exe ,'ahk_class ,'ahk_id ,'ahk_pid ,'ahk_group |}${2:}')",
+			"description": "Create context-sensitive hotkeys and hotstrings that work when the specified window is active. Use #HotIf to reset criteria.",
+			"prefix": "#HotIfWinActive"
+		},
+		{
+			"body": "#HotIf WinExist(${3:'Title' }${1|'ahk_exe ,'ahk_class ,'ahk_id ,'ahk_pid ,'ahk_group |}${2:}')",
+			"description": "Create context-sensitive hotkeys and hotstrings that work when the specified window exists. Use #HotIf to reset criteria.",
+			"prefix": "#HotIfWinExist"
 		},
 		{
 			"body": "#HotIfTimeout ${1:milliseconds}",
@@ -26,7 +34,17 @@
 			"prefix": "#HotIfTimeout"
 		},
 		{
-			"body": "#Hotstring ${1|NoMouse ,EndChars , NewOptionString|}",
+			"body": "#Hotstring EndChars ${1:-()[]{\\}':;\"/\\,.?!`n`s`t}",
+			"description": "Change the default options for hotstrings or their ending char.",
+			"prefix": "#Hotstring EndChars"
+		},
+		{
+			"body": "#Hotstring NoMouse",
+			"description": "Prevents mouse clicks from resetting the hotstring recognizer.",
+			"prefix": "#Hotstring NoMouse"
+		},
+		{
+			"body": "#Hotstring ${1:NewOptions}",
 			"description": "Change the default options for hotstrings or their ending char.",
 			"prefix": "#Hotstring"
 		},
@@ -41,12 +59,12 @@
 			"prefix": "#IncludeAgain"
 		},
 		{
-			"body": "#InputLevel ${1:Between_0_and_100}",
+			"body": "#InputLevel ${1:0_to_100}",
 			"description": "Set Input Level of any subsequently created hotkeys/hotstrings. Omit for 0.",
 			"prefix": "#InputLevel"
 		},
 		{
-			"body": "#MaxThreads ${1:Between_1_and_255}",
+			"body": "#MaxThreads ${1:1_to_255}",
 			"description": "Set max number of simultaneous threads that can run. Default is 10.",
 			"prefix": "#MaxThreads"
 		},
@@ -227,7 +245,7 @@
 	"keywords": [
 		{
 			"body": "AND",
-			"description": "(x AND y) Both items must be true. Same as: '&&'"
+			"description": "(x AND y) Both items must be true. Same as: &&"
 		},
 		{
 			"body": "AS",
@@ -243,16 +261,15 @@
 		},
 		{
 			"body": "NOT",
-			"description": "(NOT false) Item must not be true. Same as: '!'."
+			"description": "(NOT false) Item must not be true. Same as: !."
 		},
 		{
 			"body": "OR",
-			"description": "(x OR y) One or other must be true. Same as: '||'."
+			"description": "(x OR y) One or other must be true. Same as: ||."
 		},
 		{
-			"body": "break${1| , [LoopLabel]|}",
-			"description": "End any [Loop/While/For] loop immediately.",
-			"prefix": "break"
+			"body": "break",
+			"description": "End any [Loop/While/For] loop immediately."
 		},
 		{
 			"body": "catch${1| , Error , MemoryError , OSError , TargetError , TimeoutError , TypeError , UnsetError , MemberError , PropertyError , MethodError , UnsetItemError , ValueError , IndexError , ZeroDivisionError |}${2| ,as OutputVar|}",
@@ -260,9 +277,8 @@
 			"prefix": "catch"
 		},
 		{
-			"body": "continue${1| , [LoopLabel]|}",
-			"description": "Skip the rest of the current iteration of the loop statement, and then start a new loop.",
-			"prefix": "continue"
+			"body": "continue",
+			"description": "Skip the rest of the current iteration of the loop statement, and then start a new loop."
 		},
 		{
 			"body": "else If ",
@@ -270,66 +286,62 @@
 			"prefix": "elif"
 		},
 		{
-			"body": "else ",
-			"description": "If the result of the if statement is false, specify one or more statements to be executed.",
-			"prefix": "else"
+			"body": "else",
+			"description": "If the result of the if statement is false, specify one or more statements to be executed."
 		},
 		{
-			"body": "finally ",
-			"description": "Code block to run after a try/catch has completed.",
-			"prefix": "finally"
+			"body": "finally",
+			"description": "Code block to run after a try/catch has completed."
 		},
 		{
-			"body": "for id, value IN ${1:Obj}",
+			"body": "for ${1:id}, ${2:value} IN ${3:objname}",
 			"description": "Repeat a series of functions for each key-value pair in the object.",
 			"prefix": "for"
 		},
 		{
-			"body": "global ",
-			"description": "Mark a variable or function as global so it can be changed from inside a function or method.",
-			"perfix": "global"
+			"body": "global",
+			"description": "Mark a variable or function as global so it can be changed from inside a function or method."
 		},
 		{
-			"body": "goto(${1:Label})",
+			"body": "goto('${1:Label}')",
 			"description": "Jump to the specified label and continue execution.",
 			"prefix": "goto"
 		},
 		{
-			"body": "if ",
-			"description": "Specify one or more statements to be executed when the expression evaluates to true.",
-			"prefix": "if"
+			"body": "if",
+			"description": "Specify one or more statements to be executed when the expression evaluates to true."
 		},
 		{
-			"body": "loop Files ${2:FilePattern}, ${1|'F','FR','D','DR','FD','FDR'|}",
+			"body": "loop files ${3:FilePattern}, '${1|>File\\, Directory\\, Recurse,F,D,FD,FR,DR,FDR|}'",
 			"description": "Loop through a directory. MODES: D=Get Directories, F=Get Files, R=Recurse",
 			"prefix": "loop files"
 		},
 		{
-			"body": "loop Parse ${1:Text}, DelimitChar, OmitChars",
+			"body": "loop parse ${1:Text}${2:, DelimitChar}${3:, OmitChar}",
 			"description": "Loop through a string by substrings. String is parsed by each char if no Delimiter is provided.",
 			"prefix": "loop parse"
 		},
 		{
-			"body": "loop Read ${0:FilePath}, OutputFile",
+			"body": "loop read ${1:FilePath}${2:, OutputFile|}",
 			"description": "Retrieve the lines in the text file, one line at a time.",
 			"prefix": "loop read"
 		},
 		{
-			"body": "loop Reg ${2|'HKLM','HKU','HKCU','HKCR','HKCC','HKEY_LOCAL_MACHINE','HKEY_USERS','HKEY_CURRENT_USER','HKEY_CLASSES_ROOT','HKEY_CURRENT_CONFIG'|}\\, '${1|K,V,KV,KR,VR,KVR|}'",
+			"body": "loop reg '${2|HKLM,HKU,HKCU,HKCR,HKCC,HKEY_LOCAL_MACHINE,HKEY_USERS,HKEY_CURRENT_USER,HKEY_CLASSES_ROOT,HKEY_CURRENT_CONFIG|}\\\\$3', '${1|>Key Value Recurse,K,V,KV,KR,VR,KVR|}'",
 			"description": "Retrieve the contents of the specified registry subkey. Modes: V=Value, K=Key, R=Recurse",
 			"prefix": "loop reg"
 		},
 		{
-			"body": "loop${1: ,\\, Count}",
+			"body": "loop${1:\\, Count}",
 			"description": "Repeat a series of functions: you can specify a number representing the number of repetitions or until a break is encountered.",
 			"prefix": "loop"
 		},
 		{
-			"body": "local",
+			"body": "local ",
 			"description": "Sets a variable or all function variables to local scope, causing them to be private to the function. Local variables can be the same as globals."
 		},
 		{
-			"body": "case $0: ",
+			"body": "case $1: ",
 			"description": "One or more values to compare against the Switch value or evaluate if no value is provided.",
 			"prefix": "case"
 		},
@@ -339,32 +351,30 @@
 			"prefix": "default:"
 		},
 		{
-			"body": "return${1| ,Value|}",
-			"description": "Return the flow of code to the original caller, along with an optional return value.",
-			"prefix": "return"
+			"body": "return",
+			"description": "Return the flow of code to the original caller, along with an optional return value."
 		},
 		{
-			"body": "Static ",
-			"description": "A static variable or function persists through the life of the script and do not get erased at the end of a function call.",
+			"body": "static ${1:name}",
+			"description": "A static variable or function persists through the life of the script and does not get erased at the end of a function call.",
 			"prefix": "static"
 		},
 		{
-			"body": "Throw ${1|Error,MemoryError,OSError,TargetError,TimeoutError,TypeError,UnsetError,MemberError,PropertyError,MethodError,UnsetItemError,ValueError,IndexError,ZeroDivisionError|}('${2:Message}', A_ThisFunc, 'Extra')",
+			"body": "throw(${1|Error,MemoryError,OSError,TargetError,TimeoutError,TypeError,UnsetError,MemberError,PropertyError,MethodError,UnsetItemError,ValueError,IndexError,ZeroDivisionError|}('${2:Message}', ${3:A_ThisFunc}, ${4:ExtraInfo}))",
 			"description": "Indicates that an error has occurred. The signal can be caught by a try-catch statement.",
 			"prefix": "throw"
 		},
 		{
-			"body": "Try ",
-			"description": "Protect one or more statements (functions or expressions) to prevent runtime s and exceptions raised by the throw statement.",
-			"prefix": "try"
+			"body": "try ",
+			"description": "Protect one or more statements (functions or expressions) to prevent runtime s and exceptions raised by the throw statement."
 		},
 		{
-			"body": "Until($0)",
+			"body": "until ($1)",
 			"description": "Apply the condition to the continuation of the loop or for loop.",
 			"prefix": "until"
 		},
 		{
-			"body": "While ($0)",
+			"body": "while ($1)",
 			"description": "While expression evaluates to true, continue to run code block",
 			"prefix": "while"
 		}
@@ -926,23 +936,23 @@
 	"texts": [
 		{
 			"body": "ahk_class",
-			"description": "The window class is a set of attributes used by the system as a template for creating windows. In other words, the class name of the window identifies the type of window. To use the window class, please specify ahk_class ExactClassName, as shown in Window Spy .ExactClassName can be retrieved through WinGetClass."
+			"description": "ahk_class is used to match one or more windows using the class name of the application."
 		},
 		{
 			"body": "ahk_exe",
-			"description": "Use ahk_exe to identify windows belonging to any process with a given name or path."
+			"description": "ahk_exe is used to match one or more windows using the exe name of the process that owns the window."
 		},
 		{
 			"body": "ahk_group",
-			"description": "Use ahk_group to identify one or more windows that match the rules contained in the previously defined window group."
+			"description": "ahk_group is used to match a group of one or more windows that have been previously defined using GroupAdd()."
 		},
 		{
 			"body": "ahk_id",
-			"description": "Each window or control has a unique ID, also known as HWND (short for window handle)."
+			"description": "ahk_id is used to match a window using the window's unique ID (HWND). This number is not static and changes every time the application is launched."
 		},
 		{
 			"body": "ahk_pid",
-			"description": "Use ahk_pid to identify the window belonging to a specific process. The process identifier (PID) is usually retrieved by WinGet, Run or Process."
+			"description": "ahk_pid is used to match one or more windows using the process ID of that application. This number is not static and changes every time the application is launched."
 		},
 		{
 			"body": "AlwaysOnTop",
@@ -991,7 +1001,7 @@
 		},
 		{
 			"body": "AppsKey",
-			"description": "Menu. This is the key to call the right-click context menu."
+			"description": "Activates the right-click context menu."
 		},
 		{
 			"body": "BackSpace"
@@ -1035,8 +1045,7 @@
 			"body": "Control"
 		},
 		{
-			"body": "Ctrl",
-			"description": "Short version of Control."
+			"body": "Ctrl"
 		},
 		{
 			"body": "CtrlBreak",
@@ -1298,8 +1307,7 @@
 			"body": "LControl"
 		},
 		{
-			"body": "LCtrl",
-			"description": "Short version of LControl."
+			"body": "LCtrl"
 		},
 		{
 			"body": "Left"
@@ -1428,8 +1436,7 @@
 			"body": "RControl"
 		},
 		{
-			"body": "RCtrl",
-			"description": "Short version of RControl."
+			"body": "RCtrl"
 		},
 		{
 			"body": "Right"
