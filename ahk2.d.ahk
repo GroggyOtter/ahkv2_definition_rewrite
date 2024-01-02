@@ -1,21 +1,19 @@
 ;#region classes
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm|`Any`}  
- * The root (topmost) class of AutoHotkey's type hierarchy.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm|`Any`} - The root (topmost) class of AutoHotkey's type hierarchy.  
  * All other types are a sub-type of Any.
  * @property {(Prototype)} Base - Retrieves the value's {@link https://www.autohotkey.com/docs/v2/Objects.htm#delegation|base object}.  
  */
 class Any {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#Base|`Base`}  
-     * Retrieves or sets the value's {@link https://www.autohotkey.com/docs/v2/Objects.htm#delegation|base object}.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#Base|`Base`} - Retrieves or sets the value's {@link https://www.autohotkey.com/docs/v2/Objects.htm#delegation|base object}.  
      * The base object must be an Object.  
-     * @type {(Prototype)}
+     * @type (Prototype)
      * @see  
      * {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#GetBase|ObjGetBase()},
      * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#SetBase|ObjSetBase()},
      * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#Base|Object.Base}
-     * @throws {(Error)}  
+     * @throws Error  
      * Assigning a new base that would change the native type of the object.  
      * @example <caption>  
      * Checking if object's base matches the main Object prototype.</caption>
@@ -26,8 +24,7 @@ class Any {
     Base => Prototype
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#GetMethod|`GetMethod()`}  
-     * Retrieves the implementation function of a method.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#GetMethod|`GetMethod()`} - Retrieves the implementation function of a method.  
      * @param {(String)} [Name]  
      * The name of the method to retrieve.  
      * Omit this parameter to perform validation on the object itself and return object if successful.  
@@ -36,11 +33,11 @@ class Any {
      * If omitted or if the parameter count not verified, a basic check is performed for a Call() method to verify that the object is most likely callable.  
      * @returns {(FuncObject)}   
      * A reference to the specified method.  
-     * @throws {(MethodError)}  
+     * @throws MethodError  
      * Method is not found or cannot be retrieved without invoking a property getter.  
-     * @throws {(ValueError)}  
+     * @throws ValueError  
      * Validation attempted and failed.  
-     * @throws {(MethodError)}  
+     * @throws MethodError  
      * Validation attempted and failed.  
      * @see  
      * {@link https://www.autohotkey.com/docs/v2/Objects.htm|Objects},
@@ -58,8 +55,7 @@ class Any {
     GetMethod([Name:=unset, ParamCount:=unset]) => Func
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#HasBase|`HasBase()`}  
-     * Checks if BaseObj is in this Value's chain of base objects
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#HasBase|`HasBase()`} - Checks if BaseObj is in this Value's chain of base objects
      * @param {(Object | Primitive)} Baseobj  
      * The potential base object to test.  
      * @returns {(Boolean)}  
@@ -78,8 +74,7 @@ class Any {
     HasBase(BaseObj) => Integer
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#HasMethod|`HasMethod()`}  
-     * Returns a non-zero number if the specified value has a method by the specified name.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#HasMethod|`HasMethod()`} - Returns a non-zero number if the specified value has a method by the specified name.  
      * @param {(String)} [Name]  
      * The method name to check for.  
      * Omit this parameter to check whether Value itself is callable.  
@@ -102,8 +97,7 @@ class Any {
     HasMethod([Name:=unset, ParamCount:=unset]) => Integer
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#HasProp|`HasProp()`}  
-     * Returns true if the value has an attribute with this name, otherwise it returns false.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#HasProp|`HasProp()`} - Returns true if the value has an attribute with this name, otherwise it returns false.  
      * @param {(String)} Name  
      * The property name to check for.  
      * @returns {(Boolean)}  
@@ -127,8 +121,7 @@ class Any {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object}  
- * Object is the basic class from which any AutoHotkey object class is derived from.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} - Object is the basic class from which any AutoHotkey object class is derived from.  
  * Each Object consists of any inherited properties and methods.  
  * Any added properties are considered part of the object's "own properties".  
  * @property {(Prototype)} Base - Retrieves or sets an object's base object.
@@ -138,15 +131,14 @@ class Any {
  */
 class Object extends Any {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#Base|`Base`}  
-     * Retrieves or sets the value's {@link https://www.autohotkey.com/docs/v2/Objects.htm#delegation|base object}.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#Base|`Base`} - Retrieves or sets the value's {@link https://www.autohotkey.com/docs/v2/Objects.htm#delegation|base object}.  
      * The base object must be an Object.  
-     * @type {(Prototype)}
+     * @type Prototype
      * @see  
      * {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#GetBase|ObjGetBase()},
      * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#SetBase|ObjSetBase()},
      * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#Base|Object.Base}
-     * @throws {(Error)}  
+     * @throws Error  
      * Assigning a new base that would change the native type of the object.  
      * @example <caption>  
      * Comparing a base to </caption>
@@ -158,8 +150,7 @@ class Object extends Any {
     Base => Prototype
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#Call|`Object()`}  
-     * Creates a new Object.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#Call|`Object()`} - Creates a new Object.  
      * @example <caption>  
      * Different ways to create a new object.</caption>
      * my_obj1 := Object()
@@ -169,8 +160,7 @@ class Object extends Any {
     static Call() => Object
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#Clone|`Clone()`}  
-     * Returns a shallow copy of the object.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#Clone|`Clone()`} - Returns a shallow copy of the object.  
      * Each property or method owned by the object is copied into the clone.  
      * Shallow copy means:  
      * - Primitive values are copied
@@ -193,8 +183,7 @@ class Object extends Any {
     Clone() => Object
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#DefineProp|`DefineProp()`}  
-     * Defines a new own property for the object.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#DefineProp|`DefineProp()`} - Defines a new own property for the object.  
      * @param {(String)} Name  
      * Name of the property  
      * @param {(Object)} DescriptorObject  
@@ -217,8 +206,7 @@ class Object extends Any {
     DefineProp(Name, DescriptorObject) => Object
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#DeleteProp|`DeleteProp()`}  
-     * Removes an own property from an object.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#DeleteProp|`DeleteProp()`} - Removes an own property from an object.  
      * @param {(String)} Name  
      * A property name
      * @returns {(Any)}  
@@ -234,8 +222,7 @@ class Object extends Any {
     DeleteProp(Name) => Value
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#GetOwnPropDesc|`GetOwnPropDesc()`}  
-     * Returns a descriptor for a given own property, compatible with {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#DefineProp|DefineProp}.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#GetOwnPropDesc|`GetOwnPropDesc()`} - Returns a descriptor for a given own property, compatible with {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#DefineProp|DefineProp}.  
      * @param {(String)} Name  
      * A property name.  
      * @returns {(Object)}  
@@ -252,8 +239,7 @@ class Object extends Any {
     GetOwnPropDesc(Name) => DescriptorObject
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#HasOwnProp|`HasOwnProp()`}  
-     * Returns true if the object has a property by the specified Name.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#HasOwnProp|`HasOwnProp()`} - Returns true if the object has a property by the specified Name.  
      * @param {(String)} Name  
      * The name of a property.  
      * This method is also defined as a function: ObjHasOwnProp(objectName, propertyName)
@@ -268,8 +254,7 @@ class Object extends Any {
     HasOwnProp(Name) => Integer
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#OwnProps|`OwnProps()`}  
-     * Returns an enumerator for an object's own properties.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#OwnProps|`OwnProps()`} - Returns an enumerator for an object's own properties.  
      * This is normally used with a {@link https://www.autohotkey.com/docs/v2/lib/For.htm|for-loop} to iterate through the object's properties.  
      * @returns {(Enumerator)}
      * @example <caption>  
@@ -282,8 +267,7 @@ class Object extends Any {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm|`Array`}  
- * An object containing a sequence, or list, of values.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm|`Array`} - An object containing a sequence, or list, of values.  
  * Each element of an array has an index.  
  * Unlike a lot of languages, AHK's starting index is 1, not 0.  
  * @property {(Integer)} Length - Retrieves or sets the length of an array.
@@ -292,12 +276,11 @@ class Object extends Any {
  */
 class Array extends Object {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Length|`Length`}  
-     * Retrieves or sets the length of an array.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Length|`Length`} - Retrieves or sets the length of an array.  
      * Length includes elements which have no value.  
      * Setting Length higher will add enough unset values to the array to equal the new length.  
      * Setting Length lower will truncate everything past the defined index.  
-     * @type {(Integer)}
+     * @type Integer
      * @example <caption>  
      * Setting an array's length.</caption>
      * arr := [1, 2]
@@ -311,12 +294,11 @@ class Array extends Object {
     Length => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Capacity|`Capacity`}  
-     * Retrieves or sets the capacity of an array.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Capacity|`Capacity`} - Retrieves or sets the capacity of an array.  
      * Capacity is the total amount of elements the array can hold before it needs to be expanded.  
      * Length is the total amount of elements in use.  
      * A capacity lower than Length will truncate everything past the capacity total.  
-     * @type {(Integer)}
+     * @type Integer
      * @example <caption>  
      * Showing Capacity differs from Length.</caption>
      * arr := ['a', 'b', 'c', 'd']
@@ -329,12 +311,11 @@ class Array extends Object {
     Capacity => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Default|`Default`}  
-     * Defines the default value returned when an unset element is requested.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Default|`Default`} - Defines the default value returned when an unset element is requested.  
      * Default is unset by default and must be set by the user.  
      * Setting a default value does not prevent an error being thrown when index is out of range.  
-     * @type {(Any)} Can be any type of value
-     * @throws {(UnsetItemError)}  
+     * @type Any Can be any type of value
+     * @throws UnsetItemError  
      * An attempt was made to read the value of an item, but there was no value.  
      * @example <caption>  
      * Assigning a default value to an array.</caption>
@@ -345,14 +326,13 @@ class Array extends Object {
     Default => Any
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#__Item|`__Item`}  
-     * Retrieves or sets the value of an array element.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#__Item|`__Item`} - Retrieves or sets the value of an array element.  
      * Item syntax uses bracket notation: `arr[item]`
      * @param {(Integer)} Index  
      * Index to insert value(s).  
      * An index of 0 is the same as `array.Length + 1` and works identical to `Push()`.  
      * A negative index starts at the last element. `-1` last, `-2` second from last, etc.  
-     * @throws {(IndexError)}  
+     * @throws IndexError  
      * Using an out-of-bounds index.  
      * @example <caption>  
      * Using the __item property.</caption>
@@ -362,8 +342,7 @@ class Array extends Object {
     __Item[Index] => Any
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Call|`Call()`}  
-     * Creates a new Array.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Call|`Call()`} - Creates a new Array.  
      * @param {(Any)} [ValueN]  
      * Zero or more parameters containing any value to add to the array.  
      * @example <caption>  
@@ -375,8 +354,7 @@ class Array extends Object {
     static Call([ValueN*]) => Array
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Clone|`Clone()`}  
-     * Returns a shallow copy of the array.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Clone|`Clone()`} - Returns a shallow copy of the array.  
      * Each element is copied into the clone.  
      * Shallow copy means:  
      * - Primitive values are copied
@@ -397,8 +375,7 @@ class Array extends Object {
     Clone() => Array
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Delete|`Delete()`}  
-     * Removes the value of an array element, leaving that index without a value.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Delete|`Delete()`} - Removes the value of an array element, leaving that index without a value.  
      * @param {(Integer)} Index  
      * Index to insert value(s).  
      * An index of 0 is the same as `array.Length + 1` and works identical to `Push()`.  
@@ -414,8 +391,7 @@ class Array extends Object {
     Delete(Index) => Any
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Get|`Get()`}  
-     * Returns the value at a given index, or a default value if one is provided.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Get|`Get()`} - Returns the value at a given index, or a default value if one is provided.  
      * @param {(Integer)} Index  
      * The number of the element to get from the array.  
      * Using `0` is the same as using Push().  
@@ -428,9 +404,9 @@ class Array extends Object {
      * Otherwise, the provided default parameter is used.  
      * Otherwise, the defined {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Default|Default} property is used.  
      * Otherwise, an UnsetItemError is thrown.  
-     * @throws {(UnsetItemError)}  
+     * @throws UnsetItemError  
      * Value not set and no default parameter, and default property not defined.  
-     * @throws {(IndexError)}  
+     * @throws IndexError  
      * Index is zero or out of range
      * @example <caption>  
      * Retrieving a value from an array.</caption>
@@ -440,8 +416,7 @@ class Array extends Object {
     Get(Index [,Default:=unset]) => Any
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Has|`Has()`}  
-     * Returns true if the specified index is valid and there is a value at that position.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Has|`Has()`} - Returns true if the specified index is valid and there is a value at that position.  
      * @param {(Integer)} Index  
      * Index to insert value(s).  
      * An index of 0 is the same as `array.Length + 1` and works identical to `Push()`.  
@@ -457,8 +432,7 @@ class Array extends Object {
     Has(Index) => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#InsertAt|`InsertAt()`}  
-     * Inserts one or more values at a given position in the array.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#InsertAt|`InsertAt()`} - Inserts one or more values at a given position in the array.  
      * @param {(Integer)} Index  
      * Index to insert value(s).  
      * An index of 0 is the same as `array.Length + 1` and works identical to `Push()`.  
@@ -491,8 +465,7 @@ class Array extends Object {
     InsertAt(Index, Value [,AdditionalValues:=unset]) => EmptyString
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Pop|`Pop()`}  
-     * Removes and returns the last array element.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Pop|`Pop()`} - Removes and returns the last array element.  
      * @returns {(Any)}  
      * Value of element removed
      * @throws {Error} - Cannot remove an element from an empty array.  
@@ -506,8 +479,7 @@ class Array extends Object {
     Pop() => Any
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Push|`Push()`}  
-     * Appends value(s) to the end of an array.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Push|`Push()`} - Appends value(s) to the end of an array.  
      * @param {(Any)} Value  
      * Any value
      * @param {(Any)} AdditionalValues  
@@ -524,8 +496,7 @@ class Array extends Object {
     Push(Value [,AdditionalValues:=unset]) => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#RemoveAt|`RemoveAt()`}  
-     * Removes items from an array.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#RemoveAt|`RemoveAt()`} - Removes items from an array.  
      * @param {(Integer)} Index  
      * Index to insert value(s).  
      * An index of 0 is the same as `array.Length + 1` and works identical to `Push()`.  
@@ -546,8 +517,7 @@ class Array extends Object {
     RemoveAt(Index [,Length:=unset]) => Any  
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#__New|`__New()`}  
-     * Appends items and is equivalent to {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Push|Push()}.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#__New|`__New()`} - Appends items and is equivalent to {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Push|Push()}.  
      * This method exists to support {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Call|Call()}, and is not intended to be called directly.  
      * @param {(Any)} Value  
      * Value to insert.  
@@ -565,8 +535,7 @@ class Array extends Object {
     __New(Value [,AdditionalValues:=unset]) => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#__Enum|`__Enum()`}  
-     * Creates an {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|enumerator object} that iterates through each element of the array.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#__Enum|`__Enum()`} - Creates an {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|enumerator object} that iterates through each element of the array.  
      * This method is typically not called but instead is used by a {@link https://www.autohotkey.com/docs/v2/lib/For.htm|for-loop} to get each element and its index number.
      * @returns {(Enumerator)}  
      * Enumerable function object.  
@@ -587,8 +556,7 @@ class Array extends Object {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|`Buffer`}  
- * Encapsulates a block of memory for use with memory sensitive actions such as DllCall, structures, StrPut, and raw file I/O.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|`Buffer`} - Encapsulates a block of memory for use with memory sensitive actions such as DllCall, structures, StrPut, and raw file I/O.  
  * Buffer objects are typically created by calling Buffer(), but can also be returned by FileRead with the "RAW" option.  
  * @property {(Integer)} Ptr - Retrieves the buffer's current memory address.
  * @property {(Integer)} Size - Retrieves or sets the buffer's size, in bytes.
@@ -604,9 +572,8 @@ class Array extends Object {
  */
 class Buffer extends Object {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Ptr|`Ptr`}  
-     * Retrieves the buffer's current memory address.  
-     * @type {(Integer)}
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Ptr|`Ptr`} - Retrieves the buffer's current memory address.  
+     * @type Integer
      * @example <caption>  
      * Showing and using a buffer pointer.</caption>
      * buff := Buffer(4)
@@ -617,10 +584,9 @@ class Buffer extends Object {
     Ptr => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Size|`Size`}  
-     * Retrieves or sets the buffer's size, in bytes.  
-     * @type {(Integer)}
-     * @throws {(MemoryError)}  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Size|`Size`} - Retrieves or sets the buffer's size, in bytes.  
+     * @type Integer
+     * @throws MemoryError  
      * Memory could not be allocated.  
      * @example <caption>  
      * Getting the size of a buffer.</caption>
@@ -630,8 +596,7 @@ class Buffer extends Object {
     Size => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|`Buffer()`}  
-     * Creates a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer object}.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|`Buffer()`} - Creates a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer object}.  
      * @constructs Buffer
      * @param {(Integer)} [ByteCount]  
      * Number of bytes to allocate.  
@@ -642,7 +607,7 @@ class Buffer extends Object {
      * If buffer will be written to without first being read, it is better to omit FillByte as it has a time cost proportionate to the number of bytes.  
      * @returns {(Buffer)}  
      * A buffer object.  
-     * @throws {(MemoryError)}  
+     * @throws MemoryError  
      * If the memory could not be allocated.  
      * @example <caption>  
      * Creating a new 8-byte buffer.</caption>
@@ -651,8 +616,7 @@ class Buffer extends Object {
     static Call([ByteCount:=unset, FillByte:=unset]) => Buffer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#__New|`__New()`}  
-     * Allocates or reallocates the buffer and optionally fills it.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#__New|`__New()`} - Allocates or reallocates the buffer and optionally fills it.  
      * This method exists to support {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Call|Call()}, and is not usually called directly.  
      * @param {(Integer)} [ByteCount]  
      * Number of bytes to allocate, reallocate, or free the buffer.  
@@ -679,8 +643,7 @@ class Buffer extends Object {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|`ClipboardAll`}  
- * Creates an object containing everything on the clipboard, including binary data (like pictures).  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|`ClipboardAll`} - Creates an object containing everything on the clipboard, including binary data (like pictures).  
  * ClipboardAll is derived from the Buffer class.  
  * @property {(Integer)} Ptr - The address of the data contained by the object. This address is valid until the object is freed.
  * @property {(Integer)} Size - The size, in bytes, of the raw binary data.
@@ -693,10 +656,9 @@ class Buffer extends Object {
  */
 class ClipboardAll extends Buffer {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Ptr|`Ptr`}  
-     * Retrieves the address of the data contained by the object.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Ptr|`Ptr`} - Retrieves the address of the data contained by the object.  
      * This address is valid until the object is freed.  
-     * @type {(Integer)}
+     * @type Integer
      * @example <caption>  
      * Showing a buffer pointer.</caption>
      * clipBak := ClipboardAll()
@@ -705,9 +667,8 @@ class ClipboardAll extends Buffer {
     Ptr => Integer  
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Size|`Size`}  
-     * Retrieves the size, in bytes, of the raw binary data.  
-     * @type {(Integer)}
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Size|`Size`} - Retrieves the size, in bytes, of the raw binary data.  
+     * @type Integer
      * @example <caption>  
      * Showing size of a buffer.</caption>
      * clipBak := ClipboardAll()
@@ -716,8 +677,7 @@ class ClipboardAll extends Buffer {
     Size => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/ClipboardAll.htm|`ClipboardAll()`}  
-     * Creates a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer object} and stores everything from the clipboard in it.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/ClipboardAll.htm|`ClipboardAll()`} - Creates a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer object} and stores everything from the clipboard in it.
      * @param {(Object | Integer)} [Data]  
      * A Buffer-like object or a pure integer which is the address of the binary data.  
      * The data must be in a {@link https://www.autohotkey.com/docs/v2/lib/ClipboardAll.htm#Remarks|specific format}, so typically it originates from a previous call to ClipboardAll().  
@@ -726,7 +686,7 @@ class ClipboardAll extends Buffer {
      * The number of bytes of data to use. This is not necessary with buffer objects.  
      * @returns {(ClipboardAll)}  
      * A  buffer object
-     * @throws {(MemoryError)}  
+     * @throws MemoryError  
      * Memory could not be allocated.  
      * @see  
      * {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm|DllCall()},
@@ -757,8 +717,7 @@ class ClipboardAll extends Buffer {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Class.htm|`Class`}  
- * Represents a class definition; it contains static methods and properties.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Class.htm|`Class`} - Represents a class definition; it contains static methods and properties.  
  * Classes can also create instances of itself containing non-static methods and properties.  
  * @property {(Prototype)} Prototype - Retrieves or sets the object on which all instances of the class are based.  
  * @see  
@@ -770,8 +729,7 @@ class ClipboardAll extends Buffer {
  */
 class Class extends Object {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Class.htm#Call|`Class()`}  
-     * Constructs a new instance of the class.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Class.htm#Call|`Class()`} - Constructs a new instance of the class.  
      * @param Params - Any amount of predetermined parameters.  
      * @returns {(Class)} A class object is returned.  
      * @example <caption>  
@@ -783,21 +741,19 @@ class Class extends Object {
     Call(Params*) => Class
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Class.htm#Prototype|`Prototype`}  
-     * Retrieves or sets the object on which all instances of the class are based.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Class.htm#Prototype|`Prototype`} - Retrieves or sets the object on which all instances of the class are based.  
      * By default, the class's Prototype contains all instance methods and dynamic properties defined within the class definition, and can be used to retrieve references to methods or property getters/setters or define new ones.  
      * A class's Prototype is normally based on the Prototype of its base class:  
      * 
      *     ClassObj.Prototype.base == ClassObj.base.Prototype
      * Prototype is automatically defined as an own property of any class object created by a class definition.  
-     * @type {(Prototype)}
+     * @type Prototype
      */
     Prototype => Prototype
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm|`Error`}  
- * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} by when a runtime error occurs, and may also be thrown explicitly by the script.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm|`Error`} - An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} by when a runtime error occurs, and may also be thrown explicitly by the script.  
  * Contains information about the error.  
  * Specific error types:  
  * |                     |                  |               |
@@ -823,46 +779,40 @@ class Class extends Object {
  */
 class Error extends Object {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`Message`}  
-     * Contains a description of the error.
-     * @type {(String)}
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`Message`} - Contains a description of the error.
+     * @type String
      */
     Message => String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`What`}  
-     * Contains the name of the thing that threw the error. Usually a function name.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`What`} - Contains the name of the thing that threw the error. Usually a function name.  
      * Is blank when an exception is thrown inside an expression. Example: `('a' / 1)`
-     * @type {(String)}
+     * @type String
      */
     What => String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`Extra`}  
-     * Contains any additional information about the error.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`Extra`} - Contains any additional information about the error.  
      * If a non-empty string is passed, the error message will include a line that says:  
      * `Specifically: ` followed by the provided text.
-     * @type {(String)}
+     * @type String
      */
     Extra => String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`File`}  
-     * The full path of the script file containing the line at which the error occurred or where the Error object was constructed.  
-     * @type {(String)}
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`File`} - The full path of the script file containing the line at which the error occurred or where the Error object was constructed.  
+     * @type String
      */
     File => String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`Line`}  
-     * Line number at which the error occurred or where the Error object was constructed.  
-     * @type {(Integer)}
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`Line`} - Line number at which the error occurred or where the Error object was constructed.  
+     * @type Integer
      */
     Line => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`Stack`}  
-     * The full call stack at the time of error or error object construction.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#new|`Stack`} - The full call stack at the time of error or error object construction.  
      * A stack line is formatted as follows:  
      * * ``[FilePath] ([Line]) : [What] SourceCode`r`n``  
      *   Represents a call to the function What.  
@@ -873,13 +823,12 @@ class Error extends Object {
      * * `... N more`  
      *   Indicates that the stack trace was truncated, and there are N more stack entries not shown.  
      *   Currently the Stack property cannot exceed 2047 characters.
-     * @type {(String)}
+     * @type String
      */
     Stack => String
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#error-types|`Error()`}  
-     * Creates an Error object.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#error-types|`Error()`} - Creates an Error object.  
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -919,8 +868,7 @@ class Error extends Object {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#MemoryError|`MemoryError`}  
- * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when a memory allocation fails.
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#MemoryError|`MemoryError`} - An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when a memory allocation fails.
  * @property {(String)} Message - The general error message.  
  * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
  * @property {(String)} Extra - Extra information to be included about the error.  
@@ -937,8 +885,7 @@ class Error extends Object {
  */
 class MemoryError extends Error {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#MemoryError|`MemoryError()`}  
-     * A memory allocation failed.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#MemoryError|`MemoryError()`} - A memory allocation failed.  
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -954,8 +901,7 @@ class MemoryError extends Error {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#OSError|`OSError`}  
- * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an internal function call to a Win32 function fails.
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#OSError|`OSError`} - An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an internal function call to a Win32 function fails.
  * @property {(String)} Message - The general error message.  
  * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
  * @property {(String)} Extra - Extra information to be included about the error.  
@@ -972,8 +918,7 @@ class MemoryError extends Error {
  */
 class OSError extends Error {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#OSError|`OSError()`}  
-     * An internal function call to a Win32 function failed.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#OSError|`OSError()`} - An internal function call to a Win32 function failed.  
      * Message includes an error code and description generated by the operating system.  
      * OSErrors have an additional Number property which contains the error code.  
      * Calling OSError(code) with a numeric code sets Number and Message based on the given OS-defined error code.  
@@ -993,8 +938,7 @@ class OSError extends Error {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#TargetError|`TargetError`}  
- * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when a function fails because its target could not be found.
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#TargetError|`TargetError`} - An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when a function fails because its target could not be found.
  * @property {(String)} Message - The general error message.  
  * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
  * @property {(String)} Extra - Extra information to be included about the error.  
@@ -1011,8 +955,7 @@ class OSError extends Error {
  */
 class TargetError extends Error {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#TargetError|`TargetError()`}  
-     * A function failed because its target could not be found.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#TargetError|`TargetError()`} - A function failed because its target could not be found.  
      * Message indicates what kind of target, such as a window, control, menu or status bar.  
      * @param {(String)} [Message]  
      * A message describing the error.  
@@ -1029,8 +972,7 @@ class TargetError extends Error {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#TimeoutError|`TimeoutError`}  
- * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when {@link https://www.autohotkey.com/docs/v2/lib/SendMessage.htm|SendMessage()} times out.
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#TimeoutError|`TimeoutError`} - An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when {@link https://www.autohotkey.com/docs/v2/lib/SendMessage.htm|SendMessage()} times out.
  * @property {(String)} Message - The general error message.  
  * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
  * @property {(String)} Extra - Extra information to be included about the error.  
@@ -1047,8 +989,7 @@ class TargetError extends Error {
  */
 class TimeoutError extends Error {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#TimeoutError|`TimeoutError()`}  
-     * {@link https://www.autohotkey.com/docs/v2/lib/SendMessage.htm|SendMessage()} timed out.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#TimeoutError|`TimeoutError()`} - {@link https://www.autohotkey.com/docs/v2/lib/SendMessage.htm|SendMessage()} timed out.  
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -1064,8 +1005,7 @@ class TimeoutError extends Error {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#TypeError|`TypeError`}  
- * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an unexpected type of value was used as input for a function, property assignment, or some other operation.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#TypeError|`TypeError`} - An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an unexpected type of value was used as input for a function, property assignment, or some other operation.  
  * @property {(String)} Message - The general error message.  
  * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
  * @property {(String)} Extra - Extra information to be included about the error.  
@@ -1082,8 +1022,7 @@ class TimeoutError extends Error {
  */
 class TypeError extends Error {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#TypeError|`TypeError()`}  
-     * An unexpected type of value was used as input for a function, property assignment, or some other operation.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#TypeError|`TypeError()`} - An unexpected type of value was used as input for a function, property assignment, or some other operation.  
      * Usually, Message indicates the expected and actual type, and Extra contains a string representing the errant value.  
      * @param {(String)} [Message]  
      * A message describing the error.  
@@ -1100,8 +1039,7 @@ class TypeError extends Error {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#UnsetError|`UnsetError`}  
- * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when a variable, property, method, or item is accessed without having a value assigned to it.
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#UnsetError|`UnsetError`} - An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when a variable, property, method, or item is accessed without having a value assigned to it.
  * @property {(String)} Message - The general error message.  
  * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
  * @property {(String)} Extra - Extra information to be included about the error.  
@@ -1118,8 +1056,7 @@ class TypeError extends Error {
  */
 class UnsetError extends Error {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#UnsetError|`UnsetError()`}  
-     * An attempt was made to read the value of a variable, property or item, but there was no value.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#UnsetError|`UnsetError()`} - An attempt was made to read the value of a variable, property or item, but there was no value.  
      * Or an attempt was made to access a method that does not exist.  
      * @param {(String)} [Message]  
      * A message describing the error.  
@@ -1136,8 +1073,7 @@ class UnsetError extends Error {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#MemberError|`MemberError`}  
- * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an object property or method is accessed without having a value assigned to it.
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#MemberError|`MemberError`} - An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an object property or method is accessed without having a value assigned to it.
  * @property {(String)} Message - The general error message.  
  * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
  * @property {(String)} Extra - Extra information to be included about the error.  
@@ -1154,8 +1090,7 @@ class UnsetError extends Error {
  */
 class MemberError extends UnsetError {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#MemberError|`MemberError()`}  
-     * Either an attempt was made to read the value of a property or item, but there was no value,  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#MemberError|`MemberError()`} - Either an attempt was made to read the value of a property or item, but there was no value,  
      * or an attempt was made to access a method that does not exist.  
      * @param {(String)} [Message]  
      * A message describing the error.  
@@ -1172,8 +1107,7 @@ class MemberError extends UnsetError {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#PropertyError|`PropertyError`}  
- * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an object property is accessed without having a value assigned to it.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#PropertyError|`PropertyError`} - An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an object property is accessed without having a value assigned to it.  
  * @property {(String)} Message - The general error message.  
  * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
  * @property {(String)} Extra - Extra information to be included about the error.  
@@ -1190,8 +1124,7 @@ class MemberError extends UnsetError {
  */
 class PropertyError extends MemberError {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#PropertyError|`PropertyError()`}  
-     * An attempt was made to read the value of a property but there was no value.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#PropertyError|`PropertyError()`} - An attempt was made to read the value of a property but there was no value.  
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -1207,8 +1140,7 @@ class PropertyError extends MemberError {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#MethodError|`MethodError`}  
- * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an object method is accessed without having a value assigned to it.
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#MethodError|`MethodError`} - An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an object method is accessed without having a value assigned to it.
  * @property {(String)} Message - The general error message.  
  * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
  * @property {(String)} Extra - Extra information to be included about the error.  
@@ -1225,8 +1157,7 @@ class PropertyError extends MemberError {
  */
 class MethodError extends MemberError {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#MethodError|`MethodError()`}  
-     * An attempt was made to access a method that does not exist.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#MethodError|`MethodError()`} - An attempt was made to access a method that does not exist.  
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -1242,8 +1173,7 @@ class MethodError extends MemberError {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#UnsetItemError|`UnsetItemError`}  
- * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an object item is accessed without having a value assigned to it.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#UnsetItemError|`UnsetItemError`} - An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an object item is accessed without having a value assigned to it.  
  * @property {(String)} Message - The general error message.  
  * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
  * @property {(String)} Extra - Extra information to be included about the error.  
@@ -1260,8 +1190,7 @@ class MethodError extends MemberError {
  */
 class UnsetItemError extends UnsetError {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#UnsetItemError|`UnsetItemError()`}  
-     * An attempt was made to read the value of an item, but there was no value.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#UnsetItemError|`UnsetItemError()`} - An attempt was made to read the value of an item, but there was no value.  
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -1277,8 +1206,7 @@ class UnsetItemError extends UnsetError {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#ValueError|`ValueError`}  
- * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an unexpected value was used as input for a function, property or other operation.
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#ValueError|`ValueError`} - An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an unexpected value was used as input for a function, property or other operation.
  * @property {(String)} Message - The general error message.  
  * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
  * @property {(String)} Extra - Extra information to be included about the error.  
@@ -1295,8 +1223,7 @@ class UnsetItemError extends UnsetError {
  */
 class ValueError extends Error {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#ValueError|`ValueError()`}  
-     * An unexpected value was used as input for a function, property assignment, or some other operation.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#ValueError|`ValueError()`} - An unexpected value was used as input for a function, property assignment, or some other operation.  
      * Usually Message indicates which expectation was broken, and Extra contains a string representing the errant value.  
      * @param {(String)} [Message]  
      * A message describing the error.  
@@ -1313,8 +1240,7 @@ class ValueError extends Error {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#IndexError|`IndexError`}  
- * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an object's {@link https://www.autohotkey.com/docs/v2/Objects.htm#__Item|__Item property} is used with an index that is invalid or out of range.
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#IndexError|`IndexError`} - An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when an object's {@link https://www.autohotkey.com/docs/v2/Objects.htm#__Item|__Item property} is used with an index that is invalid or out of range.
  * @property {(String)} Message - The general error message.  
  * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
  * @property {(String)} Extra - Extra information to be included about the error.  
@@ -1331,8 +1257,7 @@ class ValueError extends Error {
  */
 class IndexError extends ValueError {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#IndexError|`IndexError()`}  
-     * The index parameter of an object's {@link https://www.autohotkey.com/docs/v2/Objects.htm#__Item|__Item property} was invalid or out of range.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#IndexError|`IndexError()`} - The index parameter of an object's {@link https://www.autohotkey.com/docs/v2/Objects.htm#__Item|__Item property} was invalid or out of range.  
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -1348,8 +1273,7 @@ class IndexError extends ValueError {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#ZeroDivisionError|`ZeroDivisionError`}  
- * An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when division by zero is attempted.
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#ZeroDivisionError|`ZeroDivisionError`} - An object that is {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|thrown} when division by zero is attempted.
  * @property {(String)} Message - The general error message.  
  * @property {(String)} What - What threw the error. Usually a function. Blank for expression errors.  
  * @property {(String)} Extra - Extra information to be included about the error.  
@@ -1366,8 +1290,7 @@ class IndexError extends ValueError {
  */
 class ZeroDivisionError extends Error {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#ZeroDivisionError|`ZeroDivisionError()`}  
-     * Divison by zero was attempted in an expression or with the Mod function.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#ZeroDivisionError|`ZeroDivisionError()`} - Divison by zero was attempted in an expression or with the Mod function.  
      * @param {(String)} [Message]  
      * A message describing the error.  
      * @param {(String)} [What]  
@@ -1383,8 +1306,7 @@ class ZeroDivisionError extends Error {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm|`File Object`}  
- * Provides an interface for file input/output.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm|`File Object`} - Provides an interface for file input/output.  
  * @property {(Integer)} Pos - Retrieves or sets the position of the file pointer.
  * @property {(Integer)} Length - Retrieves or sets the size of the file.
  * @property {(Integer)} AtEOF - Retrieves a non-zero number if the file pointer has reached the end of the file.
@@ -1394,11 +1316,10 @@ class ZeroDivisionError extends Error {
  */
 class File extends Object {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Pos|`Pos`}  
-     * Retrieves or sets the position of the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Pos|`Pos`} - Retrieves or sets the position of the file pointer.  
      * The position is a byte offset from the beginning of the file, where 0 is the first byte.  
      * When data is written to or read from the file, the file pointer automatically moves to the next byte after that data.  
-     * @type {(Integer)}
+     * @type Integer
      * @example <caption>  
      * Get start position of script source's 3rd line.</caption>
      * fob := FileOpen(A_ScriptFullPath, 'r')
@@ -1410,11 +1331,10 @@ class File extends Object {
     Pos => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Length|`Length`}  
-     * Retrieves or sets the size of the file.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Length|`Length`} - Retrieves or sets the size of the file.  
      * Length is represented in bytes.  
      * This property should be used only with an actual file.  
-     * @type {(Integer)}
+     * @type Integer
      * @example <caption>  
      * Checking the size of the current script file.</caption>
      * fob := FileOpen(A_ScriptFullPath, 'r')
@@ -1424,10 +1344,9 @@ class File extends Object {
     Length => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#AtEOF|`AtEOF`}  
-     * Retrieves a non-zero value if the file pointer has reached the end of the file.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#AtEOF|`AtEOF`} - Retrieves a non-zero value if the file pointer has reached the end of the file.  
      * This property should be used only with an actual file.  
-     * @type {(Integer)}
+     * @type Integer
      * @example <caption>  
      * Check if AT End Of File.</caption>
      * fob := FileOpen('c:\some\path\test.txt', 'r')
@@ -1437,14 +1356,13 @@ class File extends Object {
     AtEOF => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Encoding|`Encoding`}  
-     * Retrieves or sets the text encoding used by this file object.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Encoding|`Encoding`} - Retrieves or sets the text encoding used by this file object.  
      * NewEncoding may be a numeric code page identifier (see {@link https://learn.microsoft.com/windows/win32/intl/code-page-identifiers|Microsoft Docs}) or one of the following strings.  
      * - `UTF-8`: Unicode UTF-8, equivalent to CP65001.  
      * - `UTF-16`: Unicode UTF-16 with little endian byte order, equivalent to CP1200.  
      * - `CPnnn`: a code page where `nnn` is a numeric identifier.  
      * Setting a new encoding never causes a BOM to be added or removed, as the BOM is normally written to the file when it is first created.  
-     * @type {(NumberString )}
+     * @type NumberString 
      * @example <caption>  
      * Showing a file's encoding type.</caption>
      * fob := FileOpen('c:\some\path\test.txt', 'r')
@@ -1454,12 +1372,11 @@ class File extends Object {
     Encoding => String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Handle|`Handle`}  
-     * Retrieves a system file handle, intended for use with DllCalls. See {@link https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-createfilea|CreateFile}.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Handle|`Handle`} - Retrieves a system file handle, intended for use with DllCalls. See {@link https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-createfilea|CreateFile}.  
      * File objects internally buffer reads or writes.  
      * If data has been written into the object's internal buffer, it is committed to disk before the handle is returned.  
      * If the buffer contains data read from file, it is discarded and the actual file pointer is reset to the logical position indicated by {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Pos|FileObj.Pos}.  
-     * @type {(Integer)}
+     * @type Integer
      * @example <caption>  
      * Showing a file's encoding type.</caption>
      * fob := FileOpen('c:\some\path\test.txt', 'r')
@@ -1469,8 +1386,7 @@ class File extends Object {
     Handle => Integer
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Read|`Read()`}  
-     * Reads a string of characters from the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Read|`Read()`} - Reads a string of characters from the file and advances the file pointer.  
      * @param {(Integer)} [Characters]  
      * The maximum number of characters to read.  
      * If omitted, the rest of the file is read and returned as one string.  
@@ -1487,8 +1403,7 @@ class File extends Object {
     Read([Characters:=unset]) => String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Write|`Write()`}  
-     * Writes a string of characters to the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Write|`Write()`} - Writes a string of characters to the file and advances the file pointer.  
      * @param {(String)} String  
      * The string of characters to write.  
      * @returns {(Integer)}  
@@ -1506,8 +1421,7 @@ class File extends Object {
     Write(String) => Integer
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadLine|`ReadLine()`}  
-     * Reads a line of text from the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadLine|`ReadLine()`} - Reads a line of text from the file and advances the file pointer.  
      * A max of 65,534 characters per line can be read in at a time and subsequent calls to ReadLine() will get the remaining characters.  
      * @returns {(String)}  
      * Next line of text from the file excluding the end character.  
@@ -1522,8 +1436,7 @@ class File extends Object {
     ReadLine() => String
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteLine|`WriteLine()`}  
-     * Writes a string of characters followed by a new line `` `n `` or carriage return+new line `` `r`n `` (depending on the flags used to open the file), and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteLine|`WriteLine()`} - Writes a string of characters followed by a new line `` `n `` or carriage return+new line `` `r`n `` (depending on the flags used to open the file), and advances the file pointer.  
      * @param {(String)} [Text]  
      * An optional string to write.  
      * If no parameter is passed, an empty line is inserted.  
@@ -1544,8 +1457,7 @@ class File extends Object {
     WriteLine([Text:='']) => Integer
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadUInt()`}  
-     * Reads a 32-bit (4-byte) unsigned integer from the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadUInt()`} - Reads a 32-bit (4-byte) unsigned integer from the file and advances the file pointer.  
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of UInt, the missing bytes are assumed to be zero.  
@@ -1558,8 +1470,7 @@ class File extends Object {
     ReadUInt() => Integer | String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadInt()`}  
-     * Reads a 32-bit (4-byte) integer from the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadInt()`} - Reads a 32-bit (4-byte) integer from the file and advances the file pointer.  
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of Int, the missing bytes are assumed to be zero.  
@@ -1572,8 +1483,7 @@ class File extends Object {
     ReadInt() => Integer | String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadInt64()`}  
-     * Reads a 64-bit (8-byte) integer from the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadInt64()`} - Reads a 64-bit (8-byte) integer from the file and advances the file pointer.  
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of Int64, the missing bytes are assumed to be zero.  
@@ -1586,8 +1496,7 @@ class File extends Object {
     ReadInt64() => Integer | String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadShort()`}  
-     * Reads a 16-bit (2-byte) short integer from the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadShort()`} - Reads a 16-bit (2-byte) short integer from the file and advances the file pointer.  
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of Short, the missing bytes are assumed to be zero.  
@@ -1600,8 +1509,7 @@ class File extends Object {
     ReadShort() => Integer | String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadUShort()`}  
-     * Reads a 16-bit (2-byte) unsigned short integer from the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadUShort()`} - Reads a 16-bit (2-byte) unsigned short integer from the file and advances the file pointer.  
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of UShort, the missing bytes are assumed to be zero.  
@@ -1614,8 +1522,7 @@ class File extends Object {
     ReadUShort() => Integer | String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadChar()`}  
-     * Reads an 8-bit (1-byte) char from the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadChar()`} - Reads an 8-bit (1-byte) char from the file and advances the file pointer.  
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of Char, the missing bytes are assumed to be zero.  
@@ -1628,8 +1535,7 @@ class File extends Object {
     ReadChar() => Integer | String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadUChar()`}  
-     * Reads an 8-bit (1-byte) unsigned char from the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadUChar()`} - Reads an 8-bit (1-byte) unsigned char from the file and advances the file pointer.  
      * @returns {(Integer|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of UChar, the missing bytes are assumed to be zero.  
@@ -1642,8 +1548,7 @@ class File extends Object {
     ReadUChar() => Integer | String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadDouble()`}  
-     * Reads a 64-bit (8-byte) floating point number from the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadDouble()`} - Reads a 64-bit (8-byte) floating point number from the file and advances the file pointer.  
      * @returns {(Float|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of Double, the missing bytes are assumed to be zero.  
@@ -1656,8 +1561,7 @@ class File extends Object {
     ReadDouble() => Float | String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadFloat()`}  
-     * Reads a 32-bit (4-byte) floating point number from the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#ReadNum|`ReadFloat()`} - Reads a 32-bit (4-byte) floating point number from the file and advances the file pointer.  
      * @returns {(Float|String)}  
      * On success, returns number, otherwise returns an empty string.  
      * If the number of bytes read is non-zero but less than the size of Float, the missing bytes are assumed to be zero.  
@@ -1670,8 +1574,7 @@ class File extends Object {
     ReadFloat() => Float | String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteUInt()`}  
-     * Writes a 32-bit (4-byte) unsigned integer to the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteUInt()`} - Writes a 32-bit (4-byte) unsigned integer to the file and advances the file pointer.  
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1683,8 +1586,7 @@ class File extends Object {
     WriteUInt(Integer) => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteInt()`}  
-     * Writes a 32-bit (4-byte) integer to the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteInt()`} - Writes a 32-bit (4-byte) integer to the file and advances the file pointer.  
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1696,8 +1598,7 @@ class File extends Object {
     WriteInt(Integer) => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteInt64()`}  
-     * Writes a 64-bit (8-byte) integer to the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteInt64()`} - Writes a 64-bit (8-byte) integer to the file and advances the file pointer.  
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1709,8 +1610,7 @@ class File extends Object {
     WriteInt64(Integer) => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteShort()`}  
-     * Writes a 16-bit (2-byte) short integer to the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteShort()`} - Writes a 16-bit (2-byte) short integer to the file and advances the file pointer.  
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1722,8 +1622,7 @@ class File extends Object {
     WriteShort(Number) => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteUShort()`}  
-     * Writes a 16-bit (2-byte) unsigned short integer to the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteUShort()`} - Writes a 16-bit (2-byte) unsigned short integer to the file and advances the file pointer.  
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1735,8 +1634,7 @@ class File extends Object {
     WriteUShort(Number) => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteChar()`}  
-     * Writes an 8-bit (1-byte) char to the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteChar()`} - Writes an 8-bit (1-byte) char to the file and advances the file pointer.  
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1748,8 +1646,7 @@ class File extends Object {
     WriteChar(Number) => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteUChar()`}  
-     * Writes an 8-bit (1-byte) unsigned char to the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteUChar()`} - Writes an 8-bit (1-byte) unsigned char to the file and advances the file pointer.  
      * @returns {(Integer)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1761,8 +1658,7 @@ class File extends Object {
     WriteUChar(Number) => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteDouble()`}  
-     * Writes a 64-bit (8-byte) floating point number to the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteDouble()`} - Writes a 64-bit (8-byte) floating point number to the file and advances the file pointer.  
      * @returns {(Number)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1774,8 +1670,7 @@ class File extends Object {
     WriteDouble(Float) => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteFloat()`}  
-     * Writes a 32-bit (4-byte) floating point number to the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#WriteNum|`WriteFloat()`} - Writes a 32-bit (4-byte) floating point number to the file and advances the file pointer.  
      * @returns {(Number)}  
      * Returns the number of bytes that were written.  
      * @example <caption>  
@@ -1787,8 +1682,7 @@ class File extends Object {
     WriteFloat(Float) => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#RawRead|`RawRead()`}  
-     * Reads raw binary data from the file into memory and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#RawRead|`RawRead()`} - Reads raw binary data from the file into memory and advances the file pointer.  
      * @param {(Integer)} Buffer  
      * Either a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer-like} object or the memory address which will receive the data.  
      * @param {(Integer)} [Bytes]  
@@ -1807,8 +1701,7 @@ class File extends Object {
     RawRead(Buffer [,Bytes:=Buffer.Size]) => Integer
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#RawWrite|`RawWrite()`}  
-     * Writes raw binary data to the file and advances the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#RawWrite|`RawWrite()`} - Writes raw binary data to the file and advances the file pointer.  
      * @param {(Buffer|String|Integer)} Buffer  
      * Either a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer-like} object, a string containing binary data, or a memory address containing the data.  
      * @param {(Integer)} [Bytes]  
@@ -1827,8 +1720,7 @@ class File extends Object {
     RawWrite(Data [,Bytes:=Buffer.Size]) => Integer
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Seek|`Seek()`}  
-     * Moves the file pointer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Seek|`Seek()`} - Moves the file pointer.  
      * @param {(Integer)} Distance  
      * Distance to move, in bytes. Lower values are closer to the beginning of the file.  
      * @param {(Integer)} [Origin]  
@@ -1847,8 +1739,7 @@ class File extends Object {
     Seek(Distance [,Origin:=0]) => Integer
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Close|`Close()`}  
-     * Closes the file, flushes any data in the cache to disk, and releases the share locks.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/File.htm#Close|`Close()`} - Closes the file, flushes any data in the cache to disk, and releases the share locks.  
      * As a good practice, it is recommended to close the file as soon as possible.  
      * The file is closed automatically when the object is freed.  
      * @returns {(String)}  
@@ -1871,8 +1762,7 @@ class File extends Object {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm|`Func`}  
- * Represents a user-defined or built-in function.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm|`Func`} - Represents a user-defined or built-in function.  
  * The Closure class extends Func but does not define any new properties.  
  * @property {(String)} Name - Returns the function's name.
  * @property {(Integer)} IsBuiltIn - Returns 1 (true) if the function is built-in, otherwise 0 (false).
@@ -1882,9 +1772,8 @@ class File extends Object {
  */
 class Func extends Object {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#Name|`Name`}  
-     * Returns the function's name.  
-     * @type {(String)}
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#Name|`Name`} - Returns the function's name.  
+     * @type String
      * @example <caption>  
      * Get a function's name from a reference.</caption>
      * func_reference := MsgBox
@@ -1893,9 +1782,8 @@ class Func extends Object {
     Name => String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#IsBuiltIn|`IsBuiltIn`}  
-     * Is set to 1 if the function is a built-in, native AHK function, otherwise it is 0.  
-     * @type {(Integer)}
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#IsBuiltIn|`IsBuiltIn`} - Is set to 1 if the function is a built-in, native AHK function, otherwise it is 0.  
+     * @type Integer
      * @example <caption>  
      * How to check if a function is provided natively by AHK.</caption>
      * if MsgBox.IsBuiltIn
@@ -1904,10 +1792,9 @@ class Func extends Object {
     IsBuiltIn => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#IsVariadic|`IsVariadic`}  
-     * Is set to 1 if the function is {@link https://www.autohotkey.com/docs/v2/Functions.htm#Variadic|variadic}, otherwise 0.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#IsVariadic|`IsVariadic`} - Is set to 1 if the function is {@link https://www.autohotkey.com/docs/v2/Functions.htm#Variadic|variadic}, otherwise 0.  
      * Only the last parameter of a function can be variadic.
-     * @type {(Integer)}
+     * @type Integer
      * @example <caption>  
      * Check if the last parameter is variadic.</caption>
      * if my_func.IsVariadic
@@ -1920,10 +1807,9 @@ class Func extends Object {
     IsVariadic => Number
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#MinParams|`MinParams`}  
-     * Returns the number of required parameters.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#MinParams|`MinParams`} - Returns the number of required parameters.  
      * Optional and variadic parameters are not included.
-     * @type {(Number)}
+     * @type Number
      * @example <caption>  
      * Checking all parameters of a function.</caption>
      * MsgBox('The ' my_func.Name ' function has ' (my_func.MaxParams + my_func.IsVariadic) ' parameters.'
@@ -1939,10 +1825,9 @@ class Func extends Object {
     MinParams => Number  
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#MaxParams|`MaxParams`}  
-     * Returns the number of formally-declared parameters for a user-defined function or maximum parameters for a built-in function.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#MaxParams|`MaxParams`} - Returns the number of formally-declared parameters for a user-defined function or maximum parameters for a built-in function.  
      * If the function is {@link https://www.autohotkey.com/docs/v2/Functions.htm#Variadic|variadic}, the returned number indicates the maximum amount of parameters which can be accepted by the function without overflowing into the "variadic*" parameter.  
-     * @type {(Integer)}
+     * @type Integer
      * @example <caption>  
      * Checking all parameters of a function.</caption>
      * MsgBox('The ' my_func.Name ' function has ' (my_func.MaxParams + my_func.IsVariadic) ' parameters.'
@@ -1969,8 +1854,7 @@ class Func extends Object {
     Call([Params*]) => Any
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#Bind|`Bind()`}  
-     * Binds parameters to the function and returns a {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc object}.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#Bind|`Bind()`} - Binds parameters to the function and returns a {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc object}.  
      * For details and examples, see {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc object}.  
      * @param {(Any)} [Param1]  
      * Provide a predefined value for the first param of the function.  
@@ -1993,8 +1877,7 @@ class Func extends Object {
     Bind([Param1, ParamN*]) => BoundFunc
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#IsByRef|`IsByRef()`}  
-     * Determines whether a parameter is ByRef.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#IsByRef|`IsByRef()`} - Determines whether a parameter is ByRef.  
      * @param {(Integer)} [ParamIndex]  
      * The index number of the parameter, starting at 1.  
      * If ParamIndex is omitted, all parameters are checked.  
@@ -2018,8 +1901,7 @@ class Func extends Object {
     IsByRef([ParamIndex:=unset]) => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#IsOptional|`IsOptional()`}  
-     * Determines whether a parameter is optional.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#IsOptional|`IsOptional()`} - Determines whether a parameter is optional.  
      * @param {(Integer)} [ParamIndex]  
      * The index number of the parameter, starting at 1.  
      * If ParamIndex is omitted, all parameters are checked.  
@@ -2044,8 +1926,7 @@ class Func extends Object {
 }  
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|`BoundFunc Object`}  
- * Acts like a function callable function with predefined parameter(s).  
+ * @description {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|`BoundFunc Object`} - Acts like a function callable function with predefined parameter(s).  
  * BoundFunc objects can be created in two ways:  
  * - Using a function's {@link https://www.autohotkey.com/docs/v2/lib/Func.htm#Bind|Bind()} method
  *   Creates a function boundfunc.
@@ -2084,8 +1965,7 @@ class BoundFunc extends Func {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/Functions.htm#closures|`Closure`}  
- * A nested function bound to a set of free variables.  
+ * @description {@link https://www.autohotkey.com/docs/v2/Functions.htm#closures|`Closure`} - A nested function bound to a set of free variables.  
  * Free variables are variables from the outer function which are also used by the closure function.  
  * Closures allow nested functions to share variables with the outer function, even after the outer function has returned.  
  * To create a closure, simply define a function inside another function and have the inner function reference a variable from the outer function.  
@@ -2117,8 +1997,7 @@ class Closure extends Func {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|`Enumerator`}  
- * A type of {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} called to enumerate through each value of an object.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|`Enumerator`} - A type of {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} called to enumerate through each value of an object.  
  * They are primarily used by {@link https://www.autohotkey.com/docs/v2/lib/For.htm|for-loops} and are not usually called directly.  
  * @example <caption>  
  * Different ways to use enumerators</caption>
@@ -2141,8 +2020,7 @@ class Closure extends Func {
  */
 class Enumerator extends Func {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm#Call|`Enumerator()`}  
-     * @param {(VarRef)} OutputVar1  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm#Call|`Enumerator()`} - @param {(VarRef)} OutputVar1  
      * Variable reference to receive a value dependent on the type of enumerator:  
      * - `__Enum(1)` - OutputVar1 receives the value of each element.  
      * - `__Enum(2)` - OutputVar1 receives the value identifier (key/index/etc) of each element.  
@@ -2176,8 +2054,7 @@ class Enumerator extends Func {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm|`GUI`}  
- * Provides the ability to create and manage custom windows and controls.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm|`GUI`} - Provides the ability to create and manage custom windows and controls.  
  * Such windows can be used for a multitude of things, including data entry, hotkeys, file trees, or any other custom user interfaces.  
  * Gui objects can be created with Gui() and retrieved with {@link https://www.autohotkey.com/docs/v2/lib/GuiFromHwnd.htm|GuiFromHwnd()}.  
  * @property {(Integer)} BackColor - Retrieves or sets the background color of the window.
@@ -2196,58 +2073,52 @@ class Gui extends Object {
      */
     class Control extends Object {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#ClassNN|`ClassNN`}  
-         * Retrieves the class name and sequence number (ClassNN) of the control.  
-         * @type {(String)}
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#ClassNN|`ClassNN`} - Retrieves the class name and sequence number (ClassNN) of the control.  
+         * @type String
          * @see  
          * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetClassNN.htm|ControlGetClassNN}
          */
         ClassNN => String
     
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Enabled|`Enabled`}  
-         * Retrieves interaction state of the control or sets control stat to enabled/disabled.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Enabled|`Enabled`} - Retrieves interaction state of the control or sets control stat to enabled/disabled.  
          * * `1`: enabled  
          * * `0`: disabled  
          * 
          * For Tab controls, this will also enable or disable all of the tab's sub-controls.  
-         * @type {(Integer)}
+         * @type Integer
          */
         Enabled => Integer
     
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Focused|`Focused`}  
-         * Retrieves the focus state of the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Focused|`Focused`} - Retrieves the focus state of the control.  
          * * `1`: focused  
          * * `0`: not focused  
          * 
          * To focus the control, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Focus|Focus()} method.
-         * @type {(Integer)}
+         * @type Integer
          */
         Focused => Integer
     
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Gui|`Gui`}  
-         * Retrieves a reference to the control's parent {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm|GUI object}.  
-         * @type {(Gui)}
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Gui|`Gui`} - Retrieves a reference to the control's parent {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm|GUI object}.  
+         * @type Gui
          */
         Gui => Gui
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Hwnd|`Hwnd`}  
-         * Retrieves the window handle (HWND) of the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Hwnd|`Hwnd`} - Retrieves the window handle (HWND) of the control.  
          * @see  
          * {@link https://www.autohotkey.com/docs/v2/lib/PostMessage.htm|PostMessage()},
          * {@link https://www.autohotkey.com/docs/v2/lib/SendMessage.htm|SendMessage()},
          * {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm|DllCall()},
          * {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control parameter}
-         * @type {(Integer)}
+         * @type Integer
          */
         Hwnd => Integer
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|`Name`}  
-         * Retrieves or sets the explicit name of the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|`Name`} - Retrieves or sets the explicit name of the control.  
          * A control name can also be set by using the `v` (var) option:  
          * - Creating a control:  
          * 
@@ -2255,13 +2126,12 @@ class Gui extends Object {
          * - Add with the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|Opt()} method:  
          * 
          *       GuiControl.Opt('vExitBtn')
-         * @type {(String)}
+         * @type String
          */
         Name => String
     
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`}  
-         * Retrieves or sets the text/caption of the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`} - Retrieves or sets the text/caption of the control.  
          * - Button, CheckBox, Edit, GroupBox, Link, Radio, Text:  
          *   The caption or display text of the control.  
          * - DateTime:  
@@ -2274,32 +2144,26 @@ class Gui extends Object {
          *   The text in the control.
          * - StatusBar:  
          *   The text of the first section.  
-         * @type {(String)}
+         * @type String
          */
         Text => String
     
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Type|`Type`}  
-         * Retrieves the {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|type} of the control.  
-         * 
-         * |             |             |             |
-         * | :---        | :---        | :---        |
-         * | `ActiveX`   | `Hotkey`    | `Slider`    |
-         * | `Button`    | `Link`      | `StatusBar` |
-         * | `CheckBox`  | `ListBox`   | `Tab`       |
-         * | `ComboBox`  | `ListView`  | `Tab2`      |
-         * | `Custom`    | `MonthCal`  | `Tab3`      |
-         * | `DateTime`  | `Pic`       | `Text`      |
-         * | `DDL`       | `Progress`  | `TreeView`  |
-         * | `Edit`      | `Radio`     | `UpDown`    |
-         * | `GroupBox`  |
-         * @type {(String)}
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Type|`Type`} - Retrieves the {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|type} of the control:  
+         * |            |            |            |             |
+         * | :---       | :---       | :---       | :---        |
+         * | `ActiveX`  | `DateTime` | `ListView` | `Slider`    |
+         * | `Button`   | `Edit`     | `MonthCal` | `StatusBar` |
+         * | `CheckBox` | `GroupBox` | `Pic`      | `Tab`       |
+         * | `ComboBox` | `Hotkey`   | `Picture`  | `Text`      |
+         * | `Custom`   | `Link`     | `Progress` | `TreeView`  |
+         * | `DDL`      | `ListBox`  | `Radio`    | `UpDown`    |
+         * @type String
          */
         Type => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Retrieves or sets the contents of a value-capable control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Retrieves or sets the contents of a value-capable control.  
          * If not value-capable, returns an empty string or errors if set.  
          * - ActiveX:  
          *   The ActiveX object of the control.  
@@ -2324,15 +2188,13 @@ class Gui extends Object {
         Value => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|`Visible`}  
-         * Retrieves the current visibility state of the control, or shows or hides it.  
-         * @type {(Integer)}
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Visible|`Visible`} - Retrieves the current visibility state of the control, or shows or hides it.  
+         * @type Integer
          */
         Visible => Integer
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Focus|`Focus()`}  
-         * Sets the keyboard focus to this control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Focus|`Focus()`} - Sets the keyboard focus to this control.  
          * To be effective, the window generally must not be minimized or hidden.  
          * To retrieve the focus state of the control, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Focused|Focused} property.  
          * @returns {(String)}  
@@ -2353,8 +2215,7 @@ class Gui extends Object {
         Focus() => EmptyString
     
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#GetPos|`GetPos()`}  
-         * Retrieves the position and size of the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#GetPos|`GetPos()`} - Retrieves the position and size of the control.  
          * Unlike {@link https://www.autohotkey.com/docs/v2/lib/ControlGetPos.htm|ControlGetPos()}, this method applies {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#DPIScale|DPI scaling} to the returned coordinates.  
          * @param {(VarRef)} [X]  
          * Variable reference to receive x coordinate of GUI control
@@ -2397,8 +2258,7 @@ class Gui extends Object {
         GetPos([&X, &Y, &Width, &Height]) => EmptyString
     
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Move|`Move()`}  
-         * Moves and/or resizes the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Move|`Move()`} - Moves and/or resizes the control.  
          * Unlike {@link https://www.autohotkey.com/docs/v2/lib/ControlMove.htm|ControlMove()}, this method applies {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#DPIScale|DPI scaling} to the returned coordinates.  
          * @param {(Integer)} [X]  
          * New x coordinate.  
@@ -2441,8 +2301,7 @@ class Gui extends Object {
         Move([X, Y, Width, Height]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#OnCommand|`OnCommand()`}  
-         * Registers a function or method to be called when a control notification is received via the {@link https://learn.microsoft.com/windows/win32/menurc/wm-command|WM_COMMAND message}.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#OnCommand|`OnCommand()`} - Registers a function or method to be called when a control notification is received via the {@link https://learn.microsoft.com/windows/win32/menurc/wm-command|WM_COMMAND message}.  
          * @param {(Integer)} NotifyCode  
          * The control-defined notification code to monitor.  
          * @param {(String|FuncObj)} Callback  
@@ -2463,51 +2322,50 @@ class Gui extends Object {
         OnCommand(NotifyCode, Callback [,AddRemove:=1]) => EmptyString
     
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The control's value changes.  
          * 
-         *       Ctrl_Change(GuiCtrlObj, Info)
+         *       Ctrl_Change(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The control is clicked.  
          * 
-         *       Ctrl_Click(GuiCtrlObj, Info)  
-         *       Link_Click(GuiCtrlObj, Info, Href)  
+         *       Ctrl_Click(GuiCtrl, Info)
+         *       Link_Click(GuiCtrl, Info, Href)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#DoubleClick|`DoubleClick`} - The control is double-clicked.  
          * 
-         *       Ctrl_DoubleClick(GuiCtrlObj, Info)  
+         *       Ctrl_DoubleClick(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#ColClick|`ColClick`} - One of the ListView's column headers is clicked.  
          * 
-         *       Ctrl_ColClick(GuiCtrlObj, Info)  
+         *       Ctrl_ColClick(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the control  
          *   or presses Menu or Shift+F10 while the control has the keyboard focus.  
          * 
-         *       Ctrl_ContextMenu(GuiCtrlObj, Item, RightClicked, X, Y)  
+         *       Ctrl_ContextMenu(GuiCtrl, Item, RightClick, X, Y)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Focus|`Focus`} - The control gains the keyboard focus.  
          * 
-         *       Ctrl_Focus(GuiCtrlObj, Reserved)  
+         *       Ctrl_Focus(GuiCtrl, Reserved)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#LoseFocus|`LoseFocus`} - The control loses the keyboard focus.  
          * 
-         *       Ctrl_LoseFocus(GuiCtrlObj, Reserved)  
+         *       Ctrl_LoseFocus(GuiCtrl, Reserved)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#ItemCheck|`ItemCheck`} - A ListView or TreeView item is checked or unchecked.  
          * 
-         *       Ctrl_ItemCheck(GuiCtrlObj, Item, Checked)  
+         *       Ctrl_ItemCheck(GuiCtrl, Item, Checked)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#ItemEdit|`ItemEdit`} - A ListView or TreeView item's label is edited by the user.  
          * 
-         *       Ctrl_ItemEdit(GuiCtrlObj, Item)  
+         *       Ctrl_ItemEdit(GuiCtrl, Item)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#ItemExpand|`ItemExpand`} - A TreeView item is expanded or collapsed.  
          * 
-         *       Ctrl_ItemExpand(GuiCtrlObj, Item, Expanded)  
+         *       Ctrl_ItemExpand(GuiCtrl, Item, Expanded)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#ItemFocus|`ItemFocus`} - The focused item changes in a ListView.  
          * 
-         *       Ctrl_ItemFocus(GuiCtrlObj, Item)  
+         *       Ctrl_ItemFocus(GuiCtrl, Item)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#ItemSelect|`ItemSelect`} - A ListView or TreeView item is selected, or a ListView item is deselected.  
          * 
-         *       ListView_ItemSelect(GuiCtrlObj, Item, Selected)  
-         *       TreeView_ItemSelect(GuiCtrlObj, Item)
+         *       ListView_ItemSelect(GuiCtrl, Item, Selected)
+         *       TreeView_ItemSelect(GuiCtrl, Item)
          * @param {(String|FuncObj)} Callback  
          * A function, method, or object that is called when the event is raised.  
          * If GUI uses an event sink, this can be a string with a method's name.  
@@ -2528,8 +2386,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnNotify.htm|`OnNotify()`}  
-         * Registers a function or method to be called when a control notification  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnNotify.htm|`OnNotify()`} - Registers a function or method to be called when a control notification  
          * is received via the {@link https://learn.microsoft.com/windows/win32/controls/wm-notify|WM_NOTIFY} message.  
          * @param {(Integer)} NotifyCode  
          * The control-defined notification code to monitor.  
@@ -2551,8 +2408,7 @@ class Gui extends Object {
         OnNotify(NotifyCode, Callback [,AddRemove:=1]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control  
          * Sets various options to change a control's appearance or behaviors.  
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
@@ -2561,7 +2417,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *       GuiControl.Opt('+VMyControl')  
+         *       GuiControl.Opt('+VMyControl')
          *       GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `AltSubmit`: Use control's alternate submit method.  
@@ -2691,8 +2547,7 @@ class Gui extends Object {
         Opt(Options) => EmptyString
     
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Redraw|`Redraw()`}  
-         * Repaints the region of the GUI window occupied by the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Redraw|`Redraw()`} - Repaints the region of the GUI window occupied by the control.  
          * Redrawing solves problems such as groupbox artifacting.  
          * If called repeatedly, this may cause GUI flickering.  
          * @example <caption>  
@@ -2702,8 +2557,7 @@ class Gui extends Object {
         Redraw() => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#SetFont|`SetFont()`}  
-         * Sets the font typeface, size, style, and/or color for the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#SetFont|`SetFont()`} - Sets the font typeface, size, style, and/or color for the control.  
          * Omitting both parameters sets the control font to the current Gui.SetFont() values.  
          * If Gui.SetFont() has not been set, the system default values are used.
          * @param {(String)} [Options]  
@@ -2763,13 +2617,11 @@ class Gui extends Object {
     }
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#ActiveX|`ActiveX`}  
-     * ActiveX components, such as the {@link https://learn.microsoft.com/en-us/dotnet/desktop/winforms/controls/webbrowser-control-overview?view=netframeworkdesktop-4.8|MSIE browser control}, can be embedded into a GUI window.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#ActiveX|`ActiveX`} - ActiveX components, such as the {@link https://learn.microsoft.com/en-us/dotnet/desktop/winforms/controls/webbrowser-control-overview?view=netframeworkdesktop-4.8|MSIE browser control}, can be embedded into a GUI window.  
      */
     class ActiveX extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Retrieves or sets the contents of a value-capable control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Retrieves or sets the contents of a value-capable control.  
          * The Value is the ActiveX object of the ActiveX control. 
          * For details about the ActiveX component and its method used below, see:  
          * - {@link https://learn.microsoft.com/previous-versions/windows/internet-explorer/ie-developer/platform-apis/aa752085(v=vs.85)|WebBrowser object (Microsoft Docs)}  
@@ -2793,16 +2645,14 @@ class Gui extends Object {
     }
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#Button|`Button`}  
-     * A pushbutton, which can be pressed to trigger an action.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#Button|`Button`} - A pushbutton, which can be pressed to trigger an action.
      */
     class Button extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`}  
-         * The caption that displays on the button.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`} - The caption that displays on the button.  
          * If the text of a button is increased, the button does not auto-adjust in size.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Move|Move()} method to adjust button width if needed.
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * Changing button caption.</caption>
          * goo := Gui()
@@ -2823,35 +2673,34 @@ class Gui extends Object {
         Text => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The Button is clicked.  
          * 
-         *       Button_Click(GuiCtrlObj, Info)  
+         *       Button_Click(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#DoubleClick|`DoubleClick`} - The Button is double-clicked.  
          * 
-         *       Button_DoubleClick(GuiCtrlObj, Info)  
+         *       Button_DoubleClick(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the Button or presses  
          * Menu or Shift+F10 while the Button has the keyboard focus.  
          * 
-         *       Button_ContextMenu(GuiCtrlObj, Info, RightClicked, X, Y)  
+         *       Button_ContextMenu(GuiCtrl, Info, RightClick, X, Y)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Focus|`Focus`} - The Button gains the keyboard focus.  
          * 
-         *       Button_Focus(GuiCtrlObj, Reserved)  
+         *       Button_Focus(GuiCtrl, Reserved)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#LoseFocus|`LoseFocus`} - The Button loses the keyboard focus.  
          * 
-         *       Button_LoseFocus(GuiCtrlObj, Reserved)  
+         *       Button_LoseFocus(GuiCtrl, Reserved)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the Button's object  
          *     - `Info`: Not used with Button controls  
-         *     - `RightClicked`:  
+         *     - `RightClick`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClick` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -2902,8 +2751,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
 
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control  
          * Sets various options to change a control's appearance or behaviors.  
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
@@ -2915,7 +2763,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *       GuiControl.Opt('+VMyControl')  
+         *       GuiControl.Opt('+VMyControl')
          *       GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
@@ -2974,10 +2822,9 @@ class Gui extends Object {
     class CheckBox extends Gui.Control {
     
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`}  
-         * The caption that displays on the checkbox.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`} - The caption that displays on the checkbox.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Move|Move()} method to adjust checkbox width if needed.
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * Changing checkbox caption.</caption>
          * goo := Gui()
@@ -2998,47 +2845,45 @@ class Gui extends Object {
         Text => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Retrieves or sets the checked state.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Retrieves or sets the checked state.  
          * Values can be:  
          * `1`: Checked  
          * `0`: Unchecked  
          * `-1`: Grey checked/undetermined ({@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#CheckBox|Check3} option must be enabled)  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|Text property} to set/get the control text.
-         * @type {(Integer)}
+         * @type Integer
          */
         Value => Integer
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The CheckBox is clicked.  
          * 
-         *       CheckBox_Click(GuiCtrlObj, Info)  
+         *       CheckBox_Click(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#DoubleClick|`DoubleClick`} - The CheckBox is double-clicked.  
          * 
-         *       CheckBox_DoubleClick(GuiCtrlObj, Info)  
+         *       CheckBox_DoubleClick(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the CheckBox or presses  
          * Menu or Shift+F10 while the CheckBox has the keyboard focus.  
          * 
-         *       CheckBox_ContextMenu(GuiCtrlObj, Info, RightClicked, X, Y)  
+         *       CheckBox_ContextMenu(GuiCtrl, Info, RightClick, X, Y)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Focus|`Focus`} - The CheckBox gains the keyboard focus.  
          * 
-         *       CheckBox_Focus(GuiCtrlObj, Reserved)  
+         *       CheckBox_Focus(GuiCtrl, Reserved)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#LoseFocus|`LoseFocus`} - The CheckBox loses the keyboard focus.  
          * 
-         *       CheckBox_LoseFocus(GuiCtrlObj, Reserved)  
+         *       CheckBox_LoseFocus(GuiCtrl, Reserved)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the CheckBox's object  
          *     - `Info`: Not used with CheckBox controls  
-         *     - `RightClicked`:  
+         *     - `RightClick`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClick` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -3060,8 +2905,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
@@ -3081,7 +2925,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `C#`: Set text color where `#` is one of the following:  
@@ -3154,8 +2998,7 @@ class Gui extends Object {
      */
     class Custom extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * Not all options work with all custom controls.
@@ -3167,7 +3010,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `C#`: Set text color where `#` is one of the following:  
@@ -3239,54 +3082,51 @@ class Gui extends Object {
      */
     class DateTime extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`}  
-         * The formatted text of the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`} - The formatted text of the control.  
          * To change the date-time, set the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|Value property} with a new date-time stamp in {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|YYYYMMDDHH24MISS} format.
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * </caption>
          */
         Text => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Retrieves or sets the control's Date-time stamp in {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|YYYYMMDDHH24MISS format}.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Retrieves or sets the control's Date-time stamp in {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|YYYYMMDDHH24MISS format}.  
          * Use {@link https://www.autohotkey.com/docs/v2/Variables.htm#Now|A_Now} to set Value to current time.  
          * If the {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#ChooseNone|choose none `+2` option} was used, setting  
          * Value to 0 will clear the DateTime control.
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * </caption>
          */
         Value => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The DateTime's value changes.  
          * 
-         *       DateTime_Change(GuiCtrlObj, Info)
+         *       DateTime_Change(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the DateTime or presses  
          * Menu or Shift+F10 while the DateTime has the keyboard focus.  
          * 
-         *       DateTime_ContextMenu(GuiCtrlObj, Info, RightClicked, X, Y)  
+         *       DateTime_ContextMenu(GuiCtrl, Info, RightClick, X, Y)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Focus|`Focus`} - The DateTime gains the keyboard focus.  
          * 
-         *       DateTime_Focus(GuiCtrlObj, Reserved)  
+         *       DateTime_Focus(GuiCtrl, Reserved)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#LoseFocus|`LoseFocus`} - The DateTime loses the keyboard focus.  
          * 
-         *       DateTime_LoseFocus(GuiCtrlObj, Reserved)  
+         *       DateTime_LoseFocus(GuiCtrl, Reserved)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the DateTime's object  
          *     - `Info`: Not used with DateTime controls  
-         *     - `RightClicked`:  
+         *     - `RightClick`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClick` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -3308,8 +3148,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
@@ -3354,7 +3193,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `C#`: Set text color where `#` is one of the following:  
@@ -3420,8 +3259,7 @@ class Gui extends Object {
         Opt(Options) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#DateTime_SetFormat|`SetFormat()`}  
-         * Sets the display format of a {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#DateTime|DateTime} control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#DateTime_SetFormat|`SetFormat()`} - Sets the display format of a {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#DateTime|DateTime} control.  
          * @param {(String)} [DateFormat]  
          * Sets the desired {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#DateTimeFormat|display format} of a DateTime control.
          * - `ShortDate`: Locale short date format. Example: 6/1/2005  
@@ -3442,10 +3280,9 @@ class Gui extends Object {
      */
     class Edit extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`}  
-         * The text inside the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`} - The text inside the control.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Move|Move()} method to adjust edit width if needed.
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * Changing edit text.</caption>
          * goo := Gui()
@@ -3461,40 +3298,38 @@ class Gui extends Object {
         Text => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Set or retrieve the text in the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Set or retrieve the text in the control.  
          * Unlike the Text property, `` `r`n `` is not converted to `` `n ``.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Move|Move()} method to adjust text width if needed.
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * </caption>
          */
         Value => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The Edit's value changes.  
          * 
-         *       Edit_Change(GuiCtrlObj, Info)
+         *       Edit_Change(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Focus|`Focus`} - The Edit gains the keyboard focus.  
          * 
-         *       Edit_Focus(GuiCtrlObj, Reserved)  
+         *       Edit_Focus(GuiCtrl, Reserved)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#LoseFocus|`LoseFocus`} - The Edit loses the keyboard focus.  
          * 
-         *       Edit_LoseFocus(GuiCtrlObj, Reserved)  
+         *       Edit_LoseFocus(GuiCtrl, Reserved)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the Edit's object  
          *     - `Info`: Not used with Edit controls  
          *     - `Item`: Not used with Edit controls  
-         *     - `RightClicked`:  
+         *     - `RightClick`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClick` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -3516,8 +3351,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
@@ -3570,7 +3404,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `C#`: Set text color where `#` is one of the following:  
@@ -3639,10 +3473,9 @@ class Gui extends Object {
      */
     class GroupBox extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`}  
-         * The caption that displays on the checkbox.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`} - The caption that displays on the checkbox.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Move|Move()} method to adjust checkbox width if needed.
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * Changing a GroupBox's text.</caption>
          * goo := Gui()
@@ -3667,8 +3500,7 @@ class Gui extends Object {
         Text => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
          * @param {(String)} EventName  
@@ -3676,14 +3508,14 @@ class Gui extends Object {
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the GroupBox or presses  
          * Menu or Shift+F10 while the GroupBox has the keyboard focus.  
          * 
-         *       GroupBox_ContextMenu(GuiCtrlObj, Item, RightClicked, X, Y)  
+         *       GroupBox_ContextMenu(GuiCtrl, Item, RightClick, X, Y)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the GroupBox's object  
          *     - `Item`: Not used with GroupBox controls  
-         *     - `RightClicked`:  
+         *     - `RightClick`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClick` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -3705,8 +3537,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Positioning and Sizing of Controls**  
@@ -3732,7 +3563,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `C#`: Set text color where `#` is one of the following:  
@@ -3805,36 +3636,34 @@ class Gui extends Object {
      */
     class Hotkey extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Set or retrieve the current hotkey string.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Set or retrieve the current hotkey string.  
          * Includes modifier keys. 
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * </caption>
          */
         Value => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The Edit's value changes.  
          * 
-         *       Hotkey_Change(GuiCtrlObj, Info)
+         *       Hotkey_Change(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the Hotkey control or presses  
          * Menu or Shift+F10 while the Hotkey control has the keyboard focus.  
          * 
-         *       Hotkey_ContextMenu(GuiCtrlObj, Info, RightClicked, X, Y)  
+         *       Hotkey_ContextMenu(GuiCtrl, Info, RightClick, X, Y)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the Hotkey control's object  
          *     - `Info`: Not used with Hotkey controls  
-         *     - `RightClicked`:  
+         *     - `RightClick`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClick` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -3856,8 +3685,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
@@ -3894,7 +3722,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `C#`: Set text color where `#` is one of the following:  
@@ -3961,10 +3789,9 @@ class Gui extends Object {
      */
     class Link extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`}  
-         * The text of the link.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`} - The text of the link.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Move|Move()} method to adjust link width if needed.
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * Changing checkbox caption.</caption>
          * goo := Gui()
@@ -3983,29 +3810,28 @@ class Gui extends Object {
         Text => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The Link is clicked.  
          * 
-         *       Link_Click(GuiCtrlObj, Info, Href)  
+         *       Link_Click(GuiCtrl, Info, Href)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the Link or presses  
          * Menu or Shift+F10 while the Link has the keyboard focus.  
          * 
-         *       Link_ContextMenu(GuiCtrlObj, Item, RightClicked, X, Y)  
+         *       Link_ContextMenu(GuiCtrl, Item, RightClick, X, Y)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the Link's object  
          *     - `Href`: The link's HREF attribute. If a Click event callback  
          *       is registered, the HREF attribute is not automatically executed.  
          *     - `Info`: The link's ID attribute (a string) if it has one, otherwise the link's index (an integer).  
          *     - `Item`: Not used with Link controls.  
-         *     - `RightClicked`:  
+         *     - `RightClick`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClick` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -4027,8 +3853,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Positioning and Sizing of Controls**  
@@ -4054,7 +3879,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `C#`: Set text color where `#` is one of the following:  
@@ -4124,8 +3949,7 @@ class Gui extends Object {
      */
     class List extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`}  
-         * Appends items to a multi-item control (ListBox, DropDownList, ComboBox, or Tab).  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`} - Appends items to a multi-item control (ListBox, DropDownList, ComboBox, or Tab).  
          * To replace/overwrite the list, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|Delete()} method beforehand.
          * @param {(Array)} Items  
          * An array of strings to be inserted as items at the end of the control's list.
@@ -4140,8 +3964,7 @@ class Gui extends Object {
         Add(Items) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`}  
-         * Select an item in a multi-item control (ListBox, DropDownList, ComboBox, or Tab).  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`} - Select an item in a multi-item control (ListBox, DropDownList, ComboBox, or Tab).  
          * Unlike One of the following event(s). Expected callback format is included. event.  
          * @param {(Integer|String)} Value  
          * Specify the number of the item. 1 for first item, 2 for second.  
@@ -4155,8 +3978,7 @@ class Gui extends Object {
         Choose(Value) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|`Delete()`}  
-         * Removes one or all items from a multi-item control (ListBox, DropDownList, ComboBox, or Tab).  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|`Delete()`} - Removes one or all items from a multi-item control (ListBox, DropDownList, ComboBox, or Tab).  
          * @param {(Integer)} Value  
          * Item number to be deleted. `1` is first item, `2` is second, etc.  
          * If value is omitted, all items are deleted.  
@@ -4174,28 +3996,25 @@ class Gui extends Object {
      */
     class ComboBox extends Gui.List {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`}  
-         * The text of the selected item or the text of the item to select (case insensitive).
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`} - The text of the selected item or the text of the item to select (case insensitive).
          * If no item selected, the control's edit field is retrieved instead.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|Value} property to select an item by its position number.  
-         * @type {(String)}
+         * @type String
          */
         Text => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Retrieves or sets position number of the currently selected item.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Retrieves or sets position number of the currently selected item.  
          * If text is in the ComboBox, the first matching text is used.  
          * 0 indicates nothing is selected and no matches were made.  
          * Setting the property to 0 clears any selected item.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|Text property} to set/get the control text.
-         * @type {(Integer)}
+         * @type Integer
          */
         Value => Integer
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`}  
-         * Appends the specified entries to the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`} - Appends the specified entries to the control.  
          * @param {(Array)} Items  
          * An array of strings to append to the list.  
          * To replace the list with a new one, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|Delete()} method first and then add the list.  
@@ -4213,8 +4032,7 @@ class Gui extends Object {
         Add(Items) => EmptyString
     
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`}  
-         * Sets a value from the ComboBox to selected.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`} - Sets a value from the ComboBox to selected.  
          * @param {(Integer|String)} Value  
          * Specify the number of the item. 1 for first item, 2 for second.  
          * If Value is a `0` or `EmptyString`, any selected value is deselected.  
@@ -4225,8 +4043,7 @@ class Gui extends Object {
         Choose(Value) => EmptyString
     
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|`Delete()`}  
-         * Removes the specified entry or all entries from the ComboBox.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|`Delete()`} - Removes the specified entry or all entries from the ComboBox.  
          * @param {(Integer)} [Value]  
          * The index number of the item to delete or all items if value is omitted.  
          * @returns {(String)}  
@@ -4238,36 +4055,35 @@ class Gui extends Object {
         Delete([Value]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The ComboBox's value changes.  
          * 
-         *       ComboBox_Change(GuiCtrlObj, Info)
+         *       ComboBox_Change(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#DoubleClick|`DoubleClick`} - The ComboBox is double-clicked.  
          * 
-         *       ComboBox_DoubleClick(GuiCtrlObj, Info)  
+         *       ComboBox_DoubleClick(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the ComboBox or presses  
          * Menu or Shift+F10 while the ComboBox has the keyboard focus.  
          * The context menu does not work with the edit portion of the control.
          * 
-         *       ComboBox_ContextMenu(GuiCtrlObj, Info, RightClicked, X, Y)  
+         *       ComboBox_ContextMenu(GuiCtrl, Info, RightClick, X, Y)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Focus|`Focus`} - The ComboBox gains the keyboard focus.  
          * 
-         *       ComboBox_Focus(GuiCtrlObj, Reserved)  
+         *       ComboBox_Focus(GuiCtrl, Reserved)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#LoseFocus|`LoseFocus`} - The ComboBox loses the keyboard focus.  
          * 
-         *       ComboBox_LoseFocus(GuiCtrlObj, Reserved)  
+         *       ComboBox_LoseFocus(GuiCtrl, Reserved)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the ComboBox's object  
          *     - `Info`: Not used with ComboBox controls  
-         *     - `RightClicked`:  
+         *     - `RightClick`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClick` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -4289,8 +4105,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
@@ -4327,7 +4142,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `AltSubmit`: {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Submit|Gui.Submit}` will record the item position(s) instead of the actual text.  
@@ -4400,28 +4215,25 @@ class Gui extends Object {
      */
     class DDL extends Gui.List {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`}  
-         * The text of the selected item or the text of the item to select (case insensitive).
-         * @type {(String)}
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`} - The text of the selected item or the text of the item to select (case insensitive).
+         * @type String
          * @example <caption>  
          * </caption>
          */
         Text => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Retrieves or sets position number  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Retrieves or sets position number  
          * of the currently selected item.  
          * 0 means nothing is selected.  
          * Setting Value to 0 clears any selected item.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|Text property} to set/get the control text.
-         * @type {(Integer)}
+         * @type Integer
          */
         Value => Integer
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`}  
-         * Appends the specified entries to the DropDownList.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`} - Appends the specified entries to the DropDownList.  
          * @param {(Array)} Items  
          * An array of strings to append to the list.  
          * To replace the list with a new one, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|Delete()} method first and then add the list.  
@@ -4439,8 +4251,7 @@ class Gui extends Object {
         Add(Items) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`}  
-         * Sets a value from the DropDownList to selected.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`} - Sets a value from the DropDownList to selected.  
          * @param {(Integer|String)} Value  
          * Specify the number of the item. 1 for first item, 2 for second.  
          * If Value is a `0` or `EmptyString`, any selected value is deselected.  
@@ -4457,8 +4268,7 @@ class Gui extends Object {
         Choose(Value) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|`Delete()`}  
-         * Removes the specified entry or all entries from the DropDownList.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|`Delete()`} - Removes the specified entry or all entries from the DropDownList.  
          * @param {(Integer)} [Value]  
          * The index number of the item to delete or all items if value is omitted.  
          * @returns {(String)}  
@@ -4470,32 +4280,31 @@ class Gui extends Object {
         Delete([Value]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The DropDownList's value changes.  
          * 
-         *       DDL_Change(GuiCtrlObj, Info)
+         *       DDL_Change(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the DropDownList or presses  
          * Menu or Shift+F10 while the DropDownList has the keyboard focus.  
          * 
-         *       DDL_ContextMenu(GuiCtrlObj, Info, RightClicked, X, Y)  
+         *       DDL_ContextMenu(GuiCtrl, Info, RightClick, X, Y)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Focus|`Focus`} - The DropDownList gains the keyboard focus.  
          * 
-         *       DDL_Focus(GuiCtrlObj, Reserved)  
+         *       DDL_Focus(GuiCtrl, Reserved)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#LoseFocus|`LoseFocus`} - The DropDownList loses the keyboard focus.  
          * 
-         *       DDL_LoseFocus(GuiCtrlObj, Reserved)  
+         *       DDL_LoseFocus(GuiCtrl, Reserved)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the DropDownList's object  
          *     - `Info`: Not used with DropDownList controls  
-         *     - `RightClicked`:  
+         *     - `RightClick`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClick` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -4517,8 +4326,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
@@ -4552,7 +4360,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `AltSubmit`: {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Submit|Gui.Submit}` will record the item position(s) instead of the actual text.  
@@ -4625,28 +4433,25 @@ class Gui extends Object {
      */
     class DropDownList extends Gui.List {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`}  
-         * The text of the selected item or the text of the item to select (case insensitive).
-         * @type {(String)}
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`} - The text of the selected item or the text of the item to select (case insensitive).
+         * @type String
          * @example <caption>  
          * </caption>
          */
         Text => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Retrieves or sets position number  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Retrieves or sets position number  
          * of the currently selected item.  
          * 0 means nothing is selected.  
          * Setting Value to 0 clears any selected item.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|Text property} to set/get the control text.
-         * @type {(Integer)}
+         * @type Integer
          */
         Value => Integer
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`}  
-         * Appends the specified entries to the DropDownList.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`} - Appends the specified entries to the DropDownList.  
          * @param {(Array)} Items  
          * An array of strings to append to the list.  
          * To replace the list with a new one, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|Delete()} method first and then add the list.  
@@ -4664,8 +4469,7 @@ class Gui extends Object {
         Add(Items) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`}  
-         * Sets a value from the DropDownList to selected.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`} - Sets a value from the DropDownList to selected.  
          * @param {(Integer|String)} Value  
          * Specify the number of the item. 1 for first item, 2 for second.  
          * If Value is a `0` or `EmptyString`, any selected value is deselected.  
@@ -4682,8 +4486,7 @@ class Gui extends Object {
         Choose(Value) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|`Delete()`}  
-         * Removes the specified entry or all entries from the DropDownList.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|`Delete()`} - Removes the specified entry or all entries from the DropDownList.  
          * @param {(Integer)} [Value]  
          * The index number of the item to delete or all items if value is omitted.  
          * @returns {(String)}  
@@ -4695,32 +4498,31 @@ class Gui extends Object {
         Delete([Value]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The DropDownList's value changes.  
          * 
-         *       DDL_Change(GuiCtrlObj, Info)
+         *       DDL_Change(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the DropDownList or presses  
          * Menu or Shift+F10 while the DropDownList has the keyboard focus.  
          * 
-         *       DDL_ContextMenu(GuiCtrlObj, Info, RightClicked, X, Y)  
+         *       DDL_ContextMenu(GuiCtrl, Info, RightClick, X, Y)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Focus|`Focus`} - The DropDownList gains the keyboard focus.  
          * 
-         *       DDL_Focus(GuiCtrlObj, Reserved)  
+         *       DDL_Focus(GuiCtrl, Reserved)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#LoseFocus|`LoseFocus`} - The DropDownList loses the keyboard focus.  
          * 
-         *       DDL_LoseFocus(GuiCtrlObj, Reserved)  
+         *       DDL_LoseFocus(GuiCtrl, Reserved)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the DropDownList's object  
          *     - `Info`: Not used with DropDownList controls  
-         *     - `RightClicked`:  
+         *     - `RightClick`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClick` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -4742,8 +4544,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
@@ -4777,7 +4578,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `AltSubmit`: {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Submit|Gui.Submit}` will record the item position(s) instead of the actual text.  
@@ -4850,17 +4651,15 @@ class Gui extends Object {
      */
     class ListBox extends Gui.List {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`}  
-         * The text of the selected item or the text of the item to select (case insensitive).
-         * @type {(String)}
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`} - The text of the selected item or the text of the item to select (case insensitive).
+         * @type String
          * @example <caption>  
          * </caption>
          */
         Text => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Retrieves or sets the index of the  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Retrieves or sets the index of the  
          * currently selected items. 0 indicates nothing was selected.  
          * If the {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#ListBoxMulti|Multi} option is enabled, an array is returned  
          * and contains the index of all selected item.  
@@ -4868,13 +4667,12 @@ class Gui extends Object {
          * When setting Value, only integers can be used.  
          * To set multiple items, loop through them and use the  
          * {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|Choose()} method to select each item.  
-         * @type {(Integer|Array)}
+         * @type Integer|Array
          */
         Value => Array
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`}  
-         * Appends the specified entries to the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`} - Appends the specified entries to the control.  
          * @param {(Array)} Items  
          * An array of strings to append to the list.  
          * To replace the list with a new one, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|Delete()} method first and then add the list.  
@@ -4898,8 +4696,7 @@ class Gui extends Object {
         Add(Items) => EmptyString
     
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`}  
-         * Select an item in a multi-item control.
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`} - Select an item in a multi-item control.
          * @param {(Integer|String)} Value  
          * Specify the number of the item. 1 for first item, 2 for second.  
          * If Value is a `0` or `EmptyString`, any selected value is deselected.  
@@ -4932,8 +4729,7 @@ class Gui extends Object {
         Choose(Value) => EmptyString
     
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|`Delete()`}  
-         * Removes the specified entry or all entries from the ListBox.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|`Delete()`} - Removes the specified entry or all entries from the ListBox.  
          * @param {(Integer)} [Value]  
          * The index number of the item to delete or all items if value is omitted.  
          * @returns {(String)}  
@@ -4945,28 +4741,27 @@ class Gui extends Object {
         Delete([Value]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The ListBox's value changes.  
          * 
-         *       ListBox_Change(GuiCtrlObj, Info)
+         *       ListBox_Change(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#DoubleClick|`DoubleClick`} - The ListBox is double-clicked.  
          * 
-         *       ListBox_DoubleClick(GuiCtrlObj, ItemPos)  
+         *       ListBox_DoubleClick(GuiCtrl, ItemPos)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the ListBox or presses  
          * Menu or Shift+F10 while the ListBox has the keyboard focus.  
          * 
-         *       ListBox_ContextMenu(GuiCtrlObj, Item, RightClicked, X, Y)  
+         *       ListBox_ContextMenu(GuiCtrl, Item, RightClick, X, Y)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Focus|`Focus`} - The ListBox gains the keyboard focus.  
          * 
-         *       ListBox_Focus(GuiCtrlObj, Reserved)  
+         *       ListBox_Focus(GuiCtrl, Reserved)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#LoseFocus|`LoseFocus`} - The ListBox loses the keyboard focus.  
          * 
-         *       ListBox_LoseFocus(GuiCtrlObj, Reserved)  
+         *       ListBox_LoseFocus(GuiCtrl, Reserved)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the ListBox's object  
          *     - `Info`: Position number of the focused item on double click  
@@ -4974,10 +4769,10 @@ class Gui extends Object {
          *     - `Item`: Position number of current focused item  
          *       Right-clicking a standard ListBox does not focus an item  
          *       Meaning this may not be the clicked item  
-         *     - `RightClicked`:  
+         *     - `RightClick`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClick` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -4999,8 +4794,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
 
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
@@ -5043,7 +4837,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `AltSubmit`: {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Submit|Gui.Submit}` will record the item position(s) instead of the actual text.  
@@ -5114,28 +4908,25 @@ class Gui extends Object {
      */
     class Tab extends Gui.List {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`}  
-         * The text of current tab or the text of the tab to activate (case insensitive).
-         * @type {(String)}
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`} - The text of current tab or the text of the tab to activate (case insensitive).
+         * @type String
          * @example <caption>  
          * </caption>
          */
         Text => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Retrieves or sets  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Retrieves or sets  
          * position number of the currently selected tab.  
          * A Value of 0 means no tab is selected.  
          * A Value **can** be set to 0.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|Text property} to set/get the control text.
-         * @type {(Integer)}
+         * @type Integer
          */
         Value => Integer
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`}  
-         * Appends the specified tabs to the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Add|`Add()`} - Appends the specified tabs to the control.  
          * @param {(Array)} Items  
          * An array of strings to append to the tabs.  
          * To replace the list with a new one, use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|Delete()} method first and then add the list.  
@@ -5153,8 +4944,7 @@ class Gui extends Object {
         Add(Items) => EmptyString
     
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`}  
-         * Select a tab.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Choose|`Choose()`} - Select a tab.  
          * @param {(Integer|String)} Value  
          * Specify the number of the item. 1 for first item, 2 for second.  
          * If Value is a `0` or `EmptyString`, any selected value is deselected.  
@@ -5174,8 +4964,7 @@ class Gui extends Object {
         Choose(Value) => EmptyString
     
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|`Delete()`}  
-         * Removes the specified tab or all tabs from the Tab control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Delete|`Delete()`} - Removes the specified tab or all tabs from the Tab control.  
          * Deleting a tab removes only the tab title and does not affect that tab's sub-controls. Instead, the tabs names are shifted left and the last tab's controls are deleted.  
          * Because of this behavior, if you need a deleteable tab, it should placed at the end of the tab list. Otherwise, the only way to rearrange tabs is to delete and rebuild the tab control.  
          * The example code below demonstrates this behavior. Tab B is removed, the remaining tabs are shifted left, and tab B's control are now under the C tab. The final tab's controls, tab D, are deleted.  
@@ -5198,32 +4987,25 @@ class Gui extends Object {
         Delete([Value]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The Tab's value changes.  
          * 
-         *       Tab_Change(GuiCtrlObj, Info)
+         *       Tab_Change(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the Tab or presses  
          * Menu or Shift+F10 while the Tab has the keyboard focus.  
          * 
-         *       Tab_ContextMenu(GuiCtrlObj, Info, RightClicked, X, Y)  
-         * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Focus|`Focus`} - The Tab gains the keyboard focus.  
-         * 
-         *       Tab_Focus(GuiCtrlObj, Reserved)  
-         * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#LoseFocus|`LoseFocus`} - The Tab loses the keyboard focus.  
-         * 
-         *       Tab_LoseFocus(GuiCtrlObj, Reserved)  
+         *       Tab_ContextMenu(GuiCtrl, Info, RightClick, X, Y)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the Tab's object  
          *     - `Info`: Not used with Tab controls  
-         *     - `RightClicked`:  
+         *     - `RightClick`:  
          *       `1` = Mouse right click was used  
          *       `0` = AppsKey or Shift+F10 was used  
-         *     - `X` and `Y`: Right click dependent (Check `RightClicked` param)  
+         *     - `X` and `Y`: Right click dependent (Check `RightClick` param)  
          *       Right Clicked = Coords of mouse click  
          *       Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -5245,8 +5027,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
 
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
@@ -5284,7 +5065,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `AltSubmit`: {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Submit|Gui.Submit}` will record the item position(s) instead of the actual text.  
@@ -5353,8 +5134,7 @@ class Gui extends Object {
      */
     class ListView extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#Add|`Add()`}  
-         * Adds a new row to the bottom of the list.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#Add|`Add()`} - Adds a new row to the bottom of the list.  
          * @param {(String)} [Options]  
          * If omitted, no options are used.  
          * - `Check`  
@@ -5397,8 +5177,7 @@ class Gui extends Object {
         Add([Options:='', Col1, ColN*]) => Integer
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#Delete|`Delete()`}  
-         * Deletes the specified row or all rows.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#Delete|`Delete()`} - Deletes the specified row or all rows.  
          * @param {(Integer)} [RowNumber]  
          * The row number to delete from the ListView.  
          * If omitted, all rows are deleted.  
@@ -5418,8 +5197,7 @@ class Gui extends Object {
         Delete([RowNumber:=unset]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#DeleteCol|`DeleteCol()`}  
-         * Deletes the specified column and all of the contents beneath it.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#DeleteCol|`DeleteCol()`} - Deletes the specified column and all of the contents beneath it.  
          * @param {(Integer)} ColumnNumber  
          * The number of the column to delete.  
          * All columns to the right of the deleted column are reduced by 1.  
@@ -5439,8 +5217,7 @@ class Gui extends Object {
         DeleteCol(ColumnNumber) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#GetCount|`GetCount()`}  
-         * Returns the number of rows or columns in the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#GetCount|`GetCount()`} - Returns the number of rows or columns in the control.  
          * @param {(String)} [Mode]  
          * - Omit  
          *   Returns the total number of rows in the control.  
@@ -5456,8 +5233,7 @@ class Gui extends Object {
         GetCount([Mode:=unset]) => Integer
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#GetNext|`GetNext()`}  
-         * Returns the row number of the next selected, checked, or focused row.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#GetNext|`GetNext()`} - Returns the row number of the next selected, checked, or focused row.  
          * @param {(Integer)} StartingRowNumber  
          * The number of the row to begin the search.  
          * If omitted or less than 1, search starts at top of list.  
@@ -5478,8 +5254,7 @@ class Gui extends Object {
         GetNext([StartingRowNumber:=0, RowType:='']) => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#GetText|`GetText()`}  
-         * Retrieves the text at the specified row and column number.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#GetText|`GetText()`} - Retrieves the text at the specified row and column number.  
          * @param {(Integer)} RowNumber  
          * The row number to get text from.  
          * @param {(Integer)} ColumnNumber  
@@ -5494,8 +5269,7 @@ class Gui extends Object {
         GetText(RowNumber [,ColumnNumber:=1]) => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#Insert|`Insert()`}  
-         * Inserts a new row at the specified row number.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#Insert|`Insert()`} - Inserts a new row at the specified row number.  
          * @param {(Integer)} RowNumber  
          * Row number to insert the new row at.  
          * All rows below are shifted down.  
@@ -5542,8 +5316,7 @@ class Gui extends Object {
         Insert(RowNumber [,Options:='', Col1, ColN*]) => Integer
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#InsertCol|`InsertCol()`}  
-         * Inserts a new column at the specified column number.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#InsertCol|`InsertCol()`} - Inserts a new column at the specified column number.  
          * Max number of columns is 200.  
          * @param {(Integer)} ColumnNumber  
          * Column number to insert the new column at.  
@@ -5579,8 +5352,7 @@ class Gui extends Object {
         InsertCol(ColumnNumber [,Options:='', ColumnTitle:='']) => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#Modify|`Modify()`}  
-         * Modifies the attributes and/or text of a row.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#Modify|`Modify()`} - Modifies the attributes and/or text of a row.  
          * @param {(Integer)} RowNumber  
          * Row number to modify.  
          * If `0` is used, all rows are modified.  
@@ -5619,8 +5391,7 @@ class Gui extends Object {
         Modify(RowNumber [,Options:='', Col1, ColN*]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#ModifyCol|`ModifyCol()`}  
-         * Modifies the attributes and/or text of the specified column and its header.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#ModifyCol|`ModifyCol()`} - Modifies the attributes and/or text of the specified column and its header.  
          * If all params are omitted, all columns are auto-adjusted to fit contents.  
          * @param {(Integer)} [ColumnNumber]  
          * The number of the column to modify.  
@@ -5677,45 +5448,44 @@ class Gui extends Object {
         ModifyCol([ColumnNumber:=unset, Options:=unset, ColumnTitle:=unset]) => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The Listview is clicked.  
          *   
-         *       ListView_Click(GuiCtrlObj, Info)  
+         *       ListView_Click(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#DoubleClick|`DoubleClick`} - The Listview is double-clicked.  
          * 
-         *       ListView_DoubleClick(GuiCtrlObj, Info)
+         *       ListView_DoubleClick(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#ColClick|`ColClick`} - A ListView's column header is clicked.  
          * 
-         *       ListView_ColClick(GuiCtrlObj, ColNum)
+         *       ListView_ColClick(GuiCtrl, ColNum)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the ListView or presses  
          *   Menu or Shift+F10 while the ListView has the keyboard focus.  
          * 
-         *       ListView_ContextMenu(GuiCtrlObj, Item, RightClicked, X, Y)  
+         *       ListView_ContextMenu(GuiCtrl, Item, RightClick, X, Y)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Focus|`Focus`} - The ListView gains the keyboard focus.  
          * 
-         *       ListView_Focus(GuiCtrlObj, Reserved)  
+         *       ListView_Focus(GuiCtrl, Reserved)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#LoseFocus|`LoseFocus`} - The ListView loses the keyboard focus.  
          * 
-         *       ListView_LoseFocus(GuiCtrlObj, Reserved)  
+         *       ListView_LoseFocus(GuiCtrl, Reserved)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#ItemCheck|`ItemCheck`} - The ListView item is checked or unchecked.  
          * 
-         *       ListView_ItemCheck(GuiCtrlObj, RowNum, RowChecked)  
+         *       ListView_ItemCheck(GuiCtrl, RowNum, RowChecked)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#ItemEdit|`ItemEdit`} - The ListView item's label is edited by the user.  
          *   The One of the following event(s). Expected callback format is included. must be used to edit labels.  
          * 
-         *       ListView_ItemEdit(GuiCtrlObj, RowNum)  
+         *       ListView_ItemEdit(GuiCtrl, RowNum)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#ItemFocus|`ItemFocus`} - The ListView item receives focus.  
          * 
-         *       ListView_ItemFocus(GuiCtrlObj, RowNum)  
+         *       ListView_ItemFocus(GuiCtrl, RowNum)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#ItemSelect|`ItemSelect`} - A ListView item is selected or deselected.  
          *   During multiple selections (like click+drag) the event is fired once for each item.  
          * 
-         *       ListView_ItemSelect(GuiCtrlObj, RowNum, IsSelected)  
+         *       ListView_ItemSelect(GuiCtrl, RowNum, IsSelected)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the ListView's object  
          *     - `Info`: Row number of clicked item or 0 if not over an item  
@@ -5730,10 +5500,10 @@ class Gui extends Object {
          *       - `0` = Row is unchecked  
          *     - `Item`: Item's row or ID number  
          *       0 if the user clicked somewhere other than an item  
-         *     - `RightClicked`: Context menu activation  
+         *     - `RightClick`: Context menu activation  
          *       - `1` = Activated by right click  
          *       - `0` = Activated by `AppsKey` or `Shift+F10`  
-         *     - `X` and `Y`: Check `RightClicked` param  
+         *     - `X` and `Y`: Check `RightClick` param  
          *       - Right Clicked = Coords of mouse click  
          *       - Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -5755,8 +5525,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
@@ -5834,7 +5603,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `C#`: Set text color where `#` is an RGB hex number `c0x0` to `cFFFFFF` (0x prefix is optional) or a color string `cRed`.  
@@ -5871,8 +5640,7 @@ class Gui extends Object {
         Opt(Options) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#SetImageList|`SetImageList()`}
-         * Sets or replaces an ImageList for displaying icons.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#SetImageList|`SetImageList()`} - Sets or replaces an ImageList for displaying icons.  
          * Destroy the ImageList with {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL_Destroy|IL_Destroy()}.  
          * @param {(Integer)} ImageListID  
          * The ID number returned from a previous call to {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL_Create|IL_Create()}.
@@ -5894,27 +5662,25 @@ class Gui extends Object {
      */
     class MonthCal extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Retrieves or sets the control's Date-time stamp in {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|YYYYMMDDHH24MISS format}.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Retrieves or sets the control's Date-time stamp in {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|YYYYMMDDHH24MISS format}.  
          * Use {@link https://www.autohotkey.com/docs/v2/Variables.htm#Now|A_Now} to set Value to current time.  
          * If the {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#ChooseNone|choose none `+2` option} was used, setting  
          * Value to 0 will clear the DateTime control.
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * </caption>
          */
         Value => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The MonthCal's value changes.  
          *   
-         *       MonthCal_Click(GuiCtrlObj, Info)  
+         *       MonthCal_Click(GuiCtrl, Info)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the MonthCal's object  
          *     - `Info`: Not used with MonthCal controls  
@@ -5937,8 +5703,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
 
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
@@ -5977,7 +5742,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `C#`: Set text color where `#` is one of the following:  
@@ -6045,8 +5810,7 @@ class Gui extends Object {
      */
     class Pic extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Set or retrieve the picture file's path.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Set or retrieve the picture file's path.  
          * When setting new value, the following options can be included.  
          * Only use one space or tab between options and file path.  
          * If both *W and *H are omitted, control's width and height are used.  
@@ -6058,15 +5822,14 @@ class Gui extends Object {
          *   If setting `*W`, use `*H-1` to keep the aspect ratio.  
          * - `*Icon#` = Select an icon from a group of them.  
          *   Or select an icon resource from a DLL or EXE file.  
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * </caption>
          */
         Value => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},
          * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object},
          * or {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc}  
@@ -6075,27 +5838,27 @@ class Gui extends Object {
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The Picture is clicked.  
          * 
-         *       Pic_Click(GuiCtrlObj, Info)  
+         *       Pic_Click(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#DoubleClick|`DoubleClick`} - The Picture is double-clicked.  
          * 
-         *       Pic_DoubleClick(GuiCtrlObj, Info)  
+         *       Pic_DoubleClick(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the Picture or presses  
          * Menu or Shift+F10 while the Picture has the keyboard focus.  
          * 
-         *       Pic_ContextMenu(GuiCtrlObj, Info, RightClicked, X, Y)  
+         *       Pic_ContextMenu(GuiCtrl, Info, RightClick, X, Y)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Focus|`Focus`} - The Picture gains the keyboard focus.  
          * 
-         *       Pic_Focus(GuiCtrlObj, Reserved)  
+         *       Pic_Focus(GuiCtrl, Reserved)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#LoseFocus|`LoseFocus`} - The Picture loses the keyboard focus.  
          * 
-         *       Pic_LoseFocus(GuiCtrlObj, Reserved)  
+         *       Pic_LoseFocus(GuiCtrl, Reserved)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the Picture's object  
          *     - `Info`: Not used with Picture controls  
-         *     - `RightClicked`: Context menu activation  
+         *     - `RightClick`: Context menu activation  
          *       - `1` = Activated by right click  
          *       - `0` = Activated by `AppsKey` or `Shift+F10`  
-         *     - `X` and `Y`: Check `RightClicked` param  
+         *     - `X` and `Y`: Check `RightClick` param  
          *       - Right Clicked = Coords of mouse click  
          *       - Keyboard = Coords of the Picture's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -6117,8 +5880,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
@@ -6148,7 +5910,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
@@ -6209,8 +5971,7 @@ class Gui extends Object {
      */
     class Picture extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Set or retrieve the picture file's path.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Set or retrieve the picture file's path.  
          * When setting new value, the following options can be included.  
          * Only use one space or tab between options and file path.  
          * If both *W and *H are omitted, control's width and height are used.  
@@ -6222,15 +5983,14 @@ class Gui extends Object {
          *   If setting `*W`, use `*H-1` to keep the aspect ratio.  
          * - `*Icon#` = Select an icon from a group of them.  
          *   Or select an icon resource from a DLL or EXE file.  
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * </caption>
          */
         Value => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},
          * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object},
          * or {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc}  
@@ -6239,27 +5999,27 @@ class Gui extends Object {
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The Picture is clicked.  
          * 
-         *       Pic_Click(GuiCtrlObj, Info)  
+         *       Pic_Click(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#DoubleClick|`DoubleClick`} - The Picture is double-clicked.  
          * 
-         *       Pic_DoubleClick(GuiCtrlObj, Info)  
+         *       Pic_DoubleClick(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the Picture or presses  
          * Menu or Shift+F10 while the Picture has the keyboard focus.  
          * 
-         *       Pic_ContextMenu(GuiCtrlObj, Info, RightClicked, X, Y)  
+         *       Pic_ContextMenu(GuiCtrl, Info, RightClick, X, Y)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Focus|`Focus`} - The Picture gains the keyboard focus.  
          * 
-         *       Pic_Focus(GuiCtrlObj, Reserved)  
+         *       Pic_Focus(GuiCtrl, Reserved)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#LoseFocus|`LoseFocus`} - The Picture loses the keyboard focus.  
          * 
-         *       Pic_LoseFocus(GuiCtrlObj, Reserved)  
+         *       Pic_LoseFocus(GuiCtrl, Reserved)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the Picture's object  
          *     - `Info`: Not used with Picture controls  
-         *     - `RightClicked`: Context menu activation  
+         *     - `RightClick`: Context menu activation  
          *       - `1` = Activated by right click  
          *       - `0` = Activated by `AppsKey` or `Shift+F10`  
-         *     - `X` and `Y`: Check `RightClicked` param  
+         *     - `X` and `Y`: Check `RightClick` param  
          *       - Right Clicked = Coords of mouse click  
          *       - Keyboard = Coords of the Picture's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -6281,8 +6041,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
@@ -6312,7 +6071,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
@@ -6373,18 +6132,16 @@ class Gui extends Object {
      */
     class Progress extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Set or retrieve the new position of the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Set or retrieve the new position of the control.  
          * Relative adjustment can be done with operators like: `+=`, `-=`, `++`, and `--`
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * </caption>
          */
         Value => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},
          * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object},
          * or {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc}  
@@ -6394,14 +6151,14 @@ class Gui extends Object {
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the Progress bar or presses  
          * Menu or Shift+F10 while the Progress bar has the keyboard focus.  
          * 
-         *       Pic_ContextMenu(GuiCtrlObj, Info, RightClicked, X, Y)  
+         *       Pic_ContextMenu(GuiCtrl, Info, RightClick, X, Y)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the Progress object  
          *     - `Info`: Not used with Progress bar controls  
-         *     - `RightClicked`: Context menu activation  
+         *     - `RightClick`: Context menu activation  
          *       - `1` = Activated by right click  
          *       - `0` = Activated by `AppsKey` or `Shift+F10`  
-         *     - `X` and `Y`: Check `RightClicked` param  
+         *     - `X` and `Y`: Check `RightClick` param  
          *       - Right Clicked = Coords of mouse click  
          *       - Keyboard = Coords of the Progress bar's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -6423,8 +6180,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
 
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
@@ -6457,7 +6213,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `C#`: Sets the color of the main bar where `#` is one of the following:  
@@ -6524,10 +6280,9 @@ class Gui extends Object {
      */
     class Radio extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`}  
-         * The caption that displays on the radio.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`} - The caption that displays on the radio.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Move|Move()} method to adjust radio width if needed.
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * Changing radio caption.</caption>
          * goo := Gui()
@@ -6548,19 +6303,17 @@ class Gui extends Object {
         Text => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Retrieves or sets the checked state.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Retrieves or sets the checked state.  
          * Values can be:  
          * `1`: Checked  
          * `0`: Unchecked  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|Text property} to set/get the control text.
-         * @type {(Integer)}
+         * @type Integer
          */
         Value => Integer
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method}`,
          * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object}`,
          * or {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc}`  
@@ -6569,27 +6322,27 @@ class Gui extends Object {
          * One of the following events:  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The Radio button is clicked.  
          * 
-         *       Radio_Click(GuiCtrlObj, Info)  
+         *       Radio_Click(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#DoubleClick|`DoubleClick`} - The Radio button is double-clicked.  
          * 
-         *       Radio_DoubleClick(GuiCtrlObj, Info)  
+         *       Radio_DoubleClick(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the Progress bar or presses  
          * Menu or Shift+F10 while the Progress bar has the keyboard focus.  
          * 
-         *       Radio_ContextMenu(GuiCtrlObj, Info, RightClicked, X, Y)  
+         *       Radio_ContextMenu(GuiCtrl, Info, RightClick, X, Y)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Focus|`Focus`} - The Radio button gains the keyboard focus.  
          * 
-         *       Radio_Focus(GuiCtrlObj, Reserved)  
+         *       Radio_Focus(GuiCtrl, Reserved)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#LoseFocus|`LoseFocus`} - The Radio button loses the keyboard focus.  
          * 
-         *       Radio_LoseFocus(GuiCtrlObj, Reserved)  
+         *       Radio_LoseFocus(GuiCtrl, Reserved)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the Radio's object  
          *     - `Info`: Not used with Radio button controls  
-         *     - `RightClicked`: Context menu activation  
+         *     - `RightClick`: Context menu activation  
          *       - `1` = Activated by right click  
          *       - `0` = Activated by `AppsKey` or `Shift+F10`  
-         *     - `X` and `Y`: Check `RightClicked` param  
+         *     - `X` and `Y`: Check `RightClick` param  
          *       - Right Clicked = Coords of mouse click  
          *       - Keyboard = Coords of the Radio button's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -6611,8 +6364,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
 
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
@@ -6642,7 +6394,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `C#`: Set text color where `#` is one of the following:  
@@ -6714,18 +6466,16 @@ class Gui extends Object {
      */
     class Slider extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Set or retrieve the new position of the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Set or retrieve the new position of the control.  
          * Relative adjustment can be done with operators like: `+=`, `-=`, `++`, and `--`
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * </caption>
          */
         Value => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method}`,
          * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object}`,
          * or {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc}`  
@@ -6734,21 +6484,21 @@ class Gui extends Object {
          * One of the following events:  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The Slider's value changes.  
          * 
-         *       Slider_Change(GuiCtrlObj, Info)  
+         *       Slider_Change(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the Progress bar or presses  
          * Menu or Shift+F10 while the Progress bar has the keyboard focus.  
          * 
-         *       Slider_ContextMenu(GuiCtrlObj, Item, RightClicked, X, Y)  
+         *       Slider_ContextMenu(GuiCtrl, Item, RightClick, X, Y)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the Slider's object  
          *     - `Info`: Amount slider has changed between starting and stopping  
          *       If the {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#AltSubmit|AltSubmit}` option is used the event is raised  
          *       after any type of value change is detected.  
          *     - `Item`: Not used with Slider controls.  
-         *     - `RightClicked`: Context menu activation  
+         *     - `RightClick`: Context menu activation  
          *       - `1` = Activated by right click  
          *       - `0` = Activated by `AppsKey` or `Shift+F10`  
-         *     - `X` and `Y`: Check `RightClicked` param  
+         *     - `X` and `Y`: Check `RightClick` param  
          *       - Right Clicked = Coords of mouse click  
          *       - Keyboard = Coords of the Slider's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -6770,8 +6520,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
 
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
@@ -6820,7 +6569,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `AltSubmit`: While dragging the slider (thumb), the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`change event`} fires continuously.  
@@ -6877,10 +6626,9 @@ class Gui extends Object {
      */
     class StatusBar extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`}  
-         * The text of the first section of the status bar.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`} - The text of the first section of the status bar.  
          * Use {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#SB_SetText|StatusBar.SetText()} for more text options.  
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * Changing checkbox caption.</caption>
          * goo := Gui()
@@ -6901,8 +6649,7 @@ class Gui extends Object {
         Text => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method}`,
          * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object}`,
          * or {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc}`  
@@ -6911,22 +6658,22 @@ class Gui extends Object {
          * One of the following events:  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The StatusBar is clicked.  
          * 
-         *       Ctrl_Click(GuiCtrlObj, Info)  
+         *       Ctrl_Click(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#DoubleClick|`DoubleClick`} - The StatusBar is double-clicked.  
          * 
-         *       Ctrl_DoubleClick(GuiCtrlObj, Info)  
+         *       Ctrl_DoubleClick(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the StatusBar or presses  
          * Menu or Shift+F10 while the StatusBar has the keyboard focus.  
          * 
-         *       Ctrl_ContextMenu(GuiCtrlObj, Item, RightClicked, X, Y)  
+         *       Ctrl_ContextMenu(GuiCtrl, Item, RightClick, X, Y)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the StatusBar's object  
          *     - `Info`: The section number of the status bar clicked  
          *     - `Item`:   
-         *     - `RightClicked`: Context menu activation  
+         *     - `RightClick`: Context menu activation  
          *       - `1` = Activated by right click  
          *       - `0` = Activated by `AppsKey` or `Shift+F10`  
-         *     - `X` and `Y`: Check `RightClicked` param  
+         *     - `X` and `Y`: Check `RightClick` param  
          *       - Right Clicked = Coords of mouse click  
          *       - Keyboard = Coords of the StatusBar's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -6948,8 +6695,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
 
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Positioning and Sizing of Controls**  
@@ -6975,7 +6721,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
@@ -7028,20 +6774,18 @@ class Gui extends Object {
      */
     class Text extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Set or retrieve the text in the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Set or retrieve the text in the control.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Move|Move()} method to adjust text width if needed.
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * </caption>
          */
         Value => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`}  
-         * Set or retrieve the text in the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|`Text`} - Set or retrieve the text in the control.  
          * Use the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Move|Move()} method to adjust text width if needed.
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * Changing text case.</caption>
          * goo := Gui()
@@ -7062,8 +6806,7 @@ class Gui extends Object {
         Text => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method}`,
          * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object}`,
          * or {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc}`  
@@ -7072,21 +6815,21 @@ class Gui extends Object {
          * One of the following events:  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The Text is clicked.  
          * 
-         *       Ctrl_Click(GuiCtrlObj, Info)  
+         *       Ctrl_Click(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#DoubleClick|`DoubleClick`} - The Text is double-clicked.  
          * 
-         *       Ctrl_DoubleClick(GuiCtrlObj, Info)  
+         *       Ctrl_DoubleClick(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the Text or presses  
          * Menu or Shift+F10 while the Text has the keyboard focus.  
          * 
-         *       Ctrl_ContextMenu(GuiCtrlObj, Info, RightClicked, X, Y)  
+         *       Ctrl_ContextMenu(GuiCtrl, Info, RightClick, X, Y)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the Text's object  
          *     - `Info`: Not used with Text controls  
-         *     - `RightClicked`: Context menu activation  
+         *     - `RightClick`: Context menu activation  
          *       - `1` = Activated by right click  
          *       - `0` = Activated by `AppsKey` or `Shift+F10`  
-         *     - `X` and `Y`: Check `RightClicked` param  
+         *     - `X` and `Y`: Check `RightClick` param  
          *       - Right Clicked = Coords of mouse click  
          *       - Keyboard = Coords of the Text's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -7108,8 +6851,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
 
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Positioning and Sizing of Controls**  
@@ -7135,7 +6877,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `C#`: Set text color where `#` is one of the following:  
@@ -7208,41 +6950,40 @@ class Gui extends Object {
      */
     class TreeView extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, 
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method},  
          * or {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} to be called when a specified event happens.  
          * @param {(String)} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Click|`Click`} - The TreeView is clicked.  
          *   
-         *       TreeView_Click(GuiCtrlObj, ItemID)  
+         *       TreeView_Click(GuiCtrl, ItemID)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#DoubleClick|`DoubleClick`} - The TreeView is double-clicked.  
          * 
-         *       TreeView_DoubleClick(GuiCtrlObj, ItemID)  
+         *       TreeView_DoubleClick(GuiCtrl, ItemID)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the TreeView or presses  
          *   Menu or Shift+F10 while the TreeView has the keyboard focus.  
          * 
-         *       TreeView_ContextMenu(GuiCtrlObj, Item, RightClicked, X, Y)  
+         *       TreeView_ContextMenu(GuiCtrl, Item, RightClick, X, Y)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Focus|`Focus`} - The TreeView gains the keyboard focus.  
          * 
-         *       TreeView_Focus(GuiCtrlObj, Reserved)  
+         *       TreeView_Focus(GuiCtrl, Reserved)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#LoseFocus|`LoseFocus`} - The TreeView loses the keyboard focus.  
          * 
-         *       TreeView_LoseFocus(GuiCtrlObj, Reserved)  
+         *       TreeView_LoseFocus(GuiCtrl, Reserved)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#ItemCheck|`ItemCheck`} - The TreeView item is checked or unchecked.  
          * 
-         *       TreeView_ItemCheck(GuiCtrlObj, ItemID, IsChecked)  
+         *       TreeView_ItemCheck(GuiCtrl, ItemID, IsChecked)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#ItemEdit|`ItemEdit`} - The TreeView item's label is edited by the user.  
          *   The {@link https://www.autohotkey.com/docs/v2/lib/TreeView.htm#ReadOnly|`-ReadOnly` option} must be used to edit labels.  
          * 
-         *       TreeView_ItemEdit(GuiCtrlObj, ItemID)  
+         *       TreeView_ItemEdit(GuiCtrl, ItemID)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#ItemExpand|`ItemExpand`} - The TreeView item becomes expanded or collapsed.  
          * 
-         *       TreeView_ItemExpand(GuiCtrlObj, ItemID, IsExpanded)  
+         *       TreeView_ItemExpand(GuiCtrl, ItemID, IsExpanded)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#ItemSelect|`ItemSelect`} - A TreeView item is selected or deselected.  
          * 
-         *       TreeView_ItemSelect(GuiCtrlObj, ItemID)  
+         *       TreeView_ItemSelect(GuiCtrl, ItemID)
          * - Callback Params:  
          *     - `GuiCtrlObj`: Reference to the TreeView's object  
          *     - `ItemID`: Unique ID of that TreeView item  
@@ -7253,10 +6994,10 @@ class Gui extends Object {
          *     _ `IsExpanded`:  
          *       - `1` = Item is set to expanded  
          *       - `0` = Item is set to collapsed  
-         *     - `RightClicked`: Context menu activation  
+         *     - `RightClick`: Context menu activation  
          *       - `1` = Activated by right click  
          *       - `0` = Activated by `AppsKey` or `Shift+F10`  
-         *     - `X` and `Y`: Check `RightClicked` param  
+         *     - `X` and `Y`: Check `RightClick` param  
          *       - Right Clicked = Coords of mouse click  
          *       - Keyboard = Coords of the control's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -7278,8 +7019,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
@@ -7319,7 +7059,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `C#`: Set text color where `#` is one of the following:  
@@ -7386,18 +7126,16 @@ class Gui extends Object {
      */
     class UpDown extends Gui.Control {
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`}  
-         * Set or retrieve the new position of the control.  
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|`Value`} - Set or retrieve the new position of the control.  
          * Relative adjustment can be done with operators like: `+=`, `-=`, `++`, and `--`
-         * @type {(String)}
+         * @type String
          * @example <caption>  
          * </caption>
          */
         Value => String
         
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
-         * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`} - Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function},
          * {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method}`,
          * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object}`,
          * or {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc}`  
@@ -7406,18 +7144,18 @@ class Gui extends Object {
          * One of the following events:  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The UpDown's value changes.  
          * 
-         *       Ctrl_Change(GuiCtrlObj, Info)  
+         *       Ctrl_Change(GuiCtrl, Info)
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Ctrl-ContextMenu|`ContextMenu`} - The user right-clicks the UpDown or presses  
          * Menu or Shift+F10 while the UpDown has the keyboard focus.  
          * 
-         *       Ctrl_ContextMenu(GuiCtrlObj, Info, RightClicked, X, Y)  
+         *       Ctrl_ContextMenu(GuiCtrl, Info, RightClick, X, Y)
          * - Callback Params:
          *     - `GuiCtrlObj`: Reference to the ListView's object  
          *     - `Info`: Not used with UpDown controls  
-         *     - `RightClicked`: Context menu activation  
+         *     - `RightClick`: Context menu activation  
          *       - `1` = Activated by right click  
          *       - `0` = Activated by `AppsKey` or `Shift+F10`  
-         *     - `X` and `Y`: Check `RightClicked` param  
+         *     - `X` and `Y`: Check `RightClick` param  
          *       - Right Clicked = Coords of mouse click  
          *       - Keyboard = Coords of the UpDown's upper left corner  
          * @param {(String|FuncObj)} Callback  
@@ -7439,8 +7177,7 @@ class Gui extends Object {
         OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
 
         /**
-         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
-         * Sets various options and styles for the appearance and behavior of the control 
+         * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the control 
          * @param {(String)} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * **Control Specific Options**  
@@ -7486,7 +7223,7 @@ class Gui extends Object {
          * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
          *   A control's name can be used to get a reference to that control from a GUI object.  
          * 
-         *         GuiControl.Opt('+VMyControl')  
+         *         GuiControl.Opt('+VMyControl')
          *         GuiControl := Gui['MyControl']  
          * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
          * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
@@ -7527,8 +7264,7 @@ class Gui extends Object {
     }
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#BackColor|`BackColor`}  
-     * Retrieves or sets the background color of the window.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#BackColor|`BackColor`} - Retrieves or sets the background color of the window.  
      * When setting BackColor, a string or number can be used:
      *   - Hex value: String or number. `0x000000` to `0xFFFFFF`.  
      *     If value is a string, the 0x prefix is optional.  
@@ -7536,7 +7272,7 @@ class Gui extends Object {
      *   - Default color: The word `default` or an empty string.  
      * When retrieving backcolor, a string containing the hex value of the current color is returned.  
      * To set the color of a One of the following event(s). Expected callback format is included. method.  
-     * @type {(Number|String)}
+     * @type Number|String
      * @example <caption>  
      * Changing background color with Drop Down List of colors.</caption>
      * color_list := ['Default', 'Red','Yellow','Green','Cyan','Blue','Magenta']
@@ -7555,10 +7291,9 @@ class Gui extends Object {
     BackColor => String
         
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#FocusedCtrl|`FocusedCtrl`}  
-     * Retrieves the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm|GuiControl object}` of the Gui's focused control.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#FocusedCtrl|`FocusedCtrl`} - Retrieves the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm|GuiControl object}` of the Gui's focused control.  
      * If the window is minimized or hidden, this property may not be effective.  
-     * @type {(GuiControl)}
+     * @type GuiControl
      * @example <caption>  
      * Focusing a specific control.</caption>
      * goo := Gui()
@@ -7575,9 +7310,8 @@ class Gui extends Object {
     FocusedCtrl => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Hwnd|`Hwnd`}  
-     * Retrieves the window handle (HWND) of the GUI window.  
-     * @type {(Integer)}
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Hwnd|`Hwnd`} - Retrieves the window handle (HWND) of the GUI window.  
+     * @type Integer
      * @example <caption>  
      * A GUI that can be hidden and shown with F1.</caption>
      * *F1::toggle_gui()
@@ -7603,9 +7337,8 @@ class Gui extends Object {
     Hwnd => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#MarginX|`MarginX`}  
-     * Retrieves or sets the size of horizontal margins between sides and subsequently created controls.  
-     * @type {(Integer)}
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#MarginX|`MarginX`} - Retrieves or sets the size of horizontal margins between sides and subsequently created controls.  
+     * @type Integer
      * @example <caption>  
      * Showing how margin settings affect padding.</caption>
      * goo := Gui()
@@ -7620,9 +7353,8 @@ class Gui extends Object {
     MarginX => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#MarginY|`MarginY`}  
-     * Retrieves or sets the size of vertical margins between sides and subsequently created controls.  
-     * @type {(Integer)}
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#MarginY|`MarginY`} - Retrieves or sets the size of vertical margins between sides and subsequently created controls.  
+     * @type Integer
      * @example <caption>  
      * Showing how margin settings affect padding.</caption>
      * goo := Gui()
@@ -7637,9 +7369,8 @@ class Gui extends Object {
     MarginY => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#MenuBar|`MenuBar`}  
-     * Retrieves or sets the window's menu bar.  
-     * @type {(MenuBar)}
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#MenuBar|`MenuBar`} - Retrieves or sets the window's menu bar.  
+     * @type MenuBar
      * @example <caption>  
      * Creating a custom GUI menu.</caption>
      * make_gui()
@@ -7677,9 +7408,8 @@ class Gui extends Object {
     MenuBar => MenuBar
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Name|`Name`}  
-     * Retrieves or sets a custom name for the GUI window.  
-     * @type {(String)}
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Name|`Name`} - Retrieves or sets a custom name for the GUI window.  
+     * @type String
      * @example <caption>  
      * Setting and retrieving a GUI name.</caption>
      * goo := Gui()
@@ -7690,9 +7420,8 @@ class Gui extends Object {
     Name => String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Title|`Title`}  
-     * Retrieves or sets the GUI's title.  
-     * @type {(String)}
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Title|`Title`} - Retrieves or sets the GUI's title.  
+     * @type String
      * @example <caption>  
      * Make an edit box that lets you change the GUI title.</caption>
      * goo := Gui()
@@ -7711,15 +7440,13 @@ class Gui extends Object {
     Title => String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#__Item|`__Item`}  
-     * Is the name of  the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm|GuiControl object}` associated with the specified {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|name}`, {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|text}`, {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#ClassNN|ClassNN}` or {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Hwnd|HWND}`.  
-     * @type {(GuiControl)}
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#__Item|`__Item`} - Is the name of  the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm|GuiControl object}` associated with the specified {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|name}`, {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Text|text}`, {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#ClassNN|ClassNN}` or {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Hwnd|HWND}`.  
+     * @type GuiControl
      */
     __Item[Name] => Gui.Control
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm|`GUI`}  
-     * Creates a new Gui object.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm|`GUI`} - Creates a new Gui object.  
      * @param {(String)} [Options]  
      * Zero or more Gui options, separated by spaces and/or tabs.  
      * For best performance, set all options in 1 call and do so before the window is created.  
@@ -7771,8 +7498,7 @@ class Gui extends Object {
     Static Call([Options:='', Title:=A_ScriptName, EventObj:=unset]) => Gui
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`Add()`}  
-     * Creates and adds a control to the Gui, such as text, a button, or a checkbox.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`Add()`} - Creates and adds a control to the Gui, such as text, a button, or a checkbox.  
      * Each control type has it's own `AddType()` function such as `AddButton()` or `AddText()`.
      * @param {(String)} ControlType  
      * One of the following control types:  
@@ -7845,7 +7571,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `AltSubmit`: Use control's alternate submit method.  
@@ -7961,8 +7687,7 @@ class Gui extends Object {
     Add(ControlType [,Options:='', ControlSpecific:=unset]) => Gui.Control
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddActiveX()`}  
-     * Adds an ActiveX control to the Gui.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddActiveX()`} - Adds an ActiveX control to the Gui.  
      * When the control is created, the ActiveX object can be retrieved via GuiCtrl.Value
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
@@ -7989,7 +7714,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
@@ -8039,8 +7764,7 @@ class Gui extends Object {
     AddActiveX([Options:='', ActiveXName:=unset]) => Gui.ActiveX
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddButton()`}  
-     * Adds a push button, which can be pressed to trigger an action.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddButton()`} - Adds a push button, which can be pressed to trigger an action.  
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces or tabs.  
      * **Positioning and Sizing of Controls**  
@@ -8066,7 +7790,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
@@ -8129,8 +7853,7 @@ class Gui extends Object {
     AddButton([Options:='', BtnText:='']) => Gui.Button
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddCheckbox()`}  
-     * Adds a Checkbox control that can be  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddCheckbox()`} - Adds a Checkbox control that can be  
      * checked or unchecked to represent a toggleable state.  
      * If the {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#CheckBox|Check3}` option is used, checkboxes have a 3rd "graycheck" state.
      * @param {(String)} Options  
@@ -8166,7 +7889,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `C#`: Set text color where `#` is one of the following:  
@@ -8246,8 +7969,7 @@ class Gui extends Object {
     AddCheckbox([Options:='', Label:='']) => Gui.Checkbox
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddCustom()`}  
-     * Add a custom control that is not directly supported by AutoHotkey. To do so, include the word "Class" followed by the {@link https://learn.microsoft.com/en-us/windows/win32/controls/individual-control-info|Win32 class name}` of the desired control in the options field.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddCustom()`} - Add a custom control that is not directly supported by AutoHotkey. To do so, include the word "Class" followed by the {@link https://learn.microsoft.com/en-us/windows/win32/controls/individual-control-info|Win32 class name}` of the desired control in the options field.  
      *  
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
@@ -8274,7 +7996,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
@@ -8329,8 +8051,7 @@ class Gui extends Object {
     AddCustom([Options:='', ControlSpecific:='']) => Gui.Custom
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddDateTime()`}  
-     * Adds a DateTime control to the Gui that provides a single-lined   
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddDateTime()`} - Adds a DateTime control to the Gui that provides a single-lined   
      * control for the date and/or time along with a calander dropdown button.  
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options separated by spaces/tabs.  
@@ -8376,7 +8097,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `C#`: Set text color where `#` is one of the following:  
@@ -8454,8 +8175,7 @@ class Gui extends Object {
     AddDateTime([Options:='', DateFormat:='ShortDate']) => Gui.DateTime
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddEdit()`}  
-     * Adds a control that provides a free-form text area for the user to type in.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddEdit()`} - Adds a control that provides a free-form text area for the user to type in.  
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -8508,7 +8228,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `C#`: Set text color where `#` is one of the following:  
@@ -8587,8 +8307,7 @@ class Gui extends Object {
     AddEdit([Options:='', Text:='']) => Gui.Edit
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddGroupBox()`}  
-     * Adds a rectangular border/frame control that can  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddGroupBox()`} - Adds a rectangular border/frame control that can  
      * be labeled and used to group related controls.  
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
@@ -8615,7 +8334,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `C#`: Set text color where `#` is one of the following:  
@@ -8700,8 +8419,7 @@ class Gui extends Object {
     AddGroupBox([Options:='', Label:='']) => Gui.GroupBox
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddHotkey()`}  
-     * Adds a Hotkey control to the Gui that looks similar  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddHotkey()`} - Adds a Hotkey control to the Gui that looks similar  
      * to an edit control but will detect and show what keys are being pressed.  
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
@@ -8739,7 +8457,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `C#`: Set text color where `#` is one of the following:  
@@ -8814,8 +8532,7 @@ class Gui extends Object {
     AddHotkey([Options:='', DefaultKey:='']) => Gui.Hotkey
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddLink()`}  
-     * Adds a text control that accepts hyperlinks.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddLink()`} - Adds a text control that accepts hyperlinks.  
      * Use {@link https://www.w3schools.com/tags/tag_a.asp|HTML anchor tags `<a></a>`} to create a hyperlink.  
      * `<a href="http://google.com">Google Search</a>`
      * @param {(String)} Options  
@@ -8843,7 +8560,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `C#`: Set text color where `#` is one of the following:  
@@ -8918,8 +8635,7 @@ class Gui extends Object {
     AddLink([Options:='', Text:='']) => Gui.Link
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddListView()`}  
-     * Adds an elaborate control that handles  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddListView()`} - Adds an elaborate control that handles  
      * rows and columns of information in a grid. Similar to Windows Explorer in Detail View mode.  
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
@@ -8998,7 +8714,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `C#`: Set text color where `#` is an RGB hex number `c0x0` to `cFFFFFF` (0x prefix is optional) or a color string `cRed`.  
@@ -9045,8 +8761,7 @@ class Gui extends Object {
     AddListView([Options:='', ColumnTitles:=[]]) => Gui.ListView
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddMonthCal()`}  
-     * Adds a tall and wide control that displays all  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddMonthCal()`} - Adds a tall and wide control that displays all  
      * the days of the month in calendar format. The user may select a single date or a range of dates.  
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
@@ -9086,7 +8801,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `C#`: Set text color where `#` is one of the following:  
@@ -9156,8 +8871,7 @@ class Gui extends Object {
     AddMonthCal([Options:='', Date:=A_Now]) => Gui.MonthCal
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddPic()`}  
-     * Adds control containing an image.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddPic()`} - Adds control containing an image.  
      * Types: `ICO`,`CUR`,`ANI`,`EXE`,`DLL`,`CPL`,`SCR`,`PNG`,`TIF`,`Exif`,`WMF`,`EMF`, Other Icon Resources  
      * GDIPlus (AltSubmit): `GIF`,`JPG`,`BMP`,`ICO`,`CUR`,`ANI`,`PNG`,`TIF`,`Exif`,`WMF`,`EMF`  
      * @param {(String)} Options  
@@ -9189,7 +8903,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
@@ -9254,8 +8968,7 @@ class Gui extends Object {
     AddPic([Options:='', Path:=A_WorkingDir]) => Gui.Pic
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddPicture()`}  
-     * Adds control containing an image.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddPicture()`} - Adds control containing an image.  
      * Types: `ICO`,`CUR`,`ANI`,`EXE`,`DLL`,`CPL`,`SCR`,`PNG`,`TIF`,`Exif`,`WMF`,`EMF`, Other Icon Resources  
      * GDIPlus (AltSubmit): `GIF`,`JPG`,`BMP`,`ICO`,`CUR`,`ANI`,`PNG`,`TIF`,`Exif`,`WMF`,`EMF`  
      * @param {(String)} Options  
@@ -9287,7 +9000,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * Prefix with `-` to disable an option and `+` (or no sign) to add an option.  
@@ -9352,8 +9065,7 @@ class Gui extends Object {
     AddPicture([Options:='', Path:=A_WorkingDir]) => Gui.Pic
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddProgress()`}  
-     * Adds a dual-color bar that can progress from empty to full to indicate  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddProgress()`} - Adds a dual-color bar that can progress from empty to full to indicate  
      * a filled range. Commonly used to show the completion status of an operation.  
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
@@ -9387,7 +9099,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `C#`: Sets the color of the main bar where `#` is one of the following:  
@@ -9474,8 +9186,7 @@ class Gui extends Object {
     AddProgress([Options:='', StartingPos:=0]) => Gui.Progress
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddRadio()`}  
-     * Adds a small button that can be clicked.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddRadio()`} - Adds a small button that can be clicked.  
      * Radio buttons are added in groups and only 1 button in the group can be active at a time.  
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
@@ -9506,7 +9217,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `C#`: Set text color where `#` is one of the following:  
@@ -9586,8 +9297,7 @@ class Gui extends Object {
     AddRadio([Options:='', Label:='']) => Gui.Radio
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddSlider()`}  
-     * Adds a sliding bar (Trackbar) the user can move  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddSlider()`} - Adds a sliding bar (Trackbar) the user can move  
      * along a vertical or horizontal track to adjust values between a defined range.  
      * Window's volume bar is an example of a commonly used slider.
      * @param {(String)} Options  
@@ -9638,7 +9348,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `AltSubmit`: While dragging the slider (thumb), the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`change event`} fires continuously.  
@@ -9705,8 +9415,7 @@ class Gui extends Object {
     AddSlider([Options:='', StartingPos:=0]) => Gui.Slider
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddStatusBar()`}  
-     * Adds a row of text and/or icons to the bottom  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddStatusBar()`} - Adds a row of text and/or icons to the bottom  
      * of a window and typically reports conditions and information about the GUI.
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
@@ -9733,7 +9442,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
@@ -9799,8 +9508,7 @@ class Gui extends Object {
     AddStatusBar([Options:='', Label:='']) => Gui.StatusBar
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddText()`}  
-     * Adds a control for text that the user cannot edit.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddText()`} - Adds a control for text that the user cannot edit.  
      * Often used to label other controls or give details/instructions.  
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
@@ -9827,7 +9535,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `C#`: Set text color where `#` is one of the following:  
@@ -9910,8 +9618,7 @@ class Gui extends Object {
     AddText([Options:='', Text:='']) => Gui.Text
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddTreeView()`}  
-     * Adds a TreeView display to represent a hierarchy of items  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddTreeView()`} - Adds a TreeView display to represent a hierarchy of items  
      * by indenting child items beneath their parents.  
      * Window's Explorer drive/folder tree is a common example of a TreeView.  
      * @param {(String)} Options  
@@ -9953,7 +9660,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `C#`: Set text color where `#` is one of the following:  
@@ -10031,8 +9738,7 @@ class Gui extends Object {
     AddTreeView([Options:='', Text:='']) => Gui.TreeView
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddUpDown()`}  
-     * Attaches a pair of clickable arrow buttons to the  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddUpDown()`} - Attaches a pair of clickable arrow buttons to the  
      * previous control (called a `Buddy`) that can increase or decrease the Buddy's value.  
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
@@ -10079,7 +9785,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `Disabled`: Disables the control preventing user focus or modifications of the contents.  
@@ -10134,8 +9840,7 @@ class Gui extends Object {
     AddUpDown([Options:='', StartingPos:=0]) => Gui.UpDown
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddComboBox()`}  
-     * Adds a control that is combination of a DropDownList  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddComboBox()`} - Adds a control that is combination of a DropDownList  
      * and an edit control.  
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
@@ -10173,7 +9878,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `AltSubmit`: {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Submit|Gui.Submit}` will record the item position(s) instead of the actual text.  
@@ -10254,8 +9959,7 @@ class Gui extends Object {
     AddComboBox([Options:='', Text:=[]]) => Gui.ComboBox
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddDDL()`}  
-     * Adds a single-lined control that, when clicked,  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddDDL()`} - Adds a single-lined control that, when clicked,  
      * produces a list of items to select from.  
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
@@ -10290,7 +9994,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `AltSubmit`: {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Submit|Gui.Submit}` will record the item position(s) instead of the actual text.  
@@ -10373,8 +10077,7 @@ class Gui extends Object {
     AddDDL([Options:='', List:=[]]) => Gui.DDL
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddDropDownList()`}  
-     * Adds a single-line control that, when clicked, drops down a list of choices to select from.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddDropDownList()`} - Adds a single-line control that, when clicked, drops down a list of choices to select from.  
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
@@ -10408,7 +10111,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `AltSubmit`: {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Submit|Gui.Submit}` will record the item position(s) instead of the actual text.  
@@ -10491,8 +10194,7 @@ class Gui extends Object {
     AddDropDownList([Options:='', List:=[]]) => Gui.DDL
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddListBox()`}  
-     * Adds a box control containing a list of choices  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddListBox()`} - Adds a box control containing a list of choices  
      * that can be chosen from. This is the same list type used with {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#ComboBox|Simple ComboBoxes}`.  
      * @param {(String)} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
@@ -10536,7 +10238,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `AltSubmit`: {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Submit|Gui.Submit}` will record the item position(s) instead of the actual text.  
@@ -10618,8 +10320,7 @@ class Gui extends Object {
     AddListBox([Options:='', List:=[]]) => Gui.ListBox
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#Tab|`AddTab()`}  
-     * Use {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#Tab|AddTab3()}` instead of `AddTab()`.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#Tab|`AddTab()`} - Use {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#Tab|AddTab3()}` instead of `AddTab()`.  
      * `AddTab()` and `AddTab2()` are for backward compatibility only.  
      * {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|AddTab()} adds a large control used to contain organize other controls.  
      * Each tab acts as it's own "page" of individual controls.  
@@ -10627,16 +10328,14 @@ class Gui extends Object {
     AddTab([Options:='', TabTitles:=[]]) => Gui.Tab
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#Tab|`AddTab2()`}  
-     * Use {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#Tab|AddTab3()}` instead of `AddTab2()`.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#Tab|`AddTab2()`} - Use {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#Tab|AddTab3()}` instead of `AddTab2()`.  
      * `AddTab()` was {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#Tab_vs|retained for compatibility} but has issues.  
      * `AddTab2()` fixed those issues but {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#Tab2_Issues|introduced new ones}.  
      */
     AddTab2([Options:='', TabTitles:=[]]) => Gui.Tab
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddTab3()`}  
-     * Adds a large control used to contain organize other controls.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddTab3()`} - Adds a large control used to contain organize other controls.  
      * Each tab acts as it's own "page" of individual controls.  
      * Avoid using AddTab() and AddTab2() as they're only kept for backward compatability.  
      * @param {(String)} Options  
@@ -10676,7 +10375,7 @@ class Gui extends Object {
      * - `V#`: Assign a {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Name|Name} to a control where `#` is a new name.  
      *   A control's name can be used to get a reference to that control from a GUI object.  
      * 
-     *         GuiControl.Opt('+VMyControl')  
+     *         GuiControl.Opt('+VMyControl')
      *         GuiControl := Gui['MyControl']  
      * - `Events`: Handled by the control's {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|OnEvent() method}.  
      * - `AltSubmit`: {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Submit|Gui.Submit}` will record the item position(s) instead of the actual text.  
@@ -10750,8 +10449,7 @@ class Gui extends Object {
     AddTab3([Options:='', TabTitles:=[]]) => Gui.Tab
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Destroy|`Destroy()`}  
-     * Removes the window and all its controls, freeing the corresponding memory and system resources.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Destroy|`Destroy()`} - Removes the window and all its controls, freeing the corresponding memory and system resources.  
      * @returns {(String)}  
      * An empty string is always returned.  
      * @example <caption>  
@@ -10768,8 +10466,7 @@ class Gui extends Object {
     Destroy() => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Flash|`Flash()`}  
-     * Causes the Gui's title bar and taskbar to blink.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Flash|`Flash()`} - Causes the Gui's title bar and taskbar to blink.  
      * This is done by inverting their colors once per call. By calling flash multiple times, the button and window appear to "blink".  
      * @param {(Boolean)} [Blink]  
      * Any true value will cause the color inversion to continue.  
@@ -10789,8 +10486,7 @@ class Gui extends Object {
     Flash([Blink:=1]) => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#GetClientPos|`GetClientPos()`}  
-     * Retrieves the position and size of the window's client area.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#GetClientPos|`GetClientPos()`} - Retrieves the position and size of the window's client area.  
      * Client area is the main area of a program and it excludes the window's title bar, standard menus, and window borders.  
      * Unlike {@link https://www.autohotkey.com/docs/v2/lib/WinGetClientPos.htm|WinGetClientPos}`, this method applies {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#DPIScale|DPI scaling}` to width and height.  
      * @param {(VarRef)} [X]  
@@ -10830,8 +10526,7 @@ class Gui extends Object {
     GetClientPos([&X, &Y, &Width, &Height]) => EmptyString  
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#GetPos|`GetPos()`}  
-     * Retrieves the position and size of the window.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#GetPos|`GetPos()`} - Retrieves the position and size of the window.  
      * Unlike {@link https://www.autohotkey.com/docs/v2/lib/WinGetClientPos.htm|WinGetClientPos}`, this method applies {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#DPIScale|DPI scaling}` to width and height.  
      * @param {(VarRef)} [X]  
      * Variable to store the x coordinate of the Gui.  
@@ -10870,8 +10565,7 @@ class Gui extends Object {
     GetPos([&X, &Y, &Width, &Height]) => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Hide|`Hide()`}  
-     * Hides the Gui window from view but does not destroy it.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Hide|`Hide()`} - Hides the Gui window from view but does not destroy it.  
      * @returns {(String)}  
      * An empty string is always returned.  
      * @example <caption>  
@@ -10899,8 +10593,7 @@ class Gui extends Object {
     Hide() => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Maximize|`Maximize()`}  
-     * Unhides the window if hidden and then maximizes it.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Maximize|`Maximize()`} - Unhides the window if hidden and then maximizes it.  
      * @returns {(String)}  
      * An empty string is always returned.  
      * @example <caption>  
@@ -10917,8 +10610,7 @@ class Gui extends Object {
     Maximize() => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Minimize|`Minimize()`}  
-     * Unhides the window if hidden and then minimizes it.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Minimize|`Minimize()`} - Unhides the window if hidden and then minimizes it.  
      * @returns {(String)}  
      * An empty string is always returned.  
      * @example <caption>  
@@ -10935,8 +10627,7 @@ class Gui extends Object {
     Minimize() => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Move|`Move()`}  
-     * Used to adjust the poisition (x,y coords), height, and/or width of the GUI.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Move|`Move()`} - Used to adjust the poisition (x,y coords), height, and/or width of the GUI.  
      * Unlike {@link https://www.autohotkey.com/docs/v2/lib/WinMove.htm|WinMove}`, this method applies {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#DPIScale|DPI scaling}` to width and height.  
      * @param {(Integer)} [X]  
      * New x coordinate of the Gui.  
@@ -10967,8 +10658,7 @@ class Gui extends Object {
     Move([X:=unset, Y:=unset, Width:=unset, Height:=unset]) => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OnEvent|`OnEvent()`}  
-     * Registers a function or method to be called when the given event occurs.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OnEvent|`OnEvent()`} - Registers a function or method to be called when the given event occurs.  
      * @param {(String)} EventName  
      * One of the following event(s). Expected callback format is included.  
      * Gui Events:
@@ -10977,16 +10667,34 @@ class Gui extends Object {
      *       Gui_Close(GuiObj)
      * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#ContextMenu|`ContextMenu`} - User right-clicks within the window or presses Menu or Shift+F10.  
      * 
-     *       Gui_ContextMenu(GuiObj, GuiCtrlObj, Item, RightClicked, X, Y)
+     *       Gui_ContextMenu(GuiObj, GuiCtrl, Item, RightClick, CX, CY)
      * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#DropFiles|`DropFiles`} - Files/folders are dragged and dropped onto the window.  
      * 
-     *       Gui_DropFiles(GuiObj, GuiCtrlObj, FileArray, X, Y)
+     *       Gui_DropFiles(GuiObj, GuiCtrl, FileArray, FX, FY)
      * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Escape|`Escape`} - User presses Esc while the GUI window is active.  
      * 
      *       Gui_Escape(GuiObj)
      * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Size|`Size`} - Window is resized, minimized, maximized or restored.  
      * 
      *       Gui_Size(GuiObj, MinMax, Width, Height)
+     * - Callback Params:
+     *     - `GuiObj`: Reference to the GUI.  
+     *     - `GuiCtrl`: GUI control that received the event. Empty string of none.  
+     *     - `Item`: The ListBox, ListView, or TreeView item number that was right clicked, otherwise unused.
+     *     - `RightClick`: Context menu activation  
+     *       - `1` = Activated by right click  
+     *       - `0` = Activated by `AppsKey` or `Shift+F10`  
+     *     - `CX` and `CY`: Check `RightClick` param  
+     *       - Right Clicked = Coords of mouse click  
+     *       - Keyboard = Coords of the Slider's upper left corner  
+     *     - `FileArray`: Array containing one or more file paths.  
+     *     - `FX` and `FY`: Coords where file(s) were dropped.  
+     *       - Right Clicked = Coords of mouse click  
+     *     - `MinMax`:
+     *       - `1` = Window is maximized.
+     *       - `-1` = Window is minimized.
+     *       - `0` = Window is neither min or max.
+     *     - `Width` and `Height`: The new width and height of the GUI.
      * @param {(String|FuncObj)} Callback  
      * The function, method, boundfunc, or object to be called when the event is raised.  
      * A callback's first parameter is the One of the following event(s). Expected callback format is included..  
@@ -11016,8 +10724,7 @@ class Gui extends Object {
     OnEvent(EventName, Callback [,AddRemove:=1]) => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Opt|`Opt()`}  
-     * Sets various options and styles for the appearance and behavior of the window.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Opt|`Opt()`} - Sets various options and styles for the appearance and behavior of the window.  
      * @param {(String)} ControlType  
      * One of the following control types:  
      * {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#ActiveX|`ActiveX`},
@@ -11090,8 +10797,7 @@ class Gui extends Object {
     Opt(Options) => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Restore|`Restore()`}  
-     * Unhides and restores the window, if it was minimized or maximized beforehand.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Restore|`Restore()`} - Unhides and restores the window, if it was minimized or maximized beforehand.  
      * @returns {(String)}  
      * An empty string is always returned.  
      * @example <caption>  
@@ -11108,8 +10814,7 @@ class Gui extends Object {
     Restore() => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#SetFont|`SetFont()`}  
-     * Sets the typeface, size, style, and text color for subsequently created controls.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#SetFont|`SetFont()`} - Sets the typeface, size, style, and text color for subsequently created controls.  
      * @param {(String)} [Options]  
      * Zero or more options separated by spaces.  
      * Styling words are applied in order.  
@@ -11162,8 +10867,7 @@ class Gui extends Object {
     SetFont([Options:='', FontName:=PriorFont]) => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Show|`Show()`}  
-     * Makes the window visible, unminimizes it (if necessary) and {@link https://www.autohotkey.com/docs/v2/lib/WinActivate.htm|activates} it.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Show|`Show()`} - Makes the window visible, unminimizes it (if necessary) and {@link https://www.autohotkey.com/docs/v2/lib/WinActivate.htm|activates} it.  
      * @param {(String)} [Options]  
      * Zero or more option sseparated by spaces.  
      * If X, Y, W, and H are omitted, the Gui will retrain its previous size and position otherwise it will be auto-centered.  
@@ -11210,8 +10914,7 @@ class Gui extends Object {
     Show([Options:='']) => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Submit|`Submit()`}  
-     * Collects the values from named controls and composes them into an {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object}. Optionally hides the window.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Submit|`Submit()`} - Collects the values from named controls and composes them into an {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object}. Optionally hides the window.  
      * @param {(Boolean)} [Hide]  
      * If omitted or true, window is hidden. If false, the window will not be hidden.  
      * @returns {(Object)}  
@@ -11240,8 +10943,7 @@ class Gui extends Object {
     Submit([Hide:=1]) => Object
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#__Enum|`__Enum()`}  
-     * Creates an {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|enumerator object} that iterates through each control of the GUI.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#__Enum|`__Enum()`} - Creates an {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|enumerator object} that iterates through each control of the GUI.  
      * This method is typically not called but instead is used by a {@link https://www.autohotkey.com/docs/v2/lib/For.htm|for-loop} to get each control and its index number.
      * @returns {(Enumerator)}  
      * Enumerable function object.  
@@ -11269,8 +10971,7 @@ class Gui extends Object {
     __Enum() => Enumerator
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#__New|`__New()`}  
-     * Constructs a new Gui instance.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#__New|`__New()`} - Constructs a new Gui instance.  
      * @param {(String)} [Options]  
      * Zero or more Gui options, separated by spaces and/or tabs.  
      * For best performance, set all options in 1 call and do so before the window is created.  
@@ -11339,203 +11040,184 @@ class Gui extends Object {
  */
 class InputHook extends Object {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#EndKey|`EndKey`}  
-     * The normalized name of the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#EndKeys|end key} pressed to terminate the InputHook.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#EndKey|`EndKey`} - The normalized name of the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#EndKeys|end key} pressed to terminate the InputHook.  
      * EndKey is empty if {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#EndReason|`EndReason`} is not `EndKey`.  
-     * @type {(String)}  
+     * @type String  
      * @example <caption>  
      * </caption>
      */
     EndKey => String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#EndMods|`EndMods`}  
-     * Returns a string of the modifiers which were logically down when InputHook was terminated.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#EndMods|`EndMods`} - Returns a string of the modifiers which were logically down when InputHook was terminated.  
      * Expected modifiers: `<^ >^ <! >! <+ >+ <# >#`  
-     * @type {(String)}  
+     * @type String  
      * @example <caption>  
      * </caption>
      */
     EndMods => String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#EndReason|`EndReason`}  
-     * The {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#EndReasons|EndReason string} indicating how InputHook was terminated.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#EndReason|`EndReason`} - The {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#EndReasons|EndReason string} indicating how InputHook was terminated.  
      * - Empty String = The InputHook is still in progress.  
      * - `Stopped ` = The {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#Stop|Stop()} method has not been called since the last {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#Start|Start()}.  
      * - `Max` = Maximum allowed length has been reached.  
      * - `Timeout` = 
      * - `Match` = 
      * - `EndKey` = 
-     * @type {(String)}
+     * @type String
      * @example <caption>  
      * </caption>
      */
     EndReason => String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#InProgress|`InProgress`}  
-     * The current progress status.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#InProgress|`InProgress`} - The current progress status.  
      * `1` if the InputHook is in progress, otherwise `0`.
-     * @type {(Boolean)}  
+     * @type Boolean  
      * @example <caption>  
      * </caption>
      */
     InProgress => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#Input|`Input`}  
-     * Any text collected since the last time the InputHook was started.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#Input|`Input`} - Any text collected since the last time the InputHook was started.  
      * Can be used while in progrss.  
-     * @type {(String)}
+     * @type String
      * @example <caption>  
      * </caption>
      */
     Input => String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#Match|`Match`}  
-     * Returns the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#MatchList|MatchList} word that caused the InputHook to terminate.  
-     * @type {(String)}
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#Match|`Match`} - Returns the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#MatchList|MatchList} word that caused the InputHook to terminate.  
+     * @type String
      * @example <caption>  
      * </caption>
      */
     Match => String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#OnEnd|`OnEnd`}  
-     * Retrieves or sets the {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} called when InputHook is terminated.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#OnEnd|`OnEnd`} - Retrieves or sets the {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} called when InputHook is terminated.  
      * Expected callback format:
      * 
      *     IH_OnEnd(InputHookObj)
-     * @type {(FuncObj)}
+     * @type FuncObj
      * @example <caption>  
      * </caption>
      */
     OnEnd => Func
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#OnChar|`OnChar`}  
-     * Retrieves or sets the {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} called when a character is added to the InputHook buffer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#OnChar|`OnChar`} - Retrieves or sets the {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} called when a character is added to the InputHook buffer.  
      * This callback is not activated on an EndKey press.  
      * Expected callback format:
      * 
      *     IH_OnChar(InputHookObj, Char)
-     * @type {(FuncObj)}
+     * @type FuncObj
      * @example <caption>  
      * </caption>
      */
     OnChar => Func
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#OnKeyDown|`OnKeyDown`}  
-     * Retrieves or sets the {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} called when a notification-enabled key is pressed.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#OnKeyDown|`OnKeyDown`} - Retrieves or sets the {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} called when a notification-enabled key is pressed.  
      * Notification is enabled with {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#KeyOpt|KeyOpt()} or the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#NotifyNonText|NotifyNonText} property.  
      * Expected callback format:
      * 
      *     IH_OnKeyDown(InputHookObj, VirtualKey, ScanCode)
-     * @type {(FuncObj)}
+     * @type FuncObj
      * @example <caption>  
      * </caption>
      */
     OnKeyDown => Func
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#OnKeyUp|`OnKeyUp`}  
-     * Retrieves or sets the {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} called when a notification-enabled key is released.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#OnKeyUp|`OnKeyUp`} - Retrieves or sets the {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} called when a notification-enabled key is released.  
      * Notification is enabled with {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#KeyOpt|KeyOpt()} or the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#NotifyNonText|NotifyNonText} property.  
      * Expected callback format:
      * 
      *     IH_OnKeyUp(InputHookObj, VirtualKey, ScanCode)
-     * @type {(FuncObj)}
+     * @type FuncObj
      * @example <caption>  
      * </caption>
      */
     OnKeyUp => Func
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#BackspaceIsUndo|`BackspaceIsUndo`}  
-     * Controls whether Backspace removes the most recent character from the end of the InputHook buffer.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#BackspaceIsUndo|`BackspaceIsUndo`} - Controls whether Backspace removes the most recent character from the end of the InputHook buffer.  
      * `1` for enabled, otherwise `0`.  
-     * @type {(Boolean)}
+     * @type Boolean
      * @example <caption>  
      * </caption>
      */
     BackspaceIsUndo => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#CaseSensitive|`CaseSensitive`}  
-     * Controls whether {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#MatchList|MatchList} is case-sensitive.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#CaseSensitive|`CaseSensitive`} - Controls whether {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#MatchList|MatchList} is case-sensitive.  
      * `1` for enabled, otherwise `0`.  
-     * @type {(Boolean)}
+     * @type Boolean
      * @example <caption>  
      * </caption>
      */
     CaseSensitive => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#FindAnywhere|`FindAnywhere`}  
-     * Controls whether a match can happen in the middle of other text.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#FindAnywhere|`FindAnywhere`} - Controls whether a match can happen in the middle of other text.  
      * `1` for enabled, otherwise `0`.  
-     * @type {(Boolean)}
+     * @type Boolean
      * @example <caption>  
      * </caption>
      */
     FindAnywhere => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#MinSendLevel|`MinSendLevel`}  
-     * Retrieves or sets the minimum {@link https://www.autohotkey.com/docs/v2/lib/SendLevel.htm|send level} of input to collect.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#MinSendLevel|`MinSendLevel`} - Retrieves or sets the minimum {@link https://www.autohotkey.com/docs/v2/lib/SendLevel.htm|send level} of input to collect.
      * This should be an integer between `0` and `101`
-     * @type {(Integer)}
+     * @type Integer
      * @example <caption>  
      * </caption>
      */
     MinSendLevel => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#NotifyNonText|`NotifyNonText`}  
-     * Controls whether {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#OnKeyDown|OnKeyDown} and {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#OnKeyUp|OnKeyUp} callbacks are called when a non-text key is pressed.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#NotifyNonText|`NotifyNonText`} - Controls whether {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#OnKeyDown|OnKeyDown} and {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#OnKeyUp|OnKeyUp} callbacks are called when a non-text key is pressed.  
      * `1` for enabled, otherwise `0`.  
-     * @type {(Boolean)}
+     * @type Boolean
      * @example <caption>  
      * </caption>
      */
     NotifyNonText => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#Timeout|`Timeout`}  
-     * Retrieves or sets the timeout value, in seconds, to wait after starting an InputHook.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#Timeout|`Timeout`} - Retrieves or sets the timeout value, in seconds, to wait after starting an InputHook.  
      * Use `0` for no timeout.  
-     * @type {(Float)}
+     * @type Float
      * @example <caption>  
      * </caption>
      */
     Timeout => Float
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#VisibleNonText|`VisibleNonText`}  
-     * Controls whether keys or combinations which do not produce text are visible/allowed.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#VisibleNonText|`VisibleNonText`} - Controls whether keys or combinations which do not produce text are visible/allowed.  
      * `1` for enabled, otherwise `0`.  
-     * @type {(Boolean)}
+     * @type Boolean
      * @example <caption>  
      * </caption>
      */
     VisibleNonText => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#VisibleText|`VisibleText`}  
-     * Controls whether keys or combinations which produce text are visible/allowed.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#VisibleText|`VisibleText`} - Controls whether keys or combinations which produce text are visible/allowed.  
      * `1` for enabled, otherwise `0`.  
-     * @type {(Boolean)}
+     * @type Boolean
      * @example <caption>  
      * </caption>
      */
     VisibleText => Integer
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm|`Call()`}  
-     * @param {(String)} [Options]  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm|`Call()`} - @param {(String)} [Options]  
      * A string of zero or more options, with optional spaces between:  
      * - `B` = Sets the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#BackspaceIsUndo|BackspaceIsUndo} property to `0`. Backspace is ignored. 
      * - `C` = Sets the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#CaseSensitive|CaseSensitive} property to `1`, making the MatchList parameter case-sensitive.  
@@ -11578,8 +11260,7 @@ class InputHook extends Object {
     static Call([Options, EndKeys, MatchList]) => InputHook
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#KeyOpt|`KeyOpt()`}  
-     * Sets options for a key or list of keys.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#KeyOpt|`KeyOpt()`} - Sets options for a key or list of keys.
      * @param {(String)} Keys  
      * A list of keys.  
      * Use braces to enclose key names/virtual codes/scan codes.  
@@ -11607,8 +11288,7 @@ class InputHook extends Object {
     KeyOpt(Keys, KeyOptions) => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#Start|`Start()`}  
-     * Starts collecting input and has no effect if already started.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#Start|`Start()`} - Starts collecting input and has no effect if already started.  
      * Newly started InputHooks are placed on top of the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#stack|InputHook stack}.  
      * @returns {(String)} An empty string is always returned.  
      * @example <caption>  
@@ -11617,8 +11297,7 @@ class InputHook extends Object {
     Start() => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#Stop|`Stop()`}  
-     * Terminates the InputHook and sets {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#EndReason|EndReason} property to `Stopped`.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#Stop|`Stop()`} - Terminates the InputHook and sets {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#EndReason|EndReason} property to `Stopped`.
      * @returns {(String)} An empty string is always returned.  
      * @example <caption>  
      * </caption>
@@ -11626,8 +11305,7 @@ class InputHook extends Object {
     Stop() => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#Wait|`Wait()`}  
-     * Waits until the InputHook is terminated.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#Wait|`Wait()`} - Waits until the InputHook is terminated.  
      * Same as {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#InProgress|InProgress} property being false.  
      * @prop {(Float)} MaxTime -  The maximum number of seconds to wait.  
      * If omitted, wait time is indefinite.  
@@ -11639,8 +11317,7 @@ class InputHook extends Object {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm|`Map`}  
- * An object that stores data using an associated key.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm|`Map`} - An object that stores data using an associated key.  
  * Keys can be strings, integers, or object references.  
  * @property {(Integer)} Count - Retrieves the number of key-value pairs present in a map.
  * @property {(Integer)} Capacity - Retrieves or sets the current capacity of a map.
@@ -11649,57 +11326,51 @@ class InputHook extends Object {
  */
 class Map extends Object {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Count|`Count`}  
-     * Retrieves the number of key-value pairs in a map.  
-     * @type {(Integer)}
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Count|`Count`} - Retrieves the number of key-value pairs in a map.  
+     * @type Integer
      * @example <caption>  
      * </caption>
      */
     Count => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Capacity|`Capacity`}  
-     * Retrieves or sets the current capacity of a map.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Capacity|`Capacity`} - Retrieves or sets the current capacity of a map.  
      * The maximum amount of key-value pairs it can hold before expansion is needed.  
-     * @type {(Integer)}
+     * @type Integer
      * @example <caption>  
      * </caption>
      */
     Capacity => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#CaseSense|`CaseSense`}  
-     * Retrieves or sets a map's case sensitivity setting.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#CaseSense|`CaseSense`} - Retrieves or sets a map's case sensitivity setting.  
      * `1` or `On` to enable case sensitivity, otherwise `0` or `Off`.  
-     * @type {(String|Integer)}
+     * @type String|Integer
      * @example <caption>  
      * </caption>
      */
     CaseSense => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Default|`Default`}  
-     * Defines the default value returned when a key is not found.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Default|`Default`} - Defines the default value returned when a key is not found.  
      * This also prevents an {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#UnsetError|UnsetItemError} from being thrown when a key cannot be found.  
-     * @type {(Any)}  
+     * @type Any  
      * @example <caption>  
      * </caption>
      */
     Default => Any
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#__Item|`__Item`}  
-     * Retrieves or sets the value of a key-value pair.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#__Item|`__Item`} - Retrieves or sets the value of a key-value pair.  
      * Returns the {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Default|Default} property if key is not found.  
-     * @type {(Any)}
+     * @type Any
      * @example <caption>  
      * </caption>
      */
     __Item[Key] => Any
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Call|`Map()`}  
-     * Creates a new Map object and optionally populates it.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Call|`Map()`} - Creates a new Map object and optionally populates it.  
      * @param {(String|Integer|Object)} [KeyN]  
      * The identifying key of the value.  
      * Any number of `Key, Value,` pairs can be added.  
@@ -11715,8 +11386,7 @@ class Map extends Object {
     static Call([KeyN, ValueN*]) => Map
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Clear|`Clear()`}  
-     * Removes all key-value pairs from a map.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Clear|`Clear()`} - Removes all key-value pairs from a map.
      * @returns {(String)} An empty string is always returned.  
      * @example <caption>  
      * </caption>
@@ -11724,8 +11394,7 @@ class Map extends Object {
     Clear() => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Clone|`Clone()`}  
-     * Returns a shallow copy of the map.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Clone|`Clone()`} - Returns a shallow copy of the map.  
      * Each property or method owned by the object is copied into the clone.  
      * Shallow copy means:  
      * - Primitive values are copied
@@ -11740,13 +11409,12 @@ class Map extends Object {
     Clone() => Map
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Delete|`Delete()`}  
-     * Removes a key-value pair from a map.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Delete|`Delete()`} - Removes a key-value pair from a map.
      * @param {(String|Integer|Object)} Key  
      * The identifying key of the key-value pair to delete.  
      * @returns {(Any)}  
      * The removed map element value is returned.  
-     * @throws {(UnsetItemError)}  
+     * @throws UnsetItemError  
      * The map does not contain the specified key or a defined {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Default|Default} property.  
      * @example <caption>  
      * </caption>
@@ -11754,8 +11422,7 @@ class Map extends Object {
     Delete(Key) => Any
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Get|`Get()`}  
-     * Returns the value associated with a key, or a default value if one is provided.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Get|`Get()`} - Returns the value associated with a key, or a default value if one is provided.  
      * @param {(String|Integer|Object)} Key  
      * The identifying key of the key-value pair to delete.  
      * @param {(Any)} [Default]  
@@ -11765,7 +11432,7 @@ class Map extends Object {
      * Otherwise, the provided Default parameter is used.  
      * Otherwise, the defined {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Default} property is used.  
      * Otherwise, an UnsetItemError is thrown.  
-     * @throws {(UnsetItemError)}  
+     * @throws UnsetItemError  
      * Value not set, no default parameter provided, and default property not defined.  
      * @example <caption>  
      * </caption>
@@ -11773,8 +11440,7 @@ class Map extends Object {
     Get(Key [,Default:=unset]) => Any
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Has|`Has()`}  
-     * Returns true if the specified key has an associated value within a map.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Has|`Has()`} - Returns true if the specified key has an associated value within a map.
      * @param {(String|Integer|Object)} Key  
      * The identifying key of the key-value pair to delete.  
      * @returns {(Boolean)}  
@@ -11785,8 +11451,7 @@ class Map extends Object {
     Has(Key) => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Set|`Set()`}  
-     * Sets zero or more key-value pairs.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Set|`Set()`} - Sets zero or more key-value pairs.  
      * If all parameters are omitted, Capacity is autom
      * @param {(String|Integer|Object)} [KeyN]  
      * The identifying key of the value.  
@@ -11802,8 +11467,7 @@ class Map extends Object {
     Set([KeyN, ValueN*]) => Map
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#__Enum|`__Enum()`}  
-     * Creates an {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|enumerator object} that iterates through each key-value pair of the map.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#__Enum|`__Enum()`} - Creates an {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|enumerator object} that iterates through each key-value pair of the map.  
      * This method is typically not called but instead is used by a {@link https://www.autohotkey.com/docs/v2/lib/For.htm|for-loop} to get each value and its index number.
      * @returns {(Enumerator)}  
      * Enumerable function object.  
@@ -11823,8 +11487,7 @@ class Map extends Object {
     __Enum() => Enumerator
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#__New|`__New()`}  
-     * Sets items. Equivalent to {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Set|Set}.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#__New|`__New()`} - Sets items. Equivalent to {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Set|Set}.  
      * This method exists to support {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Call|Call()}, and is not intended to be called directly.
      * @param {(String|Integer|Object)} [KeyN]  
      * The identifying key of the value.  
@@ -11837,8 +11500,7 @@ class Map extends Object {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm|`Menu`}  
- * An object used to define, modify, and display popup menus.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm|`Menu`} - An object used to define, modify, and display popup menus.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Call|Menu()}, {@link https://www.autohotkey.com/docs/v2/lib/MenuFromHandle.htm|MenuFromHandle()} and {@link https://www.autohotkey.com/docs/v2/Variables.htm#TrayMenu|A_TrayMenu} return an object of this type.  
  * @property {(Integer)} ClickCount - Retrieves or sets how many times the tray icon must be clicked to select its default menu item.
  * @property {(Any)} Default - Retrieves or sets the default menu item.
@@ -11846,46 +11508,41 @@ class Map extends Object {
  */
 class Menu extends Object {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#ClickCount|`ClickCount`}  
-     * Set or get the number of times the {@link https://www.autohotkey.com/docs/v2/Program.htm#tray-icon|tray icon} must be clicked to activate the {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Default|default} menu item.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#ClickCount|`ClickCount`} - Set or get the number of times the {@link https://www.autohotkey.com/docs/v2/Program.htm#tray-icon|tray icon} must be clicked to activate the {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Default|default} menu item.  
      * This value must be a `1` or `2` and is 2 by default.  
-     * @type {(Integer)}  
-     * @throws {(ValueError)} A number other than 1 or 2 was assigned  
+     * @type Integer  
+     * @throws ValueError A number other than 1 or 2 was assigned  
      * @example <caption>  
      * </caption>
      */
     ClickCount => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Default|`Default`}  
-     * Set or get the default menu item.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Default|`Default`} - Set or get the default menu item.  
      * When no Default is set, this is an empty string.  
-     * @type {(Menu|String)}  
+     * @type Menu|String  
      * @example <caption>  
      * </caption>
      */
     Default => Menu | String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Handle|`Handle`}  
-     * Retrieves the menu's {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Win32_Menus|Win32 handle}.  
-     * @type {(Integer)}  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Handle|`Handle`} - Retrieves the menu's {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Win32_Menus|Win32 handle}.  
+     * @type Integer  
      * @example <caption>  
      * </caption>
      */
     Handle => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Handle|`Menu()`}  
-     * Creates a new Menu object.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Handle|`Menu()`} - Creates a new Menu object.  
      * @returns {(Menu)}  
      * A new menu object.  
      */
     static Call() => Menu
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Add|`Add()`}  
-     * Add or modify a menu item.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Add|`Add()`} - Add or modify a menu item.  
      * To add a menu separator, omit all parameters.  
      * @param {(String)} [MenuItemName]  
      * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#MenuItemName|MenuItemame} is the menu text to display or the position of an existing item to modify.  
@@ -11919,8 +11576,7 @@ class Menu extends Object {
     Add([MenuItemName:=unset, CallbackOrSubmenu:=unset, Options:=unset]) => EmptyString
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#AddStandard|`AddStandard()`}  
-     * Adds the standard tray menu items.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#AddStandard|`AddStandard()`} - Adds the standard tray menu items.  
      * @returns {(String)}  
      * An empty string is always returned.  
      * @example <caption>  
@@ -11941,8 +11597,7 @@ class Menu extends Object {
     AddStandard() => EmptyString
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Check|`Check()`}  
-     * Adds a visible checkmark next to a menu item.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Check|`Check()`} - Adds a visible checkmark next to a menu item.  
      * @param {(String)} [MenuItemName]  
      * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#MenuItemName|MenuItemame} is the name or the position of an existing item to check.  
      * @returns {(String)}  
@@ -11953,8 +11608,7 @@ class Menu extends Object {
     Check(MenuItemName) => EmptyString
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Delete|`Delete()`}  
-     * Deletes one or all menu items.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Delete|`Delete()`} - Deletes one or all menu items.  
      * @param {(String)} [MenuItemName]  
      * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#MenuItemName|MenuItemame} is the name or the position of an existing item to delete.  
      * If omitted, all menu items are deleted.  
@@ -11970,8 +11624,7 @@ class Menu extends Object {
     Delete([MenuItemName:=unset]) => EmptyString
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Disable|`Disable()`}  
-     * Grays out a menu item to indicate that the user cannot select it.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Disable|`Disable()`} - Grays out a menu item to indicate that the user cannot select it.  
      * @param {(String)} [MenuItemName]  
      * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#MenuItemName|MenuItemame} is the name or the position of an existing item to disable.  
      * @returns {(String)}  
@@ -11982,8 +11635,7 @@ class Menu extends Object {
     Disable(MenuItemName) => EmptyString
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Enable|`Enable()`}  
-     * Allows the user to once again select a menu item if it was previously disabled (grayed out).  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Enable|`Enable()`} - Allows the user to once again select a menu item if it was previously disabled (grayed out).  
      * @param {(String)} [MenuItemName]  
      * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#MenuItemName|MenuItemame} is the name or the position of an existing item to enable.  
      * @returns {(String)}  
@@ -11994,8 +11646,7 @@ class Menu extends Object {
     Enable(MenuItemName) => EmptyString
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Insert|`Insert()`}  
-     * Inserts a new item at the specified location, moving all other items down.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Insert|`Insert()`} - Inserts a new item at the specified location, moving all other items down.  
      * Omit all parameters to insert a menu separator.  
      * @param {(String)} [MenuItemName]  
      * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#MenuItemName|MenuItemame} is the name or the position of an existing item to insert an item at.  
@@ -12032,8 +11683,7 @@ class Menu extends Object {
     Insert([MenuItemName:=unset, Item:=unset, CallbackOrSubmenu:=unset, Options:=unset]) => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Rename|`Rename()`}  
-     * Renames a menu item.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Rename|`Rename()`} - Renames a menu item.  
      * @param {(String)} [MenuItemName]  
      * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#MenuItemName|MenuItemame} is the name or the position of an existing item to rename.
      * @param {(String)} [NewName]  
@@ -12047,8 +11697,7 @@ class Menu extends Object {
     Rename(MenuItemName [,NewName:=unset]) => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#SetColor|`SetColor()`}  
-     * Changes the background color of the menu.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#SetColor|`SetColor()`} - Changes the background color of the menu.  
      * @param {(String|Integer)} ColorValue  
      * An RGB hex value or a color name:  
      * - RGB hex value (0x prefix is optional):  
@@ -12073,8 +11722,7 @@ class Menu extends Object {
     SetColor([ColorValue:='Default', ApplyToSubmenus:=1]) => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#SetIcon|`SetIcon()`}  
-     * Sets the icon to be displayed next to a menu item.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#SetIcon|`SetIcon()`} - Sets the icon to be displayed next to a menu item.  
      * @param {(String)} [MenuItemName]  
      * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#MenuItemName|MenuItemame} is the name or the position of an existing item.  
      * @param {(String)} FileName  
@@ -12096,8 +11744,7 @@ class Menu extends Object {
     SetIcon(MenuItemName, FileName [,IconNumber:=1, IconWidth:=unset]) => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Show|`Show()`}  
-     * Displays the menu.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Show|`Show()`} - Displays the menu.  
      * @param {(Integer)} [X]  
      * The x coordinate of the menu's upper left corner.  
      * If omitted, the mouse's x coord is used.  
@@ -12112,8 +11759,7 @@ class Menu extends Object {
     Show([X, Y]) => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#ToggleCheck|`ToggleCheck()`}  
-     * Toggles the checkmark next to a menu item.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#ToggleCheck|`ToggleCheck()`} - Toggles the checkmark next to a menu item.  
      * @param {(String)} [MenuItemName]  
      * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#MenuItemName|MenuItemame} is the name or the position of an existing item.  
      * @returns {(String)}  
@@ -12124,8 +11770,7 @@ class Menu extends Object {
     ToggleCheck(MenuItemName) => EmptyString
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#ToggleEnable|`ToggleEnable()`}  
-     * Enables or disables a menu item.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#ToggleEnable|`ToggleEnable()`} - Enables or disables a menu item.  
      * @param {(String)} [MenuItemName]  
      * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#MenuItemName|MenuItemame} is the name or the position of an existing item.  
      * @returns {(String)}  
@@ -12136,8 +11781,7 @@ class Menu extends Object {
     ToggleEnable() => EmptyString
 
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Uncheck|`Uncheck()`}  
-     * Removes the checkmark (if there is one) from a menu item.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Uncheck|`Uncheck()`} - Removes the checkmark (if there is one) from a menu item.  
      * @param {(String)} [MenuItemName]  
      * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#MenuItemName|MenuItemame} is the name or the position of an existing item to uncheck.  
      * @returns {(String)}  
@@ -12149,24 +11793,21 @@ class Menu extends Object {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm|`MenuBar`}  
- * An object used to define and modify a Gui's menu bar through the {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#MenuBar|Gui.MenuBar property}.
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm|`MenuBar`} - An object used to define and modify a Gui's menu bar through the {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#MenuBar|Gui.MenuBar property}.
  * @property {(Integer)} ClickCount - Retrieves or sets how many times the tray icon must be clicked to select its default menu item.
  * @property {(Any)} Default - Retrieves or sets the default menu item.
  * @property {(Integer)} Handle - Retrieves the menu's Win32 handle.
  */
 class MenuBar extends Menu {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Handle|`Menu()`}  
-     * Creates a new MenuBar object.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Handle|`Menu()`} - Creates a new MenuBar object.  
      * @returns {(Menu)}  
      * A new MenuBar object.  
      */
     static Call() => MenuBar
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Add|`Add()`}  
-     * Add or modify a menu bar item.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Add|`Add()`} - Add or modify a menu bar item.  
      * To add a menu separator, omit all parameters.  
      * @param {(String)} [MenuItemName]  
      * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#MenuItemName|MenuItemame} is the menu text to display or the position of an existing item to modify.  
@@ -12199,8 +11840,7 @@ class MenuBar extends Menu {
     Add([MenuItemName:=unset, CallbackOrSubmenu:=unset, Options:=unset]) => EmptyString
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Insert|`Insert()`}  
-     * Inserts a new item at the specified location, moving all other items down.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Insert|`Insert()`} - Inserts a new item at the specified location, moving all other items down.  
      * Omit all parameters to insert a menu separator.  
      * @param {(String)} [MenuItemName]  
      * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#MenuItemName|MenuItemame} is the name or the position of an existing item to insert an item at.  
@@ -12242,8 +11882,7 @@ class MenuBar extends Menu {
 }
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObjec|`RegExMatchInfo`}
- * An object with multiple properties containing information about a {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|RegExMatch()} result.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObjec|`RegExMatchInfo`} - An object with multiple properties containing information about a {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|RegExMatch()} result.  
  * @property {(Integer)} Count - Returns the total number of captured subpatterns.
  * @property {(Integer)} Len - The length of the overall match or a captured subpattern.
  * @property {(Integer)} Mark - Returns the NAME of the last encountered `(*MARK:NAME)`, when applicable.
@@ -12252,41 +11891,37 @@ class MenuBar extends Menu {
  */
 class RegExMatchInfo extends Object {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Count`}
-     * Returns the total number of captured subpatterns.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Count`} - Returns the total number of captured subpatterns.  
      * This is also the max number [N] can be for any other method or property calls.  
-     * @type {(Integer)}
+     * @type Integer
      * @example <caption>  
      * </caption>
      */
     Count => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Len[]`}  
-     * The length of the overall match or a captured subpattern.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Len[]`} - The length of the overall match or a captured subpattern.
      * @param {(Integer|String)} [N]  
      * The number of a captured subpattern.  
      * Named subpatterns can be referenced by number or name.  
      * If omitted or `0`, the overall match is returned.  
-     * @type {(Integer)}  
+     * @type Integer  
      * @example <caption>  
      * </caption>
      */
     Len[N:=0] => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|Mark}
-     * Returns the NAME of the last encountered `(*MARK:NAME)`, when applicable.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|Mark} - Returns the NAME of the last encountered `(*MARK:NAME)`, when applicable.  
      * Mark can be used for internal engine backtracking.  
-     * @type {(String)}  
+     * @type String  
      * @example <caption>  
      * </caption>
      */
     Mark => String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Match`}
-     * Returns the overall match or a captured subpattern.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Match`} - Returns the overall match or a captured subpattern.
      * @param {(Integer|String)} [N]  
      * The number of a captured subpattern.  
      * Named subpatterns can be referenced by number or name.  
@@ -12295,40 +11930,37 @@ class RegExMatchInfo extends Object {
      * 
      *     rgxobj.Match['Something'] => 'Some value'
      *     rgxobj.Something => 'Some value'
-     * @type {(Integer)}
+     * @type Integer
      * @example <caption>  
      * </caption>
      */
     Match[N:=0] => String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Name[]`}  
-     * The name of the overall match or a captured subpattern, if it has one.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Name[]`} - The name of the overall match or a captured subpattern, if it has one.  
      * @param {(Integer|String)} [N]  
      * The number of a captured subpattern.  
      * Named subpatterns can be referenced by number or name.  
      * If omitted or `0`, the overall match is returned.  
-     * @type {(String)}  
+     * @type String  
      * @example <caption>  
      * </caption>
      */
     Name[N:=0] => String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Pos[]`}  
-     * The string position of the overall match or a captured subpattern.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Pos[]`} - The string position of the overall match or a captured subpattern.
      * @param {(Integer|String)} [N]  
      * The name or number of a captured subpattern.  
      * If omitted or `0`, the overall match is returned.  
-     * @type {(Integer)}  
+     * @type Integer  
      * @example <caption>  
      * </caption>
      */
     Pos[N:=0] => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Len()`}  
-     * The length of the overall match or a captured subpattern.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Len()`} - The length of the overall match or a captured subpattern.
      * @param {(Integer|String)} [N]  
      * The number of a captured subpattern.  
      * Named subpatterns can be referenced by number or name.  
@@ -12341,8 +11973,7 @@ class RegExMatchInfo extends Object {
     Len([N:=0]) => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Name()`}  
-     * Returns the name of the given subpattern, if it has one.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Name()`} - Returns the name of the given subpattern, if it has one.
      * @param {(Integer|String)} [N]  
      * The number of a captured subpattern.  
      * Named subpatterns can be referenced by number or name.  
@@ -12355,8 +11986,7 @@ class RegExMatchInfo extends Object {
     Name([N:=0]) => String
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Pos()`}  
-     * The string position of the overall match or a captured subpattern.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject|`Pos()`} - The string position of the overall match or a captured subpattern.
      * @param {(Integer|String)} [N]  
      * The number of a captured subpattern.  
      * Named subpatterns can be referenced by number or name.  
@@ -12375,8 +12005,7 @@ class Primitive extends Any {
 
 Class String extends Primitive {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/String.htm|`String()`}  
-     * Converts a value to string type.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/String.htm|`String()`} - Converts a value to string type.
      * @param {(String|Number|Object)} Value  
      * Dependent on object type:  
      * - `String` = No conversion happens.
@@ -12385,7 +12014,7 @@ Class String extends Primitive {
      *   If ToString() has not been defined, an error is thrown.  
      * @returns {(String)}  
      * The value converted to a string  
-     * @throws {(MethodError)} - Invalid value type  
+     * @throws MethodError - Invalid value type  
      * @see
      * {@link https://www.autohotkey.com/docs/v2/lib/Type.htm|Type()},
      * {@link https://www.autohotkey.com/docs/v2/lib/Integer.htm|Integer()},
@@ -12401,13 +12030,12 @@ Class String extends Primitive {
 
 class Number extends Primitive {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/String.htm|`String()`}  
-     * Converts a numeric string to a pure integer or float type.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/String.htm|`String()`} - Converts a numeric string to a pure integer or float type.
      * @param {(String)} Value  
      * A string representing a number.  
      * @returns {(Integer|Float)}  
      * An integer or float version of value.  
-     * @throws {(TypeError)} Value cannot be converted  
+     * @throws TypeError Value cannot be converted  
      * To prevent this, use {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#number|IsNumber()} first.
      * @see  
      * {@link https://www.autohotkey.com/docs/v2/lib/Type.htm|Type()},
@@ -12424,13 +12052,12 @@ class Number extends Primitive {
 
 Class Float extends Number {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Float.htm|`Float()`}  
-     * Converts a numeric string or integer value to a float type.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Float.htm|`Float()`} - Converts a numeric string or integer value to a float type.
      * @param {(String|Integer)} Value  
      * A string or integer to convert to float type.  
      * @returns {(Float)}  
      * The numerical version of value.  
-     * @throws {(TypeError)} Value cannot be converted  
+     * @throws TypeError Value cannot be converted  
      * To prevent this, use {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#number|IsNumber()} first.  
      * @see  
      * {@link https://www.autohotkey.com/docs/v2/lib/Type.htm|Type()},
@@ -12447,13 +12074,12 @@ Class Float extends Number {
 
 Class Integer extends Number {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/Float.htm|`Float()`}  
-     * Converts a numeric string or float value to an integer type.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/Float.htm|`Float()`} - Converts a numeric string or float value to an integer type.  
      * @param {(String|Float)} Value  
      * A string or integer to convert to float type.  
      * @returns {(Integer)}  
      * The numerical version of value.  
-     * @throws {(TypeError)} Value cannot be converted  
+     * @throws TypeError Value cannot be converted  
      * To prevent this, use {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#number|IsNumber()} first.  
      * @see
      * {@link https://www.autohotkey.com/docs/v2/lib/Type.htm|Type()},
@@ -12478,8 +12104,7 @@ class VarRef extends Any {
  */
 class ComValue extends Any {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|`ComValue`}  
-     * Wraps a value, SafeArray or COM object for use by the script or for passing to a COM method.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|`ComValue`} - Wraps a value, SafeArray or COM object for use by the script or for passing to a COM method.
      * @param {(Integer)} VarType  
      * An integer to incidcate the {@link https://www.autohotkey.com/docs/v2/lib/ComObjType.htm#vt|type of value}.  
      * \- `0` VT_EMPTY = No value  
@@ -12537,8 +12162,7 @@ class ComValue extends Any {
  */
 class ComObjArray extends ComValue {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|`ComValue()`}
-     * @param {(Integer)} VarType  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|`ComValue()`} - @param {(Integer)} VarType  
      * An integer to incidcate the {@link https://www.autohotkey.com/docs/v2/lib/ComObjType.htm#vt|type of value}.  
      * \- `0` VT_EMPTY = No value  
      * \- `1` VT_NULL = SQL-style Null  
@@ -12577,8 +12201,7 @@ class ComObjArray extends ComValue {
     Call(VarType, ArrSize1 [,ArrSize2to8*]) => ComObjArray
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjArray.htm#Methods|`MaxIndex()`}  
-     * Returns the upper bound of the dimension.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjArray.htm#Methods|`MaxIndex()`} - Returns the upper bound of the dimension.  
      * @param [ArrDim]  
      * The dimension (depth) of the array to use.  
      * If ArrDim is omitted, it defaults to 1.
@@ -12587,8 +12210,7 @@ class ComObjArray extends ComValue {
     MaxIndex([ArrDim:=1]) => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjArray.htm#Methods|`MinIndex()`}  
-     * Returns the lower bound of the nth dimension. If n is omitted, it defaults to 1.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjArray.htm#Methods|`MinIndex()`} - Returns the lower bound of the nth dimension. If n is omitted, it defaults to 1.
      * @param [ArrDim]  
      * The dimension (depth) of the array to use.  
      * If ArrDim is omitted, it defaults to 1.
@@ -12598,16 +12220,14 @@ class ComObjArray extends ComValue {
     MinIndex([ArrDim:=1]) => Integer
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjArray.htm#Methods|`Clone()`}  
-     * Returns a copy of the array.
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjArray.htm#Methods|`Clone()`} - Returns a copy of the array.
      * @returns {(ComObjArray)}  
      * A copy of the current ComObjArray.  
      */
     Clone() => ComObjArray
     
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjArray.htm#Methods|`__Enum()`}  
-     * Creates an {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|enumerator object} that iterates through each element pair of the SafeArray.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjArray.htm#Methods|`__Enum()`} - Creates an {@link https://www.autohotkey.com/docs/v2/lib/Enumerator.htm|enumerator object} that iterates through each element pair of the SafeArray.  
      * This method is typically not called but instead is used by a {@link https://www.autohotkey.com/docs/v2/lib/For.htm|for-loop} to get each element and its index number.  
      * @returns {(Enumerator)}  
      * Enumerable function object.  
@@ -12622,8 +12242,7 @@ class ComObjArray extends ComValue {
  */
 class ComObject extends ComValue {
     /**
-     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObject.htm|`ComObject`}  
-     * Creates a COM object.  
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObject.htm|`ComObject`} - Creates a COM object.  
      * @param {(String)} CLSID  
      * CLSID or human-readable Prog ID of the COM object to create.
      * @param {(String)} [IID]  
@@ -12658,11 +12277,29 @@ class ComObject extends ComValue {
 }
 
 /**
- * @description 
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|`ComValueRef`}
+ * Used for VT_BYREF com values.  
  */
 class ComValueRef extends ComValue {
+}
+
+class InputBox__Object {
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputBox.htm#return|`Result`}  
+     * The text entered by the user.  
+     * @type String
+     */
+    Result => String
     
-    
+    /**
+     * @description {@link https://www.autohotkey.com/docs/v2/lib/InputBox.htm#return|`Value`}  
+     * Indicates how the InputBox was closed:  
+     * - `OK` = OK was pressed.  
+     * - `Cancel` = Cancel or the window X was pressed.  
+     * - `Timeout` = Window's timeout expired.  
+     * @type String
+     */
+    Value => String
 }
 
 ;#endregion
@@ -12676,11 +12313,18 @@ class ComValueRef extends ComValue {
 
 
 
+
+
+
+
+
+
+
+
 ;#region functions
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Abs|`Abs()`}  
- * Returns the absolute value of the specified number.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Abs|`Abs()`} - Returns the absolute value of the specified number.  
  * Absolute value is the greatest magnitude of the number regardless of its sign.  
  * @param {(Number)} Num  
  * Number to get absolute value of.
@@ -12696,8 +12340,7 @@ class ComValueRef extends ComValue {
 Abs(Num) => Number
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#ASin|`ASin()`}  
- * Returns the arcsine in radians.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#ASin|`ASin()`} - Returns the arcsine in radians.  
  * Arcsine is the inverse trigonometric function of the sine function.  
  * @param {(Number)} Num  
  * The sine number. Must be between 1 and -1.  
@@ -12712,8 +12355,7 @@ Abs(Num) => Number
 ASin(Num) => Number
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#ACos|`ACos()`}  
- * Returns the arccosine in radians.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#ACos|`ACos()`} - Returns the arccosine in radians.  
  * Arccosine is the inverse trigonometric function of the cosine function.  
  * @param {(Number)} Num  
  * The cosine number. This must be between 1 and -1.  
@@ -12729,8 +12371,7 @@ ACos(Num) => Number
 
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#ATan|`ATan()`}  
- * Returns the arctangent in radians.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#ATan|`ATan()`} - Returns the arctangent in radians.  
  * Arctangent is the inverse trigonometric function of the tangent function.  
  * @param {(Number)} Num  
  * The tangent number.  
@@ -12745,23 +12386,23 @@ ACos(Num) => Number
 ATan(Num) => Number
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/BlockInput.htm|`BlockInput()`}  
- * Disables or enables the user's  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/BlockInput.htm|`BlockInput()`} - Disables or enables the user's  
  * ability to interact with the computer via keyboard and mouse.  
  * @param {(String|Integer)} [Mode]  
- * Each of the 3 mode groups operate independently of each other.  
- * - **OnOff**
+ * A mode from one of the the 3 groups.  
+ * Each of the 3 groups operate independently of each other.  
+ * - OnOff Group:
  *   - `1` or `On` = Mouse and keyboard input is disabled.  
  *   - `0` or `Off` = Mouse and keyboard input is enabled.  
  * 
- * - **SendMouse**
+ * - SendMouse Group:
  *   - `Send` = Keyboard and mouse input is disabled while a {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendEvent|SendEvent} is running, preventing disruption of keys being sent.  
  *   - `Mouse` = Keyboard and mouse input is disabled while {@link https://www.autohotkey.com/docs/v2/lib/Click.htm|Click()}, {@link https://www.autohotkey.com/docs/v2/lib/MouseMove.htm|MouseMove()}, {@link https://www.autohotkey.com/docs/v2/lib/MouseClick.htm|MouseClick()}, or {@link https://www.autohotkey.com/docs/v2/lib/MouseClickDrag.htm|MouseClickDrag()} is running and prevents user input from disrupting mouse events.  
  *   - `SendAndMouse` = Enables both `Send` and `Mouse` modes.  
  *   - `Default` = Disables both `Send` and `Mouse` modes if they're on.  
  *     This is the "Off" setting for SendMouse modes.  
  * 
- * - **MouseMove**  
+ * - MouseMove Group:
  *   - `MouseMove` = User mouse movement is disabled.  
  *     DirectInput applications are a possible exception.  
  *   - `MouseMoveOff` = Disables `MouseMove` if it's enabled.  
@@ -12782,8 +12423,7 @@ ATan(Num) => Number
 BlockInput([Mode]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/CallbackCreate.htm|`CallbackCreate()`}  
- * Creates a machine-code address that when called,  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/CallbackCreate.htm|`CallbackCreate()`} - Creates a machine-code address that when called,  
  * redirects the call to a function in the script.  
  * @param {(FuncObj)} Function  
  * A {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} to call when  
@@ -12830,8 +12470,7 @@ BlockInput([Mode]) => EmptyString
 CallbackCreate(Function [,Options:='', ParamCount:=unset]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/CallbackCreate.htm#CallbackFree|`CallbackFree()`}  
- * Frees a callback created by {@link https://www.autohotkey.com/docs/v2/lib/CallbackCreate.htm#CallbackFree|CallbackCreate()}.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/CallbackCreate.htm#CallbackFree|`CallbackFree()`} - Frees a callback created by {@link https://www.autohotkey.com/docs/v2/lib/CallbackCreate.htm#CallbackFree|CallbackCreate()}.  
  * @param {(Integer)} Address  
  * A callback address.  
  * @returns {(String)}  
@@ -12862,26 +12501,13 @@ CallbackCreate(Function [,Options:='', ParamCount:=unset]) => Integer
 CallbackFree(Address) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/CaretGetPos.htm|`CaretGetPos()`}  
- * Retrieves the current position of the text caret.  
- * @param {(VarRef)} [OutputVarX]  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/CaretGetPos.htm|`CaretGetPos()`} - Retrieves the current position of the text caret.  
+ * @param {(VarRef)} [CaretX]  
  * The variable to store the caret's X client coordinate (if provided).  
- * @param {(VarRef)} [OutputVarY]  
+ * @param {(VarRef)} [CaretY]  
  * The variable to store the caret's Y client coordinate (if provided).  
  * @returns {(Boolean)}  
  * `1` if caret found, else `0`  
- * @example <caption>  
- * </caption>
- */
-CaretGetPos([&OutputVarX, &OutputVarY]) => Integer
-
-/**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Ceil|`Ceil()`}  
- * Rounds a number up to the nearest integer.  
- * @param {(Number)} Num  
- * The number to round up.  
- * @returns {(Integer)}  
- * The rounded up integer.  
  * @example <caption>  
  * Show caret position at all times.</caption>
  * SetTimer(WatchCaret, 100)
@@ -12891,13 +12517,23 @@ CaretGetPos([&OutputVarX, &OutputVarY]) => Integer
  *     else ToolTip('No caret')
  * }
  */
+CaretGetPos([&CaretX, &CaretY]) => Integer
+
+/**
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Ceil|`Ceil()`} - Rounds a number up to the nearest integer.  
+ * @param {(Number)} Num  
+ * The number to round up.  
+ * @returns {(Integer)}  
+ * The rounded up integer.  
+ * @example <caption>  
+ * </caption>
+ */
 Ceil(Num) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Chr.htm|`Chr()`}  
- * Returns the string (usually a single character) corresponding to the character code indicated by the specified number.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Chr.htm|`Chr()`} - Returns the string (usually a single character) corresponding to the character code indicated by the specified number.  
  * @param {(Integer)} UnicodeNumber  
- * A Unicode character between 0x0 and 0x10FFFF.  
+ * A Unicode number between 0x0 and 0x10FFFF.  
  * Numbers in the range 0x10000 to 0x10FFFF produce 2 characters.  
  * 0 produces a binary null character, not an empty string.  
  * @returns {(String)}  
@@ -12914,8 +12550,7 @@ Ceil(Num) => Integer
 Chr(UnicodeNumber) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Click.htm|`Click()`}  
- * Sends a click event to a specified cooridnate.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Click.htm|`Click()`} - Sends a click event to a specified cooridnate.  
  * Alternatively, all options can be passed in as a single string.  
  * If 3 numbers are passed, the first two are X and Y and the last is Count.  
  * Omit all parameters to send a single left click.  
@@ -12924,25 +12559,25 @@ Chr(UnicodeNumber) => String
  * - `Left` or `L`
  * - `Right` or `R`
  * - `Middle` or `M`
- * - `X1` (aka Mouse4)
- * - `X2` (aka Mouse5)
+ * - `X1` (Mouse4)
+ * - `X2` (Mouse5)
  * - `WheelUp` or `WU`
  * - `WheelDown` or `WD`
  * - `WheelRight` or `WR`
  * - `WheelLeft` or `WL`
- * @param {(Integer)} [X]  
+ * @param {(String|Integer)} [X]  
  * The X coordinate to click at.  
  * {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm|CoordMode()} dictates where x0 y0 starts at  
  * Client is suggested.  
  * If `Relative` param is used, x0 y0 starts at mouse cursor.  
  * If omitted, the mouse's current X value is used.  
- * @param {(Integer)} [Y]  
+ * @param {(String|Integer)} [Y]  
  * The Y coordinate to click at  
  * {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm|CoordMode()} dictates where x0 y0 starts at  
  * Client is suggested.  
  * If `Relative` param is used, x0 y0 starts at mouse cursor.  
  * If omitted, the mouse's current Y value is used.  
- * @param {(Integer)} [Count]  
+ * @param {(String|Integer)} [Count]  
  * Number of clicks to send  
  * If omitted, `1` is used  
  * @param {(String)} [State]  
@@ -12967,7 +12602,7 @@ Chr(UnicodeNumber) => String
  * {@link https://www.autohotkey.com/docs/v2/lib/MouseMove.htm|MouseMove()},
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlClick.htm|ControlClick()},
  * {@link https://www.autohotkey.com/docs/v2/lib/BlockInput.htm|BlockInput()}
- * @example <caption>__
+ * @example <caption>  
  * Different Click() examples.</caption>
  * ; Left click
  * Click()
@@ -12976,7 +12611,7 @@ Chr(UnicodeNumber) => String
  * Click('R')
  * 
  * ; Double left click
- * Click('Left',)
+ * Click('Left', 2)
  * 
  * ; Hold down XButton1
  * Click('X1 D')
@@ -12985,17 +12620,23 @@ Chr(UnicodeNumber) => String
  * Click('100 500 0')
  * 
  * ; Left click 10 pixels rigth and 10 pixels up from cursor
- * Click('10 -10 Rel')
+ * Click(10, -10, 'Rel')
  * 
  * ; Move cursor 50 pixels to the right
  * Click('0 50 0 Rel')
+ * 
+ * ; Hotkey for multiple mouse scrolls
+ * $WheelUp::Click('WU', 5)
+ * $WheelDown::Click('WD', 5)
+ * 
+ * ; Multiple parameters or one string can be used:
+ * Click('Right', '50', 20, 'Down', 'Rel')
+ * Click('Right 50 20 Down Rel')
  */
 Click([Button:='L', X:=unset, Y:=unset, Count:=1, State:=unset, Relative:=unset]) => EmptyString
-; Click([Button X Y Count Speed State Relative]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ClipWait.htm|`ClipWait()`}  
- * Waits until the clipboard contains data.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ClipWait.htm|`ClipWait()`} - Waits until the clipboard contains data.  
  * Clear the clipboard proior to using ClipWait() `A_Clipboard := 0`  
  * @param {(Number)} [TimeoutInSec]  
  * Time to wait in seconds.  
@@ -13032,8 +12673,7 @@ Click([Button:='L', X:=unset, Y:=unset, Count:=1, State:=unset, Relative:=unset]
 ClipWait([TimeoutInSec:=unset, WaitForType:=0]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ComCall.htm|`ComCall()`}  
- * Calls a native COM interface method by index.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ComCall.htm|`ComCall()`} - Calls a native COM interface method by index.  
  * @param {(Integer)} Index  
  * The zero-based index of the method  
  * within the virtual function table. Corresponds to the method's  
@@ -13062,7 +12702,7 @@ ClipWait([TimeoutInSec:=unset, WaitForType:=0]) => String
  * `Cdecl` is supported but is generally not used by COM interface methods.
  * @returns {(String|Integer)}  
  * The actual value returned by the method  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Any result indicating failure
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer object},
@@ -13093,8 +12733,7 @@ ClipWait([TimeoutInSec:=unset, WaitForType:=0]) => String
 ComCall(Index, ComObj [,TypeN:=unset, ArgN:=unset, ReturnType:='HRESULT']) => String | Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjActive.htm|`ComObjActive()`}  
- * Retrieves a registered COM object.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjActive.htm|`ComObjActive()`} - Retrieves a registered COM object.  
  * @param {(String)} CLSID  
  * CLSID or human-readable Prog ID of the COM object to retrieve.  
  * @returns {(ComObject)}  
@@ -13120,8 +12759,7 @@ ComCall(Index, ComObj [,TypeN:=unset, ArgN:=unset, ReturnType:='HRESULT']) => St
 ComObjActive(CLSID) => ComObject
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjConnect.htm|`ComObjConnect()`}  
- * Connects a COM object's event source to the script, enabling events to be handled.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjConnect.htm|`ComObjConnect()`} - Connects a COM object's event source to the script, enabling events to be handled.  
  * @param {(ComObject)} ComObj  
  * An object which raises events.  
  * An error is shown if the object does not support {@link https://learn.microsoft.com/en-us/windows/win32/api/ocidl/nn-ocidl-iconnectionpointcontainer|IConnectionPointContainer}.
@@ -13143,8 +12781,7 @@ ComObjActive(CLSID) => ComObject
 ComObjConnect(ComObj [,PrefixOrSink:=unset]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjFlags.htm|`ComObjFlags()`}  
- * Retrieves or changes flags which  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjFlags.htm|`ComObjFlags()`} - Retrieves or changes flags which  
  * control a COM wrapper object's behaviour.  
  * @param {(Object)} ComObj  
  * A COM wrapper object. See {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|ComValue}.  
@@ -13157,7 +12794,7 @@ ComObjConnect(ComObj [,PrefixOrSink:=unset]) => EmptyString
  * A bitmask of flags to change.  
  * @returns {(Integer)}  
  * New flags of the specified COM object  
- * @throws {(TypeError)}  
+ * @throws TypeError  
  * If `ComObj` not a valid COM wrapper object  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|ComValue},
@@ -13174,8 +12811,7 @@ ComObjConnect(ComObj [,PrefixOrSink:=unset]) => EmptyString
 ComObjFlags(ComObj [,NewFlags:=unset, Mask:=unset]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjFromPtr.htm|`ComObjFromPtr()`}  
- * Wraps a raw {@link https://learn.microsoft.com/windows/win32/api/oaidl/nn-oaidl-idispatch|IDispatch} pointer  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjFromPtr.htm|`ComObjFromPtr()`} - Wraps a raw {@link https://learn.microsoft.com/windows/win32/api/oaidl/nn-oaidl-idispatch|IDispatch} pointer  
  * (COM object) for use by the script.  
  * @param {(Integer)} DispPtr  
  * A non-null interface pointer  
@@ -13198,8 +12834,7 @@ ComObjFlags(ComObj [,NewFlags:=unset, Mask:=unset]) => Integer
 ComObjFromPtr(DispPtr) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjGet.htm|`ComObjGet()`}  
- * Returns a reference to an  object  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjGet.htm|`ComObjGet()`} - Returns a reference to an  object  
  * provided by a COM component.  
  * @param {(String)} Name  
  * The display name of the object to be retrieved.  
@@ -13229,8 +12864,7 @@ ComObjFromPtr(DispPtr) => String
 ComObjGet(Name) => ComObject
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjQuery.htm|`ComObjQuery()`}  
- * Queries a COM object for an interface or service.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjQuery.htm|`ComObjQuery()`} - Queries a COM object for an interface or service.  
  * @param {(Object|Integer)} ComObj  
  * A COM wrapper object, interface pointer,  
  * or object with a Ptr property which returns an interface pointer.  
@@ -13247,7 +12881,7 @@ ComObjGet(Name) => ComObject
  *   The script can call properties/methods using normal {@link https://www.autohotkey.com/docs/v2/Objects.htm#Usage_Objects|object syntax}.
  * - `Any other IID` => ({@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|ComValue}) - VT_UNKNOWN (13)  
  *   Provides a `Ptr` property that can be passed to {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm|DllCall()} or {@link https://www.autohotkey.com/docs/v2/lib/ComCall.htm|ComCall}.
- * @throws {(Error)}  
+ * @throws Error  
  * Any failure, such as "interface not supported."
  * @see 
  * {@link https://www.autohotkey.com/docs/v2/lib/ComObjGet.htm|ComObjGet()}
@@ -13260,8 +12894,7 @@ ComObjGet(Name) => ComObject
 ComObjQuery(ComObj, IIDorSID, IID) => Object
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjType.htm|`ComObjType()`}  
- * Retrieves type information from a COM object.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjType.htm|`ComObjType()`} - Retrieves type information from a COM object.  
  * @param {(Object)} ComObj  
  * A wrapper object containing a  
  * COM object or typed value. See {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|ComValue} for details.
@@ -13293,14 +12926,13 @@ ComObjQuery(ComObj, IIDorSID, IID) => Object
 ComObjType(ComObj [,InfoType:=unset]) => Integer | String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjValue.htm|`ComObjValue()`}  
- * Retrieves the value or pointer stored in a COM wrapper object.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ComObjValue.htm|`ComObjValue()`} - Retrieves the value or pointer stored in a COM wrapper object.  
  * @param {(Object)} ComObj  
  * A wrapper object containing a  
  * COM object or typed value. See {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|ComValue} for details.
  * @returns {(Integer)}  
  * A 64-bit signed integer
- * @throws {(TypeError)}  
+ * @throws TypeError  
  * `ComObj` is not a COM wrapper object
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ComObject.htm|ComObject},
@@ -13313,23 +12945,21 @@ ComObjType(ComObj [,InfoType:=unset]) => Integer | String
 ComObjValue(ComObj) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlAddItem.htm|`ControlAddItem()`}  
- * Adds the specified string as a new entry  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlAddItem.htm|`ControlAddItem()`} - Adds the specified string as a new entry  
  * at the bottom of a ListBox or ComboBox.  
  * @param {(String)} Str  
  * String to add.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -13337,10 +12967,10 @@ ComObjValue(ComObj) => String
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * Index of the new item  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
  * Or control's class does not contain `Combo` or `List`
- * @throws {(Error|OSError)}  
+ * @throws Error|OSError  
  * Item could not be added  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlDeleteItem.htm|ControlDeleteItem()},
@@ -13369,24 +12999,22 @@ ComObjValue(ComObj) => String
 ControlAddItem(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlChooseIndex.htm|`ControlChooseIndex()`}  
- * Sets the selection in a ListBox,  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlChooseIndex.htm|`ControlChooseIndex()`} - Sets the selection in a ListBox,  
  * ComboBox or Tab control to specified index.  
  * @param {(Integer)} N  
  * The index number to select.  
  * 0 deselects all entries of a Listbox or ComboBox.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -13423,23 +13051,21 @@ ControlAddItem(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
 ControlChooseIndex(N, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlChooseString.htm|`ControlChooseString()`}  
- * Sets the selection in a ListBox or ComboBox  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlChooseString.htm|`ControlChooseString()`} - Sets the selection in a ListBox or ComboBox  
  * to be the first entry that matches the specified string.  
  * @param {(String)} Str  
  * The string to choose. This is not case-sensitive. 
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -13476,8 +13102,7 @@ ControlChooseIndex(N, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWin
 ControlChooseString(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlClick.htm|`ControlClick()`}  
- * Sends a mouse button or mouse wheel event to a control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlClick.htm|`ControlClick()`} - Sends a mouse button or mouse wheel event to a control.  
  * @param {(String|Integer|Object)} [ConOrPos]  
  * - Omitted: The target window itself is clicked.  
  * - Position: Specify an x and y value separated by a space/tab.  
@@ -13486,16 +13111,16 @@ ControlChooseString(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', No
  * - Control: A control's ClassNN, Text, HWND (handle),  
  *   or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}  
  * 
- *       ControlClick('Button2')  
+ *       ControlClick('Button2')
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [Button]  
  * If omitted, defaults to left click.  
  * `L`/`Left`, `R`/`Right`, `M`/`Middle`, `X1` (XButton1), `X2` (XButton2)  
@@ -13519,11 +13144,11 @@ ControlChooseString(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', No
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * The target window or target control could not be found.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * X and Y coords were omited and control's position was undetermined.  
- * @throws {(ValueError|TypeError)}  
+ * @throws ValueError|TypeError  
  * Invalid parameters were detected.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SetControlDelay.htm|SetControlDelay()},
@@ -13544,28 +13169,26 @@ ControlChooseString(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', No
  * ControlClick( , 'ahk_class my_prog', , 'Left', 2)
  * ; Click and hold right mouse button on the first radio
  * ControlClick('Radio1', 'A', , 'Right', , 'D')
- * ; Click the upperleft-most part of a button
- * ControlClick('Button3', 'A', , , , , 'x0 y0')
+ * ; Click the upperleft-most part of the AHK GUI's button
+ * ControlClick(goo['BtnName'], , , , , , 'x0 y0')
  */
 ControlClick([ConOrPos:=unset, WinTitle:='', WinText:='', Button:='Left', Count:=1, Options:=unset, NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlDeleteItem.htm|`ControlDeleteItem()`}  
- * Deletes the specified entry number from a ListBox or ComboBox.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlDeleteItem.htm|`ControlDeleteItem()`} - Deletes the specified entry number from a ListBox or ComboBox.  
  * @param {(Integer)} N  
  * The index of the item to delete.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -13573,10 +13196,10 @@ ControlClick([ConOrPos:=unset, WinTitle:='', WinText:='', Button:='Left', Count:
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
  * Or control's class does not contain `Combo` or `List`
- * @throws {(Error|OSError)}  
+ * @throws Error|OSError  
  * Item could not be added  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlAddItem.htm|ControlAddItem()},
@@ -13589,29 +13212,38 @@ ControlClick([ConOrPos:=unset, WinTitle:='', WinText:='', Button:='Left', Count:
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle Window Matching},
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}
  * @example <caption>  
- * </caption>
+ * Adding an item to a ListBox.</caption>
+ * goo := Gui()
+ * goo.AddButton('xm ym vbtn_add','Delete Item(s)')
+ * goo['btn_add'].OnEvent('Click', delete_item)
+ * goo.AddListBox('x+5 ym vListBox', ['Alpha', 'Bravo', 'Charlie'])
+ * goo.Show('h100')
+ * 
+ * delete_item(control, info) {
+ *     ib := InputBox('Item index to delete:',,,'2')
+ *     if (ib.Result = 'OK')
+ *         ControlDeleteItem(ib.Value, control.gui['ListBox'])
+ * }
  */
 ControlDeleteItem(N, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlFindItem.htm|`ControlFindItem()`}  
- * Returns the entry number of a ListBox or ComboBox  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlFindItem.htm|`ControlFindItem()`} - Returns the entry number of a ListBox or ComboBox  
  * that is a complete match for the specified string.  
  * @param {(String)} Str  
  * The string to find. This is not case-sensitive.  
  * The entire text must match, not just the leading part.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -13620,10 +13252,10 @@ ControlDeleteItem(N, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinT
  * @returns {(Integer)}  
  * The index of the found item.  
  * If no match is found, an exception is thrown.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
  * Or control's class does not contain `Combo` or `List` 
- * @throws {(Error)}  
+ * @throws Error  
  * Item could not be found.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlAddItem.htm|ControlAddItem()},
@@ -13635,25 +13267,39 @@ ControlDeleteItem(N, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinT
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle Window Matching},
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}
  * @example <caption>  
- * </caption>
+ * Checking a ListBox for a specific string.</caption>
+ * goo := Gui()
+ * goo.AddButton('xm ym vbtn_add','Check for item')
+ * goo['btn_add'].OnEvent('Click', check_item)
+ * goo.AddListBox('x+5 ym vListBox', ['Alpha', 'Bravo', 'Charlie'])
+ * goo.Show('h100')
+ * 
+ * check_item(control, info) {
+ *     ib := InputBox('Item index to delete:',,,'2')
+ *     pos := 0
+ *     if (ib.Result = 'OK') {
+ *         try pos := ControlFindItem(ib.Value, control.gui['ListBox'])
+ *         if pos
+ *             MsgBox(ib.Value ' was found at position ' pos '.')
+ *         else MsgBox(ib.Value ' was not found...')
+ *     }
+ * }
  */
 ControlFindItem(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlFocus.htm|`ControlFocus()`}  
- * Sets input focus to a given control on a window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlFocus.htm|`ControlFocus()`} - Sets input focus to a given control on a window.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -13670,28 +13316,44 @@ ControlFindItem(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinT
  * {@link https://www.autohotkey.com/docs/v2/lib/SetTitleMatchMode.htm|SetTitleMatchMode()},
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle Window Matching},
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
  * @example <caption>  
  * </caption>
+ * goo := Gui()
+ * loop 3 {
+ *     opt := 'xm vrad_' A_Index
+ *     con := goo.AddRadio(opt, 'Focus Button ' A_Index)
+ *     con.target := 'btn_' A_Index
+ *     con.OnEvent('Click', focus_btn)
+ * }
+ * 
+ * btn_w := 70
+ * loop 3 {
+ *     opt := 'x+5 ym w' btn_w ' vbtn_' A_Index
+ *     goo.AddButton(opt, 'Button ' A_Index)
+ * }
+ * con := goo.AddButton('xp y+5 w' btn_w, 'Quit')
+ * con.OnEvent('Click', (*) => ExitApp())
+ * goo.Show()
+ * 
+ * focus_btn(con, info) => ControlFocus(con.gui[con.target])
  */
 ControlFocus(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetChecked.htm|`ControlGetChecked()`}  
- * Returns a non-zero value if the checkbox or radio button is checked.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetChecked.htm|`ControlGetChecked()`} - Returns a non-zero value if the checkbox or radio button is checked.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -13699,9 +13361,9 @@ ControlFocus(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']
  * Use WindowSpy to view window text.
  * @returns {(Boolean)}  
  * `1` if checkbox/radio is checked, else `0`  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Message could not be sent to the control  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlSetChecked.htm|ControlSetChecked()},
@@ -13713,25 +13375,35 @@ ControlFocus(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle Window Matching},
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}
  * @example <caption>  
- * </caption>
+ * Checkbox to verify script exit.</caption>
+ * goo := Gui()
+ * goo.AddButton('xm ym vbtn_close', 'Exit Script')
+ * goo['btn_close'].OnEvent('Click', exit_script)
+ * goo.AddCheckbox('x+10 ym vcb_close checked', 'Verify exit')
+ * goo.Show('w200')
+ * 
+ * exit_script(control, info) {
+ *     if !ControlGetChecked(control.gui['cb_close'])
+ *         ExitApp()
+ *     if (MsgBox('Do you want to exit?', , 'Y/N') = 'Yes')
+ *         ExitApp()
+ * }
  */
 ControlGetChecked(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetChoice.htm|`ControlGetChoice()`}  
- * Returns the name of the currently selected entry in a ListBox or ComboBox.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetChoice.htm|`ControlGetChoice()`} - Returns the name of the currently selected entry in a ListBox or ComboBox.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
+ * Window title is optional and must come before any `ahk_` criteria.  
  * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -13752,25 +13424,34 @@ ControlGetChecked(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}
  * @example <caption>  
  * </caption>
+ * goo := Gui()
+ * goo.AddButton('xm ym vbtn_choice', 'Get choice')
+ * goo['btn_choice'].OnEvent('Click', get_choice)
+ * goo.AddListBox('x+5 ym vListBox Multi', ['Alpha', 'Bravo', 'Charlie'])
+ * goo.Show('h100')
+ * 
+ * get_choice(control, info) {
+ *     Try MsgBox(ControlGetChoice(control.gui['ListBox']))
+ *     catch
+ *         MsgBox('No entry selected.')
+ * }
  */
 ControlGetChoice(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetClassNN.htm|`ControlGetClassNN()`}  
- * Returns the ClassNN of the specified control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetClassNN.htm|`ControlGetClassNN()`} - Returns the ClassNN of the specified control.  
  * This is the name of the control class followed by its sequence number.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -13778,9 +13459,9 @@ ControlGetChoice(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * The ClassNN of the control  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * A problem determining the target window or control
- * @throws {(Error|OSError)}  
+ * @throws Error|OSError  
  * ClassNN could not be determined
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetClass.htm|WinGetClass()},
@@ -13794,25 +13475,43 @@ ControlGetChoice(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle Window Matching},
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}
  * @example <caption>  
- * </caption>
+ * Controls named after their ClassNN.</caption>
+ * goo := Gui()
+ * loop 2
+ *     con := goo.AddButton('xm w80')
+ *     ,con.Text := ControlGetClassNN(con)
+ * loop 2
+ *     con := goo.AddEdit('xm w80')
+ *     ,con.Text := ControlGetClassNN(con)
+ * loop 2
+ *     con := goo.AddText('xm w80')
+ *     ,con.Text := ControlGetClassNN(con)
+ * loop 2
+ *     con := goo.AddRadio('xm w80')
+ *     ,con.Text := ControlGetClassNN(con)
+ * con := goo.AddDropDownList('xm')
+ * con.Add([ControlGetClassNN(con)])
+ * con.Choose(1)
+ * loop 2
+ *     con := goo.AddCheckbox('xm w80')
+ *     ,con.Text := ControlGetClassNN(con)
+ * goo.Show()
  */
 ControlGetClassNN(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetEnabled.htm|`ControlGetEnabled()`}  
- * Returns a non-zero value if the specified control is enabled.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetEnabled.htm|`ControlGetEnabled()`} - Returns a non-zero value if the specified control is enabled.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -13820,7 +13519,7 @@ ControlGetClassNN(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * Use WindowSpy to view window text.
  * @returns {(Boolean)}  
  * `1` if control is enabled, otherwise `0`  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * The window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlSetEnabled.htm|ControlSetEnabled()},
@@ -13833,22 +13532,36 @@ ControlGetClassNN(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle Window Matching},
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}
  * @example <caption>  
- * </caption>
+ * Report all disabled controls in a GUI.</caption>
+ * goo := Gui()
+ * goo.AddButton('xm ym vbtn1 w80 +Disabled', 'Alpha')
+ * goo.AddButton('ym vbtn2 w80', 'Bravo')
+ * goo.AddButton('ym vbtn3 w80 +Disabled', 'Charlie')
+ * con := goo.AddButton('xm w260 vcheck_btn', 'Check Button States')
+ * con.OnEvent('Click', check_buttons)
+ * goo.Show()
+ * 
+ * check_buttons(control, info) {
+ *     str := 'Disabled controls:'
+ *     for _, c in control.gui
+ *         if !ControlGetEnabled(c)
+ *             str .= '`n' c.Text ' ' c.Type
+ *     MsgBox(str)
+ * }
  */
 ControlGetEnabled(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetFocus.htm|`ControlGetFocus()`}  
- * Retrieves the focused control of the target window, if any.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetFocus.htm|`ControlGetFocus()`} - Retrieves the focused control of the target window, if any.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -13857,9 +13570,9 @@ ControlGetEnabled(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * @returns {(Integer)}  
  * The {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|handle (HWND)} of the focused control.  
  * `0` if none of the controls have focus.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Problem determining the target window or control  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Problem determining the control focus
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlFocus.htm|ControlFocus()},
@@ -13870,25 +13583,35 @@ ControlGetEnabled(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle Window Matching},
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}
  * @example <caption>  
- * </caption>
+ * Show focused control HWND in statusbar.</caption>
+ * goo := Gui()
+ * loop 3
+ *     goo.AddButton('ym vbtn' A_Index, 'Button ' A_Index)
+ * goo.AddStatusBar('vstatus')
+ * goo.Show()
+ * callback := sb_refresh.Bind(goo)
+ * SetTimer(callback, 500)
+ * 
+ * sb_refresh(guiobj) {
+ *     con := ControlGetFocus('ahk_id ' guiobj.hwnd)
+ *     guiobj['status'].Text := 'Focused control HWND: ' con
+ * }
  */
 ControlGetFocus([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetHwnd.htm|`ControlGetHwnd()`}  
- * Returns the unique ID number (handle) of the specified control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetHwnd.htm|`ControlGetHwnd()`} - Returns the unique ID number (handle) of the specified control.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * Specify the letter `A` to use the active window.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -13896,7 +13619,7 @@ ControlGetFocus([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => I
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * The {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|handle (HWND)} of the specified control.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * The target window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetID.htm|WinGetID()},
@@ -13909,25 +13632,28 @@ ControlGetFocus([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => I
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}
  * @example <caption>  
  * </caption>
+ * ; Get HWND of the first button on the active window
+ * hwnd := ControlGetHwnd('Button1', 'A')
+ * ; Get HWND of the checkbox from an AHK GUI
+ * hwnd := ControlGetHwnd(GuiObj['my_checkbox'])
+ * ; Get HWND of Notepad's main Edit window
+ * hwnd := ControlGetHwnd('Edit1', 'ahk_class Notepad')
  */
 ControlGetHwnd(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetIndex.htm|`ControlGetIndex()`}  
- * Returns the index of the current selected entry/tab  
- * of a ListBox, ComboBox or Tab control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetIndex.htm|`ControlGetIndex()`} - Returns the index of the current selected entry/tab of a ListBox, ComboBox or Tab control.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -13936,10 +13662,10 @@ ControlGetHwnd(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='
  * @returns {(Integer)}  
  * The index of the tab or the ListBox/ComboBox selected entry.  
  * `0` if no tab/entry is selected.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * The window or control could not be found  
  * Or the control's class name does not contain "Combo", "List" or "Tab"
- * @throws {(OSError)}  
+ * @throws OSError  
  * Message could not be sent to the control  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlChooseIndex.htm|ControlChooseIndex()},
@@ -13954,26 +13680,35 @@ ControlGetHwnd(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle Window Matching},
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}
  * @example <caption>  
- * </caption>
+ * Get the index of a selected ListBox item.</caption>
+ * goo := Gui()
+ * goo.AddButton('xm ym vbtn_choice', 'get_choice')
+ * goo['btn_choice'].OnEvent('Click', get_choice)
+ * goo.AddListBox('x+5 ym vListBox Multi', ['Alpha', 'Bravo', 'Charlie'])
+ * goo['ListBox'].Choose(2)
+ * goo.Show('h100')
+ * 
+ * get_choice(control, info) {
+ *     Try MsgBox('Index position: ' ControlGetIndex(control.gui['ListBox']))
+ *     catch
+ *         MsgBox('No entry selected.')
+ * }
  */
 ControlGetIndex(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetItems.htm|`ControlGetItems()`}  
- * Returns an array of items/rows from a  
- * ListBox, ComboBox, or DropDownList.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetItems.htm|`ControlGetItems()`} - Returns an array of items/rows from a  ListBox, ComboBox, or DropDownList.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -13981,7 +13716,7 @@ ControlGetIndex(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=
  * Use WindowSpy to view window text.
  * @returns {(Array)}  
  * An array containing the text of each item or row.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * The window or control could not be found  
  * Or the control's class name does not contain "Combo" or "List"  
  * @see 
@@ -13999,8 +13734,7 @@ ControlGetIndex(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=
 ControlGetItems(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Array
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetPos.htm|`ControlGetPos()`}  
- * Retrieves the position and size of a control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetPos.htm|`ControlGetPos()`} - Retrieves the position and size of a control.  
  * @param {(VarRef)} [OutX]  
  * The x coordinate of the control's upper left corner.  
  * Coordinates are relative to the {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm#Client|client area}.  
@@ -14012,18 +13746,17 @@ ControlGetItems(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=
  * @param {(VarRef)} [OutHeight]  
  * Height of the control in pixels.  
  * @param {(String|Integer|Object)} [Control]  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * If omitted, the main window is targeted.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -14031,7 +13764,7 @@ ControlGetItems(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * The window or control could not be found.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlMove.htm|ControlMove()},
@@ -14048,27 +13781,25 @@ ControlGetItems(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=
 ControlGetPos([&OutX, &OutY, &OutWidth, &OutHeight, Control:=unset, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetStyle.htm|`ControlGetStyle()`}  
- * Gets a conrol's style number.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetStyle.htm|`ControlGetStyle()`} - Gets a conrol's style number.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
  * Text that must not appear in the window.  
  * Use WindowSpy to view window text.
  * @returns {{Integer}} The controls' style number.
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlSetStyle.htm|ControlSetStyle()},
@@ -14086,27 +13817,25 @@ ControlGetPos([&OutX, &OutY, &OutWidth, &OutHeight, Control:=unset, WinTitle:=''
 ControlGetStyle(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetStyle.htm|`ControlGetExStyle()`}  
- * Gets a conrol's extended style number.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetStyle.htm|`ControlGetExStyle()`} - Gets a conrol's extended style number.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
  * Text that must not appear in the window.  
  * Use WindowSpy to view window text.
  * @returns {{Integer}} The controls' style number.
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlSetStyle.htm|ControlSetExStyle()},
@@ -14124,20 +13853,18 @@ ControlGetStyle(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=
 ControlGetExStyle(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetText.htm|`ControlGetText()`}  
- * Retrieves text from a control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetText.htm|`ControlGetText()`} - Retrieves text from a control.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -14160,27 +13887,25 @@ ControlGetExStyle(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
 ControlGetText(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetVisible.htm|`ControlGetVisible()`}  
- * Returns a non-zero value if the specified control is visible.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlGetVisible.htm|`ControlGetVisible()`} - Returns a non-zero value if the specified control is visible.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
  * Text that must not appear in the window.  
  * Use WindowSpy to view window text.
  * @returns {{Boolean}} `1` if control is visible, otherwise `0`
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * The window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlHide.htm|ControlHide()},
@@ -14198,20 +13923,18 @@ ControlGetText(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='
 ControlGetVisible(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlHide.htm|`ControlHide()`}  
- * Hides the specified control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlHide.htm|`ControlHide()`} - Hides the specified control.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -14219,7 +13942,7 @@ ControlGetVisible(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * The window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlShow.htm|ControlShow()},
@@ -14238,20 +13961,18 @@ ControlGetVisible(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
 ControlHide(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlHideDropDown.htm|`ControlHideDropDown()`}  
- * Hides the drop-down list of a ComboBox control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlHideDropDown.htm|`ControlHideDropDown()`} - Hides the drop-down list of a ComboBox control.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -14259,9 +13980,9 @@ ControlHide(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=''])
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * The window or control could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Message could not be sent to the control
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlShowDropDown.htm|ControlShowDropDown()},
@@ -14277,8 +13998,7 @@ ControlHide(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=''])
 ControlHideDropDown(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlMove.htm|`ControlMove()`}  
- * Moves or resizes a control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlMove.htm|`ControlMove()`} - Moves or resizes a control.  
  * @param {(Integer)} [X]  
  * The new x coordinate of the control's upper left corner.  
  * Coordinates are relative to the {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm#Client|client area}.  
@@ -14290,17 +14010,16 @@ ControlHideDropDown(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * @param {(Integer)} [Height]  
  * The new height of the control.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -14308,9 +14027,9 @@ ControlHideDropDown(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Control's current position could not be determined  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetPos.htm|ControlGetPos()},
@@ -14328,24 +14047,22 @@ ControlHideDropDown(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
 ControlMove([X, Y, Width, Height, Control, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlSend.htm|`ControlSend()`}  
- * Sends simulated keystrokes to a window or control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlSend.htm|`ControlSend()`} - Sends simulated keystrokes to a window or control.  
  * @param {(String)} Keys  
  * The keystrokes to send to the specified control.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Send.htm|Send()} syntax is used, including {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#Raw|Raw}, {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#Text|Text}, and {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#Blind|Blind} modes.
  * @param {(String|Integer|Object)} [Control]  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * If omitted, the main window is targeted.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -14353,7 +14070,7 @@ ControlMove([X, Y, Width, Height, Control, WinTitle:='', WinText:='', NoWinTitle
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SetKeyDelay.htm|SetKeyDelay()},
@@ -14372,25 +14089,23 @@ ControlMove([X, Y, Width, Height, Control, WinTitle:='', WinText:='', NoWinTitle
 ControlSend(Keys [,Control:=unset, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlSend.htm|`ControlSendText()`}  
- * Sends simulated text to a window or control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlSend.htm|`ControlSendText()`} - Sends simulated text to a window or control.  
  * Keystrokes are sent explicitly because [`{Text}` mode](https://www.autohotkey.com/docs/v2/lib/Send.htm#Text) is enforced.  
  * @param {(String)} Keys  
  * The keystrokes to send to the specified control.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Send.htm|Send()} syntax is not supported due to {Text} mode being enforced.  
  * @param {(String|Integer|Object)} [Control]  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * If omitted, the main window is targeted.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -14398,7 +14113,7 @@ ControlSend(Keys [,Control:=unset, WinTitle:='', WinText:='', NoWinTitle:='', No
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SetKeyDelay.htm|SetKeyDelay()},
@@ -14417,8 +14132,7 @@ ControlSend(Keys [,Control:=unset, WinTitle:='', WinText:='', NoWinTitle:='', No
 ControlSendText(Keys [,Control:=unset, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlSetChecked.htm|`ControlSetChecked()`}  
- * Turns on/checks or  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlSetChecked.htm|`ControlSetChecked()`} - Turns on/checks or  
  * turns off/unchecks a checkbox or radio button.  
  * @param {(Integer)} NewSetting  
  * Sets new checkbox/radio state.  
@@ -14426,17 +14140,16 @@ ControlSendText(Keys [,Control:=unset, WinTitle:='', WinText:='', NoWinTitle:=''
  * - `0` = Turn off/uncheck
  * - `-1` = Toggle/opposite of current state
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -14444,9 +14157,9 @@ ControlSendText(Keys [,Control:=unset, WinTitle:='', WinText:='', NoWinTitle:=''
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * A message could not be sent to the control
  * @see 
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetChecked.htm|ControlGetChecked()},
@@ -14463,25 +14176,23 @@ ControlSendText(Keys [,Control:=unset, WinTitle:='', WinText:='', NoWinTitle:=''
 ControlSetChecked(NewSetting, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlSetEnabled.htm|`ControlSetEnabled()`}  
- * Enables or disables the specified control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlSetEnabled.htm|`ControlSetEnabled()`} - Enables or disables the specified control.  
  * @param {(Integer)} NewSetting  
  * Sets new checkbox/radio state.  
  * - `1` = Turn on/enable
  * - `0` = Turn off/disable
  * - `-1` = Toggle/opposite of current state
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -14489,7 +14200,7 @@ ControlSetChecked(NewSetting, Control [,WinTitle:='', WinText:='', NoWinTitle:='
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetEnabled.htm|ControlGetEnabled()},
@@ -14507,8 +14218,7 @@ ControlSetChecked(NewSetting, Control [,WinTitle:='', WinText:='', NoWinTitle:='
 ControlSetEnabled(NewSetting, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlSetStyle.htm|`ControlSetStyle()`}  
- * Changes the style of the specified control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlSetStyle.htm|`ControlSetStyle()`} - Changes the style of the specified control.  
  * @param {(Integer|String)} Value  
  * Pass a positive integer to completely  
  * overwrite/set the window's style. {@link https://www.autohotkey.com/docs/v2/misc/Styles.htm|Style Table}.
@@ -14516,17 +14226,16 @@ ControlSetEnabled(NewSetting, Control [,WinTitle:='', WinText:='', NoWinTitle:='
  * - `-` Remove: '-0x80' = `NewStyle := CurrentStyle & ~Value`
  * - `^` Toggle: '^0x80' = `NewStyle := CurrentStyle ^ Value`
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -14534,9 +14243,9 @@ ControlSetEnabled(NewSetting, Control [,WinTitle:='', WinText:='', NoWinTitle:='
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * The style could not be changed  
  * Partial change is considered a success.
  * @see  
@@ -14555,8 +14264,7 @@ ControlSetEnabled(NewSetting, Control [,WinTitle:='', WinText:='', NoWinTitle:='
 ControlSetStyle(Value, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlSetStyle.htm|`ControlSetExStyle()`}  
- * Changes the extended style of the specified control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlSetStyle.htm|`ControlSetExStyle()`} - Changes the extended style of the specified control.  
  * @param {(Integer|String)} Value  
  * Pass a positive integer to completely  
  * overwrite/set the window's style. {@link https://www.autohotkey.com/docs/v2/misc/Styles.htm|Style Table}.
@@ -14564,17 +14272,16 @@ ControlSetStyle(Value, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWi
  * - `-` Remove: '-0x80' = `NewStyle := CurrentStyle & ~Value`
  * - `^` Toggle: '^0x80' = `NewStyle := CurrentStyle ^ Value`
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -14582,9 +14289,9 @@ ControlSetStyle(Value, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWi
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * The style could not be changed  
  * Partial change is considered a success.
  * @see  
@@ -14603,23 +14310,21 @@ ControlSetStyle(Value, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWi
 ControlSetExStyle(Value, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlSetText.htm|`ControlSetText()`}  
- * Changes the text of a control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlSetText.htm|`ControlSetText()`} - Changes the text of a control.  
  * @param {(String)} NewText  
  * Text to assign to the control.  
  * A blank line can be used to clear the control.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -14627,7 +14332,7 @@ ControlSetExStyle(Value, Control [,WinTitle:='', WinText:='', NoWinTitle:='', No
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SetControlDelay.htm|SetControlDelay()},
@@ -14644,20 +14349,18 @@ ControlSetExStyle(Value, Control [,WinTitle:='', WinText:='', NoWinTitle:='', No
 ControlSetText(NewText, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlShow.htm|`ControlShow()`}  
- * Shows the specified control if it was previously hidden.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlShow.htm|`ControlShow()`} - Shows the specified control if it was previously hidden.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -14665,7 +14368,7 @@ ControlSetText(NewText, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoW
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlHide.htm|ControlHide()},
@@ -14684,20 +14387,18 @@ ControlSetText(NewText, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoW
 ControlShow(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlShowDropDown.htm|`ControlShowDropDown()`}  
- * Shows the drop-down list of a ComboBox control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ControlShowDropDown.htm|`ControlShowDropDown()`} - Shows the drop-down list of a ComboBox control.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -14705,9 +14406,9 @@ ControlShow(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=''])
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Message could not be sent to the control
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlHideDropDown.htm|ControlHideDropDown()}
@@ -14723,8 +14424,7 @@ ControlShow(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=''])
 ControlShowDropDown(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm|`CoordMode()`}  
- * Determines where x0/y0 starts for various  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm|`CoordMode()`} - Determines where x0/y0 starts for various  
  * built-in functions. Relative to Client, Window, or Screen.  
  * {@link https://i.imgur.com/bZXILwM.png|Image showing each coordmode x0 y0 start point}  
  * Orange is screen, blue is window, green is client area
@@ -14765,8 +14465,7 @@ ControlShowDropDown(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
 CoordMode(TargetType [,RelativeTo:='Screen']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Cos|`Cos()`}  
- * Returns the trigonometric cosine of the number.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Cos|`Cos()`} - Returns the trigonometric cosine of the number.  
  * Convert radians to degrees: `Value * 180/pi` (180/pi = ~57.29578) 
  * Convert degrees to radians: `Value * pi/180` (pi/180 = ~0.01745329252)
  * @param {(Number)} Num  
@@ -14781,8 +14480,7 @@ CoordMode(TargetType [,RelativeTo:='Screen']) => String
 Cos(Num) => Float
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Critical.htm|`Critical()`}  
- * Enables or disables {@link https://www.autohotkey.com/docs/v2/misc/Threads.htm|current thread}  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Critical.htm|`Critical()`} - Enables or disables {@link https://www.autohotkey.com/docs/v2/misc/Threads.htm|current thread}  
  * the ability to interrupt other threads.
  * @param {(String)} [Setting]  
  * New critical setting:  
@@ -14815,8 +14513,7 @@ Cos(Num) => Float
 Critical([Setting:='On']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DateAdd.htm|`DateAdd()`}  
- * Adds or subtracts time from a date-time value.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DateAdd.htm|`DateAdd()`} - Adds or subtracts time from a date-time value.  
  * @param {(String)} DateTime  
  * A date-time stamp in the {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|YYYYMMDDHH24MISS} format.
  * @param {(Number)} Time  
@@ -14829,7 +14526,7 @@ Critical([Setting:='On']) => Integer
  * - `D` / `Days`  
  * @returns {(String)}  
  * The `DateTime` after alteration in {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|YYYYMMDDHH24MISS} format.  
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * `DateTime` is invalid or prior to 1601  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/DateDiff.htm|DateDiff()},
@@ -14841,8 +14538,7 @@ Critical([Setting:='On']) => Integer
 DateAdd(DateTime, Time, TimeUnits) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DateDiff.htm|`DateDiff()`}  
- * Compares two {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|date-time values} and returns the difference.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DateDiff.htm|`DateDiff()`} - Compares two {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|date-time values} and returns the difference.  
  * Values are always rounded down to the nearest integer.  
  * For higher precision, use `Seconds` and divide by 60/3600/86400 for minutes/hours/days (respectively).  
  * @param {(String)} [DateTime1]  
@@ -14860,7 +14556,7 @@ DateAdd(DateTime, Time, TimeUnits) => String
  * @returns {(Integer)}  
  * Difference between the two timestamps in the units requested.  
  * The difference is negative if DateTime1 is earlier than DateTime2.  
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * If a date-time stamp is invalid or year is prior to 1601  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/DateAdd.htm|DateAdd()},
@@ -14872,8 +14568,7 @@ DateAdd(DateTime, Time, TimeUnits) => String
 DateDiff(DateTime1, DateTime2, TimeUnits) => Integer 
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DetectHiddenText.htm|`DetectHiddenText()`}  
- * Determines whether invisible text in a window is "seen" for the purpose of finding the window. This affects windowing functions such as WinExist and WinActivate.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DetectHiddenText.htm|`DetectHiddenText()`} - Determines whether invisible text in a window is "seen" for the purpose of finding the window. This affects windowing functions such as WinExist and WinActivate.  
  * By default, this is on.  
  * @param {(Boolean)} NewSetting 
  * - `1` = Hidden text detected.  
@@ -14888,8 +14583,7 @@ DateDiff(DateTime1, DateTime2, TimeUnits) => Integer
 DetectHiddenText(NewSetting) => Integer 
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DetectHiddenWindows.htm|`DetectHiddenWindows()`}  
- * Determines whether invisible windows are "seen" by the script.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DetectHiddenWindows.htm|`DetectHiddenWindows()`} - Determines whether invisible windows are "seen" by the script.  
  * By default, this is off.  
  * @param {(Boolean)} NewSetting 
  * - `1` = Hidden windows are detected.  
@@ -14904,8 +14598,7 @@ DetectHiddenText(NewSetting) => Integer
 DetectHiddenWindows(NewSetting) => Integer 
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DirCopy.htm|`DirCopy()`}  
- * Copies a folder along with all its sub-folders and files (similar to xcopy).  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DirCopy.htm|`DirCopy()`} - Copies a folder along with all its sub-folders and files (similar to xcopy).  
  * @param {(String)} Source  
  * Path to source directory.  
  * If a full path isn't used, Source is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
@@ -14918,7 +14611,7 @@ DetectHiddenWindows(NewSetting) => Integer
  * - `1` = Overwrite existing files.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * An exception is thrown if any error occurs  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/DirMove.htm|DirMove()},
@@ -14934,14 +14627,13 @@ DetectHiddenWindows(NewSetting) => Integer
 DirCopy(Source, Dest [,Overwrite:=0]) => EmptyString 
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DirCreate.htm|`DirCreate()`}  
- * Creates a folder.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DirCreate.htm|`DirCreate()`} - Creates a folder.  
  * @param {(String)} DirName  
  * Path to directory.  
  * If a full path isn't used, DirName is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Any errors occur.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
@@ -14952,8 +14644,7 @@ DirCopy(Source, Dest [,Overwrite:=0]) => EmptyString
 DirCreate(DirName) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DirDelete.htm|`DirDelete()`}  
- * Deletes a folder.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DirDelete.htm|`DirDelete()`} - Deletes a folder.  
  * @param {(String)} DirName  
  * Path to directory.  
  * If a full path isn't used, DirName is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
@@ -14964,7 +14655,7 @@ DirCreate(DirName) => EmptyString
  * - `0` = If directory contains anything (files or sub-directories), directory is not deleted.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Any errors occur.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
@@ -14976,8 +14667,7 @@ DirCreate(DirName) => EmptyString
 DirDelete(DirName [,Recurse:=0]) => String 
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DirExist.htm|`DirExist()`}  
- * Checks for the existence of a folder and returns its attributes.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DirExist.htm|`DirExist()`} - Checks for the existence of a folder and returns its attributes.  
  * @param {(String)} FilePattern  
  * Directory path or name to check.  
  * If a full path isn't used, FilePattern is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
@@ -15001,8 +14691,7 @@ DirDelete(DirName [,Recurse:=0]) => String
 DirExist(FilePattern) => String 
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DirMove.htm|`DirMove()`}  
- * Moves a folder along with all its sub-folders and files.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DirMove.htm|`DirMove()`} - Moves a folder along with all its sub-folders and files.  
  * Can also be used to rename a folder.  
  * @param {(String)} Source  
  * Path to source directory.  
@@ -15023,7 +14712,7 @@ DirExist(FilePattern) => String
  *   The function fails if Dest already exists.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * An exception is thrown if any error occurs.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/DirCopy.htm|DirCopy()},
@@ -15039,8 +14728,7 @@ DirExist(FilePattern) => String
 DirMove(Source, Dest [,OverwriteOrRename:=0]) => EmptyString 
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DirSelect.htm|`DirSelect()`}  
- * Displays a standard dialog that allows the user to select a folder.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DirSelect.htm|`DirSelect()`} - Displays a standard dialog that allows the user to select a folder.  
  * @param {(String)} [StartingFolder]  
  * Directory to start in.  
  * The path to a directory. `C:\Some\Path`  
@@ -15077,8 +14765,7 @@ DirMove(Source, Dest [,OverwriteOrRename:=0]) => EmptyString
 DirSelect([StartingFolder:=A_MyDocuments, Options:=1, Prompt:='Select Folder - ' A_ScriptName]) => String 
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm|`DllCall()`}  
- * Calls a function inside a DLL, such as a standard Windows API function.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm|`DllCall()`} - Calls a function inside a DLL, such as a standard Windows API function.  
  * @param {(String|Integer|Object)} DLLNameOrPath  
  * Path to DLL or EXE, backslash, and function name.  
  * If a full path isn't used, DLLNameOrPath is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
@@ -15109,24 +14796,24 @@ DirSelect([StartingFolder:=A_MyDocuments, Options:=1, Prompt:='Select Folder - '
  * If omitted, return type defaults to {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#HRESULT|HRESULT}  
  * If there is no return type (such as C's `void`), specify `Int` or another numeric type.  
  * `Cdecl` is supported but is generally not used by COM interface methods.
- * @throws {(PropertyError)}  
+ * @throws PropertyError  
  * An object passed to DLLNameOrPath is missing or has an invalid `Ptr` property  
- * @throws {(OSError)}  
+ * @throws OSError  
  * {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#HRESULT|HRESULT} type used and function {@link https://learn.microsoft.com/windows/win32/api/winerror/nf-winerror-failed|returned error}.  
- * @throws {(TypeError)}  
+ * @throws TypeError  
  * The DLLNameOrPath parameter is a floating point number. A string or positive integer is required.  
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * The {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#types|return type} or one of the specified {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#types|arg types} is invalid.  
- * @throws {(TypeError)}  
+ * @throws TypeError  
  * An argument was passed a value of an unexpected type.  
- * @throws {(Error)}  
+ * @throws Error  
  * The specified DllFile could not be accessed or loaded.  
- * @throws {(Error)}  
+ * @throws Error  
  * The specified function could not be found inside the DLL.  
- * @throws {(Error)}  
+ * @throws Error  
  * The function was called but it aborted with a fatal exception.  
  * The {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#Extra|Error.Extra} property contains the exception code.  
- * @throws {(Error)}  
+ * @throws Error  
  * Too many or too few arguments were passed to the function.  
  * The {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#Extra|Error.Extra} property contains the number of bytes the data type was off by.  
  * @returns {(Primitive)}  
@@ -15151,8 +14838,7 @@ DirSelect([StartingFolder:=A_MyDocuments, Options:=1, Prompt:='Select Folder - '
 DllCall(DLLNameOrPath [,Type1, Arg1, Type_Arg_Pairs*, ReturnType:='Int']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Download.htm|`Download()`}  
- * Downloads a file from the Internet.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Download.htm|`Download()`} - Downloads a file from the Internet.  
  * Any proxies configured for IE are used.  
  * @param {(String)} URL  
  * URL to download.  
@@ -15163,7 +14849,7 @@ DllCall(DLLNameOrPath [,Type1, Arg1, Type_Arg_Pairs*, ReturnType:='Int']) => Str
  * To download to a variable, see {@link https://www.autohotkey.com/docs/v2/lib/Download.htm#ExWHR|this example}.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * An exception is thrown on failure.  
  * Note that a download may seem successful only because an "error page" is returned.  
  * That error page is what gets saved.  
@@ -15176,8 +14862,7 @@ DllCall(DLLNameOrPath [,Type1, Arg1, Type_Arg_Pairs*, ReturnType:='Int']) => Str
 Download(URL, SaveFile) => String 
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveEject.htm|`DriveEject()`}  
- * Ejects the tray of the specified CD/DVD drive, or ejects a removable drive.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveEject.htm|`DriveEject()`} - Ejects the tray of the specified CD/DVD drive, or ejects a removable drive.  
  * This function waits fo the ejection or retraction to completel before continuing.  
  * @param {(String)} [Drive]  
  * The path to an optical drive.  
@@ -15185,7 +14870,7 @@ Download(URL, SaveFile) => String
  * Device paths can be used and gotten from {@link https://learn.microsoft.com/windows-server/administration/windows-commands/mountvol|mountvol}. `\\?\Volume{...}`
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * No drive was found  
  * The underlying system functions do not always report failure.  
  * An exception may or may not be thrown.  
@@ -15198,14 +14883,13 @@ Download(URL, SaveFile) => String
 DriveEject([Drive:=unset]) => EmptyString 
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveGetCapacity.htm|`DriveGetCapacity()`}  
- * Returns the total capacity of the drive which contains the specified path, in megabytes.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveGetCapacity.htm|`DriveGetCapacity()`} - Returns the total capacity of the drive which contains the specified path, in megabytes.  
  * @param {(String)} Path  
  * Any path contained by the drive.  
  * May work with UNC paths and mapped drives.  
  * @returns {(Integer)}  
  * Total capacity of the drive in megabytes.  
- * @throws {(Error)}  
+ * @throws Error  
  * An exception is thrown on failure.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions},
@@ -15216,14 +14900,13 @@ DriveEject([Drive:=unset]) => EmptyString
 DriveGetCapacity(Path) => Integer 
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveGetFileSystem.htm|`DriveGetFileSystem()`}  
- * Returns the type of the specified drive's file system.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveGetFileSystem.htm|`DriveGetFileSystem()`} - Returns the type of the specified drive's file system.  
  * @param {(String)} Drive  
  * Drive letter followed by a colon. Backslash is optional.  
  * @returns {(String)}  
  * The file system type for the provided Drive.  
  * Including (but not limited to): `NTFS`, `HPFS`, `FAT32`, `FAT`, `CDFS`, `UDF`
- * @throws {(Error)}  
+ * @throws Error  
  * An exception is thrown on failure
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions}
@@ -15233,14 +14916,13 @@ DriveGetCapacity(Path) => Integer
 DriveGetFileSystem(Drive) => String 
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveGetLabel.htm|`DriveGetLabel()`}  
- * Returns the volume label of the specified drive.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveGetLabel.htm|`DriveGetLabel()`} - Returns the volume label of the specified drive.  
  * @param {(String)} Drive  
  * Drive letter followed by a colon. Backslash is optional.  
  * UNC names are allowed. `\srv1\dir1`  
  * @returns {(String)}  
  * - Volume name of Drive
- * @throws {(Error)}  
+ * @throws Error  
  * An exception is thrown on failure
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions},
@@ -15251,8 +14933,7 @@ DriveGetFileSystem(Drive) => String
 DriveGetLabel(drive) => String 
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveGetList.htm|`DriveGetList()`}  
- * Returns a string of letters.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveGetList.htm|`DriveGetList()`} - Returns a string of letters.  
  * There is no separators between characters.  
  * @param {(String)} [DriveType]  
  * Omit DriveType to retrieve all types.  
@@ -15275,15 +14956,14 @@ DriveGetLabel(drive) => String
 DriveGetList([DriveType:=unset]) => String 
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveGetSerial.htm|`DriveGetSerial()`}  
- * Returns the volume serial number of the specified drive.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveGetSerial.htm|`DriveGetSerial()`} - Returns the volume serial number of the specified drive.  
  * @param {(String)} Drive  
  * Drive letter followed by a colon. Backslash is optional.  
  * UNC names are allowed. `\srv1\dir1`  
  * @returns {(Integer)}  
  * Drive's volume serial.  
  * To convert to hex, use {@link https://www.autohotkey.com/docs/v2/lib/Format.htm|Format()}. See example below.  
- * @throws {(Error)}  
+ * @throws Error  
  * An exception is thrown on failure
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions},
@@ -15296,14 +14976,13 @@ DriveGetList([DriveType:=unset]) => String
 DriveGetSerial(Drive) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveGetSpaceFree.htm|`DriveGetSpaceFree()`}  
- * Returns the free disk space of the drive which contains the specified path, in megabytes.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveGetSpaceFree.htm|`DriveGetSpaceFree()`} - Returns the free disk space of the drive which contains the specified path, in megabytes.  
  * @param {(String)} Path  
  * Any path contained by the drive.  
  * May work with UNC paths and mapped drives.  
  * @returns {(Integer)}  
  * The free amount of disk space on the drive Path belongs to in megabytes.  
- * @throws {(Error)}  
+ * @throws Error  
  * An exception is thrown on failure  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions},
@@ -15314,8 +14993,7 @@ DriveGetSerial(Drive) => Integer
 DriveGetSpaceFree(Path) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveGetStatus.htm|`DriveGetStatus()`}  
- * Returns the status of the drive which contains the specified path.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveGetStatus.htm|`DriveGetStatus()`} - Returns the status of the drive which contains the specified path.  
  * @param {(String)} Path  
  * Any path contained by the drive.  
  * May work with UNC paths and mapped drives.  
@@ -15325,7 +15003,7 @@ DriveGetSpaceFree(Path) => Integer
  * - `NotReady` = Typical for removable drives that don't contain media.
  * - `Unknown` = Might indicate unformatted/RAW file system.
  * - `Invalid` = Path does not exist or is a network drive that is presently inaccessible, etc.
- * @throws {(Error)}  
+ * @throws Error  
  * An exception is thrown on failure  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions}
@@ -15335,8 +15013,7 @@ DriveGetSpaceFree(Path) => Integer
 DriveGetStatus(Path) => String 
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveGetStatusCD.htm|`DriveGetStatusCD()`}  
- * Returns the media status of the specified CD/DVD drive.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveGetStatusCD.htm|`DriveGetStatusCD()`} - Returns the media status of the specified CD/DVD drive.  
  * @param {(String)} [Drive]  
  * Drive letter followed by a colon.  
  * If omitted, the default CD/DVD drive will be used.  
@@ -15349,7 +15026,7 @@ DriveGetStatus(Path) => String
  * - `paused` = The previously playing audio or video is now paused.  
  * - `seeking` = The drive is seeking.  
  * - `stopped` = The drive contains a CD but is not currently accessing it.  
- * @throws {(Error)}  
+ * @throws Error  
  * An exception is thrown on failure  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions},
@@ -15360,8 +15037,7 @@ DriveGetStatus(Path) => String
 DriveGetStatusCD([Drive:=unset]) => String 
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveGetType.htm|`DriveGetType()`}  
- * Returns the type of the drive which contains the specified path.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveGetType.htm|`DriveGetType()`} - Returns the type of the drive which contains the specified path.  
  * @param {(String)} Path  
  * Any path contained by the drive.  
  * May work with UNC paths and mapped drives.  
@@ -15374,7 +15050,7 @@ DriveGetStatusCD([Drive:=unset]) => String
  * - `Network`
  * - `CDROM`
  * - `RAMDisk`
- * @throws {(Error)}  
+ * @throws Error  
  * An exception is thrown on failure  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions},
@@ -15384,15 +15060,14 @@ DriveGetStatusCD([Drive:=unset]) => String
 DriveGetType(Path) => String 
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveLock.htm|`DriveLock()`}  
- * Prevents the eject feature of the specified drive from working.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveLock.htm|`DriveLock()`} - Prevents the eject feature of the specified drive from working.  
  * To unlock a drive, call {@link https://www.autohotkey.com/docs/v2/lib/DriveUnlock.htm|DriveUnlock()}.  
  * @param {(String)} Drive  
  * Drive letter followed by a colon. Backslash is optional.  
  * May work with UNC paths and mapped drives.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * Drive does not exist or does not support the locking feature  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions},
@@ -15403,8 +15078,7 @@ DriveGetType(Path) => String
 DriveLock(Drive) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveEject.htm|`DriveEject()`}  
- * Ejects the tray of the specified CD/DVD drive, or ejects a removable drive.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveEject.htm|`DriveEject()`} - Ejects the tray of the specified CD/DVD drive, or ejects a removable drive.  
  * This function waits fo the ejection or retraction to completel before continuing.  
  * @param {(String)} [Drive]  
  * The path to an optical drive.  
@@ -15412,7 +15086,7 @@ DriveLock(Drive) => EmptyString
  * Device paths can be used and gotten from {@link https://learn.microsoft.com/windows-server/administration/windows-commands/mountvol|mountvol}. `\\?\Volume{...}`
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * No drive was found  
  * The underlying system functions do not always report failure.  
  * An exception may or may not be thrown.  
@@ -15425,8 +15099,7 @@ DriveLock(Drive) => EmptyString
 DriveRetract([Drive:=unset]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveSetLabel.htm|`DriveSetLabel()`}  
- * Changes the volume label of the specified drive.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveSetLabel.htm|`DriveSetLabel()`} - Changes the volume label of the specified drive.  
  * @param {(String)} Drive  
  * Drive letter followed by a colon. Backslash is optional.  
  * May work with UNC paths and mapped drives.  
@@ -15435,7 +15108,7 @@ DriveRetract([Drive:=unset]) => EmptyString
  * If omitted, drive label is blanked.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * An exception is thrown on failure  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions},
@@ -15446,15 +15119,14 @@ DriveRetract([Drive:=unset]) => EmptyString
 DriveSetLabel(Drive [,NewLabel:=unset]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveUnlock.htm|`DriveUnlock()`}  
- * Restores the eject feature of the specified drive.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/DriveUnlock.htm|`DriveUnlock()`} - Restores the eject feature of the specified drive.  
  * This may need to be called multiple times if the drive was locked multiple times.  
  * @param {(String)} Drive  
  * Drive letter followed by a colon. Backslash is optional.  
  * May work with UNC paths and mapped drives.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * An exception is thrown on failure  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions},  
@@ -15465,8 +15137,7 @@ DriveSetLabel(Drive [,NewLabel:=unset]) => EmptyString
 DriveUnlock(Drive) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Edit.htm|`Edit()`}  
- * Opens the current script for editing in the default editor.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Edit.htm|`Edit()`} - Opens the current script for editing in the default editor.  
  * Uses the associated "edit" verb in the registry. Notepad by default.  
  * Registry location: `HKCU\Software\Classes\AutoHotkeyScript\shell\edit\command`  
  * @returns {(String)}  
@@ -15481,20 +15152,18 @@ DriveUnlock(Drive) => EmptyString
 Edit() => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentCol.htm|`EditGetCurrentCol()`}  
- * Returns the column number in an Edit control where the caret (text insertion point) resides.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentCol.htm|`EditGetCurrentCol()`} - Returns the column number in an Edit control where the caret (text insertion point) resides.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title must not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -15502,7 +15171,7 @@ Edit() => EmptyString
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * The column number in the Edit control where the caret resides.  
- * @throws {(Error)}  
+ * @throws Error  
  * Window or control could not be found
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentLine.htm|EditGetCurrentLine()},
@@ -15522,19 +15191,17 @@ Edit() => EmptyString
 EditGetCurrentCol(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentLine.htm|`EditGetCurrentLine()`}  
- * Returns the line number in an Edit control where the caret (text insert point) resides.  
-* @param {(String|Integer|Object)} Control - A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentLine.htm|`EditGetCurrentLine()`} - Returns the line number in an Edit control where the caret (text insert point) resides.  
+* @param {(String|Integer|Object)} Control - A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -15542,7 +15209,7 @@ EditGetCurrentCol(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * The line number in the Edit control where the caret resides.  
- * @throws {(Error)}  
+ * @throws Error  
  * Window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentCol.htm|EditGetCurrentCol()},
@@ -15562,22 +15229,20 @@ EditGetCurrentCol(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
 EditGetCurrentLine(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/EditGetLine.htm|`EditGetLine()`}  
- * Returns the text of the specified line in an Edit control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/EditGetLine.htm|`EditGetLine()`} - Returns the text of the specified line in an Edit control.  
  * @param {(Integer)} N  
  * Number of the line to get.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -15586,11 +15251,11 @@ EditGetCurrentLine(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinTex
  * @returns {(String)}  
  * Text from line N of the Edit control.  
  * May end in `` `r `` or `` `r`n ``, depending on the control.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * N is out of range or otherwise invalid  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Message could not be sent to the control  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentCol.htm|EditGetCurrentCol()},
@@ -15610,20 +15275,18 @@ EditGetCurrentLine(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinTex
 EditGetLine(N, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/EditGetLineCount.htm|`EditGetLineCount()`}  
- * Returns the number of lines in an Edit control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/EditGetLineCount.htm|`EditGetLineCount()`} - Returns the number of lines in an Edit control.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -15632,9 +15295,9 @@ EditGetLine(N, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='
  * @returns {(Integer)}  
  * The number of lines in an Edit control.  
  * All Edit controls have at least 1 line, even if it has no text. 
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Message could not be sent to the control  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentCol.htm|EditGetCurrentCol()},
@@ -15654,20 +15317,18 @@ EditGetLine(N, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='
 EditGetLineCount(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/EditGetSelectedText.htm|`EditGetSelectedText()`}  
- * Returns the selected text in an Edit control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/EditGetSelectedText.htm|`EditGetSelectedText()`} - Returns the selected text in an Edit control.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -15676,9 +15337,9 @@ EditGetLineCount(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:
  * @returns {(String)}  
  * The selected text in the Edit control.  
  * An empty string is returned if no text is selected.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
- * @throws {(Error|OSError)}  
+ * @throws Error|OSError  
  * There was a problem retrieving the text  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentCol.htm|EditGetCurrentCol()},
@@ -15698,22 +15359,20 @@ EditGetLineCount(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:
 EditGetSelectedText(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/EditPaste.htm|`EditPaste()`}  
- * Pastes the specified string at the caret in an Edit control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/EditPaste.htm|`EditPaste()`} - Pastes the specified string at the caret in an Edit control.  
  * @param {(String)} Text  
  * String to paste into Edit control.  
  * @param {(String|Integer|Object)} Control  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -15721,9 +15380,9 @@ EditGetSelectedText(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * A message could not be sent to the control  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlSetText.htm|ControlSetText()},
@@ -15739,8 +15398,7 @@ EditGetSelectedText(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
 EditPaste(Text, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/EnvGet.htm|`EnvGet()`}  
- * Retrieves an environment variable.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/EnvGet.htm|`EnvGet()`} - Retrieves an environment variable.  
  * @param {(String)} EnvVar  
  * Name of the environment variable.
  * @returns {(String)}  
@@ -15756,8 +15414,7 @@ EditPaste(Text, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=
 EnvGet(EnvVar) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/EnvSet.htm|`EnvSet()`}  
- * Writes a value to a variable contained in the environment.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/EnvSet.htm|`EnvSet()`} - Writes a value to a variable contained in the environment.  
  * @param {(String)} EnvVar  
  * Name of the environment variable.  
  * @param {(String)} [Value]  
@@ -15765,7 +15422,7 @@ EnvGet(EnvVar) => String
  * Omitting value deletes the variable.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Any failure  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/EnvGet.htm|EnvGet()},
@@ -15777,8 +15434,7 @@ EnvGet(EnvVar) => String
 EnvSet(EnvVar [,Value:=unset]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Exit.htm|`Exit()`}  
- * Exits the {@link https://www.autohotkey.com/docs/v2/misc/Threads.htm|current thread}.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Exit.htm|`Exit()`} - Exits the {@link https://www.autohotkey.com/docs/v2/misc/Threads.htm|current thread}.  
  * If the script isn't {@link https://www.autohotkey.com/docs/v2/lib/Persistent.htm|Persistent}, Exit() acts as {@link https://www.autohotkey.com/docs/v2/lib/ExitApp.htm|ExitApp()} as killing the thread also kills the script.  
  * @param {(Integer)} [ExitCode]  
  * Any integer between -2147483648 and 2147483647.  
@@ -15798,8 +15454,7 @@ EnvSet(EnvVar [,Value:=unset]) => String
 Exit([ExitCode:=0]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ExitApp.htm|`ExitApp()`}  
- * Terminates the script.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ExitApp.htm|`ExitApp()`} - Terminates the script.  
  * @param {(Integer)} [ExitCode]  
  * Any integer between -2147483648 and 2147483647.  
  * This code is accessible to any program that spawned the script.  
@@ -15815,8 +15470,7 @@ Exit([ExitCode:=0]) => EmptyString
 ExitApp([ExitCode:=0]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Exp|`Exp()`}  
- * Returns the result of raising e/Euler's number (2.71828182845905) to the Nth power.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Exp|`Exp()`} - Returns the result of raising e/Euler's number (2.71828182845905) to the Nth power.  
  * This is not for exponents. See the {@link https://www.autohotkey.com/docs/v2/Variables.htm#pow|`**` exponent operator}.  
  * @param {(Number)} N  
  * The power to raise e to.  
@@ -15829,8 +15483,7 @@ ExitApp([ExitCode:=0]) => String
 Exp(N) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileAppend.htm|`FileAppend()`}  
- * Writes text or binary data to the end of a file.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileAppend.htm|`FileAppend()`} - Writes text or binary data to the end of a file.  
  * File is created first if it does not exist.  
  * To overwrite a file, use {@link https://www.autohotkey.com/docs/v2/lib/FileDelete.htm|FileDelete()}.  
  * @param {(String|Object)} Text  
@@ -15858,7 +15511,7 @@ Exp(N) => String
  * - `` `n ``=  Inserts a carriage return `` `r `` before all linefeeds `` `n ``.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
@@ -15877,8 +15530,7 @@ Exp(N) => String
 FileAppend(Text [,Filename:=unset, Options:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileCopy.htm|`FileCopy()`}  
- * Copies one or more files.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileCopy.htm|`FileCopy()`} - Copies one or more files.  
  * @param {(String)} SourcePattern  
  * Name of a file, a folder, or a wildcard `*` pattern.  
  * If a full path isn't used, SourcePattern is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
@@ -15900,13 +15552,13 @@ FileAppend(Text [,Filename:=unset, Options:='']) => EmptyString
  * Other values are reserved for future use.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * If any files failed to be copied.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#Extra|Error.Extra} is set to the number of failures.  
- * @throws {(Error)}  
+ * @throws Error  
  * The specific file was not found.  
  * Patterns using broad matching with `?` and `*` do not error on match failure.  
- * @throws {(Error)}  
+ * @throws Error  
  * Copying a file over itself, even with a OverWrite set to 1.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileMove.htm|FileMove()},
@@ -15919,8 +15571,7 @@ FileAppend(Text [,Filename:=unset, Options:='']) => EmptyString
 FileCopy(SourcePattern, DestPattern [,Overwrite:=0]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileCreateShortcut.htm|`FileCreateShortcut()`}  
- * Creates a shortcut (.lnk) file.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileCreateShortcut.htm|`FileCreateShortcut()`} - Creates a shortcut (.lnk) file.  
  * @param {(String)} File  
  * File to create a shortcut for.  
  * File path might not be needed if file is part of the PATH {@link https://www.autohotkey.com/docs/v2/Concepts.htm#environment-variables|environment variable}.  
@@ -15952,7 +15603,7 @@ FileCopy(SourcePattern, DestPattern [,Overwrite:=0]) => EmptyString
  * - `7` = Minimized
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * Any failure.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileGetShortcut.htm|FileGetShortcut()},
@@ -15963,15 +15614,14 @@ FileCopy(SourcePattern, DestPattern [,Overwrite:=0]) => EmptyString
 FileCreateShortcut(File, LinkFile [,WorkingDir:=A_WorkingDir, Args:=unset, Description:='', IconFile:='', ShortcutKey:='', IconNumber:=1, RunState:=1]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileDelete.htm|`FileDelete()`}  
- * Deletes one or more files.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileDelete.htm|`FileDelete()`} - Deletes one or more files.  
  * To delete an entire folder/subfolders, use {@link https://www.autohotkey.com/docs/v2/lib/DirDelete.htm|DirDelete()}. 
  * @param {(String)} FilePattern  
  * Name of a file or a wildcard `*` pattern.  
  * If a full path isn't used, FilePattern is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * Any files failed to delete.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#Extra|Error.Extra} is set to the number of failures.  
  * Patterns using broad matching with `?` and `*` do not error on match failure.  
@@ -15986,8 +15636,7 @@ FileCreateShortcut(File, LinkFile [,WorkingDir:=A_WorkingDir, Args:=unset, Descr
 FileDelete(FilePattern) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileEncoding.htm|`FileEncoding()`}  
- * Sets the default encoding for {@link https://www.autohotkey.com/docs/v2/lib/FileRead.htm|FileRead()}, {@link https://www.autohotkey.com/docs/v2/lib/LoopRead.htm|Loop-Read}, {@link https://www.autohotkey.com/docs/v2/lib/FileAppend.htm|FileAppend()}, and {@link https://www.autohotkey.com/docs/v2/lib/FileOpen.htm|FileOpen()}.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileEncoding.htm|`FileEncoding()`} - Sets the default encoding for {@link https://www.autohotkey.com/docs/v2/lib/FileRead.htm|FileRead()}, {@link https://www.autohotkey.com/docs/v2/lib/LoopRead.htm|Loop-Read}, {@link https://www.autohotkey.com/docs/v2/lib/FileAppend.htm|FileAppend()}, and {@link https://www.autohotkey.com/docs/v2/lib/FileOpen.htm|FileOpen()}.  
  * @param {(String)} Encoding  
  * One of the following values:  
  * - `Encoding` = Any of the {@link https://www.autohotkey.com/docs/v2/lib/FileEncoding.htm#Parameters|FileEncoding()} names.
@@ -16013,8 +15662,7 @@ FileDelete(FilePattern) => EmptyString
 FileEncoding(Encoding) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileExist.htm|`FileExist()`}  
- * Checks for the existence of a file or folder and returns its attributes.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileExist.htm|`FileExist()`} - Checks for the existence of a file or folder and returns its attributes.  
  * @param {(String)} FilePattern  
  * The path, filename, or file pattern to check.  
  * If a full path isn't used, FilePattern is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
@@ -16042,8 +15690,7 @@ FileEncoding(Encoding) => String
 FileExist(FilePattern) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileInstall.htm|`FileInstall()`}  
- * Includes the specified file inside the {@link https://www.autohotkey.com/docs/v2/Scripts.htm#ahk2exe|compiled version} of the script.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileInstall.htm|`FileInstall()`} - Includes the specified file inside the {@link https://www.autohotkey.com/docs/v2/Scripts.htm#ahk2exe|compiled version} of the script.  
  * @param {(String)} Source  
  * Name of a single file to add to the EXE.  
  * Source must be a string, cannot be a variable of any type, and must be on the same line as the FileInstall() function.  
@@ -16060,9 +15707,9 @@ FileExist(FilePattern) => String
  * Other values are reserved for future use.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * An exception is thrown on failure  
- * @throws {(Error)}  
+ * @throws Error  
  * Any case where the file cannot be written to the destination  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileCopy.htm|FileCopy()},
@@ -16073,8 +15720,7 @@ FileExist(FilePattern) => String
 FileInstall(Source, Dest [,Overwrite:=0]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileGetAttrib.htm|`FileGetAttrib()`}  
- * Reports the attributes of a file or folder.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileGetAttrib.htm|`FileGetAttrib()`} - Reports the attributes of a file or folder.  
  * @param {(String)} [Filename]  
  * Name of the file to be appended.  
  * If a full path isn't used, Filename is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
@@ -16092,7 +15738,7 @@ FileInstall(Source, Dest [,Overwrite:=0]) => EmptyString
  * - `C` = Compressed  
  * - `T` = Temporary  
  * - `L` = REPARSE_POINT (typically a symbolic link)  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
@@ -16110,8 +15756,7 @@ FileInstall(Source, Dest [,Overwrite:=0]) => EmptyString
 FileGetAttrib([Filename]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileGetShortcut.htm|`FileGetShortcut()`}  
- * Retrieves information about a shortcut (.lnk) file, such as its target file.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileGetShortcut.htm|`FileGetShortcut()`} - Retrieves information about a shortcut (.lnk) file, such as its target file.  
  * @param {(VarRef)} LinkFile  
  * Name of the shortcut file to be analyzed. Include the `.lnk` ext.  
  * If a full path isn't used, LinkFile is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
@@ -16135,7 +15780,7 @@ FileGetAttrib([Filename]) => String
  * - `7` = Minimized
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileCreateShortcut.htm|FileCreateShortcut()},
@@ -16146,8 +15791,7 @@ FileGetAttrib([Filename]) => String
 FileGetShortcut(LinkFile [,&OutFile, &OutDir, &OutArgs, &OutDesc, &OutIcon, &OutIconNum, &OutState]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileGetSize.htm|`FileGetSize()`}  
- * Retrieves the size of a file.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileGetSize.htm|`FileGetSize()`} - Retrieves the size of a file.  
  * @param {(String)} [Filename]  
  * Name of the file to get the size of.  
  * If a full path isn't used, Filename is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
@@ -16159,7 +15803,7 @@ FileGetShortcut(LinkFile [,&OutFile, &OutDir, &OutArgs, &OutDesc, &OutIcon, &Out
  * - `M` = Megabytes
  * @returns {(Integer)}  
  * The size of the specified file, rounded down to the nearest whole number.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
@@ -16175,8 +15819,7 @@ FileGetShortcut(LinkFile [,&OutFile, &OutDir, &OutArgs, &OutDesc, &OutIcon, &Out
 FileGetSize([Filename:=unset, Units:='B']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileGetTime.htm|`FileGetTime()`}  
- * Retrieves the datetime stamp of a file or folder.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileGetTime.htm|`FileGetTime()`} - Retrieves the datetime stamp of a file or folder.  
  * @param {(String)} [Filename]  
  * Name of the file to get the size of.  
  * If a full path isn't used, Filename is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
@@ -16189,7 +15832,7 @@ FileGetSize([Filename:=unset, Units:='B']) => Integer
  * @returns {(String)}  
  * Get file time in {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|YYYYMMDDHH24MISS} format.  
  * Time is in local time, not UTC/GMT.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
@@ -16208,15 +15851,14 @@ FileGetSize([Filename:=unset, Units:='B']) => Integer
 FileGetTime([Filename:=unset, TimeType:='M']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileGetVersion.htm|`FileGetVersion()`}  
- * Retrieves the version of a file.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileGetVersion.htm|`FileGetVersion()`} - Retrieves the version of a file.  
  * @param {(String)} [Filename]  
  * Name of the file to get the version of.  
  * If a full path isn't used, this function uses the search sequence specified by the system {@link https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibrarya|LoadLibrary} function.  
  * FileName can be omitted if inside a {@link https://www.autohotkey.com/docs/v2/lib/LoopRead.htm|Loop-Files} that's using an {@link https://www.autohotkey.com/docs/v2/lib/LoopRead.htm#OutputFile|OutputFile}.  
  * @returns {(String)}  
  * Version number of the specified file
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
@@ -16232,8 +15874,7 @@ FileGetTime([Filename:=unset, TimeType:='M']) => String
 FileGetVersion([Filename]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileMove.htm|`FileMove()`}  
- * Moves or renames one or more files.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileMove.htm|`FileMove()`} - Moves or renames one or more files.  
  * @param {(String)} SourcePattern  
  * Name of a file or a wildcard `*` pattern.  
  * If a full path isn't used, SourcePattern is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
@@ -16253,7 +15894,7 @@ FileGetVersion([Filename]) => String
  * Other values are reserved for future use.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * If any files failed to be moved.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#Extra|Error.Extra} is set to the number of failures.  
  * Patterns using broad matching with `?` and `*` do not error on match failure.  
@@ -16268,8 +15909,7 @@ FileGetVersion([Filename]) => String
 FileMove(SourcePattern, DestPattern [,Overwrite:=0]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileOpen.htm|`FileOpen()`}  
- * Opens a file to read specific content from it and/or to write new content into it.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileOpen.htm|`FileOpen()`} - Opens a file to read specific content from it and/or to write new content into it.  
  * @param {(String)} Filename  
  * The path of the file to open.  
  * If a full path isn't used, Filename is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
@@ -16327,7 +15967,7 @@ FileMove(SourcePattern, DestPattern [,Overwrite:=0]) => EmptyString
  * @returns {(File)}  
  * A new {@link https://www.autohotkey.com/docs/v2/lib/File.htm|File object} to handle the file.  
  * A File object uses properties and methods to work with a text file.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * The file cannot be opened  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileEncoding.htm|FileEncoding()},
@@ -16339,8 +15979,7 @@ FileMove(SourcePattern, DestPattern [,Overwrite:=0]) => EmptyString
 FileOpen(Filename, Flags [,Encoding]) => File
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileRead.htm|`FileRead()`}  
- * Retrieves the contents of a file.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileRead.htm|`FileRead()`} - Retrieves the contents of a file.  
  * @param {(String)} Filename  
  * name of the file to read  
  * If a full path isn't used, Filename is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
@@ -16364,11 +16003,11 @@ FileOpen(Filename, Flags [,Encoding]) => File
  * If the `RAW` option is used, a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer object} is returned.  
  * Otherwise, a string is returned.  
  * An empty string is returned if the file does not exist or cannot be opened.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Problem opening or reading the file  
- * @throws {(MemoryError)}  
+ * @throws MemoryError  
  * A file is greater than 4GB in size  
- * @throws {(MemoryError)}  
+ * @throws MemoryError  
  * The program is unable to allocate enough memory for the requested size  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
@@ -16387,15 +16026,14 @@ FileOpen(Filename, Flags [,Encoding]) => File
 FileRead(Filename [,Options]) => String | Object
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileRecycle.htm|`FileRecycle()`}  
- * Sends a file or directory to the recycle bin if possible, or permanently deletes it.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileRecycle.htm|`FileRecycle()`} - Sends a file or directory to the recycle bin if possible, or permanently deletes it.  
  * @param {(String)} FilePattern  
  * Name of a file, a folder, or a wildcard `*` pattern.  
  * To recycle an entire directory, provide the name without a trailing backslash.  
  * If a full path isn't used, FilePattern is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * An exception is thrown on failure.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileRecycleEmpty.htm|FileRecycleEmpty()},
@@ -16408,14 +16046,13 @@ FileRead(Filename [,Options]) => String | Object
 FileRecycle(FilePattern) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileRecycleEmpty.htm|`FileRecycleEmpty()`}  
- * Empties the recycle bin.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileRecycleEmpty.htm|`FileRecycleEmpty()`} - Empties the recycle bin.  
  * @param {(String)} [DriveLetter]  
  * Drive letter followed by a colon. Backslash is optional.  
  * Omit DriveLetter to empty all drive recycle bins.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileRecycle.htm|FileRecycle()},
@@ -16428,8 +16065,7 @@ FileRecycle(FilePattern) => EmptyString
 FileRecycleEmpty([DriveLetter:=unset]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileSelect.htm|`FileSelect()`}  
- * Displays a standard dialog that allows the user to open or save file(s).  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileSelect.htm|`FileSelect()`} - Displays a standard dialog that allows the user to open or save file(s).  
  * @param {(String|Integer)} [Options]  
  * Zero or more options separted by spaces/tabs.  
  * - `0` = No options  
@@ -16489,8 +16125,7 @@ FileRecycleEmpty([DriveLetter:=unset]) => EmptyString
 FileSelect([Options:=0, RootOrFilename:=, Title:='Select File - ' A_ScriptName, Filter:='']) => String | Array
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileSetAttrib.htm|`FileSetAttrib()`}  
- * Changes the attributes of one or more files or folders. Wildcards are supported.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileSetAttrib.htm|`FileSetAttrib()`} - Changes the attributes of one or more files or folders. Wildcards are supported.  
  * @param {(String)} Attributes  
  * Alter an attribute.  
  * Add `+`, remove `-`, or toggle `^` an attribute.  
@@ -16511,7 +16146,7 @@ FileSelect([Options:=0, RootOrFilename:=, Title:='Select File - ' A_ScriptName, 
  * - `R` = Recurse. Recurses into all sub-folders  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * Any files failed to be changed.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#Extra|Error.Extra} is set to the number of failures.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to 0 if files are found, otherwise it gets the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
@@ -16528,8 +16163,7 @@ FileSelect([Options:=0, RootOrFilename:=, Title:='Select File - ' A_ScriptName, 
 FileSetAttrib(Attributes [,FilePattern:=unset, Mode:='F']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm|`FileSetTime()`}  
- * Changes the datetime stamp of one or more files or folders. Wildcards are supported.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm|`FileSetTime()`} - Changes the datetime stamp of one or more files or folders. Wildcards are supported.  
  * @param {(String)} [DateTimeStamp]  
  * A date-time in {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#Remarks|YYYYMMDDHH24MISS} format.  
  * @param {(String)} [FilePattern]  
@@ -16547,7 +16181,7 @@ FileSetAttrib(Attributes [,FilePattern:=unset, Mode:='F']) => EmptyString
  * - `R` = Recurse. Recurses into all sub-folders  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * Any files failed to be changed.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#Extra|Error.Extra} is set to the number of failures.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to 0 if files are found, otherwise it gets the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
@@ -16567,8 +16201,7 @@ FileSetAttrib(Attributes [,FilePattern:=unset, Mode:='F']) => EmptyString
 FileSetTime([DateTimeStamp:=A_Now, FilePattern:=unset, TimeType:='M', Mode:='F']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Floor|`Floor()`}  
- * Returns the specified number rounded down to the nearest integer.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Floor|`Floor()`} - Returns the specified number rounded down to the nearest integer.  
  * @param {(Number)} Num  
  * The number to round down.  
  * @returns {(Integer)}  
@@ -16579,8 +16212,7 @@ FileSetTime([DateTimeStamp:=A_Now, FilePattern:=unset, TimeType:='M', Mode:='F']
 Floor(Num) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Format.htm|`Format()`}  
- * Takes in varaibles and creates custom-formatted string.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Format.htm|`Format()`} - Takes in varaibles and creates custom-formatted string.  
  * Can be used to tranform data types, align, pad, prefix, or build entire strings.  
  * @param {(String)} FormStr  
  * A string describing the desired new format.  
@@ -16746,8 +16378,7 @@ Floor(Num) => Integer
 Format(FormStr [,Value1, ValueN*]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/FormatTime.htm|`FormatTime()`}  
- * Transforms a YYYYMMDDHH24MISS timestamp into the specified date/time format.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/FormatTime.htm|`FormatTime()`} - Transforms a YYYYMMDDHH24MISS timestamp into the specified date/time format.  
  * @param {(String)} [DateTimeStamp]  
  * All or the leading part of a {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|YYYYMMDDHH24MISS} date time stamp.  
  * If omitted, A_Now (the current DTS) is used.  
@@ -16850,8 +16481,7 @@ Format(FormStr [,Value1, ValueN*]) => String
 FormatTime([DateTimeStamp:=A_Now, Form:=unset]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/GetKeyName.htm|`GetKeyName()`}  
- * Retrieves the name/text of a key.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/GetKeyName.htm|`GetKeyName()`} - Retrieves the name/text of a key.  
  * @param {(String)} KeyName  
  * A key from the {@link https://www.autohotkey.com/docs/v2/KeyList.htm|Key List}.  
  * Or a virtual key `vkFF`, scan code `sc01D`, or combination of the two in hexadecimal format.  
@@ -16871,8 +16501,7 @@ FormatTime([DateTimeStamp:=A_Now, Form:=unset]) => String
 GetKeyName(KeyName) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/GetKeyVK.htm|`GetKeyVK()`}  
- * Retrieves the virtual key code of a key.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/GetKeyVK.htm|`GetKeyVK()`} - Retrieves the virtual key code of a key.  
  * @param {(String)} KeyName  
  * A key from the {@link https://www.autohotkey.com/docs/v2/KeyList.htm|Key List}.  
  * Or a virtual key `vkFF`, scan code `sc01D`, or combination of the two in hexadecimal format.  
@@ -16896,8 +16525,7 @@ GetKeyName(KeyName) => String
 GetKeyVK(KeyName) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/GetKeySC.htm|`GetKeySC()`}  
- * Retrieves the scan code of a key.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/GetKeySC.htm|`GetKeySC()`} - Retrieves the scan code of a key.  
  * @param {(String)} KeyName  
  * A key from the {@link https://www.autohotkey.com/docs/v2/KeyList.htm|Key List}.  
  * Or a virtual key `vkFF`, scan code `sc01D`, or combination of the two in hexadecimal format.  
@@ -16921,8 +16549,7 @@ GetKeyVK(KeyName) => Integer
 GetKeySC(KeyName) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm|`GetKeyState()`}  
- * Gets the physical, logical, or toggle status of keyboard keys, mouse buttons, and controller joys.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm|`GetKeyState()`} - Gets the physical, logical, or toggle status of keyboard keys, mouse buttons, and controller joys.  
  * @param {(String)} KeyName  
  * A key from the {@link https://www.autohotkey.com/docs/v2/KeyList.htm|Key List}.  
  * Or a virtual key `vkFF`, scan code `sc01D`, or combination of the two in hexadecimal format.  
@@ -16949,7 +16576,7 @@ GetKeySC(KeyName) => Integer
  *   - `27000` = 270 degrees POV left
  * - `JoyName` `JoyButtons` `JoyAxes` `JoyInfo`  
  *   Value varies. See {@link https://www.autohotkey.com/docs/v2/KeyList.htm#Controller|Game Controllers}.
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * An invalid parameter is detected.  
  * KeyName does not exist on the current keyboard.  
  * @see  
@@ -16969,8 +16596,7 @@ GetKeySC(KeyName) => Integer
 GetKeyState(KeyName [,Mode]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/GetMethod.htm|`GetMethod()`}  
- * Retrieves the implementation function of a method.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/GetMethod.htm|`GetMethod()`} - Retrieves the implementation function of a method.  
  * @param {(Any)} Value  
  * Any value except {@link https://www.autohotkey.com/docs/v2/lib/ComObject.htm|ComObject}.
  * @param {(String)} [Name]  
@@ -16983,9 +16609,9 @@ GetKeyState(KeyName [,Mode]) => String
  * If omitted or paramcount failed, a basic check for a `Call()` method is done.
  * @returns {(FuncObj)}  
  * A function object containing a reference to the method.  
- * @throws {(MethodError)}  
+ * @throws MethodError  
  * Method was not found or cannot be retrieved
- * @throws {(ValueError|MethodError)}  
+ * @throws ValueError|MethodError  
  * Validation failed
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/Objects.htm|Objects},
@@ -16998,8 +16624,7 @@ GetKeyState(KeyName [,Mode]) => String
 GetMethod(Value [,Name, ParamCount]) => Func
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/GroupActivate.htm|`GroupActivate()`}  
- * Activates the next window in a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|Window Group}.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/GroupActivate.htm|`GroupActivate()`} - Activates the next window in a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|Window Group}.  
  * @param {(String)} GroupName  
  * The name given to the group by {@link https://www.autohotkey.com/docs/v2/lib/GroupAdd.htm|GroupAdd()}.  
  * @param {(String)} [Mode]  
@@ -17020,20 +16645,19 @@ GetMethod(Value [,Name, ParamCount]) => Func
 GroupActivate(GroupName [,Mode:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/GroupAdd.htm|`GroupAdd()`}  
- * Adds a window specification to a window group, creating the group if necessary.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/GroupAdd.htm|`GroupAdd()`} - Adds a window specification to a window group, creating the group if necessary.  
  * @param {(String)} GroupName  
  * The name of the group to add the window ID.  
  * The group is created if it doesn't exist and GroupName is not case-sensitive.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -17056,8 +16680,7 @@ GroupActivate(GroupName [,Mode:='']) => Integer
 GroupAdd(GroupName [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/GroupClose.htm|`GroupClose()`}  
- * Close the current active group window or all group windows.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/GroupClose.htm|`GroupClose()`} - Close the current active group window or all group windows.  
  * The next window in the series is then activated.  
  * @param {(String)} GroupName  
  * The name given to the group by {@link https://www.autohotkey.com/docs/v2/lib/GroupAdd.htm|GroupAdd()}.  
@@ -17079,8 +16702,7 @@ GroupAdd(GroupName [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) 
 GroupClose(GroupName [,Mode:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/GroupDeactivate.htm|`GroupDeactivate()`}  
- * Activates the next window that does NOT belong to the group.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/GroupDeactivate.htm|`GroupDeactivate()`} - Activates the next window that does NOT belong to the group.  
  * @param {(String)} GroupName  
  * The name given to the group by {@link https://www.autohotkey.com/docs/v2/lib/GroupAdd.htm|GroupAdd()}.  
  * @param {(String)} [Mode]  
@@ -17099,8 +16721,7 @@ GroupClose(GroupName [,Mode:='']) => EmptyString
 GroupDeactivate(GroupName [,Mode:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiCtrlFromHwnd.htm|`GuiCtrlFromHwnd()`}  
- * Gets the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm|GuiControl object} of a GUI control from its HWND.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiCtrlFromHwnd.htm|`GuiCtrlFromHwnd()`} - Gets the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm|GuiControl object} of a GUI control from its HWND.  
  * @param {(Integer)} Hwnd  
  * The window handle (HWND) of an AHK GUI control or a child window of such a control.  
  * @returns {(Gui.Control|String)}  
@@ -17124,8 +16745,7 @@ GroupDeactivate(GroupName [,Mode:='']) => EmptyString
 GuiCtrlFromHwnd(Hwnd) => Gui.Control
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiFromHwnd.htm|`GuiFromHwnd()`}  
- * Retrieves the Gui object of a GUI window associated with the specified HWND.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiFromHwnd.htm|`GuiFromHwnd()`} - Retrieves the Gui object of a GUI window associated with the specified HWND.  
  * @param {(Integer)} Hwnd  
  * The window handle (HWND) of an AHK GUI.  
  * If RecurseParent is true, Hwnd can be a child window of another AHK GUI.
@@ -17153,8 +16773,7 @@ GuiCtrlFromHwnd(Hwnd) => Gui.Control
 GuiFromHwnd(Hwnd [,RecurseParent]) => Gui
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/HasBase.htm|`HasBase()`}  
- * Returns a non-zero number if the specified value is derived from the specified base object.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/HasBase.htm|`HasBase()`} - Returns a non-zero number if the specified value is derived from the specified base object.  
  * @param {(Any)} Value  
  * Any value of any type.  
  * @param {(Object)} BaseObj  
@@ -17173,8 +16792,7 @@ GuiFromHwnd(Hwnd [,RecurseParent]) => Gui
 HasBase(Value, BaseObj) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/HasMethod.htm|`HasMethod()`}  
- * Returns a non-zero number if the specified value has a method by the specified name.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/HasMethod.htm|`HasMethod()`} - Returns a non-zero number if the specified value has a method by the specified name.  
  * @param {(Any)} Value  
  * Any value of any type except ComObject.  
  * @param {(String)} [Name]  
@@ -17198,8 +16816,7 @@ HasBase(Value, BaseObj) => Integer
 HasMethod(Value [,Name:=unset, ParamCount:=unset]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/HasProp.htm|`HasProp()`}  
- * Returns a non-zero number if the value passed in has a property by the specified name.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/HasProp.htm|`HasProp()`} - Returns a non-zero number if the value passed in has a property by the specified name.  
  * @param {(Any)} Value  
  * Any value of any type except ComObject.  
  * @param {(String)} [Name]  
@@ -17216,8 +16833,7 @@ HasMethod(Value [,Name:=unset, ParamCount:=unset]) => Integer
 HasProp(Value, Name) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/HotIf.htm|`HotIf()`}  
- * Sets the criteria for when a subsequently created {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()}/{@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|Hotstring()} is enabled or disabled.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/HotIf.htm|`HotIf()`} - Sets the criteria for when a subsequently created {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()}/{@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|Hotstring()} is enabled or disabled.  
  * This works similarly to how {@link https://www.autohotkey.com/docs/v2/lib/_HotIf.htm|#HotIf} works with {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm|`Hotkey::`}.  
  * All calls to Hotkey() or Hotstring() will resepct the last declared HotIf().  
  * @param {(String|FuncObj)} [ExpressionOrCallback]  
@@ -17239,7 +16855,7 @@ HasProp(Value, Name) => String
  *       HotIf((HotName) => some_func(HotName))
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * A parameter is invalid.  
  * No matchine expression found or callback was invalid.  
  * @see  
@@ -17255,20 +16871,19 @@ HasProp(Value, Name) => String
 HotIf([ExpressionOrCallback]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/HotIf.htm|`HotIfWinActive()`}  
- * Controls when a subsequently created {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()}/{@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|Hotstring()} is enabled or disabled based on a specific window being active.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/HotIf.htm|`HotIfWinActive()`} - Controls when a subsequently created {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()}/{@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|Hotstring()} is enabled or disabled based on a specific window being active.  
  * @param {(String)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * Omitting both params resets any HotIf criteria and makes future hotkeys/hotstrings work globally.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * A parameter is invalid.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()},
@@ -17288,20 +16903,19 @@ HotIf([ExpressionOrCallback]) => EmptyString
 HotIfWinActive([WinTitle:='', WinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/HotIf.htm|`HotIfWinExist()`}  
- * Controls when a subsequently created {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()}/{@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|Hotstring()} is enabled or disabled based on a specific window existing.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/HotIf.htm|`HotIfWinExist()`} - Controls when a subsequently created {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()}/{@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|Hotstring()} is enabled or disabled based on a specific window existing.  
  * @param {(String)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * Omitting both params resets any HotIf criteria and makes future hotkeys/hotstrings work globally.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * A parameter is invalid.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()},
@@ -17321,20 +16935,19 @@ HotIfWinActive([WinTitle:='', WinText:='']) => EmptyString
 HotIfWinExist([WinTitle:='', WinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/HotIf.htm|`HotIfWinNotActive()`}  
- * Controls when a subsequently created {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()}/{@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|Hotstring()} is enabled or disabled based on a specific window not being active.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/HotIf.htm|`HotIfWinNotActive()`} - Controls when a subsequently created {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()}/{@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|Hotstring()} is enabled or disabled based on a specific window not being active.  
  * @param {(String)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * Omitting both params resets any HotIf criteria and makes future hotkeys/hotstrings work globally.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * A parameter is invalid.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()},
@@ -17354,20 +16967,19 @@ HotIfWinExist([WinTitle:='', WinText:='']) => EmptyString
 HotIfWinNotActive([WinTitle:='', WinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/HotIf.htm|`HotIfWinNotExist()`}  
- * Controls when a subsequently created {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()}/{@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|Hotstring()} is enabled or disabled based on a specific window not existing.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/HotIf.htm|`HotIfWinNotExist()`} - Controls when a subsequently created {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()}/{@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|Hotstring()} is enabled or disabled based on a specific window not existing.  
  * @param {(String)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * Omitting both params resets any HotIf criteria and makes future hotkeys/hotstrings work globally.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * A parameter is invalid.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()},
@@ -17387,8 +16999,7 @@ HotIfWinNotActive([WinTitle:='', WinText:='']) => EmptyString
 HotIfWinNotExist([WinTitle:='', WinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|`Hotkey()`}  
- * Creates, modifies, enables, or disables a hotkey.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|`Hotkey()`} - Creates, modifies, enables, or disables a hotkey.  
  * @param {(String)} KeyName  
  * A {@link https://www.autohotkey.com/docs/v2/KeyList.htm|key name}, including any {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm#Symbols|modifier symbols}.  
  * If `KeyName` is already declared, the old hotkey is replaced with the new one.  
@@ -17445,19 +17056,19 @@ HotIfWinNotExist([WinTitle:='', WinText:='']) => EmptyString
  * - `I#` = Set Input level, where `#` is the hotkey's {@link https://www.autohotkey.com/docs/v2/lib/_InputLevel.htm|input level}
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * Invalid key name
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * Unsupported prefix key
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * AltTab hotkey must have exactly one modifier/prefix
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * SltTab hotkey must specify a Left or Right side key
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Nonexistent hotkey
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Nonexistent hotkey variant
- * @throws {(Error)}  
+ * @throws Error  
  * Max amount of hotkeys created
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/HotIf.htm|HotIf()},
@@ -17478,8 +17089,7 @@ HotIfWinNotExist([WinTitle:='', WinText:='']) => EmptyString
 Hotkey(KeyName [,Action, Options]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|`Hotstring()`}  
- * Creates, modifies, enables, or disables a hotstring.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|`Hotstring()`} - Creates, modifies, enables, or disables a hotstring.  
  * The case used to type the hotstring (UPPERCASE, lowercase, Title Case) carries over to the auto-replce text.
  * @param {(String)} Option  
  * - Hotstring = An activation string and options using the {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm|`::Hotstring`} format.  
@@ -17545,9 +17155,9 @@ Hotkey(KeyName [,Action, Options]) => EmptyString
  * If using `"EndChars"` without the `Value` param, a string of ending characters is returned.  
  * If using `"MouseReset"` without a `Value` param, a `1` is returned for on, otherwise `0`.  
  * An empty string is returned for everything else.  
- * @throws {(Error)}  
+ * @throws Error  
  * A parameter is invalid or memory allocation failed.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * `Option` was a hotstring that hasn't previously been declared and `Value` was omitted.  
  * The only time a hotstring value is omitted is when `Enabled` is being altered.  
  * @see  
@@ -17620,8 +17230,7 @@ Hotkey(KeyName [,Action, Options]) => EmptyString
 Hotstring(Option [,Value, Enabled]) => String | Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL_Create|`IL_Create()`}  
- * Creates a new ImageList that is initially empty.
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL_Create|`IL_Create()`} - Creates a new ImageList that is initially empty.
  * @param {(Integer)} [InitialCount]  
  * The intial size of the list. Later, this can expand as needed.  
  * The default value is 2.  
@@ -17634,15 +17243,14 @@ Hotstring(Option [,Value, Enabled]) => String | Integer
  * - `1` = ImageList will contain large icons
  * @returns {(Integer)}  
  * On success, a unique ID for the ImageList, otherwise `0`  
- * @throws {()} 
+ * @throws  
  * @example <caption>__
  * </caption>
  */
 IL_Create([InitialCount:=2, GrowCount:=5, LargeIcons:=0]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL_Add|`IL_Add()`}  
- * Adds an icon or picture to the specified ImageList.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL_Add|`IL_Add()`} - Adds an icon or picture to the specified ImageList.  
  * @param {(Integer)} ImageListID  
  * The identifying number of an image list generated by {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL_Create|IL_Create()}.
  * @param {(String)} IconOrPic  
@@ -17673,8 +17281,7 @@ IL_Create([InitialCount:=2, GrowCount:=5, LargeIcons:=0]) => Integer
 IL_Add(ImageListID, IconOrPic, Num, Resize) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL_Destroy|`IL_Destroy()`}  
- * Deletes the specified ImageList.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL_Destroy|`IL_Destroy()`} - Deletes the specified ImageList.  
  * ListViews are automatically destroyed when the ListView parent window is destroyed. Rarely do they need to be manually destroyed.  
  * @param {(Integer)} ImageListID  
  * The identifying number of an image list generated by {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL_Create|IL_Create()}.
@@ -17691,8 +17298,7 @@ IL_Add(ImageListID, IconOrPic, Num, Resize) => Integer
 IL_Destroy(ImageListID) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ImageSearch.htm|`ImageSearch()`}  
- * Searches a region of the screen for an image.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ImageSearch.htm|`ImageSearch()`} - Searches a region of the screen for an image.  
  * @param {(VarRef)} OutputVarX  
  * Receives the X coordinate of the upper left corner of the image match
  * If no match is found, var is set to an empty string.  
@@ -17725,9 +17331,9 @@ IL_Destroy(ImageListID) => Integer
  *   To preserve aspect ratio, set a width or height and use `-1` for the other: `*W300 *H-1`  
  * @returns {(Integer)}  
  * `1` if the image was found, otherwise `0`
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * An invalid parameter was detected or the image could not be loaded
- * @throws {(OSError)}  
+ * @throws OSError  
  * An OS internal function call failed
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/PixelSearch.htm|PixelSearch()},
@@ -17740,8 +17346,7 @@ IL_Destroy(ImageListID) => Integer
 ImageSearch(&OutputVarX, &OutputVarY, X1, Y1, X2, Y2, ImageFile) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/IniDelete.htm|`IniDelete()`}  
- * Deletes a value from a standard format .ini file.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/IniDelete.htm|`IniDelete()`} - Deletes a value from a standard format .ini file.  
  * @param {(String)} FileLocation  
  * The file name or path to an .INI file.  
  * If a full path isn't used, FileLocation is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
@@ -17752,7 +17357,7 @@ ImageSearch(&OutputVarX, &OutputVarY, X1, Y1, X2, Y2, ImageFile) => Integer
  * If omitted, all keys in the section are deleted.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure.  
  * Regardless of an error, {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
@@ -17773,8 +17378,7 @@ ImageSearch(&OutputVarX, &OutputVarY, X1, Y1, X2, Y2, ImageFile) => Integer
 IniDelete(FileLocation, Section [,Key]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/IniRead.htm|`IniRead()`}  
- * Reads a value, section or list of section names from a standard format .ini file.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/IniRead.htm|`IniRead()`} - Reads a value, section or list of section names from a standard format .ini file.  
  * @param {(String)} FileLocation  
  * The file name or path to an .INI file.  
  * If a full path isn't used, FileLocation is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
@@ -17792,7 +17396,7 @@ IniDelete(FileLocation, Section [,Key]) => EmptyString
  * If no default value was provided, an error is thrown  
  * If `Key` is omitted, a list of all keys from the specified section is returned  
  * If `Section` is omitted, a list of all sections from the specified INI file is returned  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown if key doesn't exist and no default was provided  
  * Regardless of an error, {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
@@ -17814,8 +17418,7 @@ IniDelete(FileLocation, Section [,Key]) => EmptyString
 IniRead(FileLocation [,Section, Key, Default]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/IniWrite.htm|`IniWrite()`}  
- * Writes a value or section to a standard format .ini file.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/IniWrite.htm|`IniWrite()`} - Writes a value or section to a standard format .ini file.  
  * Values longer than 65,535 characters can be written to the file, but cannot be read correctly by {@link https://www.autohotkey.com/docs/v2/lib/IniRead.htm|IniRead()}.  
  * INI files are created as UTF-16 with BOM. To have the INI file encoded otherwise, create it before writing to it.  
  * @param {(String)} Value  
@@ -17831,7 +17434,7 @@ IniRead(FileLocation [,Section, Key, Default]) => String
  * Key **must** be omitted when `Value` is a section of key=value pairs.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure.  
  * Regardless of an error, {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
@@ -17849,18 +17452,17 @@ IniRead(FileLocation [,Section, Key, Default]) => String
  *     . '`ndate = 2023-12-06'
  * IniWrite(data, A_Desktop '\test.ini', 'Code Info')
  * 
- * ;=================
  * ; INI file format:
+ * ;=================
  * ; INI comments start with semicolons just like AHK comments
- * [Section Names Go In Square Brackets]
- * Key_Name = Data goes right of the = sign
+ * [Section Name Inside Square Brackets]
+ * Some_Key_Name = Data goes right of equal sign
  * number_1000 = 1000
  */
 IniWrite(Value, FileLocation, Section, Key) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/InputBox.htm|`InputBox()`}  
- * Displays a popup box to get input from the user.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/InputBox.htm|`InputBox()`} - Displays a popup box to get input from the user.  
  * @param {(String)} [Prompt]  
  * Text to display to the user above the edit input control.  
  * If omitted, the text area remains blank.  
@@ -17881,11 +17483,10 @@ IniWrite(Value, FileLocation, Section, Key) => String
  * @param {(String)} [DefaultText]  
  * Specify any default text to show in the edit control of the input box.  
  * If omitted or an empty string, no text will show in the control box.  
- * @returns {(Object)}  
+ * @returns {(InputBox__Object)}  
  * An object is returned with 2 properties.  
  * `obj.Value` contains the user's submitted text  
  * `obj.Result` contains how the input box was closed: `OK`, `Cancel`, or `Timeout`  
- * @throws {()} 
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm|MsgBox()},
  * {@link https://www.autohotkey.com/docs/v2/lib/FileSelect.htm|FileSelect()},
@@ -17899,8 +17500,7 @@ IniWrite(Value, FileLocation, Section, Key) => String
 InputBox([Prompt:='', Title:=A_ScriptName, Options:='', DefaultText:='']) => Object
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/InstallKeybdHook.htm|`InstallKeybdHook()`}  
- * Installs or uninstalls the keyboard hook.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/InstallKeybdHook.htm|`InstallKeybdHook()`} - Installs or uninstalls the keyboard hook.  
  * The hook monitors keystrokes hotstring activaiton, hotkeys not supported by Window's {@link https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerhotkey|RegisterHotkey()}, and supports {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm|InputHook}.  
  * The keyboard hook is automatically installed when a script has a hotstring, a hooked hotkey, the {@link https://www.autohotkey.com/docs/v2/lib/SetNumScrollCapsLockState.htm|Set[Caps/Scroll/Num]LockState()} function, or has an active InputHook.  
  * @param {(Boolean)} [Install]  
@@ -17932,8 +17532,7 @@ InputBox([Prompt:='', Title:=A_ScriptName, Options:='', DefaultText:='']) => Obj
 InstallKeybdHook([Install:=1, Force:=0]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/InstallMouseHook.htm|`InstallMouseHook()`}  
- * Installs or uninstalls the mouse hook.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/InstallMouseHook.htm|`InstallMouseHook()`} - Installs or uninstalls the mouse hook.  
  * The hook monitors mouse clicks for the purpose of activating mouse {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm|mouse hotkeys} and {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm#NoMouse|facilitating hotstrings}.  
  * The mouse hook is automatically installed when a script has a hotstring or a mouse hotkey.  
  * @param {(Boolean)} [Install]  
@@ -17965,8 +17564,7 @@ InstallKeybdHook([Install:=1, Force:=0]) => EmptyString
 InstallMouseHook([Install:=1, Force:=0]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/InStr.htm|`InStr()`}  
- * Searches inside a string for an instance of the provided string.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/InStr.htm|`InStr()`} - Searches inside a string for an instance of the provided string.  
  * The search is done from left to right but can be changed with the `StartPos` and `Occurrence` parameters.  
  * @param {(String)} Haystack  
  * The string to search inside of.  
@@ -17999,11 +17597,11 @@ InstallMouseHook([Install:=1, Force:=0]) => EmptyString
  * @returns {(Integer)}  
  * The position in the string the of the first found instance.  
  * If `Occurrence` is set, the position reflects the position of that 
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * `Needle` is an empty string (zero-length)
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * `CaseSense` is invalid
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * `Occurrence` or `StartPos` is not a number greater than 0
  * @see
  * {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm|RegExMatch()},
@@ -18014,8 +17612,7 @@ InstallMouseHook([Install:=1, Force:=0]) => EmptyString
 InStr(Haystack, Needle [,CaseSense:=0, StartPos:=1, Occurrence:=1]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#IsAlnum|`IsAlnum()`}  
- * Checks if `Value` contains only alphanumeric characters.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#IsAlnum|`IsAlnum()`} - Checks if `Value` contains only alphanumeric characters.  
  * Alphanumeric character is defined as: `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`  
  * @param {(String)} Value  
  * A string to check.  
@@ -18034,8 +17631,7 @@ InStr(Haystack, Needle [,CaseSense:=0, StartPos:=1, Occurrence:=1]) => Integer
 IsAlnum(Value [,Locale:=unset]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#alpha|`IsAlpha()`}  
- * Checks if `Value` contains only alphabetic characters.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#alpha|`IsAlpha()`} - Checks if `Value` contains only alphabetic characters.  
  * Alphabetic character is defined as: `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`  
  * @param {(String)} Value  
  * A string to check.  
@@ -18054,8 +17650,7 @@ IsAlnum(Value [,Locale:=unset]) => Integer
 IsAlpha(Value [,Locale:=unset]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#digit|`IsDigit()`}  
- * Checks if `Value` contains only digits.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#digit|`IsDigit()`} - Checks if `Value` contains only digits.  
  * Digit is defined as: `0123456789`
  * @param {(String|Integer)} Value  
  * A string or integer.  
@@ -18071,8 +17666,7 @@ IsAlpha(Value [,Locale:=unset]) => Integer
 IsDigit(Value) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#float|`IsFloat()`}  
- * Check if `Value` is float type or a string representing a valid float.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#float|`IsFloat()`} - Check if `Value` is float type or a string representing a valid float.  
  * Spaces and tabs around the float are ignored. ` 2.1 `  
  * A string float can start with a plus `+` or minus `-` sign, or a decimal `.`. `.7`  
  * @param {(Any)} Value  
@@ -18095,8 +17689,7 @@ IsDigit(Value) => Integer
 IsFloat(Value) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#integer|`IsInteger()`}  
- * Check if `Value` is integer type or a string representing a valid integer.
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#integer|`IsInteger()`} - Check if `Value` is integer type or a string representing a valid integer.
  * Spaces and tabs around the integer are ignored. ` 5 `  
  * A string integer can start with a plus `+` or minus `-` sign. `-5`  
  * @param {(Any)} Value  
@@ -18119,8 +17712,7 @@ IsFloat(Value) => Integer
 IsInteger(Value) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/IsLabel.htm|`IsLabel()`}  
- * Checks if `Value` is a valid {@link https://www.autohotkey.com/docs/v2/misc/Labels.htm|label} name within the current scope.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/IsLabel.htm|`IsLabel()`} - Checks if `Value` is a valid {@link https://www.autohotkey.com/docs/v2/misc/Labels.htm|label} name within the current scope.  
  * @param {(String)} Value  
  * The label name to check.  
  * @returns {(Boolean)}  
@@ -18135,8 +17727,7 @@ IsInteger(Value) => Integer
 IsLabel(Value) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#lower|`IsLower()`}  
- * Checks if `Value` contains only lowercase characters.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#lower|`IsLower()`} - Checks if `Value` contains only lowercase characters.  
  * Lowercase character is defined as: `abcdefghijklmnopqrstuvwxyz`  
  * @param {(String)} Value  
  * A string to check.  
@@ -18155,8 +17746,7 @@ IsLabel(Value) => Integer
 IsLower(Value [,Locale:=unset]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#number|`IsNumber()`}  
- * Check if `Value` is float or integer type or a string representing a valid float or integer.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#number|`IsNumber()`} - Check if `Value` is float or integer type or a string representing a valid float or integer.  
  * Spaces and tabs around the number are ignored. ` 7 `  
  * A string number can start with a plus `+` or minus `-` sign, or a decimal `.`. `-7.5`  
  * @param {(Any)} Value  
@@ -18179,8 +17769,7 @@ IsLower(Value [,Locale:=unset]) => Integer
 IsNumber(Value) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/IsObject.htm|`IsObject()`}  
- * Checks if `Value` is any {@link https://www.autohotkey.com/docs/v2/Objects.htm|object} type other than a {@link https://www.autohotkey.com/docs/v2/Objects.htm#primitive|primitive}.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/IsObject.htm|`IsObject()`} - Checks if `Value` is any {@link https://www.autohotkey.com/docs/v2/Objects.htm|object} type other than a {@link https://www.autohotkey.com/docs/v2/Objects.htm#primitive|primitive}.  
  * @param {(Any)} Value  
  * The input to check.  
  * @returns {(Boolean)}  
@@ -18196,8 +17785,7 @@ IsNumber(Value) => Integer
 IsObject(Value) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/IsSet.htm|`IsSet()`}  
- * Checks if `Var` has been assigned a value (initialized).  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/IsSet.htm|`IsSet()`} - Checks if `Var` has been assigned a value (initialized).  
  * @param {(Variable)} Var  
  * The variable to check.  
  * @returns {(Boolean)}  
@@ -18212,8 +17800,7 @@ IsObject(Value) => Integer
 IsSet(Var) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/IsSet.htm|`IsSetRef()`}  
- * Checks if referenced variable has been assigned a value (initialized).  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/IsSet.htm|`IsSetRef()`} - Checks if referenced variable has been assigned a value (initialized).  
  * @param {(VarRef)} Ref  
  * The variable reference to check.  
  * @returns {(Boolean)}  
@@ -18228,8 +17815,7 @@ IsSet(Var) => Integer
 IsSetRef(&Ref) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#IsAlnum|`IsSpace()`}  
- * Checks if `Value` contains only whitespace characters.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#IsAlnum|`IsSpace()`} - Checks if `Value` contains only whitespace characters.  
  * Whitespace character is defined as: `` `t `` Tab, `` `s `` Space, `` `n `` Linefeed, `` `r `` Carriage Return, `` `v `` Vertical Tab, `` `f `` Formfeed
  * @param {(String)} Value  
  * A string to check.  
@@ -18245,8 +17831,7 @@ IsSetRef(&Ref) => Integer
 IsSpace(Value) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#IsAlnum|`IsTime()`}  
- * Checks if `Value` contains a valid {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|YYYYMMDDHH24MISS date-time stamp}.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#IsAlnum|`IsTime()`} - Checks if `Value` contains a valid {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|YYYYMMDDHH24MISS date-time stamp}.  
  * Any partial date-time stamp is if it follows each subsection. `20221220` is valid.  
  * Any year prior to 1601 will return false as the OS does not consider it valid.  
  * @param {(String)} Value  
@@ -18263,8 +17848,7 @@ IsSpace(Value) => Integer
 IsTime(Value) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#upper|`IsUpper()`}  
- * Checks if `Value` contains only uppercase characters.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#upper|`IsUpper()`} - Checks if `Value` contains only uppercase characters.  
  * Uppercase character is defined as: `ABCDEFGHIJKLMNOPQRSTUVWXYZ`  
  * @param {(String)} Value  
  * A string to check.  
@@ -18283,8 +17867,7 @@ IsTime(Value) => Integer
 IsUpper(Value [,Locale:=unset]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#xdigit|`IsXDigit()`}  
- * Checks if `Value` contains only hexadecimal digits.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#xdigit|`IsXDigit()`} - Checks if `Value` contains only hexadecimal digits.  
  * Hexadecimal digit is defined as: `0123456789abcdefABCDEF`  
  * A hex prefix of `0x` or `0X` is allowed.  
  * @param {(String|Integer)} Value  
@@ -18301,8 +17884,7 @@ IsUpper(Value [,Locale:=unset]) => Integer
 IsXDigit(Value) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/KeyHistory.htm|`KeyHistory()`}  
- * Displays script info and a history of the most recent key/mouse/joypad events.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/KeyHistory.htm|`KeyHistory()`} - Displays script info and a history of the most recent key/mouse/joypad events.  
  * Useful for detecing scan codes, virtual keys, and exact names for any keyboard key, mouse button, or controller joy.  
  * {@link https://www.autohotkey.com/docs/v2/lib/InstallMouseHook.htm|Mouse}/{@link https://www.autohotkey.com/docs/v2/lib/InstallKeybdHook.htm|Keyboard} hooks must be installed to show in key history.  
  * @param {(Integer)} [MaxEvents]  
@@ -18328,8 +17910,7 @@ IsXDigit(Value) => Integer
 KeyHistory([MaxEvents:=unset]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/KeyWait.htm|`KeyWait()`}  
- * Waits for a key or mouse/controller button to be released or pressed down.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/KeyWait.htm|`KeyWait()`} - Waits for a key or mouse/controller button to be released or pressed down.  
  * @param {(String)} KeyName  
  * The {@link https://www.autohotkey.com/docs/v2/KeyList.htm|name of a key} to wait for.  
  * Controller buttons can be used but none of the others controller inputs.  
@@ -18359,8 +17940,7 @@ KeyHistory([MaxEvents:=unset]) => EmptyString
 KeyWait(KeyName [,Options]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ListHotkeys.htm|`ListHotkeys()`}  
- * Displays all hotkeys in use by the current script.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ListHotkeys.htm|`ListHotkeys()`} - Displays all hotkeys in use by the current script.  
  * This function opens the script's main window and switches to the Hotkeys view.  
  * @returns {(String)}  
  * An empty string is always returned.  
@@ -18379,8 +17959,7 @@ KeyWait(KeyName [,Options]) => Integer
 ListHotkeys() => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ListLines.htm|`ListLines()`}  
- * Enables or disables line logging or displays the script lines most recently executed.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ListLines.htm|`ListLines()`} - Enables or disables line logging or displays the script lines most recently executed.  
  * The default starting value is 1.  
  * @param {(Boolean)} [Mode]
  * - Omit = Opens the script's main window and switches to the "Lines most recently executed" view.  
@@ -18400,8 +17979,7 @@ ListHotkeys() => EmptyString
 ListLines([Mode]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ListVars.htm|`ListVars()`}  
- * Displays the names and current contents of the script's {@link https://www.autohotkey.com/docs/v2/Variables.htm|variables}.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ListVars.htm|`ListVars()`} - Displays the names and current contents of the script's {@link https://www.autohotkey.com/docs/v2/Variables.htm|variables}.  
  * This function opens the script's main window and switches to the "Variables and their contents" view.  
  * @returns {(String)}  
  * An empty string is always returned.  
@@ -18413,8 +17991,7 @@ ListLines([Mode]) => Integer
 ListVars() => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ListViewGetContent.htm|`ListViewGetContent()`}  
- * Returns a list of items/rows from a ListView.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ListViewGetContent.htm|`ListViewGetContent()`} - Returns a list of items/rows from a ListView.  
  * @param {(String)} [Options]  
  * Specify what to retrieve.  
  * Include zero or more options separated by spaces/tabs.  
@@ -18430,18 +18007,17 @@ ListVars() => EmptyString
  * - `Count Col` = Retrieve total number of columns in the ListView.  
  *   If count cannot be determined, `-1` is returned.  
  * @param {(String|Integer|Object)} [Control]  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * If omitted, the main window is targeted.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -18451,11 +18027,11 @@ ListVars() => EmptyString
  * Text representing lists/columns from the ListView.  
  * Each column is separated by a tab `` `t `` and each row is separated by a new line `` `n ``.  
  * An integer is returned for `Col#`, `Count`, and `Count Col` options.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * A message could not be sent to the control or the ListView could not be opened  
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * Col# specified a nonexistent column  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetItems.htm|ControlGetItems()},
@@ -18483,8 +18059,7 @@ ListVars() => EmptyString
 ListViewGetContent([Options:='', Control:=unset, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => String | Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/LoadPicture.htm|`LoadPicture()`}  
- * Loads a picture from file and returns a bitmap or icon handle.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/LoadPicture.htm|`LoadPicture()`} - Loads a picture from file and returns a bitmap or icon handle.  
  * @param {(String)} Filename  
  * The filename or path of the picture.  
  * If a full path isn't used, Filename is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
@@ -18503,7 +18078,7 @@ ListViewGetContent([Options:='', Control:=unset, WinTitle:='', WinText:='', NoWi
  * - `2` = IMAGE_CURSOR
  * @returns {(Integer)}  
  * A {@link https://www.autohotkey.com/docs/v2/misc/ImageHandles.htm|handle to a bitmap or icon}.  
- * @throws {()} 
+ * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/misc/ImageHandles.htm|Image Handles}
  * @example <caption>__
@@ -18512,13 +18087,12 @@ ListViewGetContent([Options:='', Control:=unset, WinTitle:='', WinText:='', NoWi
 LoadPicture(Filename [,Options, &OutImageType]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Log|`Log()`}  
- * Returns the logarithm (base 10) of the specified number.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Log|`Log()`} - Returns the logarithm (base 10) of the specified number.  
  * @param {(Number)} Num  
  * The number to get the log of.  
  * @returns {(Float)}  
  * The logarithm of Num.  
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * Num is a negative number
  * @example <caption>__
  * </caption>
@@ -18527,13 +18101,12 @@ LoadPicture(Filename [,Options, &OutImageType]) => Integer
 Log(Num) => Float
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Ln|`Ln()`}  
- * Returns the natural logarithm (base e) of the specified number.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Ln|`Ln()`} - Returns the natural logarithm (base e) of the specified number.  
  * @param {(Number)} Num  
  * The number to get the natural log of.  
  * @returns {(Float)}  
  * The natural logarithm of Num.  
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * Num is a negative number
  * @example <caption>__
  * </caption>
@@ -18541,8 +18114,7 @@ Log(Num) => Float
 Ln(Num) => Float
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Trim.htm|`LTrim()`}  
- * Trims characters from the beginning of a string.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Trim.htm|`LTrim()`} - Trims characters from the beginning of a string.  
  * @param {(String)} Str  
  * The string to trim.  
  * @param {(String)} [OmitChars]  
@@ -18557,8 +18129,7 @@ Ln(Num) => Float
 LTrim(Str [,OmitChars:=' `t']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Max|`Max()`}  
- * Returns the highest number from a set of numbers.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Max|`Max()`} - Returns the highest number from a set of numbers.  
  * @param {(Number|Array)} Value1  
  * The first number of the set.  
  * This can be an {@link https://www.autohotkey.com/docs/v2/lib/Array.htm|array} of numbers if declared {@link https://www.autohotkey.com/docs/v2/Functions.htm#Variadic|variadic} and is the only parameter used.  
@@ -18575,8 +18146,7 @@ LTrim(Str [,OmitChars:=' `t']) => String
 Max(Value1 [,ValueN*]) => Number
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/MenuFromHandle.htm|`MenuFromHandle()`}  
- * Retrieves the Menu or MenuBar object corresponding to a Win32 menu handle.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/MenuFromHandle.htm|`MenuFromHandle()`} - Retrieves the Menu or MenuBar object corresponding to a Win32 menu handle.  
  * @param {(Integer)} Handle  
  * Handle to a Win32 menu (HMENU).  
  * @returns {(Menu|String)}  
@@ -18593,17 +18163,16 @@ Max(Value1 [,ValueN*]) => Number
 MenuFromHandle(Handle) => Menu
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/MenuSelect.htm|`MenuSelect()`}  
- * Invokes a menu item from the menu bar of the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/MenuSelect.htm|`MenuSelect()`} - Invokes a menu item from the menu bar of the specified window.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {()} MenuName  
  * The name or prefix of the top-level menu item.  
  * It can also be the listed order of the menu: `1&` is the first menu, `2&` is the second, ...
@@ -18620,13 +18189,13 @@ MenuFromHandle(Handle) => Menu
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Does not have a standard Win32 menu
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * Menu, submenu, or menu item could not be found  
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * The final menu parameter points to a menu item which opens a submenu
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlSend.htm|ControlSend()},
@@ -18642,8 +18211,7 @@ MenuFromHandle(Handle) => Menu
 MenuSelect(WinTitle, WinText, MenuName [,SubMenu1:=unset, SubMenuN:=unset, NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Min|`Min()`}  
- * Returns the lowest number from a set of numbers.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Min|`Min()`} - Returns the lowest number from a set of numbers.  
  * @param {(Number|Array)} Value1  
  * The first number of the set.  
  * This can be an {@link https://www.autohotkey.com/docs/v2/lib/Array.htm|array} of numbers if declared {@link https://www.autohotkey.com/docs/v2/Functions.htm#Variadic|variadic} and is the only parameter used.  
@@ -18660,8 +18228,7 @@ MenuSelect(WinTitle, WinText, MenuName [,SubMenu1:=unset, SubMenuN:=unset, NoWin
 Min(Value1 [,ValueN*]) => Number
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Mod|`Mod()` (modulo)}  
- * Returns the remainder of a number (dividend) divided by another number (divisor).  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Mod|`Mod()` (modulo)} - Returns the remainder of a number (dividend) divided by another number (divisor).  
  * @param {(Number)} Dividend  
  * Number to divide.  
  * @param {(Number)} Divisor  
@@ -18670,7 +18237,7 @@ Min(Value1 [,ValueN*]) => Number
  * Remainder after division occurs.  
  * Return value is integer if the divdend and divisor are both integers.  
  * Otherwise, return value is float.  
- * @throws {(ZeroDivisionError)}  
+ * @throws ZeroDivisionError  
  * Divisor was set to 0  
  * @example <caption>__
  * </caption>
@@ -18678,8 +18245,7 @@ Min(Value1 [,ValueN*]) => Number
 Mod(Dividend, Divisor) => Number
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/MonitorGet.htm|`MonitorGet()`}  
- * Checks if the specified monitor exists and optionally retrieves its bounding coordinates.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/MonitorGet.htm|`MonitorGet()`} - Checks if the specified monitor exists and optionally retrieves its bounding coordinates.  
  * @param {(Integer)} Num  
  * Monitor number to get bounding coordinates of.  
  * The number of monitors can be gotten with {@link https://www.autohotkey.com/docs/v2/lib/MonitorGetCount.htm|MonitorGetCount()}.  
@@ -18695,7 +18261,7 @@ Mod(Dividend, Divisor) => Number
  * @returns {(Integer)}  
  * The monitor number used to get the provided coordinates.  
  * This is equal to `Num` if `Num` is provided.  
- * @throws {(Error)}  
+ * @throws Error  
  * On failure, an exception is thrown and var refs are not modified
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/MonitorGetWorkArea.htm|MonitorGetWorkArea()},
@@ -18707,8 +18273,7 @@ Mod(Dividend, Divisor) => Number
 MonitorGet([Num, &Left, &Top, &Right, &Bottom]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/MonitorGetCount.htm|`MonitorGetCount()`}  
- * Returns the total number of monitors.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/MonitorGetCount.htm|`MonitorGetCount()`} - Returns the total number of monitors.  
  * @returns {(Integer)}  
  * Total number of monitors.  
  * @see  
@@ -18720,15 +18285,14 @@ MonitorGet([Num, &Left, &Top, &Right, &Bottom]) => Integer
 MonitorGetCount() => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/MonitorGetName.htm|`MonitorGetName()`}  
- * Returns the operating system's name of the specified monitor.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/MonitorGetName.htm|`MonitorGetName()`} - Returns the operating system's name of the specified monitor.  
  * @param {(Integer)} Num  
  * The monitor number to get the name of.  
  * The number of monitors can be gotten with {@link https://www.autohotkey.com/docs/v2/lib/MonitorGetCount.htm|MonitorGetCount()}.  
  * If omitted, the primary monitor is used.  
  * @returns {(String)}  
  * The operating system's name for the specified monitor.  
- * @throws {(Error)}  
+ * @throws Error  
  * Thrown on failure.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SysGet.htm|SysGet()},
@@ -18739,8 +18303,7 @@ MonitorGetCount() => Integer
 MonitorGetName([Num]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/MonitorGetPrimary.htm|`MonitorGetPrimary()`}  
- * Returns the number of the primary monitor.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/MonitorGetPrimary.htm|`MonitorGetPrimary()`} - Returns the number of the primary monitor.  
  * @returns {(Integer)}  
  * The number of the primary monitor.  
  * This will always be `1` on a single monitor system.  
@@ -18753,8 +18316,7 @@ MonitorGetName([Num]) => String
 MonitorGetPrimary() => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/MonitorGetWorkArea.htm|`MonitorGetWorkArea()`}  
- * Checks if the specified monitor exists and optionally retrieves the bounding coordinates of its working area.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/MonitorGetWorkArea.htm|`MonitorGetWorkArea()`} - Checks if the specified monitor exists and optionally retrieves the bounding coordinates of its working area.  
  * The working area is area not reserved or otherwise claimed by taskbars, docked windows, and docked tool bars.  
  * @param {(Integer)} Num  
  * Monitor number to get the workarea bounding coordinates of.  
@@ -18771,7 +18333,7 @@ MonitorGetPrimary() => String
  * @returns {(Integer)}  
  * The monitor number used to get the provided coordinates.  
  * This is equal to `Num` if `Num` is provided.  
- * @throws {(Error)}  
+ * @throws Error  
  * On failure, an exception is thrown and var refs are not modified
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/MonitorGet.htm|MonitorGet()},
@@ -18783,8 +18345,7 @@ MonitorGetPrimary() => String
 MonitorGetWorkArea([Num, &Left, &Top, &Right, &Bottom]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/MouseClick.htm|`MouseClick()`}  
- * Clicks or holds down a mouse button, or turns the mouse wheel. Note: The Click function is generally more flexible and easier to use.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/MouseClick.htm|`MouseClick()`} - Clicks or holds down a mouse button, or turns the mouse wheel. Note: The Click function is generally more flexible and easier to use.  
  * {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm|CoordMode()} dictates where x0 y0 starts at  
  * `Client` is suggested unless working with the desktop  
  * If `Relative` is used, x0 y0 is the mouse cursor.  
@@ -18835,8 +18396,7 @@ MonitorGetWorkArea([Num, &Left, &Top, &Right, &Bottom]) => String
 MouseClick([Button:='L', X:=CurrentX, Y:=CurrentY, Count:=1, Speed:=2, State:=unset, Relative:=unset]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/MouseClickDrag.htm|`MouseClickDrag()`}  
- * Clicks and holds the specified mouse button, moves the mouse to the destination coordinates, then releases the button.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/MouseClickDrag.htm|`MouseClickDrag()`} - Clicks and holds the specified mouse button, moves the mouse to the destination coordinates, then releases the button.  
  * {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm|CoordMode()} dictates where x0 y0 starts at  
  * `Client` is suggested unless working with the desktop  
  * If `Relative` is used, x0 y0 is the mouse cursor.  
@@ -18879,8 +18439,7 @@ MouseClick([Button:='L', X:=CurrentX, Y:=CurrentY, Count:=1, Speed:=2, State:=un
 MouseClickDrag(Button, StartX, StartY, EndX, EndY [,Speed:=2, Relative:=unset]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/MouseGetPos.htm|`MouseGetPos()`}  
- * Retrieves the current position of the mouse cursor, and optionally which window and control it is hovering over.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/MouseGetPos.htm|`MouseGetPos()`} - Retrieves the current position of the mouse cursor, and optionally which window and control it is hovering over.  
  * {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm|CoordMode()} dictates where x0 y0 starts at  
  * `Client` is suggested unless working with the desktop  
  * On multi-monitor systems with different DPI settings, the returned position may be different than expected due to {@link https://www.autohotkey.com/docs/v2/misc/DPIScaling.htm|OS DPI scaling}.
@@ -18912,8 +18471,7 @@ MouseClickDrag(Button, StartX, StartY, EndX, EndY [,Speed:=2, Relative:=unset]) 
 MouseGetPos([&OutputX, &OutputY, &OutputWin, &OutputControl, ControlFlag:=0]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/MouseMove.htm|`MouseMove()`}  
- * Moves the mouse cursor.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/MouseMove.htm|`MouseMove()`} - Moves the mouse cursor.  
  * {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm|CoordMode()} dictates where x0 y0 starts at  
  * `Client` is suggested for most use cases.  
  * @param {(Integer)} X  
@@ -18946,11 +18504,10 @@ MouseGetPos([&OutputX, &OutputY, &OutputWin, &OutputControl, ControlFlag:=0]) =>
 MouseMove(X, Y [,Speed, Relative]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm|`MsgBox()`}  
- * Displays the specified text in a small window containing one or more customizeable buttons.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm|`MsgBox()`} - Displays the specified text in a small window containing one or more customizeable buttons.  
+ * If all params are omitted, `Press OK to Continue` is used.
  * @param {(String)} [Text]  
  * Main text to dispaly on the message.  
- * If all params are omitted, `Press OK to Continue` is used otherwise the text is blank.  
  * {@link https://www.autohotkey.com/docs/v2/misc/EscapeChar.htm|Escape Sequences} can be used to format the text. ``Line 1`nLine 2``  
  * @param {(String)} [Title]  
  * A title to give the window.  
@@ -18958,18 +18515,16 @@ MouseMove(X, Y [,Speed, Relative]) => EmptyString
  * @param {(String)} [Options]  
  * Zero or more of the following options:  
  * - `Owner` = Specify a window to make {@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm#Owner|owner} of the message box, where `#` is the {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|window handle (HWND)} of the owner.  
- * - `T#` = Timeout. Set a max time for the message box to remain open before closing, where `#` is the number of seconds.  
+ * - `T#` = Timeout. Max time the message box can remain open before closing, where `#` is the number of seconds.  
  *   A float can be used for a more precise wait time. `T2.5` = 2500 ms.  
  *   Timeout must be a decimal value.  
  *   Return value is set to `Timeout` if a message box closes from timing out.  
- * - `MBOpt` = This is the sum of dec OR hex values.  
- *   The string values can be used instead by including them with the string options. `MsgBox('Hi',, '0x4 Icon!')`  
- *   Hex value must be prefixed with a 0x: `0x4`  
- *   Other than Group #5, only one option should be used from each group:  
+ * - Any of the following options:  
+ *   Hex values must be added together. Otherwise, include the string value.  
  * 
  *     | -Option Groups-              | -Hex-       | -String Value-                           |
- *     | ---:                         | ---:        | :---                                     |
- *     | **Group #1: Button Names**   |             |                                          |
+ *     | ---:                         | :--:        | :---                                     |
+ *     | **Group #1: Button Names**   | ----------- | ---------------------                    |
  *     | OK                           | `0x0`       | `O`, `OK`                                |
  *     | OK, Cancel                   | `0x1`       | `OC`, `O/C`, `OKCancel`                  |
  *     | Abort, Retry, Ignore         | `0x2`       | `ARI`, `A/R/I`, `AbortRetryIgnore`       |
@@ -18977,51 +18532,37 @@ MouseMove(X, Y [,Speed, Relative]) => EmptyString
  *     | Yes, No                      | `0x4`       | `YN`, `Y/N`, `YesNo`                     |
  *     | Retry, Cancel                | `0x5`       | `RC`, `R/C`, `RetryCancel`               |
  *     | Cancel, Try Again, Continue  | `0x6`       | `CTC`, `C/T/C`, `CancelTryAgainContinue` |
- *     |                              |             |                                          |
- *     | **Group #2: Icon**           |             |                                          |
+ *     | **Group #2: Icon**           | ----------- | ---------------------                    |
  *     | Hand (Stop/Error)            | `0x10`      | `IconX`                                  |
  *     | Question (?)                 | `0x20`      | `Icon?`                                  |
  *     | Exclamation (!)              | `0x30`      | `Icon!`                                  |
  *     | Asterisk (Info)              | `0x40`      | `Iconi`                                  |
- *     |                              |             |                                          |
- *     | **Group #3: Default Button** |             |                                          |
+ *     | **Group #3: Default Button** | ----------- | ---------------------                    |
  *     | Focus button 2               | `0x100`     | `Default2`                               |
  *     | Focus button 3               | `0x200`     | `Default3`                               |
  *     | Focus button 4({@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm#Help|Help button} required) | `0x300` | `Default4` |
- *     |                              |             |                                          |
- *     | **Group #4: Modality**       |             |                                          |
+ *     | **Group #4: Modality**       | ----------- | ---------------------                    |
  *     | System Modal (Always on top) | `0x1000`    | N/A                                      |
  *     | Task Modal                   | `0x2000`    | N/A                                      |
  *     | System Modal (No title icon) | `0x40000`   | N/A                                      |
- *     |                              |             |                                          |
- *     | **Group #5: Other**          |             |                                          |
+ *     | **Group #5: Other**          | ----------- | ---------------------                    |
  *     | Add {@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm#Help|Help button} | `0x4000` | N/A |
  *     | Right-justified text         | `0x80000`   | N/A                                      |
  *     | Right-to-left text direction | `0x100000`  | N/A                                      |
  * 
  * @returns {(String)}  
- * The button name clicked is returned  
- * - Empty String = The dialog box couldn't be displayed  
- * - `OK`  
- * - `Cancel`
- * - `Yes`
- * - `No`
- * - `Abort`
- * - `Retry`
- * - `Ignore`
- * - `TryAgain`
- * - `Continue`
- * - `Timeout` = Timeout occurred
+ * The name of the button clicked is returned:  
+ * `OK`, `Cancel`, `Yes`, `No`, `Abort`, `Retry`, `Ignore`, `TryAgain`, `Continue`, `Timeout`
  * 
- * Clicking `X` returns different values depending on button names:
- * - `OK` => Returns `OK`
- * - `Cancel` button is present => Returns `Cancel`
- * - `AbortRetryIgnore`, `YesNo` => `X` is disabled and cannot be clicked
- * @throws {(Error)}  
+ * Clicking `X`:
+ * - `OK` button only => `OK`
+ * - `Cancel` button present => `Cancel`
+ * - `AbortRetryIgnore`, `YesNo` => `X` is disabled
+ * @throws Error  
  * `Options` are invalid
- * @throws {(Error)}  
+ * @throws Error  
  * {@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm#max|MsgBox limit} has been reached
- * @throws {(Error)}  
+ * @throws Error  
  * Message box could not be displayed
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/InputBox.htm|InputBox()},
@@ -19035,8 +18576,7 @@ MouseMove(X, Y [,Speed, Relative]) => EmptyString
 MsgBox([Text:='', Title:=A_ScriptName, Options:=0]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/NumGet.htm|`NumGet()`}  
- * Returns the binary number stored at the specified address and offset.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/NumGet.htm|`NumGet()`} - Returns the binary number stored at the specified address and offset.  
  * @param {(Integer|Buffer)} Source  
  * A memory address or a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|buffer-like} object (any object with a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Ptr|Ptr} and {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Size|Size} property).  
  * @param {(Integer|String)} OffsetOrDataType  
@@ -19062,7 +18602,7 @@ MsgBox([Text:='', Title:=A_ScriptName, Options:=0]) => String
  *   To work with numbers greater than or equal to `0x8000000000000000`, omit the U prfix and interpret negative values as large integers.  
  * @returns {(Number)}  
  * The Integer or Float retrieved from the specified address and offset.  
- * @throws {(Error)}  
+ * @throws Error  
  * The `Source` address was not valid  
  * Using a buffer object can help ensure memory addresses are always valid.  
  * @see  
@@ -19076,8 +18616,7 @@ MsgBox([Text:='', Title:=A_ScriptName, Options:=0]) => String
 NumGet(Source, [OffsetOrDataType:=0, OffsetType:=unset]) => Number
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/NumPut.htm|`NumPut()`}  
- * Stores one or more numbers in binary format at the specified address and offset.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/NumPut.htm|`NumPut()`} - Stores one or more numbers in binary format at the specified address and offset.  
  * @param {(String)} TypePair  
  * The data type of the type-number pair:  
  *   - {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#Int|`Integer`}: `Int64`, `Int`, `Short`, `Char`  
@@ -19098,7 +18637,7 @@ NumGet(Source, [OffsetOrDataType:=0, OffsetType:=unset]) => Number
  * The next memory address that comes after the data that was just written.  
  * This return value can be used as an offset for repeated NumPut() calls.  
  * If the data is contiguous, it's better to just included multiple `TypePair`-`TypeNumber` declarations.  
- * @throws {(Error)}  
+ * @throws Error  
  * The `Target` address was not valid  
  * Using a buffer object can help ensure memory addresses are always valid.  
  * @see  
@@ -19112,8 +18651,7 @@ NumGet(Source, [OffsetOrDataType:=0, OffsetType:=unset]) => Number
 NumPut(TypePair, NumberPair, Target [,Offset:=0]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ObjAddRef.htm|`ObjAddRef()`}  
- * Increments an object's {@link https://www.autohotkey.com/docs/v2/Objects.htm#Reference_Counting|reference count}.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ObjAddRef.htm|`ObjAddRef()`} - Increments an object's {@link https://www.autohotkey.com/docs/v2/Objects.htm#Reference_Counting|reference count}.  
  * @param {(Integer)} Ptr  
  * An unmanaged object pointer of COM interface pointer.  
  * @returns {(Integer)}  
@@ -19127,8 +18665,7 @@ NumPut(TypePair, NumberPair, Target [,Offset:=0]) => Integer
 ObjAddRef(Ptr) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ObjBindMethod.htm|`ObjBindMethod()`}  
- * Creates a {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc object} which calls a method of an object.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ObjBindMethod.htm|`ObjBindMethod()`} - Creates a {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc object} which calls a method of an object.  
  * @param {(Object)} Obj  
  * Any object.  
  * @param {(String)} [Method]  
@@ -19146,8 +18683,7 @@ ObjAddRef(Ptr) => Integer
 ObjBindMethod(Obj [,Method, Params]) => BoundFunc
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/Objects.htm#ObjFromPtr|`ObjFromPtr()`}  
- * Create an object reference from an object's memory address.  
+ * @description {@link https://www.autohotkey.com/docs/v2/Objects.htm#ObjFromPtr|`ObjFromPtr()`} - Create an object reference from an object's memory address.  
  * @param {(Integer)} Address - The memory address of an object.
  * @returns {(Object)} A reference to the object at that address.
  * @example <caption>  
@@ -19156,8 +18692,7 @@ ObjBindMethod(Obj [,Method, Params]) => BoundFunc
 ObjFromPtr(Address) => Object
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/Objects.htm#ObjFromPtr|`ObjFromPtrAddRef()`}  
- * Creates an object from a pointer and adds that object reference to the reference count.  
+ * @description {@link https://www.autohotkey.com/docs/v2/Objects.htm#ObjFromPtr|`ObjFromPtrAddRef()`} - Creates an object from a pointer and adds that object reference to the reference count.  
  * @param {()} Address - The memory address of an object.  
  * @returns {(Object)} A reference to the object at that address.  
  * @example <caption>  
@@ -19168,8 +18703,7 @@ ObjFromPtr(Address) => Object
 ObjFromPtrAddRef(Address) => Object
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#HasOwnProp|`ObjHasOwnProp()`}  
- * Checks if an object has a property of the specified name.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#HasOwnProp|`ObjHasOwnProp()`} - Checks if an object has a property of the specified name.  
  * This function is equivalent to the built-in {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} method `Obj.HasOwnProp()`.  
  * It is recommended to use the object's method instead of this function.  
  * @param {(Object)} Obj  
@@ -19184,8 +18718,7 @@ ObjFromPtrAddRef(Address) => Object
 ObjHasOwnProp(Obj, Name) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#GetBase|`ObjGetBase()`}  
- * Retrieves an object's {@link https://www.autohotkey.com/docs/v2/Objects.htm#delegation|base object}.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#GetBase|`ObjGetBase()`} - Retrieves an object's {@link https://www.autohotkey.com/docs/v2/Objects.htm#delegation|base object}.  
  * @param {(Any)} Value  
  * Any value.  
  * @returns {(Prototype)}  
@@ -19206,13 +18739,12 @@ ObjHasOwnProp(Obj, Name) => Integer
 ObjGetBase(Value) => Prototype
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#GetCapacity|`ObjGetCapacity()`}  
- * Returns the current capacity of the object's internal array of properties.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#GetCapacity|`ObjGetCapacity()`} - Returns the current capacity of the object's internal array of properties.  
  * @param {(Object)} Obj  
  * The object to check.  
  * @returns {(Integer)}  
  * The max capacity of the object.  
- * @throws {(TypeError)}  
+ * @throws TypeError  
  * Exception is thrown if `Obj` is incorrect type.  
  * @example <caption>  
  * </caption>
@@ -19223,8 +18755,7 @@ ObjGetBase(Value) => Prototype
 ObjGetCapacity(Obj) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#OwnPropCount|`ObjOwnPropCount()`}  
- * Returns the number of properties owned by an object.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#OwnPropCount|`ObjOwnPropCount()`} - Returns the number of properties owned by an object.  
  * @param {(Object)} Obj  
  * The object to check.  
  * @returns {(Integer)}  
@@ -19239,8 +18770,7 @@ ObjGetCapacity(Obj) => Integer
 ObjOwnPropCount(Obj) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#OwnProps|`ObjOwnProps()`}  
- * Returns an enumerator for an object's own properties.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#OwnProps|`ObjOwnProps()`} - Returns an enumerator for an object's own properties.  
  * This function is equivalent to the built-in {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object} method `Obj.OwnProp()`.  
  * This is normally used with a {@link https://www.autohotkey.com/docs/v2/lib/For.htm|for-loop} to iterate through the the object's properties.  
  * It is usually recommended to use the corresponding method instead.  
@@ -19254,8 +18784,7 @@ ObjOwnPropCount(Obj) => Integer
 ObjOwnProps(obj) => Enumerator
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/Objects.htm#ObjPtr|`ObjPtr()`}  
- * Rretrieve the memory address of an object.  
+ * @description {@link https://www.autohotkey.com/docs/v2/Objects.htm#ObjPtr|`ObjPtr()`} - Rretrieve the memory address of an object.  
  * @param {(Object)} Obj - An object to get the memory address of.  
  * @returns {(Integer)} The pointer address of the object.  
  * @example <caption>  
@@ -19264,8 +18793,7 @@ ObjOwnProps(obj) => Enumerator
 ObjPtr(Obj) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/Objects.htm#ObjPtr|`ObjPtrAddRef()`}  
- * Increments an object's {@link https://www.autohotkey.com/docs/v2/Objects.htm#Reference_Counting|reference count}.  
+ * @description {@link https://www.autohotkey.com/docs/v2/Objects.htm#ObjPtr|`ObjPtrAddRef()`} - Increments an object's {@link https://www.autohotkey.com/docs/v2/Objects.htm#Reference_Counting|reference count}.  
  * @param {(Object)} Obj  
  * An unmanaged object pointer of COM interface pointer.  
  * @returns {(Integer)}  
@@ -19278,8 +18806,7 @@ ObjPtr(Obj) => Integer
 ObjPtrAddRef(Obj) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ObjAddRef.htm|`ObjRelease()`}  
- * Decrements an object's {@link https://www.autohotkey.com/docs/v2/Objects.htm#Reference_Counting|reference count}.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ObjAddRef.htm|`ObjRelease()`} - Decrements an object's {@link https://www.autohotkey.com/docs/v2/Objects.htm#Reference_Counting|reference count}.  
  * @param {(Integer)} Ptr  
  * An unmanaged object pointer of COM interface pointer.  
  * @returns {(Integer)}  
@@ -19293,15 +18820,14 @@ ObjPtrAddRef(Obj) => Integer
 ObjRelease() => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#SetBase|`ObjSetBase()`}  
- * Sets an object's {@link https://www.autohotkey.com/docs/v2/Objects.htm#delegation|base object}.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#SetBase|`ObjSetBase()`} - Sets an object's {@link https://www.autohotkey.com/docs/v2/Objects.htm#delegation|base object}.  
  * @param {(Object)} Obj  
  * The object to assign the new base to.  
  * @param {(Prototype)} BaseObj  
  * The prototype of another object.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TypeError)}  
+ * @throws TypeError  
  * `Obj` or `BaseObj` is of an incorrect type.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#GetBase|ObjGetBase()},
@@ -19312,8 +18838,7 @@ ObjRelease() => Integer
 ObjSetBase(Obj, BaseObj) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#SetCapacity|`ObjSetCapacity()`}  
- * Sets the current capacity of the object's internal array of own properties.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#SetCapacity|`ObjSetCapacity()`} - Sets the current capacity of the object's internal array of own properties.  
  * @param {(Object)} Obj  
  * The object to set the capacity of.  
  * @param {(Integer)} MaxProps  
@@ -19321,7 +18846,7 @@ ObjSetBase(Obj, BaseObj) => EmptyString
  * If `MaxProps` is less than the total amount of properties, capacity is set to the total properties.  
  * @returns {(Integer)}  
  * The new capacity amount.  
- * @throws {(TypeError)}  
+ * @throws TypeError  
  * `Obj` is of an incorrect type.  
  * @example <caption>  
  * </caption>
@@ -19329,8 +18854,7 @@ ObjSetBase(Obj, BaseObj) => EmptyString
 ObjSetCapacity(Obj, MaxProps) => ReturnValue
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/OnClipboardChange.htm|`OnClipboardChange()`}  
- * Registers a {@link https://www.autohotkey.com/docs/v2/Functions.htm|function} to be called automatically whenever the clipboard's content changes.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/OnClipboardChange.htm|`OnClipboardChange()`} - Registers a {@link https://www.autohotkey.com/docs/v2/Functions.htm|function} to be called automatically whenever the clipboard's content changes.  
  * @param {(FuncObj)} Callback  
  * The {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} to call on clipboard change.  
  * The callback must be able to accept one parameter for data type.  
@@ -19359,8 +18883,7 @@ ObjSetCapacity(Obj, MaxProps) => ReturnValue
 OnClipboardChange(Callback [,AddRemove:=1]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/OnError.htm|`OnError()`}  
- * Registers a {@link https://www.autohotkey.com/docs/v2/Functions.htm|function} to be called automatically whenever an unhandled error occurs.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/OnError.htm|`OnError()`} - Registers a {@link https://www.autohotkey.com/docs/v2/Functions.htm|function} to be called automatically whenever an unhandled error occurs.  
  * @param {(FuncObj)} Callback  
  * The {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} to call on error.  
  * The callback must be able to accept two parameters.  
@@ -19390,7 +18913,7 @@ OnClipboardChange(Callback [,AddRemove:=1]) => EmptyString
  * If a callback returns a non-zero integer, all subsequent callbacks are skipped.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {()} 
+ * @throws  
  * @see
 
  * @example <caption>  
@@ -19399,8 +18922,7 @@ OnClipboardChange(Callback [,AddRemove:=1]) => EmptyString
 OnError(Callback [,AddRemove:=1]) => ReturnValue
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/OnExit.htm|`OnExit()`}  
- * Registers a function to be called automatically whenever the script exits.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/OnExit.htm|`OnExit()`} - Registers a function to be called automatically whenever the script exits.  
  * @param {(FuncObj)} Callback  
  * The {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} to call on script exit.  
  * The callback must be able to accept two parameters.  
@@ -19441,8 +18963,7 @@ OnError(Callback [,AddRemove:=1]) => ReturnValue
 OnExit(Callback [,AddRemove:=1]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/OnMessage.htm|`OnMessage()`}  
- * Registers a {@link https://www.autohotkey.com/docs/v2/Functions.htm|function} to be called automatically whenever the script receives the specified message.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/OnMessage.htm|`OnMessage()`} - Registers a {@link https://www.autohotkey.com/docs/v2/Functions.htm|function} to be called automatically whenever the script receives the specified message.  
  * @param {(Integer)} MsgNumber  
  * The message number to monitor or query.  
  * This should be between 0-4294967295 (0x0-0xFFFFFFFF). 
@@ -19485,8 +19006,7 @@ OnExit(Callback [,AddRemove:=1]) => EmptyString
 OnMessage(MsgNumber, Callback [,MaxThreads:=1]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Ord.htm|`Ord()`}  
- * Returns the ordinal value (numeric character code) of the first character in the specified string.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Ord.htm|`Ord()`} - Returns the ordinal value (numeric character code) of the first character in the specified string.  
  * @param {(String)} Str  
  * The string to retrieve the ordinal value for.  
  * @returns {(Integer)}  
@@ -19505,14 +19025,13 @@ OnMessage(MsgNumber, Callback [,MaxThreads:=1]) => EmptyString
 Ord(Str) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/OutputDebug.htm|`OutputDebug()`}  
- * Sends a string to the debugger (if any) for display.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/OutputDebug.htm|`OutputDebug()`} - Sends a string to the debugger (if any) for display.  
  * @param {(String)} Text  
  * The text to send to the debugger.  
  * This can include newlines `` `n ``.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {()} 
+ * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/Scripts.htm#debug|Other Debugging Methods},
  * {@link https://www.autohotkey.com/docs/v2/lib/FileAppend.htm|FileAppend()},
@@ -19523,8 +19042,7 @@ Ord(Str) => Integer
 OutputDebug(Text) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Pause.htm|`Pause()`}  
- * Pauses the script's current thread.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Pause.htm|`Pause()`} - Pauses the script's current thread.  
  * This is different from {@link https://www.autohotkey.com/docs/v2/lib/Suspend.htm|Suspend()}, which prevents the script's hotkeys and hotstring from firing.  
  * @param {(Integer)} NewState  
  * - Omit = The {@link https://www.autohotkey.com/docs/v2/misc/Threads.htm|current thread} is paused.  
@@ -19534,7 +19052,7 @@ OutputDebug(Text) => EmptyString
  * - `-1` = Toggles the pauses state of the underlying thread.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {()} 
+ * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Suspend.htm|`Suspend()},
  * {@link https://www.autohotkey.com/docs/v2/lib/ExitApp.htm|`ExitApp()},
@@ -19547,8 +19065,7 @@ OutputDebug(Text) => EmptyString
 Pause([NewState:=unset]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Persistent.htm|`Persistent()`}  
- * Prevents the script from exiting automatically when the last thread completes, allowing a script to stay running in an idle state.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Persistent.htm|`Persistent()`} - Prevents the script from exiting automatically when the last thread completes, allowing a script to stay running in an idle state.  
  * This setting is automatically set to `1` if the script has any {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm|hotkeys}, {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm|hotstrings}, visible {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm|GUIs}, active {@link https://www.autohotkey.com/docs/v2/lib/SetTimer.htm|timers}, {@link https://www.autohotkey.com/docs/v2/lib/OnClipboardChange.htm|clipboard monitoring}, or {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm|Inputhooks}.
  * @param {(Boolean)} Enable  
  * Turns on script persistence.  
@@ -19566,8 +19083,7 @@ Pause([NewState:=unset]) => EmptyString
 Persistent([Enable:=1]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/PixelGetColor.htm|`PixelGetColor()`}  
- * Retrieves the color of the pixel at the specified X and Y coordinates.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/PixelGetColor.htm|`PixelGetColor()`} - Retrieves the color of the pixel at the specified X and Y coordinates.  
  * {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm|CoordMode()} dictates where x0 y0 starts at  
  * `Client` is suggested for most use cases.  
  * @param {(Integer)} X  
@@ -19584,7 +19100,7 @@ Persistent([Enable:=1]) => Integer
  * @returns {(String)}  
  * A string in 6-digit RGB hex format: 0xRdGrBl
  * `0xFFA000` would be orange. 0xFF red, 0xA0 green, 0x00 blue  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/PixelSearch.htm|PixelSearch()},
@@ -19597,8 +19113,7 @@ Persistent([Enable:=1]) => Integer
 PixelGetColor(X, Y [,Mode]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/PixelSearch.htm|`PixelSearch()`}  
- * Searches a region of the screen for a pixel of the specified color.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/PixelSearch.htm|`PixelSearch()`} - Searches a region of the screen for a pixel of the specified color.  
  * @param {(VarRef)} OutputX  
  * A variable to receive the X coordinate of the found pixel.  
  * If a match is not made, this var receives an empty string.  
@@ -19624,7 +19139,7 @@ PixelGetColor(X, Y [,Mode]) => String
  * If looking for `0x20C0B0` with a `0x10` variation, the colors `0x10B0A0` to `0x30D0C0` will cause a positive match.  
  * @returns {(Boolean)}  
  * `1` if the color was found, otherwise `0`
- * @throws {(OSError)}  
+ * @throws OSError  
  * The function was unable to conduct the search.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/PixelGetColor.htm|PixelGetColor()},
@@ -19637,8 +19152,7 @@ PixelGetColor(X, Y [,Mode]) => String
 PixelSearch(&OutputX, &OutputY, X1, Y1, X2, Y2, ColorID [,Variation:=0]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/PostMessage.htm|`PostMessage()`}  
- * Places a message in the message queue of a window or control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/PostMessage.htm|`PostMessage()`} - Places a message in the message queue of a window or control.  
  * Unlike {@link https://www.autohotkey.com/docs/v2/lib/SendMessage.htm|SendMessage()}, PostMessage() does not wait for acknowledgement.  
  * @param {(Integer)} MsgNumber  
  * The {@link https://www.autohotkey.com/docs/v2/misc/SendMessageList.htm|message number} to send.  
@@ -19649,18 +19163,17 @@ PixelSearch(&OutputX, &OutputY, X1, Y1, X2, Y2, ColorID [,Variation:=0]) => Inte
  * Long Param. Also used to pass message-specific information and must be an integer.  
  * If omitted, defaults to `0`.  
  * @param {(String|Integer|Object)} [Control]  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * If omitted, the target window is used instead of a control.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -19668,9 +19181,9 @@ PixelSearch(&OutputX, &OutputY, X1, Y1, X2, Y2, ColorID [,Variation:=0]) => Inte
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Message could not be posted  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/OnMessage.htm|OnMessage()},
@@ -19692,8 +19205,7 @@ PixelSearch(&OutputX, &OutputY, X1, Y1, X2, Y2, ColorID [,Variation:=0]) => Inte
 PostMessage(MsgNumber [,wParam:=0, lParam:=0, Control:=TargetWindow, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ProcessClose.htm|`ProcessClose()`}  
- * Forces the first matching process to close.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ProcessClose.htm|`ProcessClose()`} - Forces the first matching process to close.  
  * @param {(String|Integer)} NameOrPID  
  * The process name or process ID to close.  
  * - `Name` = The name of the process without a path: `Notepad.exe`   
@@ -19717,8 +19229,7 @@ PostMessage(MsgNumber [,wParam:=0, lParam:=0, Control:=TargetWindow, WinTitle:='
 ProcessClose(NameOrPID) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ProcessExist.htm|`ProcessExist()`}  
- * Checks if the specified process exists.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ProcessExist.htm|`ProcessExist()`} - Checks if the specified process exists.  
  * @param {(String|Integer)} [NameOrPID]  
  * The process name or process ID to check existence of.  
  * If omitted, the script's own process ID is used.  
@@ -19741,8 +19252,7 @@ ProcessClose(NameOrPID) => Integer
 ProcessExist([NameOrPID:=unset]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ProcessGetName.htm|`ProcessGetName()`}  
- * Returns the name of the specified process.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ProcessGetName.htm|`ProcessGetName()`} - Returns the name of the specified process.  
  * @param {(String|Integer)} [NameOrPID]  
  * The process name or process ID to get the name of.  
  * If omitted, the script's own process ID is used.  
@@ -19754,9 +19264,9 @@ ProcessExist([NameOrPID:=unset]) => Integer
  *   This is different from a Window ID (HWND) that uniquely identifies a Window or control.  
  * @returns {(String)}  
  * The name of the specified process. `notepad.exe`
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * The process could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * The name could not be retrieved  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|Run()},
@@ -19769,8 +19279,7 @@ ProcessExist([NameOrPID:=unset]) => Integer
 ProcessGetName([NameOrPID:=unset]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ProcessGetParent.htm|`ProcessGetParent()`}  
- * Returns the process ID (PID) of the process which created the specified process.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ProcessGetParent.htm|`ProcessGetParent()`} - Returns the process ID (PID) of the process which created the specified process.  
  * A parent process is a process that launches another process.  
  * @param {(String|Integer)} [NameOrPID]  
  * The process name or process ID to get the parent of.  
@@ -19783,7 +19292,7 @@ ProcessGetName([NameOrPID:=unset]) => String
  *   This is different from a Window ID (HWND) that uniquely identifies a Window or control.  
  * @returns {(Integer)}  
  * The parent process ID that created the specified process.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * The process could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Process.htm|Process functions}
@@ -19793,8 +19302,7 @@ ProcessGetName([NameOrPID:=unset]) => String
 ProcessGetParent([NameOrPID]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ProcessGetName.htm|`ProcessGetPath()`}  
- * Returns the path of the specified process.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ProcessGetName.htm|`ProcessGetPath()`} - Returns the path of the specified process.  
  * @param {(String|Integer)} [NameOrPID]  
  * The process name or process ID to get the full path of.  
  * If omitted, the script's own process ID is used.  
@@ -19806,9 +19314,9 @@ ProcessGetParent([NameOrPID]) => Integer
  *   This is different from a Window ID (HWND) that uniquely identifies a Window or control.  
  * @returns {(String)}  
  * The full process path of the specified process. `C:\Windows\notepad.exe`
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * The process could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * The path could not be retrieved  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|Run()},
@@ -19821,8 +19329,7 @@ ProcessGetParent([NameOrPID]) => Integer
 ProcessGetPath([NameOrPID]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ProcessSetPriority.htm|`ProcessSetPriority()`}  
- * Changes the priority level of the first matching process.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ProcessSetPriority.htm|`ProcessSetPriority()`} - Changes the priority level of the first matching process.  
  * @param {(String)} Level  
  * Specify a priority level name or its first letter:  
  * - `L` `Low`
@@ -19843,9 +19350,9 @@ ProcessGetPath([NameOrPID]) => String
  * @returns {(Integer)}  
  * The Process ID of the specified process.  
  * `0` if the process cannot be found or altered.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * The process could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * The path could not be retrieved  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|Run()},
@@ -19857,8 +19364,7 @@ ProcessGetPath([NameOrPID]) => String
 ProcessSetPriority(Level [,PIDOrName]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ProcessWait.htm|`ProcessWait()`}  
- * Waits for the specified process to exist.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ProcessWait.htm|`ProcessWait()`} - Waits for the specified process to exist.  
  * @param {(String|Integer)} [NameOrPID]  
  * The process name or process ID to set the priority of.  
  * If omitted, the script's own process ID is used.  
@@ -19887,8 +19393,7 @@ ProcessSetPriority(Level [,PIDOrName]) => Integer
 ProcessWait(PIDOrName [,Timeout]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ProcessWaitClose.htm|`ProcessWaitClose()`}  
- * Waits for all matching processes to close.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ProcessWaitClose.htm|`ProcessWaitClose()`} - Waits for all matching processes to close.  
  * @param {(String|Integer)} [NameOrPID]  
  * The process names or process ID to wait for closure.  
  * If omitted, the script's own process ID is used.  
@@ -19917,8 +19422,7 @@ ProcessWait(PIDOrName [,Timeout]) => Integer
 ProcessWaitClose(PIDOrName [,Timeout]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Random.htm|`Random()`}  
- * Generates a pseudo-random number.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Random.htm|`Random()`} - Generates a pseudo-random number.  
  * @param {(Number)} [Num1]  
  * Any number. Can be the high or low number.  
  * If omitted, defaults to `0.0`
@@ -19936,8 +19440,7 @@ ProcessWaitClose(PIDOrName [,Timeout]) => Integer
 Random([Num1, Num2]) => Number
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm|`RegExMatch()`}  
- * Determines whether a string contains a pattern (regular expression).  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm|`RegExMatch()`} - Determines whether a string contains a pattern (regular expression).  
  * @param {(String)} Haystack  
  * The string to search through. This can contain binary zero.  
  * @param {(String)} RegExNeedle  
@@ -19953,10 +19456,10 @@ Random([Num1, Num2]) => Number
  * @returns {(Integer)}  
  * The position in the string where the first match was found.  
  * `0` if pattern could not be found.  
- * @throws {(Error)}  
+ * @throws Error  
  * Pattern contains a syntax error  
  * Error format: *Compile error [PCRE ERROR NUMBER] at offset [ERROR POSITION]: description*
- * @throws {(Error)}  
+ * @throws Error  
  * An error occurred during RegEx execution  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/RegExReplace.htm|RegExReplace()},
@@ -20007,12 +19510,12 @@ Random([Num1, Num2]) => Number
  *   - `\#` =  Backreference = Use a capture group number `#` as the next match
  * 
  * **Common** =  **Characters**
- *   - `\n =  Newline = `[\x0A]`
- *   - `\r =  Carriage return = `[\x0D]`
- *   - `\t =  Tab = `[\x09]`
- *   - `\v =  Vertical tab = `[\x0B]`
- *   - `\f =  Form feed = `[\x0C]`
- *   - `\b =  Backspace = `[\x08]`
+ *   - `\n` =  Newline = `[\x0A]`
+ *   - `\r` =  Carriage return = `[\x0D]`
+ *   - `\t` =  Tab = `[\x09]`
+ *   - `\v` =  Vertical tab = `[\x0B]`
+ *   - `\f` =  Form feed = `[\x0C]`
+ *   - `\b` =  Backspace = `[\x08]`
  *   - `\###` =  Octal char, where `#` is a digit
  *   - `\x##` =  Hex ASCII range, where `#` is a digit
  *   - `\x{####}` =  Hex Unicode range, where `#` is a digit
@@ -20028,18 +19531,18 @@ Random([Num1, Num2]) => Number
  *   - Quantifier`+` = Match maximum chars for this quantifier
  * 
  * **Anchors and Boundries**
- * - `\A =  Start of string
- * - `\Z =  End of string
+ * - `\A` =  Start of string
+ * - `\Z` =  End of string
  * - `^` =  Start of line = Equal to `\A` if no `m` option
  * - `$` =  End of line = Equal to `\Z` if no `m` option
- * - `\b =  Word boundary. Must not be a word class. = `(?=\W)`
- * - `\B =  Not word boundary. Must be a word class. = `(?=\w)`
- * - `\G =  Start of string or last match
+ * - `\b` =  Word boundary. Must not be a word class. = `(?=\W)`
+ * - `\B` =  Not word boundary. Must be a word class. = `(?=\w)`
+ * - `\G` =  Start of string or last match
  * - `\K` =  Drop all matched chars up to this point
 
  * **Escape Sequence**
  * - `\` =  Next character is literal
- * - `\Q` ... `\E =  All chars between are treated as literal
+ * - `\Q` ... `\E` =  All chars between are treated as literal
  * 
  * **Group Constructs**
  * - `(?#)` =  Comment only = Does not affect matching
@@ -20075,7 +19578,7 @@ Random([Num1, Num2]) => Number
  * - `[:graph:]` =  Printed characters = `[\x21-\x7E]`
  * - `[:lower:]` =  Lower case letters = `[a-z]`
  * - `[:print:]` =  Printed characters, spaces = `[\x20-\x7E]`
- * - `[:punct:]` =  Punctuation = `[!"#$%&'()*+,\-./:;<=>?@[\]^_`{&#124;}`~]`
+ * - `[:punct:]` =  Punctuation = `[!"#$%&'()*+,\-./:;<=>?@[\]^_{`&#124;`}~]`
  * - `[:space:]` =  Blank characters = `[ \t\r\n\v\f]`
  * - `[:upper:]` =  Upper case letters = `[A-Z]`
  * - `[:word:]` =  Digits, letters, underscore = `[a-zA-Z0-9_]`
@@ -20091,8 +19594,7 @@ Random([Num1, Num2]) => Number
 RegExMatch(Haystack, RegExNeedle [,&MatchObj, StartPos]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExReplace.htm|`RegExReplace()`}  
- * Replaces occurrences of a pattern (regular expression) inside a string.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/RegExReplace.htm|`RegExReplace()`} - Replaces occurrences of a pattern (regular expression) inside a string.  
  * @param {(String)} Haystack  
  * The string to search through. This can contain binary zero.  
  * @param {(String)} RegExNeedle  
@@ -20118,10 +19620,10 @@ RegExMatch(Haystack, RegExNeedle [,&MatchObj, StartPos]) => Integer
  * @returns {(String)}  
  * A string containing the updated text from `Haystack`.  
  * If no replacements are made, the string is identical to `Haystack`.  
- * @throws {(Error)}  
+ * @throws Error  
  * Pattern contains a syntax error  
  * Error format: *Compile error [PCRE ERROR NUMBER] at offset [ERROR POSITION]: description*
- * @throws {(Error)}  
+ * @throws Error  
  * An error occurred during RegEx execution  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm|RegExMatch()},
@@ -20257,8 +19759,7 @@ RegExMatch(Haystack, RegExNeedle [,&MatchObj, StartPos]) => Integer
 RegExReplace(Haystack, RegExNeedle [,Replacement:='', &OutputReplaceTotal, ReplaceLimit:=-1, StartPos:=1]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/RegCreateKey.htm|`RegCreateKey()`}  
- * Creates a registry key without writing a value.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/RegCreateKey.htm|`RegCreateKey()`} - Creates a registry key without writing a value.  
  * @param {(String)} [KeyName]  
  * Full name of a registry key.  
  * Must start with:  
@@ -20276,7 +19777,7 @@ RegExReplace(Haystack, RegExNeedle [,Replacement:='', &OutputReplaceTotal, Repla
  * Use {@link https://www.autohotkey.com/docs/v2/lib/SetRegView.htm|SetRegView()} to set 32-bit or 64-bit mode when working with the registry.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the operating system's {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()} function  
  * @see  
@@ -20292,8 +19793,7 @@ RegExReplace(Haystack, RegExNeedle [,Replacement:='', &OutputReplaceTotal, Repla
 RegCreateKey([KeyName]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/RegDelete.htm|`RegDelete()`}  
- * Deletes a value from the registry.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/RegDelete.htm|`RegDelete()`} - Deletes a value from the registry.  
  * @param {(String)} [KeyName]  
  * Full name of a registry key.  
  * Must start with:  
@@ -20314,7 +19814,7 @@ RegCreateKey([KeyName]) => EmptyString
  * If omitted, the key's `(Default)` value will be deleted.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the operating system's {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()} function  
  * @see  
@@ -20331,8 +19831,7 @@ RegCreateKey([KeyName]) => EmptyString
 RegDelete([KeyName, K]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/RegDeleteKey.htm|`RegDeleteKey()`}  
- * Deletes a subkey from the registry.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/RegDeleteKey.htm|`RegDeleteKey()`} - Deletes a subkey from the registry.  
  * @param {(String)} [KeyName]  
  * Full name of a registry key.  
  * Must start with:  
@@ -20350,7 +19849,7 @@ RegDelete([KeyName, K]) => EmptyString
  * Use {@link https://www.autohotkey.com/docs/v2/lib/SetRegView.htm|SetRegView()} to set 32-bit or 64-bit mode when working with the registry.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the operating system's {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()} function  
  * @see  
@@ -20367,8 +19866,7 @@ RegDelete([KeyName, K]) => EmptyString
 RegDeleteKey([KeyName]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/RegRead.htm|`RegRead()`}  
- * Reads a value from the registry.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/RegRead.htm|`RegRead()`} - Reads a value from the registry.  
  * @param {(String)} [KeyName]  
  * Full name of a registry key.  
  * Must start with:  
@@ -20392,12 +19890,12 @@ RegDeleteKey([KeyName]) => EmptyString
  * If omitted, the script will throw an {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#OSError|OSError}.  
  * @returns {(Primitive)}  
  * The value retrieved from the registry key.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure such as a permission error  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the operating system's {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()} function  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Key does not exist  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Key's value does not exist and no `Default` parameter was provided  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/RegCreateKey.htm|RegCreateKey()},
@@ -20413,8 +19911,7 @@ RegDeleteKey([KeyName]) => EmptyString
 RegRead([KeyName, ValueName, Default]) => Primitive
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/RegWrite.htm|`RegWrite()`}  
- * Writes a value to the registry.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/RegWrite.htm|`RegWrite()`} - Writes a value to the registry.  
  * @param {(String|Integer)} Value  
  * The value to be written.  
  * @param {(String)} [ValueType]  
@@ -20446,7 +19943,7 @@ RegRead([KeyName, ValueName, Default]) => Primitive
  * If omitted, the key's `(Default)` value will be used.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {()} 
+ * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/RegCreateKey.htm|RegCreateKey()},
  * {@link https://www.autohotkey.com/docs/v2/lib/RegDelete.htm|RegDelete()},
@@ -20461,8 +19958,7 @@ RegRead([KeyName, ValueName, Default]) => Primitive
 RegWrite(Value [,ValueType, KeyName, ValueName]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Reload.htm|`Reload()`}  
- * Closes the currently running instance of the script and launches a new instance.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Reload.htm|`Reload()`} - Closes the currently running instance of the script and launches a new instance.  
  * @returns {(String)}  
  * An empty string is always returned.  
  * @see  
@@ -20473,8 +19969,7 @@ RegWrite(Value [,ValueType, KeyName, ValueName]) => EmptyString
 Reload() => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Round|`Round()`}  
- * Returns the specified number rounded to N decimal places.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Round|`Round()`} - Returns the specified number rounded to N decimal places.  
  * @param {(Number)} Num  
  * The number to round.  
  * @param {(Integer)} [Precision]  
@@ -20497,8 +19992,7 @@ Reload() => EmptyString
 Round(Num [,Precision]) => Primitive
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Trim.htm|`RTrim()`}  
- * Trims characters from the end of a string.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Trim.htm|`RTrim()`} - Trims characters from the end of a string.  
  * @param {(String)} Str  
  * The string to trim.  
  * @param {(String)} [OmitChars]  
@@ -20513,8 +20007,7 @@ Round(Num [,Precision]) => Primitive
 RTrim(Str [,OmitChars:=' `t']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|`Run()`}  
- * Runs an external program.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|`Run()`} - Runs an external program.  
  * @param {(String)} Target  
  * The file, executable, URL, or other item to run along with any optional switches or parameters.  
  * @param {(String)} [WorkingDir]  
@@ -20530,7 +20023,7 @@ RTrim(Str [,OmitChars:=' `t']) => String
  * An empty string is used if the PID can't be determined.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * Target cannot be launched.  
  * Use a {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try}/{@link https://www.autohotkey.com/docs/v2/lib/Catch.htm|Catch} to prevent this.  
  * @see  
@@ -20545,8 +20038,7 @@ RTrim(Str [,OmitChars:=' `t']) => String
 Run(Target [,WorkingDir:=A_WorkingDir, LaunchOpt:='', &OutputPID]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/RunAs.htm|`RunAs()`}  
- * Specifies a set of user credentials to use for all subsequent {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|Run()} and {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|RunWait()} functions.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/RunAs.htm|`RunAs()`} - Specifies a set of user credentials to use for all subsequent {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|Run()} and {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|RunWait()} functions.  
  * Omit all parameters to disable RunAs() credentials.  
  * @param {(String)} [User]  
  * The username used to create the new process.  
@@ -20568,8 +20060,7 @@ Run(Target [,WorkingDir:=A_WorkingDir, LaunchOpt:='', &OutputPID]) => EmptyStrin
 RunAs([User, Password, Domain]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|`RunWait()`}  
- * Runs an external program and waits until it finishes.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|`RunWait()`} - Runs an external program and waits until it finishes.  
  * @param {(String)} Target  
  * The file, executable, URL, or other item to run along with any optional switches or parameters.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#ComSpec|ComSpec} can be used as a shortcut to the command line (cmd.exe).  
@@ -20610,7 +20101,7 @@ RunAs([User, Password, Domain]) => EmptyString
  * The program's exit code.  
  * Some programs will immediately launch another process and then close.  
  * This will cause RunWait() to return even though the program is still running.  
- * @throws {(Error)}  
+ * @throws Error  
  * Target cannot be launched.  
  * Use a {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try}/{@link https://www.autohotkey.com/docs/v2/lib/Catch.htm|Catch} to prevent this.  
  * @see  
@@ -20625,8 +20116,7 @@ RunAs([User, Password, Domain]) => EmptyString
 RunWait(Target [,WorkingDir:=A_WorkingDir, LaunchOpt:='', &OutputPID]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Send.htm|`Send()`}  
- * Transmits keystrokes to the system.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Send.htm|`Send()`} - Transmits keystrokes to the system.  
  * Send is an alias for {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendInputDetail|SendInput()} by default.  
  * It can be changed to {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendEvent|SendEvent()} or {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendPlayDetail|SendPlay()} by using {@link https://www.autohotkey.com/docs/v2/lib/SendMode.htm|SendMode()}.  
  * @param {(String)} Keys  
@@ -20695,8 +20185,7 @@ RunWait(Target [,WorkingDir:=A_WorkingDir, LaunchOpt:='', &OutputPID]) => Intege
 Send(Keys) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendEvent|`SendEvent()`}  
- * Transmits keystrokes to the system via the {@link https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-keybd_event|keybd_event function}.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendEvent|`SendEvent()`} - Transmits keystrokes to the system via the {@link https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-keybd_event|keybd_event function}.  
  * While {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendInputDetail|SendInput()} and {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendPlayDetail|SendPlay()} are generally faster and more reliable, SendEvent() has some unique benefits.  
  * There are situations where SendEvent() will work when SendInput()/SendPlay() fail.  
  * SendEvent() can make use of {@link https://www.autohotkey.com/docs/v2/lib/SetKeyDelay.htm|SetKeyDelay()} to define key press duration and delay between keystrokes, eliminating the need to add Sleep() between keystroke events.  
@@ -20761,8 +20250,7 @@ Send(Keys) => EmptyString
 SendEvent(Keys) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendInput|`SendInput()`}  
- * Is the preferred method to transmit keystrokes to the system.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendInput|`SendInput()`} - Is the preferred method to transmit keystrokes to the system.  
  * Unlike {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendEvent|SendEvent()}, SendInput() buffers (stores) keyboard and mouse actions until sending finishes, preventing interruption during the send.  
  * All buffered key strokes and mouse actions are sent after SendInput() finishes.  
  * SendInput() has a limit of roughtly ~5000 characters per send.  
@@ -20827,8 +20315,7 @@ SendEvent(Keys) => EmptyString
 SendInput(Keys) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendPlay|`SendPlay()`}  
- * Transmits keystrokes to the system in a "play back" manner.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendPlay|`SendPlay()`} - Transmits keystrokes to the system in a "play back" manner.  
  * There are times when SendPlay() works where other send types fail, especially in video games.  
  * SendPlay() sends keystroke events (messages) directly to the active window, similar to a low level {@link https://www.autohotkey.com/docs/v2/lib/ControlSend.htm|ControlSend()} for a Window.  
  * @param {(String)} Keys  
@@ -20892,8 +20379,7 @@ SendInput(Keys) => EmptyString
 SendPlay(Keys) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendText|`SendText()`}  
- * Transmits keys to the system using [`{Text}` mode](https://www.autohotkey.com/docs/v2/lib/Send.htm#Text).  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendText|`SendText()`} - Transmits keys to the system using [`{Text}` mode](https://www.autohotkey.com/docs/v2/lib/Send.htm#Text).  
  * {@link https://www.autohotkey.com/docs/v2/misc/EscapeChar.htm|Escape Sequences} are respected.  
  * @param {(String)} Keys  
  * Sequence of keys to send.  
@@ -20929,8 +20415,7 @@ SendPlay(Keys) => EmptyString
 SendText(Keys) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SendLevel.htm|`SendLevel()`}  
- * Controls which artificial keyboard and mouse events are ignored by hotkeys and hotstrings.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SendLevel.htm|`SendLevel()`} - Controls which artificial keyboard and mouse events are ignored by hotkeys and hotstrings.  
  * @param {(Integer)} Level  
  * A number `0` and `100`.  
  * Default is `0`.  
@@ -20948,8 +20433,7 @@ SendText(Keys) => EmptyString
 SendLevel(Level) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SendLevel.htm|`SendMessage()`}  
- * Sends a message to a window or control and waits for acknowledgement.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SendLevel.htm|`SendMessage()`} - Sends a message to a window or control and waits for acknowledgement.  
  * @param {(Integer)} MsgNumber  
  * The {@link https://www.autohotkey.com/docs/v2/misc/SendMessageList.htm|message number} to send.  
  * @param {(Integer)} [wParam]  
@@ -20959,18 +20443,17 @@ SendLevel(Level) => Integer
  * Long Param. Also used to pass message-specific information and must be an integer.  
  * If omitted, defaults to `0`.  
  * @param {(String|Integer|Object)} [Control]  
- * A control's ClassNN,  
- * Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
+ * A control's ClassNN, Text, HWND (handle), or an object with an HWND. See {@link https://www.autohotkey.com/docs/v2/lib/Control.htm#Parameter|Control Parameter}.  
  * If omitted, the target window is used instead of a control.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -20981,11 +20464,11 @@ SendLevel(Level) => Integer
  * Defaults to `5000`.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window or control could not be found  
- * @throws {(TimeoutError)}  
+ * @throws TimeoutError  
  * Message was not processed in the specified time  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Message could not be posted  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/OnMessage.htm|OnMessage()},
@@ -21007,8 +20490,7 @@ SendLevel(Level) => Integer
 SendMessage(MsgNumber [,wParam:=0, lParam:=0, Control:=TargetWindow, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='', Timeout:=5000]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SendMessage.htm|`SendMode()`}  
- * Changes the send type used by {@link https://www.autohotkey.com/docs/v2/lib/Send.htm|Send()}.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SendMessage.htm|`SendMode()`} - Changes the send type used by {@link https://www.autohotkey.com/docs/v2/lib/Send.htm|Send()}.  
  * Also affects {@link https://www.autohotkey.com/docs/v2/lib/Click.htm|Click()}, {@link https://www.autohotkey.com/docs/v2/lib/MouseClick.htm|MouseClick()}, {@link https://www.autohotkey.com/docs/v2/lib/MouseMove.htm|MouseMove()}, and {@link https://www.autohotkey.com/docs/v2/lib/MouseClickDrag.htm|MouseClickDrag()}.  
  * The default type is SendInput().  
  * @param {(String)} Mode
@@ -21032,8 +20514,7 @@ SendMessage(MsgNumber [,wParam:=0, lParam:=0, Control:=TargetWindow, WinTitle:='
 SendMode(Mode) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SetNumScrollCapsLockState.htm|`SetCapsLockState()`}  
- * Sets the toggle state of CapsLock.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SetNumScrollCapsLockState.htm|`SetCapsLockState()`} - Sets the toggle state of CapsLock.  
  * Can also permanently enable or disable the key state.  
  * @param {(String|Integer)} [State]
  * - Omit or Empty String = Disables the `AlwaysOn` and `AlwaysOff` options.  
@@ -21052,15 +20533,14 @@ SendMode(Mode) => String
 SetCapsLockState([State]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SetControlDelay.htm|`SetControlDelay()`}  
- * Sets the amount of time to wait after each control-modifying function.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SetControlDelay.htm|`SetControlDelay()`} - Sets the amount of time to wait after each control-modifying function.  
  * @param {(Integer)} Delay
  * - Number = Time to wait in ms
  * - `0` = Minimum possible delay
  * - `-1` = No delay
  * @returns {(Integer)}  
  * The previous delay is returned.  
- * @throws {()} 
+ * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SetWinDelay.htm|SetWinDelay()},
  * {@link https://www.autohotkey.com/docs/v2/lib/SetKeyDelay.htm|SetKeyDelay()},
@@ -21072,8 +20552,7 @@ SetCapsLockState([State]) => EmptyString
 SetControlDelay(Delay) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SetDefaultMouseSpeed.htm|`SetDefaultMouseSpeed()`}  
- * Sets the mouse speed that will be used if unspecified in Click, MouseMove, MouseClick, and MouseClickDrag.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SetDefaultMouseSpeed.htm|`SetDefaultMouseSpeed()`} - Sets the mouse speed that will be used if unspecified in Click, MouseMove, MouseClick, and MouseClickDrag.  
  * @param {(Integer)} Speed  
  * The speed to set mouse movement.  
  * Speed should be between `0` (instant) and `100` (slowest).  
@@ -21097,8 +20576,7 @@ SetControlDelay(Delay) => Integer
 SetDefaultMouseSpeed(Speed) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SetKeyDelay.htm|`SetKeyDelay()`}  
- * Sets the hold time and delay between keystrokes for {@link https://www.autohotkey.com/docs/v2/lib/Send.htm|Send()} and {@link https://www.autohotkey.com/docs/v2/lib/ControlSend.htm|ControlSend()} keystrokes.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SetKeyDelay.htm|`SetKeyDelay()`} - Sets the hold time and delay between keystrokes for {@link https://www.autohotkey.com/docs/v2/lib/Send.htm|Send()} and {@link https://www.autohotkey.com/docs/v2/lib/ControlSend.htm|ControlSend()} keystrokes.  
  * @param {(Integer)} [KeyDelay]  
  * The amount of time between each keystroke.  
  * Default is 10 for SendEvent() and -1 for SendPlay().  
@@ -21136,8 +20614,7 @@ SetDefaultMouseSpeed(Speed) => Integer
 SetKeyDelay([KeyDelay:=unset, HoldTime:=unset, Play:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SetMouseDelay.htm|`SetMouseDelay()`}  
- * Sets the delay that will occur after each mouse movement or click.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SetMouseDelay.htm|`SetMouseDelay()`} - Sets the delay that will occur after each mouse movement or click.  
  * @param {(Integer)} [Delay]  
  * The amount of time between each mouse event.  
  * Default is 10 for SendEvent() and -1 for SendPlay().  
@@ -21169,8 +20646,7 @@ SetKeyDelay([KeyDelay:=unset, HoldTime:=unset, Play:='']) => EmptyString
 SetMouseDelay(Delay [,Play]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SetNumScrollCapsLockState.htm|`SetNumLockState()`}  
- * Sets the toggle state of NumLock.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SetNumScrollCapsLockState.htm|`SetNumLockState()`} - Sets the toggle state of NumLock.  
  * Can also permanently enable or disable the key state.  
  * @param {(String|Integer)} [State]
  * - Omit or Empty String = Disables the `AlwaysOn` and `AlwaysOff` options.  
@@ -21188,8 +20664,7 @@ SetMouseDelay(Delay [,Play]) => Integer
 SetNumLockState([State]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SetNumScrollCapsLockState.htm|`SetScrollLockState()`}  
- * Sets the toggle state of ScrollLock.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SetNumScrollCapsLockState.htm|`SetScrollLockState()`} - Sets the toggle state of ScrollLock.  
  * Can also permanently enable or disable the key state.  
  * @param {(String|Integer)} [State]
  * - Omit or Empty String = Disables the `AlwaysOn` and `AlwaysOff` options.  
@@ -21207,8 +20682,7 @@ SetNumLockState([State]) => EmptyString
 SetScrollLockState([State]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SetRegView.htm|`SetRegView()`}  
- * Sets the registry view used by {@link https://www.autohotkey.com/docs/v2/lib/RegRead.htm|RegRead()}, {@link https://www.autohotkey.com/docs/v2/lib/RegWrite.htm|RegWrite()}, {@link https://www.autohotkey.com/docs/v2/lib/RegDelete.htm|RegDelete()}, {@link https://www.autohotkey.com/docs/v2/lib/RegDeleteKey.htm|RegDeleteKey()} and {@link https://www.autohotkey.com/docs/v2/lib/LoopReg.htm|Loop-Registry}.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SetRegView.htm|`SetRegView()`} - Sets the registry view used by {@link https://www.autohotkey.com/docs/v2/lib/RegRead.htm|RegRead()}, {@link https://www.autohotkey.com/docs/v2/lib/RegWrite.htm|RegWrite()}, {@link https://www.autohotkey.com/docs/v2/lib/RegDelete.htm|RegDelete()}, {@link https://www.autohotkey.com/docs/v2/lib/RegDeleteKey.htm|RegDeleteKey()} and {@link https://www.autohotkey.com/docs/v2/lib/LoopReg.htm|Loop-Registry}.  
  * Sets 32-bit or 64-bit registry view. {@link https://www.autohotkey.com/docs/v1/Variables.htm#RegView|A_RegView} stores the current view type.  
  * @param {(Integer|String)} RegView  
  * View type
@@ -21232,8 +20706,7 @@ SetScrollLockState([State]) => EmptyString
 SetRegView(RegView) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SetStoreCapsLockMode.htm|`SetStoreCapsLockMode()`}  
- * Sets whether CapsLock's state is restored after a {@link https://www.autohotkey.com/docs/v2/lib/Send.htm|Send function}.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SetStoreCapsLockMode.htm|`SetStoreCapsLockMode()`} - Sets whether CapsLock's state is restored after a {@link https://www.autohotkey.com/docs/v2/lib/Send.htm|Send function}.  
  * This allows the sending of the CapsLock keystroke to alter the capslock state.  
  * {@link https://www.autohotkey.com/docs/v1/Variables.htm#StoreCapslockMode|A_StoreCapsLockMode} stores the current SetStoreCapsLockMode setting.  
  * @param {(Boolean)} Mode
@@ -21251,8 +20724,7 @@ SetRegView(RegView) => String
 SetStoreCapsLockMode(Mode) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SetTimer.htm|`SetTimer()`}  
- * Causes a function or callback to be activated on a set timer, either once or repeatedly.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SetTimer.htm|`SetTimer()`} - Causes a function or callback to be activated on a set timer, either once or repeatedly.  
  * @param {(FuncObj)} [Callback]  
  * The {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm|function object} to call.  
  * A {@link https://www.autohotkey.com/docs/v2/Concepts.htm#references-to-objects|reference} to the function object is kept until the timer is deleted.  
@@ -21283,8 +20755,7 @@ SetStoreCapsLockMode(Mode) => Integer
 SetTimer([Callback:=unset, Period:=250, Priority:=0]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SetTitleMatchMode.htm|`SetTitleMatchMode()`}  
- * Sets the matching behavior of the WinTitle parameter in built-in functions such as WinWait.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SetTitleMatchMode.htm|`SetTitleMatchMode()`} - Sets the matching behavior of the WinTitle parameter in built-in functions such as WinWait.  
  * @param {(String|Integer)} ModeOrSpeed  
  * - **Mode:** How the title uses the provided text.  
  *   The current value is stored in {@link https://www.autohotkey.com/docs/v2/Variables.htm#TitleMatchMode|A_TitleMatchMode}  
@@ -21314,8 +20785,7 @@ SetTimer([Callback:=unset, Period:=250, Priority:=0]) => EmptyString
 SetTitleMatchMode(ModeOrSpeed) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SetWinDelay.htm|`SetWinDelay()`}  
- * Sets the delay that will occur after each {@link https://www.autohotkey.com/docs/v2/lib/Win.htm|window function}.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SetWinDelay.htm|`SetWinDelay()`} - Sets the delay that will occur after each {@link https://www.autohotkey.com/docs/v2/lib/Win.htm|window function}.  
  * {@link https://www.autohotkey.com/docs/v1/Variables.htm#WinDelay|A_WinDelay} stores the current SetWinDelay() setting.  
  * @param {(Integer)} Delay  
  * Default is `100`  
@@ -21335,14 +20805,13 @@ SetTitleMatchMode(ModeOrSpeed) => String
 SetWinDelay(Delay) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SetWorkingDir.htm|`SetWorkingDir()`}  
- * Changes the script's current working directory.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SetWorkingDir.htm|`SetWorkingDir()`} - Changes the script's current working directory.  
  * @param {(String)} DirName  
  * the name of the new working directory.  
  * If a full path isn't used, DirName is assumed to be a subfolder of the current {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/DirSelect.htm|DirSelect()},
@@ -21355,8 +20824,7 @@ SetWinDelay(Delay) => Integer
 SetWorkingDir(DirName) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Shutdown.htm|`Shutdown()`}  
- * Shuts down, restarts, or logs off the system.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Shutdown.htm|`Shutdown()`} - Shuts down, restarts, or logs off the system.  
  * @param {(Integer)} Flag  
  * A sum of the following options:
  * - `0` = Logoff. Current user is logged off.  
@@ -21379,8 +20847,7 @@ SetWorkingDir(DirName) => EmptyString
 Shutdown(Flag) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Sin|`Sin()`}  
- * Returns the trigonometric sine of the number.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Sin|`Sin()`} - Returns the trigonometric sine of the number.  
  * Convert radians to degrees: `Value * 180/pi` (180/pi = ~57.29578) 
  * Convert degrees to radians: `Value * pi/180` (pi/180 = ~0.01745329252)
  * @param {(Number)} Num  
@@ -21395,8 +20862,7 @@ Shutdown(Flag) => EmptyString
 Sin(Num) => Float
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Sleep.htm|`Sleep()`}  
- * Waits the specified amount of time before continuing.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Sleep.htm|`Sleep()`} - Waits the specified amount of time before continuing.  
  * @param {(Integer)} Delay  
  * Amount of time, in milliseconds, to wait before continuing the thread.  
  * Number must be between `0` and `2147483647` (24 days).  
@@ -21415,8 +20881,7 @@ Sin(Num) => Float
 Sleep(Delay) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Sort.htm|`Sort()`}  
- * Arranges a variable's contents in alphabetical, numerical, or random order (optionally removing duplicates).  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Sort.htm|`Sort()`} - Arranges a variable's contents in alphabetical, numerical, or random order (optionally removing duplicates).  
  * @param {(String)} Text  
  * The string to sort.  
  * @param {(String)} [Options]  
@@ -21485,8 +20950,7 @@ Sleep(Delay) => EmptyString
 Sort(Text [,Options:='C0', Callback:=unset]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SoundBeep.htm|`SoundBeep()`}  
- * Emits a tone from the PC speaker.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SoundBeep.htm|`SoundBeep()`} - Emits a tone from the PC speaker.  
  * This function will wait for the sound to finish before continuing.  
  * To produce system sounds instead of speaker beeping, see {@link https://www.autohotkey.com/docs/v2/lib/SoundPlay.htm|SoundPlay()}.  
  * @param {(Integer)} [Frequency]  
@@ -21503,8 +20967,7 @@ Sort(Text [,Options:='C0', Callback:=unset]) => String
 SoundBeep([Frequency:=523, Duration:=150]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SoundGetInterface.htm|`SoundGetInterface()`}  
- * Retrieves a native COM interface of a sound device or component.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SoundGetInterface.htm|`SoundGetInterface()`} - Retrieves a native COM interface of a sound device or component.  
  * @param {(String)} IID  
  * An interface identifier (GUID).  
  * GUID format: `{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}`  
@@ -21518,9 +20981,9 @@ SoundBeep([Frequency:=523, Duration:=150]) => EmptyString
  * If omitted or empty string, the system's default device is retrieved.  
  * @returns {(Integer)}  
  * `0` if interface is not supported, otherwise an interface pointer is returned.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure other than TargetError.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Device or component could not be found.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Sound.htm|Sound Functions},
@@ -21531,8 +20994,7 @@ SoundBeep([Frequency:=523, Duration:=150]) => EmptyString
 SoundGetInterface(IID [,Component:='', Device:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SoundGetName.htm|`SoundGetMute()`}  
- * Retrieves a mute setting of a sound device.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SoundGetName.htm|`SoundGetMute()`} - Retrieves a mute setting of a sound device.  
  * @param {(String|Integer)} [Component]  
  * Specify the component's display name and/or index number.  
  * See {@link https://www.autohotkey.com/docs/v2/lib/Sound.htm#component|Component (Sound Functions)}.  
@@ -21543,9 +21005,9 @@ SoundGetInterface(IID [,Component:='', Device:='']) => Integer
  * If omitted or empty string, the system's default device is retrieved.  
  * @returns {(Boolean)}  
  * `1` for muted, `0` for unmuted.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure other than TargetError.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Device or component could not be found or component does not support this control type.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SoundSetMute.htm|SoundSetMute()}
@@ -21557,8 +21019,7 @@ SoundGetInterface(IID [,Component:='', Device:='']) => Integer
 SoundGetMute([Component:='', Device:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SoundGetName.htm|`SoundGetName()`}  
- * Retrieves the name of a sound device or component.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SoundGetName.htm|`SoundGetName()`} - Retrieves the name of a sound device or component.  
  * @param {(String|Integer)} [Component]  
  * Specify the component's display name and/or index number.  
  * See {@link https://www.autohotkey.com/docs/v2/lib/Sound.htm#component|Component (Sound Functions)}.  
@@ -21570,9 +21031,9 @@ SoundGetMute([Component:='', Device:='']) => Integer
  * @returns {(String)}  
  * The name of the device or component.  
  * This value can be a blank string.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure other than TargetError.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Device or component could not be found.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Sound.htm|Sound Functions},
@@ -21582,8 +21043,7 @@ SoundGetMute([Component:='', Device:='']) => Integer
 SoundGetName([Component:='', Device:='']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SoundGetVolume.htm|`SoundGetVolume()`}  
- * Retrieves a volume setting of a sound device.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SoundGetVolume.htm|`SoundGetVolume()`} - Retrieves a volume setting of a sound device.  
  * @param {(String|Integer)} [Component]  
  * Specify the component's display name and/or index number.  
  * See {@link https://www.autohotkey.com/docs/v2/lib/Sound.htm#component|Component (Sound Functions)}.  
@@ -21594,9 +21054,9 @@ SoundGetName([Component:='', Device:='']) => String
  * If omitted or empty string, the system's default device is retrieved.  
  * @returns {(Float)}  
  * The current volume between `0.0` and `100.0`
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure other than TargetError.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Device or component could not be found or component does not support this control type.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SoundSetVolume.htm|SoundSetVolume()},
@@ -21608,8 +21068,7 @@ SoundGetName([Component:='', Device:='']) => String
 SoundGetVolume([Component:='', Device:='']) => Float
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SoundPlay.htm|`SoundPlay()`}  
- * Plays a sound, video, or other supported file type.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SoundPlay.htm|`SoundPlay()`} - Plays a sound, video, or other supported file type.  
  * @param {(String)} Filename  
  * Path of the file to be played.  
  * If a full path isn't used, Filename is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
@@ -21625,7 +21084,7 @@ SoundGetVolume([Component:='', Device:='']) => Float
  * - `0` = The current thread immediately continues.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(Error)}  
+ * @throws Error  
  * Thrown on failure.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SoundBeep.htm|SoundBeep()},
@@ -21638,8 +21097,7 @@ SoundGetVolume([Component:='', Device:='']) => Float
 SoundPlay(Filename [,Wait:=0]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SoundSetMute.htm|`SoundSetMute()`}  
- * Changes a mute setting of a sound device.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SoundSetMute.htm|`SoundSetMute()`} - Changes a mute setting of a sound device.  
  * @param {(Integer)} NewSetting
  * - `1` = Enable mute.  
  * - `0` = Disable mute.  
@@ -21654,9 +21112,9 @@ SoundPlay(Filename [,Wait:=0]) => EmptyString
  * If omitted or empty string, the system's default device is retrieved.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure other than TargetError.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Device or component could not be found or component does not support this control type.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Sound.htm|Sound Functions},
@@ -21668,8 +21126,7 @@ SoundPlay(Filename [,Wait:=0]) => EmptyString
 SoundSetMute(NewSetting [,Component:='', Device:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SoundSetVolume.htm|`SoundSetVolume()`}  
- * Changes a volume setting of a sound device.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SoundSetVolume.htm|`SoundSetVolume()`} - Changes a volume setting of a sound device.  
  * @param {(Primitive)} NewSetting
  * - A number prefixed with a `+` increases the current volume by that amount. This must be a string.  
  * - A number prefixed with a `-` decreases the current volume by that amount.  
@@ -21685,9 +21142,9 @@ SoundSetMute(NewSetting [,Component:='', Device:='']) => EmptyString
  * If omitted or empty string, the system's default device is retrieved.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Thrown on failure other than TargetError.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Device or component could not be found or component does not support this control type.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Sound.htm|Sound Functions},
@@ -21699,8 +21156,7 @@ SoundSetMute(NewSetting [,Component:='', Device:='']) => EmptyString
 SoundSetVolume(NewSetting [,Component:='', Device:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SplitPath.htm|`SplitPath()`}  
- * Splits up a file name or URL into its component parts.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SplitPath.htm|`SplitPath()`} - Splits up a file name or URL into its component parts.  
  * @param {(String)} Path  
  * A filename or URL to process.  
  * Filenames should use `\` path separators while URLs use `/`.  
@@ -21751,13 +21207,12 @@ SoundSetVolume(NewSetting [,Component:='', Device:='']) => EmptyString
 SplitPath(Path [,&OutName, &OutDir, &OutExt, &OutNameNoExt, &OutDrive]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Sqrt|`Sqrt()`}  
- * Returns the square root of the specified number.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Sqrt|`Sqrt()`} - Returns the square root of the specified number.  
  * @param {(Number)} Num  
  * A positive number.  
  * @returns {(Float)}  
  * The square root of `Num`.  
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * Number is negative
  * @example <caption>  
  * Square Root Examples.</caption>
@@ -21774,20 +21229,19 @@ SplitPath(Path [,&OutName, &OutDir, &OutExt, &OutNameNoExt, &OutDrive]) => Empty
 Sqrt(Num) => Float
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/StatusBarGetText.htm|`StatusBarGetText()`}  
- * Retrieves the text from a standard status bar control.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/StatusBarGetText.htm|`StatusBarGetText()`} - Retrieves the text from a standard status bar control.  
  * @param {(Integer)} [Section]  
  * The section number if status bar to get the text of.  
  * If omitted, it defaults to 1.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -21795,13 +21249,13 @@ Sqrt(Num) => Float
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * The text of the specified section.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Target window could not be found or does not contain a standard status bar.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * There was a problem sending SB_GETPARTS message  
- * @throws {(OSError)}  
+ * @throws OSError  
  * No reply was received within 2000 ms  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Memory could not be allocated within the process that owns the status bar  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/StatusBarWait.htm|StatusBarWait()},
@@ -21819,8 +21273,7 @@ Sqrt(Num) => Float
 StatusBarGetText([Section:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/StatusBarWait.htm|`StatusBarWait()`}  
- * Waits until a window's status bar contains the specified string.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/StatusBarWait.htm|`StatusBarWait()`} - Waits until a window's status bar contains the specified string.  
  * @param {(String)} [BarText]  
  * Text to wait for in the specified section.  
  * If omitted or empty string, the function waits for the section to be blank.  
@@ -21834,12 +21287,12 @@ StatusBarGetText([Section:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(Integer)} [Interval]  
  * How often the status bar should be checked, in milliseconds.  
  * If omitted, it defaults to 50.  
@@ -21848,13 +21301,13 @@ StatusBarGetText([Section:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * @param {(String)} [NoWinText]  
  * Text that must not appear in the window.  
  * Use WindowSpy to view window text.
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Target window could not be found or does not contain a standard status bar.  
- * @throws {(OSError)}  
+ * @throws OSError  
  * There was a problem sending SB_GETPARTS message  
- * @throws {(OSError)}  
+ * @throws OSError  
  * No reply was received within 2000 ms  
- * @throws {(OSError)}  
+ * @throws OSError  
  * Memory could not be allocated within the process that owns the status bar  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/StatusBarGetText.htm|StatusBarGetText()},
@@ -21872,8 +21325,7 @@ StatusBarGetText([Section:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
 StatusBarWait([BarText:='', Timeout:=unset, Section:=1, WinTitle:='', WinText:='', Interval:=50, NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/StrCompare.htm|`StrCompare()`}  
- * Compares two strings alphabetically.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/StrCompare.htm|`StrCompare()`} - Compares two strings alphabetically.  
  * @param {(String)} String1  
  * First string to compare.  
  * @param {(String)} String2  
@@ -21892,7 +21344,7 @@ StatusBarWait([BarText:='', Timeout:=unset, Section:=1, WinTitle:='', WinText:='
  * Positive = Str2 comes before Str1 in lexicographical order.
  * 
  * No other assumptions should be made from the returned value.  
- * @throws {()} 
+ * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Sort.htm|Sort()},
  * {@link https://www.autohotkey.com/docs/v2/lib/VerCompare.htm|VerCompare()},
@@ -21907,8 +21359,7 @@ StatusBarWait([BarText:='', Timeout:=unset, Section:=1, WinTitle:='', WinText:='
 StrCompare(String1, String2 [,CaseSense]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/StrGet.htm|`StrGet()`}  
- * Copies a string from a memory address or buffer, optionally converting it from a given code page.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/StrGet.htm|`StrGet()`} - Copies a string from a memory address or buffer, optionally converting it from a given code page.  
  * @param {(Integer|Buffer)} Source  
  * A memory address or a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|buffer-like} object (any object with a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Ptr|Ptr} and {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Size|Size} property).  
  * @param {(Integer|String)} [Length]  
@@ -21929,9 +21380,9 @@ StrCompare(String1, String2 [,CaseSense]) => Integer
  * Encoding can be passed to the `Length` parameter and the string's full length will be used for `Length`.  
  * @returns {(String)}  
  * The string retrieved from `Source`.  
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * An invalid parameter is detected
- * @throws {(OSError)}  
+ * @throws OSError  
  * Conversion could not be performed
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/StrPut.htm|StrPut()},
@@ -21947,8 +21398,7 @@ StrCompare(String1, String2 [,CaseSense]) => Integer
 StrGet(Source [,Length:=unset, Encoding:=unset]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/StrLen.htm|`StrLen()`}  
- * Retrieves the count of how many characters are in a string.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/StrLen.htm|`StrLen()`} - Retrieves the count of how many characters are in a string.  
  * @param {(String)} Str  
  * String to get the length of.  
  * @returns {(Integer)}  
@@ -21969,8 +21419,7 @@ StrGet(Source [,Length:=unset, Encoding:=unset]) => String
 StrLen(Str) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/StrLower.htm|`StrLower()`}  
- * Converts a string to lowercase.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/StrLower.htm|`StrLower()`} - Converts a string to lowercase.  
  * @param {(String)} Str  
  * The string to convert.  
  * @returns {(String)}  
@@ -21988,13 +21437,12 @@ StrLen(Str) => Integer
 StrLower(Str) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/StrPtr.htm|`StrPtr()`}  
- * Returns the current memory address of a string.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/StrPtr.htm|`StrPtr()`} - Returns the current memory address of a string.  
  * @param {(String)} Str  
  * A variable containing a string.  
  * @returns {(Integer)}  
  * The current memory address of the string.  
- * @throws {()} 
+ * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/VarSetStrCapacity.htm|VarSetStrCapacity()},
  * {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm|DllCall()},
@@ -22008,8 +21456,7 @@ StrLower(Str) => String
 StrPtr(Str) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/StrPut.htm|`StrPut()`}  
- * Copy a string to a memory address and can convert encoding.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/StrPut.htm|`StrPut()`} - Copy a string to a memory address and can convert encoding.  
  * This function can also be used to calculate the required buffer size for a string.  
  * @param {(String)} Str  
  * Any string. If a number is given, its converted to a string first.  
@@ -22035,13 +21482,13 @@ StrPtr(Str) => Integer
  * If `Target` is used, the function returns number of bytes written.  
  * A null terminator is written if there is space to add it.  
  * If `Target` is omitted, the function returns the bytes requires to make a buffer for `Str`.  
- * @throws {(Error)}  
+ * @throws Error  
  * Length is zero or length is smaller than required size after conversion
- * @throws {(Error)}  
+ * @throws Error  
  * Length is larger than buffer size, even if string would fit in the buffer  
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * An invalid parameter is detected
- * @throws {(OSError)}  
+ * @throws OSError  
  * Conversion could not be performed
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/StrGet.htm|StrGet()},
@@ -22057,8 +21504,7 @@ StrPtr(Str) => Integer
 StrPut(Str [,Target, Length, Encoding]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/StrReplace.htm|`StrReplace()`}  
- * Replaces the specified substring with a new string.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/StrReplace.htm|`StrReplace()`} - Replaces the specified substring with a new string.  
  * StrReplace() should be whenever possible over RegEx as it peforms **much** faster.  
  * @param {(String)} Haystack  
  * The string with contents to be replaced
@@ -22093,8 +21539,7 @@ StrPut(Str [,Target, Length, Encoding]) => Integer
 StrReplace(Haystack, Needle [,ReplaceText:='', CaseSense:=0, &OutputVarCount, Limit:=-1]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/StrSplit.htm|`StrSplit()`}  
- * Separates a string into an array of substrings using the specified delimiters.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/StrSplit.htm|`StrSplit()`} - Separates a string into an array of substrings using the specified delimiters.  
  * @param {(String)} Str  
  * The string to split up.  
  * @param {(String|Array)} [Delimiters]  
@@ -22121,7 +21566,7 @@ StrReplace(Haystack, Needle [,ReplaceText:='', CaseSense:=0, &OutputVarCount, Li
  * If omitted, `-1` is used indicating no array size limit.  
  * @returns {(Array)}  
  * An array of the substrings from splitting `Str`.  
- * @throws {()} 
+ * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Sort.htm|Sort()},
  * {@link https://www.autohotkey.com/docs/v2/lib/SplitPath.htm|SplitPath()},
@@ -22144,8 +21589,7 @@ StrReplace(Haystack, Needle [,ReplaceText:='', CaseSense:=0, &OutputVarCount, Li
 StrSplit(Str [,Delimiters:='', OmitChars:='', MaxArrSize:=-1]) => Array
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/StrLower.htm|`StrTitle()`}  
- * Converts a string to Title Case.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/StrLower.htm|`StrTitle()`} - Converts a string to Title Case.  
  * The First Letter Of Each Word Is Capitalized.  
  * @param {(String)} Str  
  * The string to convert.  
@@ -22162,8 +21606,7 @@ StrSplit(Str [,Delimiters:='', OmitChars:='', MaxArrSize:=-1]) => Array
 StrTitle(Str) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/StrLower.htm|`StrUpper()`}  
- * Converts a string to UPPERCASE.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/StrLower.htm|`StrUpper()`} - Converts a string to UPPERCASE.  
  * @param {(String)} Str  
  * The string to convert.  
  * @returns {(String)}  
@@ -22181,8 +21624,7 @@ StrTitle(Str) => String
 StrUpper(Str) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SubStr.htm|`SubStr()`}  
- * Retrieves one or more characters from the specified position in a string.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SubStr.htm|`SubStr()`} - Retrieves one or more characters from the specified position in a string.  
  * @param {(String)} Str  
  * The string to get a portion of.  
  * @param {(Integer)} StartPos  
@@ -22200,7 +21642,7 @@ StrUpper(Str) => String
  * The captured substring.  
  * If `Length` is a negative number equal to or greater than the substring's length, an empty string is returned.  
  * If position is `0` or greater than string length, an empty string is returned.  
- * @throws {()} 
+ * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm|RegExMatch()},
  * {@link https://www.autohotkey.com/docs/v2/lib/InStr.htm|InStr()}
@@ -22210,8 +21652,7 @@ StrUpper(Str) => String
 SubStr(Str, StartPos [,Length:=unset]) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Suspend.htm|`Suspend()`}  
- * Disables or enables all or selected hotkeys and hotstrings.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Suspend.htm|`Suspend()`} - Disables or enables all or selected hotkeys and hotstrings.  
  * @param {(Integer)} [NewState] New suspend state.  
  * - `1` = Suspend all hotkeys and hotstrings.  
  * - `0` = Enable all hotkeys and hotstrings.  
@@ -22231,8 +21672,7 @@ SubStr(Str, StartPos [,Length:=unset]) => String
 Suspend([NewState:=-1]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SysGet.htm|`SysGet()`}  
- * Retrieves dimensions of system objects, and other system properties.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SysGet.htm|`SysGet()`} - Retrieves dimensions of system objects, and other system properties.  
  * @param {(Integer)} Property  
  * A {@link https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getsystemmetrics|system property}. 
  * **{@link https://www.autohotkey.com/docs/v2/lib/SysGet.htm#Commonly_Used|Common Properties}**
@@ -22325,8 +21765,7 @@ Suspend([NewState:=-1]) => EmptyString
 SysGet(Property) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/SysGetIPAddresses.htm|`SysGetIPAddresses()`}  
- * Returns an array of the system's IPv4 addresses.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/SysGetIPAddresses.htm|`SysGetIPAddresses()`} - Returns an array of the system's IPv4 addresses.  
  * Currently, IPv6 is not supported.  
  * @returns {(Array)}  
  * An array where each index is an IPv4 addess.  
@@ -22338,8 +21777,7 @@ SysGet(Property) => Integer
 SysGetIPAddresses() => Array
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Tan|`Tan()`}  
- * Returns the trigonometric tangent of the number.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Math.htm#Tan|`Tan()`} - Returns the trigonometric tangent of the number.  
  * Convert radians to degrees: `Value * 180/pi` (180/pi = ~57.29578) 
  * Convert degrees to radians: `Value * pi/180` (pi/180 = ~0.01745329252)
  * @param {(Number)} Num  
@@ -22354,8 +21792,7 @@ SysGetIPAddresses() => Array
 Tan(Num) => Float
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Thread.htm|`Thread()`}  
- * Sets the priority or interruptibility of threads. It can also temporarily disable all timers.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Thread.htm|`Thread()`} - Sets the priority or interruptibility of threads. It can also temporarily disable all timers.  
  * @param {(String)} Option  
  * A thread option to adjust:
  * - {@link https://www.autohotkey.com/docs/v2/lib/Thread.htm#NoTimers|NoTimers} = Sets when a thread can be interruptable by a {@link https://www.autohotkey.com/docs/v2/lib/SetTimer.htm|timer}.  
@@ -22408,8 +21845,7 @@ Tan(Num) => Float
 Thread(Option [,NewSetting, LineCount]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/ToolTip.htm|`ToolTip()`}  
- * Shows an always-on-top window anywhere on the screen.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/ToolTip.htm|`ToolTip()`} - Shows an always-on-top window anywhere on the screen.  
  * @param {(String)} [Text]  
  * The text to display in the tooltip.  
  * If omitted, the tooltip is hidden.  
@@ -22440,8 +21876,7 @@ Thread(Option [,NewSetting, LineCount]) => EmptyString
 ToolTip([Text:='', X:=0, Y:=0, ID:=1]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/TraySetIcon.htm|`TraySetIcon()`}  
- * Changes the script's {@link https://www.autohotkey.com/docs/v2/Program.htm#tray-icon|tray icon} (also used by {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm|GUI} and dialog windows).  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/TraySetIcon.htm|`TraySetIcon()`} - Changes the script's {@link https://www.autohotkey.com/docs/v2/Program.htm#tray-icon|tray icon} (also used by {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm|GUI} and dialog windows).  
  * @param {(String)} [FileName]  
  * The path to an icon or image. A {@link https://www.autohotkey.com/docs/v2/misc/ImageHandles.htm|bitmap or icon handle} can be used.  
  * `*` restores the script's default icon.  
@@ -22467,8 +21902,7 @@ ToolTip([Text:='', X:=0, Y:=0, ID:=1]) => Integer
 TraySetIcon([FileName:=unset, IconNumber:=1, Freeze:=unset]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/TrayTip.htm|`TrayTip()`}  
- * Shows a toast notification near the {@link https://www.autohotkey.com/docs/v2/Program.htm#tray-icon|tray icon}. For pre-Windows 10, this is a balloon notification.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/TrayTip.htm|`TrayTip()`} - Shows a toast notification near the {@link https://www.autohotkey.com/docs/v2/Program.htm#tray-icon|tray icon}. For pre-Windows 10, this is a balloon notification.  
  * @param {(String)} [Text]  
  * The message to display. There is a display limit of 256 characters.  
  * Linefeed `` `n `` and carriage return `` `r `` can be used to make new lines.  
@@ -22493,7 +21927,7 @@ TraySetIcon([FileName:=unset, IconNumber:=1, Freeze:=unset]) => EmptyString
  * | `Use large icon`  | `32`  | `0x20` | `N/A`    |
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {()} 
+ * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ToolTip.htm|ToolTip()},
  * {@link https://www.autohotkey.com/docs/v2/lib/SetTimer.htm|SetTimer()},
@@ -22509,8 +21943,7 @@ TraySetIcon([FileName:=unset, IconNumber:=1, Freeze:=unset]) => EmptyString
 TrayTip([Text:='', Title:='', Options:=0]) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Trim.htm|`Trim()`}  
- * Trims characters from the beginning and end of a string.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Trim.htm|`Trim()`} - Trims characters from the beginning and end of a string.  
  * @param {(String)} Str  
  * The string to trim.  
  * @param {(String)} [OmitChars]  
@@ -22525,8 +21958,7 @@ TrayTip([Text:='', Title:='', Options:=0]) => EmptyString
 Trim(Str [,OmitChars:=' `t']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/Type.htm|`Type()`}  
- * Returns the class name of a value.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/Type.htm|`Type()`} - Returns the class name of a value.  
  * @param {(Any)} Value  
  * The value to check.  
  * @returns {(String)}  
@@ -22544,8 +21976,7 @@ Trim(Str [,OmitChars:=' `t']) => String
 Type(Value) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/VarSetStrCapacity.htm|`VarSetStrCapacity()`}  
- * Enlarges a variable's holding capacity or frees its memory.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/VarSetStrCapacity.htm|`VarSetStrCapacity()`} - Enlarges a variable's holding capacity or frees its memory.  
  * This is not normally needed, but may be used with {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm|DllCall()}, {@link https://www.autohotkey.com/docs/v2/lib/SendMessage.htm|SendMessage()}, or to optimize repeated concatenation.  
  * @param {(VarRef)} TargetVar  
  * A variable reference to a string to set the capacity of.  
@@ -22560,13 +21991,13 @@ Type(Value) => String
  * The number of characters that `TargetVar` can now hold.  
  * This number may return greater than the `RequestedCapactiy`.  
  * If no `Capacity` is provided, the current capacity of `TargetVar` is returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * `TargetVar` is not a valid variable reference  
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * `Capacity` is less than `-1`  
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * `Capacity` is greater than the available memory  
- * @throws {(MemoryError)}  
+ * @throws MemoryError  
  * The requested capacity is too larget to fit within any single contiguous memory block  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/NumGet.htm|NumGet()},
@@ -22579,8 +22010,7 @@ Type(Value) => String
 VarSetStrCapacity(&TargetVar [,Capacity:=unset]) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/VerCompare.htm|`VerCompare()`}  
- * Compares two version strings.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/VerCompare.htm|`VerCompare()`} - Compares two version strings.  
  * Each version is delimited into groups by the version dots.  
  * Each group is compared numerically, not by character codes: `v1.01` = `v1.1`  
  * A missing group is `0`: `1.37.0.0` = `1.37`  
@@ -22608,18 +22038,17 @@ VarSetStrCapacity(&TargetVar [,Capacity:=unset]) => Integer
 VerCompare(VersionA, VersionB) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinActivate.htm|`WinActivate()`}  
- * Activates the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinActivate.htm|`WinActivate()`} - Activates the specified window.  
  * This will automatically restore a minimized window before activating it.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -22627,7 +22056,7 @@ VerCompare(VersionA, VersionB) => Integer
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinActivateBottom.htm|WinActivateBottom()},
@@ -22651,18 +22080,17 @@ VerCompare(VersionA, VersionB) => Integer
 WinActivate([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinActivateBottom.htm|`WinActivateBottom()`}  
- * Activates the bottommost matching window rather than the topmost.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinActivateBottom.htm|`WinActivateBottom()`} - Activates the bottommost matching window rather than the topmost.  
  * Simliar to {@link https://www.autohotkey.com/docs/v2/lib/WinActivate.htm|WinActivate()}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -22670,7 +22098,7 @@ WinActivate([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Empty
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinExist.htm|WinExist()},
@@ -22688,18 +22116,17 @@ WinActivate([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Empty
 WinActivateBottom([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinActive.htm|`WinActive()`}  
- * Checks if the specified window is active and returns its unique ID (HWND).  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinActive.htm|`WinActive()`} - Checks if the specified window is active and returns its unique ID (HWND).  
  * On success, this function sets {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}.
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -22707,7 +22134,7 @@ WinActivateBottom([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =>
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * The {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|unique ID (HWND)} if the active window matches the specified criteria, otherwise `0`.
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SetTitleMatchMode.htm|SetTitleMatchMode()},
@@ -22728,17 +22155,16 @@ WinActivateBottom([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =>
 WinActive([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinClose.htm|`WinClose()`}  
- * Closes the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinClose.htm|`WinClose()`} - Closes the specified window.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [SecToWait]  
  * The number of seconds to wait for the window to close.  
  * If omitted, the function does not wait.  
@@ -22750,7 +22176,7 @@ WinActive([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * No exception is thrown when a window is found but cannot be closed  
  * Use {@link https://www.autohotkey.com/docs/v2/lib/WinExist.htm|WinExist()} or {@link https://www.autohotkey.com/docs/v2/lib/WinWaitClose.htm|WinWaitClose()}  
@@ -22775,18 +22201,17 @@ WinActive([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 WinClose([WinTitle:='', WinText:='', SecToWait:=unset, NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinExist.htm|`WinExist()`}  
- * Checks if the specified window exists and returns the {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|unique ID (HWND)} of the first matching window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinExist.htm|`WinExist()`} - Checks if the specified window exists and returns the {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|unique ID (HWND)} of the first matching window.  
  * On success, this function sets {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}.
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -22815,17 +22240,16 @@ WinClose([WinTitle:='', WinText:='', SecToWait:=unset, NoWinTitle:='', NoWinText
 WinExist([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetClass.htm|`WinGetClass()`}  
- * Retrieves the specified window's class name.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetClass.htm|`WinGetClass()`} - Retrieves the specified window's class name.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -22833,9 +22257,9 @@ WinExist([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * The {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|class name} of the specified window.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * The class name could not be retrieved  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetProcessPath.htm|WinGetProcessPath()},
@@ -22856,8 +22280,7 @@ WinExist([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 WinGetClass([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetClientPos.htm|`WinGetClientPos()`}  
- * Retrieves the position and size of the specified window's client area.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetClientPos.htm|`WinGetClientPos()`} - Retrieves the position and size of the specified window's client area.  
  * Systems with multiple screens with different DPI settings may return different sizes/positions than expected due to {@link https://www.autohotkey.com/docs/v2/misc/DPIScaling.htm|OS DPI scaling}.
  * @param {(VarRef)} [OutX]  
  * A reference to a variable to recieve the X coordinate of the window.  
@@ -22874,12 +22297,12 @@ WinGetClass([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Strin
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -22887,7 +22310,7 @@ WinGetClass([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Strin
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetPos.htm|WinGetPos()},
@@ -22907,17 +22330,16 @@ WinGetClass([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Strin
 WinGetClientPos([&OutX, &OutY, &OutWidth, &OutHeight, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetControls.htm|`WinGetControls()`}  
- * Returns the control names for all controls in the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetControls.htm|`WinGetControls()`} - Returns the control names for all controls in the specified window.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -22926,7 +22348,7 @@ WinGetClientPos([&OutX, &OutY, &OutWidth, &OutHeight, WinTitle:='', WinText:='',
  * @returns {(Array)}  
  * An array containing the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#ClassNN|ClassNN} of every control.  
  * The order is based on the control's z-order which is usually the order they're declared and the order of focus when tabbing.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetControlsHwnd.htm|WinGetControlsHwnd()},
@@ -22943,17 +22365,16 @@ WinGetClientPos([&OutX, &OutY, &OutWidth, &OutHeight, WinTitle:='', WinText:='',
 WinGetControls([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Array
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetControlsHwnd.htm|`WinGetControlsHwnd()`}  
- * Returns the unique ID numbers for all controls in the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetControlsHwnd.htm|`WinGetControlsHwnd()`} - Returns the unique ID numbers for all controls in the specified window.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -22962,7 +22383,7 @@ WinGetControls([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Ar
  * @returns {(Array)}  
  * An array containing the {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|window handle (HWND)} of every control.  
  * The order is based on the control's z-order which is usually the order they're declared and the order of focus when tabbing.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetControls.htm|WinGetControls()},
@@ -22979,17 +22400,16 @@ WinGetControls([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Ar
 WinGetControlsHwnd([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Array
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetCount.htm|`WinGetCount()`}  
- * Returns the number of existing windows that match the specified criteria.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetCount.htm|`WinGetCount()`} - Returns the number of existing windows that match the specified criteria.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23012,17 +22432,16 @@ WinGetControlsHwnd([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =
 WinGetCount([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetID.htm|`WinGetID()`}  
- * Returns the {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|unique ID number} of the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetID.htm|`WinGetID()`} - Returns the {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|unique ID number} of the specified window.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23030,7 +22449,7 @@ WinGetCount([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integ
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * The {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|window handle (HWND)} of the specified window.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetIDLast.htm|WinGetIDLast()},
@@ -23055,17 +22474,16 @@ WinGetCount([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integ
 WinGetID([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetIDLast.htm|`WinGetIDLast()`}  
- * Returns the unique ID number of the last/bottommost window if there is more than one match.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetIDLast.htm|`WinGetIDLast()`} - Returns the unique ID number of the last/bottommost window if there is more than one match.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23073,7 +22491,7 @@ WinGetID([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * The {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|window handle (HWND)} of the bottommost (last) window.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetID.htm|WinGetID()},
@@ -23093,17 +22511,16 @@ WinGetID([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 WinGetIDLast([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetList.htm|`WinGetList()`}  
- * Returns the {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|unique ID numbers} of all existing windows that match the specified criteria.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetList.htm|`WinGetList()`} - Returns the {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|unique ID numbers} of all existing windows that match the specified criteria.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23128,17 +22545,16 @@ WinGetIDLast([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Inte
 WinGetList([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Array
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetMinMax.htm|`WinGetMinMax()`}  
- * Returns the state whether the specified window is maximized or minimized.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetMinMax.htm|`WinGetMinMax()`} - Returns the state whether the specified window is maximized or minimized.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23151,7 +22567,7 @@ WinGetList([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Array
  * - `-1` = Window is minimized  
  *   Use {@link https://www.autohotkey.com/docs/v2/lib/WinRestore.htm|WinRestore()} to revert from minimize.  
  * - `0` = Window is normal (not minimized or maximized)
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMaximize.htm|WinMaximize()},
@@ -23169,17 +22585,16 @@ WinGetList([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Array
 WinGetMinMax([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetPID.htm|`WinGetPID()`}  
- * Returns the Process ID number of the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetPID.htm|`WinGetPID()`} - Returns the Process ID number of the specified window.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23187,7 +22602,7 @@ WinGetMinMax([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Inte
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * The {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|Process ID (PID)} of the specified window.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetProcessPath.htm|WinGetProcessPath()},
@@ -23209,8 +22624,7 @@ WinGetMinMax([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Inte
 WinGetPID([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetPos.htm|`WinGetPos()`}  
- * Retrieves the position and size of the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetPos.htm|`WinGetPos()`} - Retrieves the position and size of the specified window.  
  * Systems with multiple screens with different DPI settings may return different sizes/positions than expected due to {@link https://www.autohotkey.com/docs/v2/misc/DPIScaling.htm|OS DPI scaling}.  
  * @param {(VarRef)} [OutX]  
  * A reference to a variable to recieve the X coordinate of the window.  
@@ -23225,12 +22639,12 @@ WinGetPID([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23238,7 +22652,7 @@ WinGetPID([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMove.htm|WinMove()},
@@ -23253,17 +22667,16 @@ WinGetPID([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 WinGetPos([&OutX, &OutY, &OutWidth, &OutHeight, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetProcessName.htm|`WinGetProcessName()`}  
- * Returns the name of the process that owns the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetProcessName.htm|`WinGetProcessName()`} - Returns the name of the process that owns the specified window.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23271,7 +22684,7 @@ WinGetPos([&OutX, &OutY, &OutWidth, &OutHeight, WinTitle:='', WinText:='', NoWin
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * The process name that owns the specified window.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetProcessPath.htm|WinGetProcessPath()},
@@ -23293,25 +22706,24 @@ WinGetPos([&OutX, &OutY, &OutWidth, &OutHeight, WinTitle:='', WinText:='', NoWin
 WinGetProcessName([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetProcessPath.htm|`WinGetProcessPath()`}  
- * Returns the full path and name of the process that owns the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetProcessPath.htm|`WinGetProcessPath()`} - Returns the full path and name of the process that owns the specified window.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
  * Text that must not appear in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @returns {(String)}  
  * The full path of the process that owns the specified window.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetProcessName.htm|WinGetProcessName()},
@@ -23333,17 +22745,16 @@ WinGetProcessName([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =>
 WinGetProcessPath([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetStyle.htm|`WinGetStyle()`}  
- * Returns the style of the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetStyle.htm|`WinGetStyle()`} - Returns the style of the specified window.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23351,9 +22762,9 @@ WinGetProcessPath([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =>
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * The {@link https://www.autohotkey.com/docs/v2/misc/Styles.htm|style} of the specified window.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * The class name could not be retrieved  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetStyle.htm|WinSetStyle()},
@@ -23374,17 +22785,16 @@ WinGetProcessPath([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =>
 WinGetStyle([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetStyle.htm|`WinGetExStyle()`}  
- * Returns the extended style of the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetStyle.htm|`WinGetExStyle()`} - Returns the extended style of the specified window.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23392,7 +22802,7 @@ WinGetStyle([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integ
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * The {@link https://www.autohotkey.com/docs/v2/misc/Styles.htm|extended style} of the specified window.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetStyle.htm|WinSetStyle()},
@@ -23413,17 +22823,16 @@ WinGetStyle([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integ
 WinGetExStyle([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetText.htm|`WinGetText()`}  
- * Retrieves the text from the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetText.htm|`WinGetText()`} - Retrieves the text from the specified window.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23431,9 +22840,9 @@ WinGetExStyle([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Int
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * The text of the specified window.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * There was a problem retrieving the window's text  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetText.htm|ControlGetText()},
@@ -23451,17 +22860,16 @@ WinGetExStyle([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Int
 WinGetText([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetTitle.htm|`WinGetTitle()`}  
- * Retrieves the title of the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetTitle.htm|`WinGetTitle()`} - Retrieves the title of the specified window.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23491,17 +22899,16 @@ WinGetText([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => String
 WinGetTitle([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetTransColor.htm|`WinGetTransColor()`}  
- * Returns the color that is marked transparent in the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetTransColor.htm|`WinGetTransColor()`} - Returns the color that is marked transparent in the specified window.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23514,7 +22921,7 @@ WinGetTitle([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Strin
  * - No window matches
  * - No transparency is set
  * - A window has been altered (minimized/resized/restored) since being made transparent  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetTransColor.htm|WinSetTransColor()},
@@ -23538,17 +22945,16 @@ WinGetTitle([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Strin
 WinGetTransColor([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetTransparent.htm|`WinGetTransparent()`}  
- * Returns the degree of transparency of the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinGetTransparent.htm|`WinGetTransparent()`} - Returns the degree of transparency of the specified window.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23560,7 +22966,7 @@ WinGetTransColor([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => 
  * - No window matches
  * - No transparency is set
  * - A window has been altered (minimized/resized/restored) since being made transparent  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetTransparent.htm|`WinSetTransparent()},
@@ -23584,17 +22990,16 @@ WinGetTransColor([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => 
 WinGetTransparent([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinHide.htm|`WinHide()`}  
- * Hides the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinHide.htm|`WinHide()`} - Hides the specified window.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23602,7 +23007,7 @@ WinGetTransparent([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =>
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * This does not apply when using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|window group}.  
  * @see  
@@ -23625,17 +23030,16 @@ WinGetTransparent([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =>
 WinHide([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinKill.htm|`WinKill()`}  
- * Forces the specified window to close.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinKill.htm|`WinKill()`} - Forces the specified window to close.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23643,7 +23047,7 @@ WinHide([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyStri
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * This does not apply when using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|window group}.  
  * No exception is thrown when a window is found but cannot be closed  
@@ -23670,18 +23074,17 @@ WinHide([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyStri
 WinKill([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinMaximize.htm|`WinMaximize()`}  
- * Enlarges the specified window to its maximum size.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinMaximize.htm|`WinMaximize()`} - Enlarges the specified window to its maximum size.  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinRestore.htm|WinRestore()} can remove the maximize state and return it to prior size and position.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23689,7 +23092,7 @@ WinKill([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyStri
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * This does not apply when using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|window group}.  
  * @see  
@@ -23713,18 +23116,17 @@ WinKill([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyStri
 WinMaximize([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinMinimize.htm|`WinMinimize()`}  
- * Collapses the specified window into a button on the task bar.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinMinimize.htm|`WinMinimize()`} - Collapses the specified window into a button on the task bar.  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinRestore.htm|WinRestore()} can remove the maximize state and return it to prior size and position.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23732,7 +23134,7 @@ WinMaximize([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Empty
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * This does not apply when using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|window group}.  
  * @see  
@@ -23757,8 +23159,7 @@ WinMaximize([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Empty
 WinMinimize([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinMinimizeAll.htm|`WinMinimizeAll()`}  
- * Minimizes all windows.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinMinimizeAll.htm|`WinMinimizeAll()`} - Minimizes all windows.  
  * @returns {(String)}  
  * An empty string is always returned.  
  * @see  
@@ -23773,8 +23174,7 @@ WinMinimize([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Empty
 WinMinimizeAll() => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinMinimizeAll.htm|`WinMinimizeAllUndo()`}  
- * Unminimizes all windows.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinMinimizeAll.htm|`WinMinimizeAllUndo()`} - Unminimizes all windows.  
  * @returns {(String)}  
  * An empty string is always returned.  
  * @see  
@@ -23789,8 +23189,7 @@ WinMinimizeAll() => EmptyString
 WinMinimizeAllUndo() => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinMove.htm|`WinMove()`}  
- * Changes the position and/or size of the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinMove.htm|`WinMove()`} - Changes the position and/or size of the specified window.  
  * Systems with multiple screens with different DPI settings may return different sizes/positions than expected due to {@link https://www.autohotkey.com/docs/v2/misc/DPIScaling.htm|OS DPI scaling}.  
  * @param {(Integer)} [X]  
  * The new x coordinate of the window.  
@@ -23809,12 +23208,12 @@ WinMinimizeAllUndo() => EmptyString
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23822,9 +23221,9 @@ WinMinimizeAllUndo() => EmptyString
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * An internal function reported a failure.  
  * Success may be reported even if the window doesn't move, such as it being restricted from moving by its own rules.  
  * @see  
@@ -23851,17 +23250,16 @@ WinMinimizeAllUndo() => EmptyString
 WinMove([X, Y, Width, Height, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinMoveBottom.htm|`WinMoveBottom()`}  
- * Sends the specified window to the bottom of stack; that is, beneath all other windows.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinMoveBottom.htm|`WinMoveBottom()`} - Sends the specified window to the bottom of stack; that is, beneath all other windows.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23869,9 +23267,9 @@ WinMove([X, Y, Width, Height, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * May be thrown on error  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMoveTop.htm|WinMoveTop()},
@@ -23889,17 +23287,16 @@ WinMove([X, Y, Width, Height, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
 WinMoveBottom([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinMoveTop.htm|`WinMoveTop()`}  
- * Brings the specified window to the top of the stack without explicitly activating it.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinMoveTop.htm|`WinMoveTop()`} - Brings the specified window to the top of the stack without explicitly activating it.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23907,9 +23304,9 @@ WinMoveBottom([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Emp
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * May be thrown on error  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMoveBottom.htm|WinMoveBottom()},
@@ -23927,18 +23324,17 @@ WinMoveBottom([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Emp
 WinMoveTop([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinRedraw.htm|`WinRedraw()`}  
- * Redraws the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinRedraw.htm|`WinRedraw()`} - Redraws the specified window.  
  * If redraw doesn't work, try {@link https://www.autohotkey.com/docs/v2/lib/WinMove.htm|WinMove()} or try {@link https://www.autohotkey.com/docs/v2/lib/WinHide.htm|WinHide()} then {@link https://www.autohotkey.com/docs/v2/lib/WinShow.htm|WinShow()}.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23946,7 +23342,7 @@ WinMoveTop([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyS
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMoveBottom.htm|WinMoveBottom()},
@@ -23964,17 +23360,16 @@ WinMoveTop([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyS
 WinRedraw([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinRestore.htm|`WinRestore()`}  
- * Restore a specified window from a minimized or maximized state to its original position and size.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinRestore.htm|`WinRestore()`} - Restore a specified window from a minimized or maximized state to its original position and size.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -23982,7 +23377,7 @@ WinRedraw([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptySt
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * This does not apply when using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|window group}.  
  * @see  
@@ -24000,8 +23395,7 @@ WinRedraw([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptySt
 WinRestore([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinSetAlwaysOnTop.htm|`WinSetAlwaysOnTop()`}  
- * Makes the specified window stay on top of all other windows (except other always-on-top windows).  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinSetAlwaysOnTop.htm|`WinSetAlwaysOnTop()`} - Makes the specified window stay on top of all other windows (except other always-on-top windows).  
  * @param {(Integer)} [NewSetting]
  * - `1` = Set to on.  
  * - `0` = Set to off.  
@@ -24009,12 +23403,12 @@ WinRestore([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyS
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -24022,9 +23416,9 @@ WinRestore([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyS
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * May be thrown on failure.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMoveTop.htm|WinMoveTop()},
@@ -24041,8 +23435,7 @@ WinRestore([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyS
 WinSetAlwaysOnTop([NewSetting:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinSetEnabled.htm|`WinSetEnabled()`}  
- * Enables or disables the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinSetEnabled.htm|`WinSetEnabled()`} - Enables or disables the specified window.  
  * @param {(Integer)} [NewSetting]
  * - `1` = Set to enabled.  
  * - `0` = Set to disabled.  
@@ -24050,12 +23443,12 @@ WinSetAlwaysOnTop([NewSetting:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoW
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -24063,9 +23456,9 @@ WinSetAlwaysOnTop([NewSetting:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoW
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * The change could not be applied  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlSetEnabled.htm|ControlSetEnabled()}
@@ -24081,8 +23474,7 @@ WinSetAlwaysOnTop([NewSetting:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoW
 WinSetEnabled([NewSetting:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinSetRegion.htm|`WinSetRegion()`}  
- * Changes the shape of the specified window to be the specified rectangle, ellipse, or polygon.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinSetRegion.htm|`WinSetRegion()`} - Changes the shape of the specified window to be the specified rectangle, ellipse, or polygon.  
  * @param {(String)} [Options]  
  * Zero or more of the following, spearated by spaces:  
  * - Omit - Restores window to original/default display area.  
@@ -24100,12 +23492,12 @@ WinSetEnabled([NewSetting:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -24113,13 +23505,13 @@ WinSetEnabled([NewSetting:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
- * @throws {(ValueError)}  
+ * @throws ValueError  
  * One or more options are invalid  
- * @throws {(OSError)}  
+ * @throws OSError  
  * The specified region is invalid  
- * @throws {(OSError)}  
+ * @throws OSError  
  * The specified region could not be applied to the target window  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Win.htm|Win functions},
@@ -24134,8 +23526,7 @@ WinSetEnabled([NewSetting:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
 WinSetRegion([Options:='', WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinSetStyle.htm|`WinSetStyle()`}  
- * Changes the style of the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinSetStyle.htm|`WinSetStyle()`} - Changes the style of the specified window.  
  * @param {(String|Integer)} Value  
  * The {@link https://www.autohotkey.com/docs/v2/misc/Styles.htm|style} to add, remove, or toggle from the current style.  
  * | -Operation- | -Example- | -Formula-                         |
@@ -24149,12 +23540,12 @@ WinSetRegion([Options:='', WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -24162,9 +23553,9 @@ WinSetRegion([Options:='', WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * The change could not be applied  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetStyle.htm|WinGetStyle()},
@@ -24182,8 +23573,7 @@ WinSetRegion([Options:='', WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:
 WinSetStyle(Value [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinSetStyle.htm|`WinSetExStyle()`}  
- * Changes the extended style of the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinSetStyle.htm|`WinSetExStyle()`} - Changes the extended style of the specified window.  
  * @param {(String|Integer)} Value  
  * The {@link https://www.autohotkey.com/docs/v2/misc/Styles.htm|extended style} to add, remove, or toggle from the current style.  
  * | -Operation- | -Example- | -Formula-                         |
@@ -24197,12 +23587,12 @@ WinSetStyle(Value [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -24210,9 +23600,9 @@ WinSetStyle(Value [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * The change could not be applied  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetStyle.htm|WinGetStyle()},
@@ -24230,19 +23620,18 @@ WinSetStyle(Value [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =
 WinSetExStyle(Value [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinSetTitle.htm|`WinSetTitle()`}  
- * Changes the title of the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinSetTitle.htm|`WinSetTitle()`} - Changes the title of the specified window.  
  * @param {(String)} NewTitle  
  * The window's new title.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -24250,9 +23639,9 @@ WinSetExStyle(Value [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=''])
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * The change could not be applied  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMove.htm|WinMove()},
@@ -24272,8 +23661,7 @@ WinSetExStyle(Value [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=''])
 WinSetTitle(NewTitle [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinSetTransColor.htm|`WinSetTransColor()`}  
- * Makes all pixels of the chosen color invisible inside the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinSetTransColor.htm|`WinSetTransColor()`} - Makes all pixels of the chosen color invisible inside the specified window.  
  * @param {(String|Integer)} ColorAndTrans  
  * An RGB hex value and/or a transparency.  
  * Color must be a 6-digit RGB hex value: `00FFbb`  
@@ -24283,12 +23671,12 @@ WinSetTitle(NewTitle [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -24296,9 +23684,9 @@ WinSetTitle(NewTitle [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * The change could not be applied  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetTransparent.htm|WinSetTransparent()},
@@ -24314,8 +23702,7 @@ WinSetTitle(NewTitle [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']
 WinSetTransColor(Color [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinSetTransparent.htm|`WinSetTransparent()`}  
- * Makes the specified window semi-transparent.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinSetTransparent.htm|`WinSetTransparent()`} - Makes the specified window semi-transparent.  
  * @param {(String|Integer)} NewSetting  
  * Specify a transparency number or disable it.  
  * `0`-`255` = Enable transparency for window. `0` is invisible, `255` is opaque.  
@@ -24323,12 +23710,12 @@ WinSetTransColor(Color [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -24336,9 +23723,9 @@ WinSetTransColor(Color [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
- * @throws {(OSError)}  
+ * @throws OSError  
  * The change could not be applied  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetTransColor.htm|WinSetTransColor()},
@@ -24354,17 +23741,16 @@ WinSetTransColor(Color [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='
 WinSetTransparent(NewSetting [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinShow.htm|`WinShow()`}  
- * Unhides the specified window.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinShow.htm|`WinShow()`} - Unhides the specified window.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(String)} [NoWinTitle]  
  * Window title does not contain this text.  
  * @param {(String)} [NoWinText]  
@@ -24372,7 +23758,7 @@ WinSetTransparent(NewSetting [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinT
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws {(TargetError)}  
+ * @throws TargetError  
  * Window could not be found  
  * This does not apply when using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|window group}.  
  * @see  
@@ -24389,17 +23775,16 @@ WinSetTransparent(NewSetting [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinT
 WinShow([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyString
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinWait.htm|`WinWait()`}  
- * Waits until the specified window exists.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinWait.htm|`WinWait()`} - Waits until the specified window exists.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(Number)} [Timeout]  
  * The max amount of seconds to wait.  
  * This number can be a float for higher precision.  
@@ -24429,17 +23814,16 @@ WinShow([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyStri
 WinWait([WinTitle:='', WinText:='', Timeout:=unset, NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinWaitActive.htm|`WinWaitActive()`}  
- * Waits until the specified window is active.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinWaitActive.htm|`WinWaitActive()`} - Waits until the specified window is active.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(Number)} [Timeout]  
  * The max amount of seconds to wait.  
  * This number can be a float for higher precision.  
@@ -24468,17 +23852,16 @@ WinWait([WinTitle:='', WinText:='', Timeout:=unset, NoWinTitle:='', NoWinText:='
 WinWaitActive([WinTitle:='', WinText:='', Timeout:=unset, NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinWaitActive.htm|`WinWaitNotActive()`}  
- * Waits until the specified window is not active.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinWaitActive.htm|`WinWaitNotActive()`} - Waits until the specified window is not active.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(Number)} [Timeout]  
  * The max amount of seconds to wait.  
  * This number can be a float for higher precision.  
@@ -24507,17 +23890,16 @@ WinWaitActive([WinTitle:='', WinText:='', Timeout:=unset, NoWinTitle:='', NoWinT
 WinWaitNotActive([WinTitle:='', WinText:='', Timeout:=unset, NoWinTitle:='', NoWinText:='']) => Integer
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/lib/WinWaitClose.htm|`WinWaitClose()`}  
- * Waits until no matching windows can be found.  
+ * @description {@link https://www.autohotkey.com/docs/v2/lib/WinWaitClose.htm|`WinWaitClose()`} - Waits until no matching windows can be found.  
  * @param {(String|Integer|Object)} [WinTitle]  
  * A string using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle} to match a window.  
  * Types: {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_exe|ahk_exe}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|ahk_class}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|ahk_id}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|ahk_pid}, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|ahk_group}  
- * Including the window's title is optional and must be done before any `ahk_` criteria.  
- * If WinTitle is the letter `A`, the active window is used.
+ * Window title is optional and must come before any `ahk_` criteria.  
+ * If WinTitle is the letter `A`, the active window is used.  
  * If all `Win` params are omited, {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window} is used.  
  * @param {(String)} [WinText]  
  * Text that must be found in the window.  
- * Use WindowSpy to view window text.  
+ * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @param {(Number)} [Timeout]  
  * The max amount of seconds to wait.  
  * This number can be a float for higher precision.  
