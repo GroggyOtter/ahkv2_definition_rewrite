@@ -294,7 +294,7 @@
 			"description": "Code block to run after a try/catch has completed."
 		},
 		{
-			"body": "for ${1:id}, ${2:value} IN ${3:objname}",
+			"body": "for id, value IN ${1:Obj}",
 			"description": "Repeat a series of functions for each key-value pair in the object.",
 			"prefix": "for"
 		},
@@ -317,7 +317,7 @@
 			"prefix": "loop files"
 		},
 		{
-			"body": "loop parse ${1:Text}${2:, DelimitChar}${3:, OmitChar}",
+			"body": "loop parse ${1:Text}${2| ,${3:\\,DelimitChar}}${4:, OmitChar}",
 			"description": "Loop through a string by substrings. String is parsed by each char if no Delimiter is provided.",
 			"prefix": "loop parse"
 		},
@@ -332,7 +332,7 @@
 			"prefix": "loop reg"
 		},
 		{
-			"body": "loop${1:\\, Count}",
+			"body": "loop${1:, Count}",
 			"description": "Repeat a series of functions: you can specify a number representing the number of repetitions or until a break is encountered.",
 			"prefix": "loop"
 		},
