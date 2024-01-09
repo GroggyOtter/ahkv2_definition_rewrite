@@ -332,7 +332,7 @@
 			"prefix": "loop reg"
 		},
 		{
-			"body": "loop${1:, Count}",
+			"body": "loop${1: Count}",
 			"description": "Repeat a series of functions: you can specify a number representing the number of repetitions or until a break is encountered.",
 			"prefix": "loop"
 		},
