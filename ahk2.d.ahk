@@ -394,7 +394,6 @@ class Array extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Get|`Get()`} - Returns the value at a given index, or a default value if one is provided.  
      * @param {(Integer)} Index  
      * The number of the element to get from the array.  
-     * Using `0` is the same as using Push().  
      * A negative index counts from the end to the start.  
      * -1 is the last index, -2 is second from last, etc.  
      * @param {(Any)} [Default]  
