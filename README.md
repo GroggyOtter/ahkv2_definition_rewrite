@@ -71,7 +71,10 @@ I'll try to post all changes and updates I make:
 
 ##### 2024-01-09
 - Rewrote the entire readme file for this GitHub page.  
-- Added a plethora of pictures and vidoes.  
+- Added a plethora of pictures and vidoes.
+- Fixed InputBox result and value information, as they were swapped.
+- Added a bunch of examples.
+- Multiple formatting fixes.
 
 ***
 
