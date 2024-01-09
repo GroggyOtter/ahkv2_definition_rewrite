@@ -58,7 +58,7 @@ I'll try to post all the changes I make to these files:
 - Added more examples to the code.
 - Multiple formatting fixes.
 - Fixed `ObjRelease()` not having the `Ptr` param in the function definition. (Thanks camkidd)
-- Fixed a description error in Array's `Get()` method.
+- Fixed a description error in Array's `Get()` and `Has()` methods.
 
 ##### 2024-01-08
 - Fixed a typo in the autocomplete for `Loop Count` that included an invalid comma between the two. (Thanks /u/Hukepi)
