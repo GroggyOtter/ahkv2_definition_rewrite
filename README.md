@@ -5,25 +5,33 @@
 This is a full update for the definition file `ahk2.d.ahk` and the directive/flow control/variable file `ahk2.json` for [THQBY's AHKv2 support addon](https://github.com/thqby/vscode-autohotkey2-lsp).
 
 ### Contents
-- Why use this update
-- Installing
-- Update Log
-  - 2023-12-18
-  - 2023-12-24
-  - 2024-01-08
-  - 2024-01-09
-- In-depth Showcase
-- Different Widget Types
-- Will THQBY Implement This?
+- [Why use this update](#why-use-this-update)
+- [Installing](#installing)
+- [Update Log](#update-log)
+  - [2023-12-18](#2023-12-18)
+  - [2023-12-24](#2023-12-24)
+  - [2024-01-08](#2024-01-08)
+  - [2024-01-09](#2024-01-09)
+- [In-depth Showcase](#in-depth-showcase)
+- [Different Widget Types](#different-widget-types)
+- [Will THQBY Implement This?](#will-thqby-implement-this)
 
 ***
 
 ### Why use this update
-This is a full rewrite from the ground up.  
-To put things in comparison, the current definition file is ~4,200 lines long and ~185,000 characters.  
-My definition file is ~24,000 lines long and ~1,510,000 characters.  
-The information difference is substantial.  
-However, a good portion of the size increase comes from the numerous hyperlinks, markdown formatting, and inclusion of individual GUI controls coupled with individualized methods/properties.
+This is a full rewrite from the ground up. 
+It adds many things to the definition that it's currently missing.  
+All parameters are included, all functions and methods have return values, the text of the calltips are now formatted and more aesthetically pleasing, hyperlinks are added, all options are accounted for, the structure of the defintion file has been expanded and updated, autocomplete features have been added for directives and flow control, and much more.
+
+To put things in perspective, the current definition file is ~4,200 lines long and ~185,000 characters.  
+The updated definition file is ~24,000 lines long and ~1,510,000 characters.  
+The information difference is substantial and borderline palpable.  
+In all fairness, a chunk of this character increase comes from the numerous hyperlinks, markdown formatting, and individual GUI controls added coupled with them now having individualized methods and properties.  
+
+Please see the In-depth Showcase section to see a large listing of the numerous changes I've implemented to these files.  
+There are pictures and videos for almost every topic covered.
+
+***
 
 ### Installing
 It's super easy.  
@@ -37,17 +45,19 @@ The deafult location for this folder is:
 
 Alternatively, you can open the two files in the syntaxes folder and copy + paste the updated code directly over the old code.
 
+***
+
 ### Update Log
 
 I'll try to post all changes and updates I make:
 
-##### Update 2023-12-18  
+##### 2023-12-18  
 All functions, classes, methods, and properties are done.  
 Added `ahk2.json` file. This includes many updates to directives and flow control statements.  
 More text will auto-complete and more menu selections have been added.  
 [Some examples can be seen here.](https://github.com/GroggyOtter/ahkv2_definition_rewrite/assets/29220773/8cafcd52-823c-4861-aa29-5f6a3452e8da)  
 
-##### Update 2023-12-24
+##### 2023-12-24
 Fixed a bunch of typos and errors.  
 Fixed functions/methods with variadic parameters.  
 Added string, integer, number, and float call tags.  
@@ -55,13 +65,15 @@ Added comobjarray, comobject, and comvalue class calls.
 Cleaned up a lot of tags to try and make them more compact.  
 Update ahk2.json with new version for #Requires.  
 
-##### Update 2024-01-08
+##### 2024-01-08
 Fixed a typo in the autocomplete for loop count that included an invalid comma
 Fixed FileSelect() title parameter as the addon was reading the default value as 2 things
 
-##### Update 2024-01-09
+##### 2024-01-09
 Rewrote the entire readme file for this GitHub page.  
 Added a plethora of pictures and vidoes.  
+
+***
 
 ### In-depth Showcase
 
@@ -165,6 +177,8 @@ Added a plethora of pictures and vidoes.
 
 - There are other things I'm sure I'm forgetting.
 
+***
+
 ### Different Widget Types
 It should pointed out that there are multiple types of widgets that popup.  
 - If you hover a function/method/class/property, the [hover widget](https://i.imgur.com/J2D1Aot.png) shows up.
@@ -177,6 +191,8 @@ It should pointed out that there are multiple types of widgets that popup.
   - This widget is unique in the fact that it can't be resized (and I don't know why b/c all the other ones are resizeable).
   - It also puts the current parameter at the top of the card, preventing the need to scroll to get to the info.
   - Pressing `Ctrl+Shift+Space` brings up the parmeter widget whenever you're between the parentheses of a function or method.
+
+***
 
 ### Will THQBY Implement This?
 
