@@ -57,26 +57,25 @@ I'll try to post all the changes I make to these files:
 - Fixed InputBox() `Result` and `Value` information, as they were accidentally swapped.
 - Added more examples to the code.
 - Multiple formatting fixes.
-- Fixed `ObjRelease()` not having the ptr param in the function call. (Thanks camkidd)
-- Fixed a description error in Array's Get() method.
+- Fixed `ObjRelease()` not having the `Ptr` param in the function definition. (Thanks camkidd)
+- Fixed a description error in Array's `Get()` method.
 
 ##### 2024-01-08
-- Fixed a typo in the autocomplete for `Loop Count` that included an invalid comma between the two.
-  - This is an indicator of how ingrained I have some v1 syntax.
-- Fixed FileSelect() root directory and title parameters.
+- Fixed a typo in the autocomplete for `Loop Count` that included an invalid comma between the two. (Thanks /u/Hukepi)
+  - This shows how ingrained some v1 syntax is in me.
+- Fixed `FileSelect()` root directory and title parameter default.
 
 ##### 2023-12-24
-- Fixed a bunch of typos and errors.  
-- Fixed functions/methods with variadic parameters.  
-- Added string, integer, number, and float calls and calltips.  
-- Added ComObjArray, ComObject, and ComValue class calls and calltips.  
-- Cleaned up a lot of tags to try and make them more compact.  
-- Updated ahk2.json with new version for #Requires.  
+- Fixed a bunch of typos and errors.
+- Fixed functions/methods that should have had variadic parameters.
+- Added String, Integer, Number, and Float class `Call()` functions and calltips.
+- Added ComObjArray, ComObject, and ComValue class `Call()` functions and calltips.
+- Cleaned up a lot of tags to try and make them more compact.
+- Updated `ahk2.json` with new version for #Requires.
 
 ##### 2023-12-18  
 - All functions, classes, methods, and properties are done.  
 - Added `ahk2.json` file. This includes many updates to directives and flow control statements.  
-- More text will auto-complete and more menu selections have been added.  
 - [Some examples can be seen here.](https://github.com/GroggyOtter/ahkv2_definition_rewrite/assets/29220773/8cafcd52-823c-4861-aa29-5f6a3452e8da)  
 
 ***
