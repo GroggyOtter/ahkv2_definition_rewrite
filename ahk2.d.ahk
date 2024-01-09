@@ -18830,7 +18830,7 @@ ObjPtrAddRef(Obj) => Integer
  * @example <caption>  
  * </caption>
  */
-ObjRelease() => Integer
+ObjRelease(ptr) => Integer
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#SetBase|`ObjSetBase()`} - Sets an object's {@link https://www.autohotkey.com/docs/v2/Objects.htm#delegation|base object}.  
