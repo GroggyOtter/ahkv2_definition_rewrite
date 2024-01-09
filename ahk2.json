@@ -49,7 +49,7 @@
 			"prefix": "#Hotstring"
 		},
 		{
-			"body": "#Include ${1:File_Dir_Or_LibName}",
+			"body": "#Include ${1:File_Dir_Or_<LibName>}",
 			"description": "File contents are inserted here when script runs, but not if already included earlier.",
 			"prefix": "#Include"
 		},
@@ -317,7 +317,7 @@
 			"prefix": "loop files"
 		},
 		{
-			"body": "loop parse ${1:Text}${2| ,${3:\\,DelimitChar}}${4:, OmitChar}",
+			"body": "loop parse ${1:Text}${2:, DelimitChar}${3:, OmitChar}",
 			"description": "Loop through a string by substrings. String is parsed by each char if no Delimiter is provided.",
 			"prefix": "loop parse"
 		},
