@@ -75,6 +75,7 @@ I'll try to post all changes and updates I make:
 - Fixed InputBox result and value information, as they were swapped.
 - Added a bunch of examples.
 - Multiple formatting fixes.
+- Fixed `ObjRelease()` not including the ptr param. (Thanks camkidd)
 
 ***
 
