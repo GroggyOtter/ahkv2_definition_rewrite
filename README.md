@@ -49,7 +49,7 @@ Alternatively, you can open the two files in the syntaxes folder and copy + past
 
 ### Change Log
 
-I'll try to post all changes and updates I make:
+I'll try to post all changes I make to the files:
 
 ##### 2023-12-18  
 - All functions, classes, methods, and properties are done.  
@@ -60,22 +60,23 @@ I'll try to post all changes and updates I make:
 ##### 2023-12-24
 - Fixed a bunch of typos and errors.  
 - Fixed functions/methods with variadic parameters.  
-- Added string, integer, number, and float call tags.  
-- Added comobjarray, comobject, and comvalue class calls.  
+- Added string, integer, number, and float calls and calltips.  
+- Added ComObjArray, ComObject, and ComValue class calls and calltips.  
 - Cleaned up a lot of tags to try and make them more compact.  
-- Update ahk2.json with new version for #Requires.  
+- Updated ahk2.json with new version for #Requires.  
 
 ##### 2024-01-08
-- Fixed a typo in the autocomplete for loop count that included an invalid comma
-- Fixed FileSelect() title parameter as the addon was reading the default value as 2 things
+- Fixed a typo in the autocomplete for `Loop Count` that included an invalid comma between the two.
+  - This is an indicator of how ingrained I have some v1 syntax.
+- Fixed FileSelect() root directory and title parameters.
 
 ##### 2024-01-09
-- Rewrote the entire readme file for this GitHub page.  
-- Added a plethora of pictures and vidoes.
-- Fixed InputBox result and value information, as they were swapped.
-- Added a bunch of examples.
+- Rewrote and restructured the entire ReadMe file for this GitHub page.  
+- Added a plethora of pictures and videos to the showcase section.
+- Fixed InputBox() `Result` and `Value` information, as they were accidentally swapped.
+- Added more examples to the code.
 - Multiple formatting fixes.
-- Fixed `ObjRelease()` not including the ptr param. (Thanks camkidd)
+- Fixed `ObjRelease()` not having the ptr param in the function call. (Thanks camkidd)
 
 ***
 
