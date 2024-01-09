@@ -7,7 +7,7 @@ This is a full update for the definition file `ahk2.d.ahk` and the directive/flo
 ### Contents
 - [Why use this update](#why-use-this-update)
 - [Installing](#installing)
-- [Update Log](#update-log)
+- [Change Log](#change-log)
   - [2023-12-18](#2023-12-18)
   - [2023-12-24](#2023-12-24)
   - [2024-01-08](#2024-01-08)
@@ -47,7 +47,7 @@ Alternatively, you can open the two files in the syntaxes folder and copy + past
 
 ***
 
-### Update Log
+### Change Log
 
 I'll try to post all changes and updates I make:
 
