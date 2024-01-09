@@ -6,12 +6,12 @@ This is a full update for the definition file `ahk2.d.ahk` and the directive/flo
 
 ### Contents
 - [Why use this update](#why-use-this-update)
-- [Installing](#installing)
+- [Installation](#installation)
 - [Change Log](#change-log)
-  - [2023-12-18](#2023-12-18)
-  - [2023-12-24](#2023-12-24)
-  - [2024-01-08](#2024-01-08)
   - [2024-01-09](#2024-01-09)
+  - [2024-01-08](#2024-01-08)
+  - [2023-12-24](#2023-12-24)
+  - [2023-12-18](#2023-12-18)
 - [In-depth Showcase](#in-depth-showcase)
 - [Different Widget Types](#different-widget-types)
 - [Will THQBY Implement This?](#will-thqby-implement-this)
@@ -33,7 +33,7 @@ There are pictures and videos for almost every topic covered.
 
 ***
 
-### Installing
+### Installation
 It's super easy.  
 First, optionally backup the old files, just in case you want to revert.  
 If you delete them and want them back, [get them from THQBY's GitHub](https://github.com/thqby/vscode-autohotkey2-lsp/tree/main/syntaxes).  
@@ -49,26 +49,7 @@ Alternatively, you can open the two files in the syntaxes folder and copy + past
 
 ### Change Log
 
-I'll try to post all changes I make to the files:
-
-##### 2023-12-18  
-- All functions, classes, methods, and properties are done.  
-- Added `ahk2.json` file. This includes many updates to directives and flow control statements.  
-- More text will auto-complete and more menu selections have been added.  
-- [Some examples can be seen here.](https://github.com/GroggyOtter/ahkv2_definition_rewrite/assets/29220773/8cafcd52-823c-4861-aa29-5f6a3452e8da)  
-
-##### 2023-12-24
-- Fixed a bunch of typos and errors.  
-- Fixed functions/methods with variadic parameters.  
-- Added string, integer, number, and float calls and calltips.  
-- Added ComObjArray, ComObject, and ComValue class calls and calltips.  
-- Cleaned up a lot of tags to try and make them more compact.  
-- Updated ahk2.json with new version for #Requires.  
-
-##### 2024-01-08
-- Fixed a typo in the autocomplete for `Loop Count` that included an invalid comma between the two.
-  - This is an indicator of how ingrained I have some v1 syntax.
-- Fixed FileSelect() root directory and title parameters.
+I'll try to post all the changes I make to these files:
 
 ##### 2024-01-09
 - Rewrote and restructured the entire ReadMe file for this GitHub page.  
@@ -78,6 +59,25 @@ I'll try to post all changes I make to the files:
 - Multiple formatting fixes.
 - Fixed `ObjRelease()` not having the ptr param in the function call. (Thanks camkidd)
 - Fixed a description error in Array's Get() method.
+
+##### 2024-01-08
+- Fixed a typo in the autocomplete for `Loop Count` that included an invalid comma between the two.
+  - This is an indicator of how ingrained I have some v1 syntax.
+- Fixed FileSelect() root directory and title parameters.
+
+##### 2023-12-24
+- Fixed a bunch of typos and errors.  
+- Fixed functions/methods with variadic parameters.  
+- Added string, integer, number, and float calls and calltips.  
+- Added ComObjArray, ComObject, and ComValue class calls and calltips.  
+- Cleaned up a lot of tags to try and make them more compact.  
+- Updated ahk2.json with new version for #Requires.  
+
+##### 2023-12-18  
+- All functions, classes, methods, and properties are done.  
+- Added `ahk2.json` file. This includes many updates to directives and flow control statements.  
+- More text will auto-complete and more menu selections have been added.  
+- [Some examples can be seen here.](https://github.com/GroggyOtter/ahkv2_definition_rewrite/assets/29220773/8cafcd52-823c-4861-aa29-5f6a3452e8da)  
 
 ***
 
