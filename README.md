@@ -77,6 +77,7 @@ I'll try to post all changes I make to the files:
 - Added more examples to the code.
 - Multiple formatting fixes.
 - Fixed `ObjRelease()` not having the ptr param in the function call. (Thanks camkidd)
+- Fixed a description error in Array's Get() method.
 
 ***
 
