@@ -16122,7 +16122,7 @@ FileRecycleEmpty([DriveLetter:=unset]) => EmptyString
  * @example <caption>  
  * </caption>
  */
-FileSelect([Options:=0, RootOrFilename:=, Title:='Select File - ' A_ScriptName, Filter:='']) => String | Array
+FileSelect([Options:=0, RootOrFilename:=A_WorkingDir, Title:=unset, Filter:='']) => String | Array
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/FileSetAttrib.htm|`FileSetAttrib()`} - Changes the attributes of one or more files or folders. Wildcards are supported.  
