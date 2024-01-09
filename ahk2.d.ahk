@@ -401,10 +401,10 @@ class Array extends Object {
      * @returns {(Any)}  
      * Value found at index.  
      * Otherwise, the provided default parameter is used.  
-     * Otherwise, the defined {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Default|Default} property is used.  
+     * Otherwise, the defined {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Default|Default property} is used.  
      * Otherwise, an UnsetItemError is thrown.  
      * @throws UnsetItemError  
-     * Value not set and no default parameter, and default property not defined.  
+     * Value not set, no default parameter, and default property was not defined.  
      * @throws IndexError  
      * Index is zero or out of range
      * @example <caption>  
@@ -417,11 +417,11 @@ class Array extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Has|`Has()`} - Returns true if the specified index is valid and there is a value at that position.  
      * @param {(Integer)} Index  
-     * Index to insert value(s).  
-     * An index of 0 is the same as `array.Length + 1` and works identical to `Push()`.  
-     * A negative index starts at the last element. `-1` last, `-2` second from last, etc.  
+     * The number of the element to check for a value.  
+     * A negative index counts from the end to the start.  
+     * -1 is the last index, -2 is second from last, etc.  
      * @returns {(Number)}  
-     * 1 if array has that index number otherwise 0.  
+     * `1` if index has a value, otherwise `0`.  
      * @example <caption>  
      * Check if an array element has a value.</caption>
      * arr := ['a', 'b', 'c']
