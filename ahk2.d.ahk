@@ -12286,17 +12286,17 @@ class ComValueRef extends ComValue {
 class InputBox__Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/InputBox.htm#return|`Result`}  
-     * The text entered by the user.  
+     * Indicates how the InputBox was closed:  
+     * - `OK` = OK was pressed.  
+     * - `Cancel` = Cancel or the window X was pressed.  
+     * - `Timeout` = InputBox window timed out.  
      * @type String
      */
     Result => String
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/InputBox.htm#return|`Value`}  
-     * Indicates how the InputBox was closed:  
-     * - `OK` = OK was pressed.  
-     * - `Cancel` = Cancel or the window X was pressed.  
-     * - `Timeout` = Window's timeout expired.  
+     * The text entered by the user.  
      * @type String
      */
     Value => String
@@ -12511,6 +12511,7 @@ CallbackFree(Address) => EmptyString
  * @example <caption>  
  * Show caret position at all times.</caption>
  * SetTimer(WatchCaret, 100)
+ * 
  * WatchCaret() {
  *     if CaretGetPos(&x, &y)
  *         ToolTip('x' x ', y' y, x, y - 20)
@@ -12527,6 +12528,11 @@ CaretGetPos([&CaretX, &CaretY]) => Integer
  * The rounded up integer.  
  * @example <caption>  
  * </caption>
+ * Ceil(1.1) ; => 2
+ * Ceil(1.9) ; => 2
+ * Ceil(1.0) ; => 1
+ * Ceil(-4.5) ; => -4
+ * Ceil(9.0001) ; => 10
  */
 Ceil(Num) => Integer
 
@@ -12555,7 +12561,7 @@ Chr(UnicodeNumber) => String
  * If 3 numbers are passed, the first two are X and Y and the last is Count.  
  * Omit all parameters to send a single left click.  
  * @param {(String)} [Button]  
- * Mouse button to click:  
+ * Mouse button to click.  
  * - `Left` or `L`
  * - `Right` or `R`
  * - `Middle` or `M`
@@ -12565,17 +12571,19 @@ Chr(UnicodeNumber) => String
  * - `WheelDown` or `WD`
  * - `WheelRight` or `WR`
  * - `WheelLeft` or `WL`
+ * 
+ * If omitted, `Left` is used.
  * @param {(String|Integer)} [X]  
  * The X coordinate to click at.  
- * {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm|CoordMode()} dictates where x0 y0 starts at  
- * Client is suggested.  
- * If `Relative` param is used, x0 y0 starts at mouse cursor.  
+ * {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm|CoordMode()} dictates where x0 y0 starts.  
+ * Client is usually the best choice.  
+ * If the `Relative` param is used, x0 y0 starts at the mouse cursor.  
  * If omitted, the mouse's current X value is used.  
  * @param {(String|Integer)} [Y]  
  * The Y coordinate to click at  
- * {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm|CoordMode()} dictates where x0 y0 starts at  
- * Client is suggested.  
- * If `Relative` param is used, x0 y0 starts at mouse cursor.  
+ * {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm|CoordMode()} dictates where x0 y0 starts.  
+ * Client is usually the best choice.  
+ * If the `Relative` param is used, x0 y0 starts at the mouse cursor.  
  * If omitted, the mouse's current Y value is used.  
  * @param {(String|Integer)} [Count]  
  * Number of clicks to send  
@@ -16208,6 +16216,11 @@ FileSetTime([DateTimeStamp:=A_Now, FilePattern:=unset, TimeType:='M', Mode:='F']
  * The floored value of Num.  
  * @example <caption>  
  * </caption>
+ * Floor(1.1) ; => 1
+ * Floor(1.9) ; => 1
+ * Floor(2.0) ; => 2
+ * Floor(-4.5) ; => -5
+ * Floor(9.999) ; => 9
  */
 Floor(Num) => Integer
 
@@ -19587,7 +19600,7 @@ Random([Num1, Num2]) => Number
  * **Replacement**
  * - `$$` = Literal dollar sign = Prevent capture group
  * - `$#` = Use a captured group number. `$0` = entire match
- * - `${name} - Use a named capture group.
+ * - `${name}` - Use a named capture group.
  * @example <caption>  
  * </caption>
  */
