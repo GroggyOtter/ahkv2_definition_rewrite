@@ -8,6 +8,7 @@ This is a full update for the definition file `ahk2.d.ahk` and the directive/flo
 - [Why use this update](#why-use-this-update)
 - [Installation](#installation)
 - [Change Log](#change-log)
+  - [2024-01-10](#2024-01-10)
   - [2024-01-09](#2024-01-09)
   - [2024-01-08](#2024-01-08)
   - [2023-12-24](#2023-12-24)
@@ -21,7 +22,7 @@ This is a full update for the definition file `ahk2.d.ahk` and the directive/flo
 ### Why use this update
 This is a full rewrite from the ground up. 
 It adds many things to the definition that it's currently missing.  
-All parameters are included, all functions and methods have return values, the text of the calltips are now formatted and more aesthetically pleasing, hyperlinks are added, all options are accounted for, the structure of the defintion file has been expanded and updated, autocomplete features have been added for directives and flow control, and much more.
+All parameters are included, all functions and methods have return values, the text of the calltips are now formatted and more aesthetically pleasing, hyperlinks are added, all options are accounted for, the structure of the definition file has been expanded and updated, autocomplete features have been added for directives and flow control, and much more.
 
 To put things in perspective, the current definition file is ~4,200 lines long and ~185,000 characters.  
 The updated definition file is ~24,000 lines long and ~1,510,000 characters.  
@@ -39,7 +40,7 @@ First, optionally backup the old files, just in case you want to revert.
 If you delete them and want them back, [get them from THQBY's GitHub](https://github.com/thqby/vscode-autohotkey2-lsp/tree/main/syntaxes).  
 
 Next, download these two files and install them in the addon's `syntaxes` folder.  
-The deafult location for this folder is:
+The default location for this folder is:
 
     C:\Users\<YourUsername>\.vscode\extensions\thqby.vscode-autohotkey2-lsp-<SomeVersionNumber>\syntaxes
 
@@ -49,7 +50,8 @@ Alternatively, you can open the two files in the syntaxes folder and copy + past
 
 ### Change Log
 
-I'll try to post all the changes I make to these files:
+##### 2024-01-10
+- Updated a lot of the verbiage in the `Format()` tag to make it more understandable.
 
 ##### 2024-01-09
 - Rewrote and restructured the entire ReadMe file for this GitHub page.  
