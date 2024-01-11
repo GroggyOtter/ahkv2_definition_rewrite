@@ -52,6 +52,9 @@ Alternatively, you can open the two files in the syntaxes folder and copy + past
 
 ##### 2024-01-10
 - Updated a lot of the verbiage in the `Format()` tag to make it more understandable.
+- Removed unused tags left over from template pasting.
+- Adjusted formatting of `@throw` tags.
+- Added missing "Related" links to the `@see` tag for `OnError()`.
 
 ##### 2024-01-09
 - Rewrote and restructured the entire ReadMe file for this GitHub page.  
