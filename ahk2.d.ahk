@@ -13,10 +13,9 @@ class Any {
      * {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#GetBase|ObjGetBase()} |
      * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#SetBase|ObjSetBase()} |
      * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#Base|Object.Base}
-     * @throws Error  
-     * Assigning a new base that would change the native type of the object.  
+     * @throws Error - Assigning a new base that would change the native type of the object.  
      * @example <caption>  
-     * Checking if object's base matches the main Object prototype.</caption>
+     * Check if object's base matches the prototype of an object.</caption>
      * obj := Object()
      * if (obj.Base = Object.Prototype)
      *     MsgBox('Yes, obj is based on the Object prototype.')
@@ -31,14 +30,11 @@ class Any {
      * @param {(Number)} [ParamCount]  
      * The number of parameters that would be passed to the method or function.  
      * If omitted or if the parameter count not verified, a basic check is performed for a Call() method to verify that the object is most likely callable.  
-     * @returns {(FuncObject)}   
+     * @returns {(FuncObject)}  
      * A reference to the specified method.  
-     * @throws MethodError  
-     * Method is not found or cannot be retrieved without invoking a property getter.  
-     * @throws ValueError  
-     * Validation attempted and failed.  
-     * @throws MethodError  
-     * Validation attempted and failed.  
+     * @throws MethodError - Method is not found or cannot be retrieved without invoking a property getter.  
+     * @throws ValueError - Validation attempted and failed.  
+     * @throws MethodError - Validation attempted and failed.  
      * @see  
      * {@link https://www.autohotkey.com/docs/v2/Objects.htm|Objects} |
      * {@link https://www.autohotkey.com/docs/v2/lib/HasBase.htm|HasBase()} |
@@ -138,8 +134,7 @@ class Object extends Any {
      * {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#GetBase|ObjGetBase()} |
      * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#SetBase|ObjSetBase()} |
      * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#Base|Object.Base}
-     * @throws Error  
-     * Assigning a new base that would change the native type of the object.  
+     * @throws Error - Assigning a new base that would change the native type of the object.  
      * @example <caption>  
      * Comparing a base to </caption>
      * thing := Object()
@@ -315,8 +310,7 @@ class Array extends Object {
      * Default is unset by default and must be set by the user.  
      * Setting a default value does not prevent an error being thrown when index is out of range.  
      * @type Any Can be any type of value
-     * @throws UnsetItemError  
-     * An attempt was made to read the value of an item, but there was no value.  
+     * @throws UnsetItemError - An attempt was made to read the value of an item, but there was no value.  
      * @example <caption>  
      * Assigning a default value to an array.</caption>
      * arr := [1, 2, unset]
@@ -332,8 +326,7 @@ class Array extends Object {
      * Index to insert value(s).  
      * An index of 0 is the same as `array.Length + 1` and works identical to `Push()`.  
      * A negative index starts at the last element. `-1` last, `-2` second from last, etc.  
-     * @throws IndexError  
-     * Using an out-of-bounds index.  
+     * @throws IndexError - Using an out-of-bounds index.  
      * @example <caption>  
      * Using the __item property.</caption>
      * arr := ['a','b','c']
@@ -403,10 +396,8 @@ class Array extends Object {
      * Otherwise, the provided default parameter is used.  
      * Otherwise, the defined {@link https://www.autohotkey.com/docs/v2/lib/Array.htm#Default|Default property} is used.  
      * Otherwise, an UnsetItemError is thrown.  
-     * @throws UnsetItemError  
-     * Value not set, no default parameter, and default property was not defined.  
-     * @throws IndexError  
-     * Index is zero or out of range
+     * @throws UnsetItemError - Value not set, no default parameter, and default property was not defined.  
+     * @throws IndexError - Index is zero or out of range
      * @example <caption>  
      * Retrieving a value from an array.</caption>
      * arr := [1, 2, 3, unset]
@@ -585,8 +576,7 @@ class Buffer extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Size|`Size`} - Retrieves or sets the buffer's size, in bytes.  
      * @type Integer
-     * @throws MemoryError  
-     * Memory could not be allocated.  
+     * @throws MemoryError - Memory could not be allocated.  
      * @example <caption>  
      * Getting the size of a buffer.</caption>
      * buff := Buffer(16)
@@ -606,8 +596,7 @@ class Buffer extends Object {
      * If buffer will be written to without first being read, it is better to omit FillByte as it has a time cost proportionate to the number of bytes.  
      * @returns {(Buffer)}  
      * A buffer object.  
-     * @throws MemoryError  
-     * If the memory could not be allocated.  
+     * @throws MemoryError - If the memory could not be allocated.  
      * @example <caption>  
      * Creating a new 8-byte buffer.</caption>
      * buff := Buffer(8)
@@ -685,8 +674,7 @@ class ClipboardAll extends Buffer {
      * The number of bytes of data to use. This is not necessary with buffer objects.  
      * @returns {(ClipboardAll)}  
      * A  buffer object
-     * @throws MemoryError  
-     * Memory could not be allocated.  
+     * @throws MemoryError - Memory could not be allocated.  
      * @see  
      * {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm|DllCall()} |
      * {@link https://www.autohotkey.com/docs/v2/lib/NumPut.htm|NumPut()} |
@@ -11413,8 +11401,7 @@ class Map extends Object {
      * The identifying key of the key-value pair to delete.  
      * @returns {(Any)}  
      * The removed map element value is returned.  
-     * @throws UnsetItemError  
-     * The map does not contain the specified key or a defined {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Default|Default} property.  
+     * @throws UnsetItemError - The map does not contain the specified key or a defined {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Default|Default} property.  
      * @example <caption>  
      * </caption>
      */
@@ -11431,8 +11418,7 @@ class Map extends Object {
      * Otherwise, the provided Default parameter is used.  
      * Otherwise, the defined {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Default} property is used.  
      * Otherwise, an UnsetItemError is thrown.  
-     * @throws UnsetItemError  
-     * Value not set, no default parameter provided, and default property not defined.  
+     * @throws UnsetItemError - Value not set, no default parameter provided, and default property not defined.  
      * @example <caption>  
      * </caption>
      */
@@ -11510,7 +11496,7 @@ class Menu extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#ClickCount|`ClickCount`} - Set or get the number of times the {@link https://www.autohotkey.com/docs/v2/Program.htm#tray-icon|tray icon} must be clicked to activate the {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Default|default} menu item.  
      * This value must be a `1` or `2` and is 2 by default.  
      * @type Integer  
-     * @throws ValueError A number other than 1 or 2 was assigned  
+     * @throws ValueError - A number other than 1 or 2 was assigned  
      * @example <caption>  
      * </caption>
      */
@@ -12034,7 +12020,7 @@ class Number extends Primitive {
      * A string representing a number.  
      * @returns {(Integer|Float)}  
      * An integer or float version of value.  
-     * @throws TypeError Value cannot be converted  
+     * @throws TypeError - Value cannot be converted  
      * To prevent this, use {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#number|IsNumber()} first.
      * @see  
      * {@link https://www.autohotkey.com/docs/v2/lib/Type.htm|Type()} |
@@ -12056,7 +12042,7 @@ Class Float extends Number {
      * A string or integer to convert to float type.  
      * @returns {(Float)}  
      * The numerical version of value.  
-     * @throws TypeError Value cannot be converted  
+     * @throws TypeError - Value cannot be converted  
      * To prevent this, use {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#number|IsNumber()} first.  
      * @see  
      * {@link https://www.autohotkey.com/docs/v2/lib/Type.htm|Type()} |
@@ -12078,7 +12064,7 @@ Class Integer extends Number {
      * A string or integer to convert to float type.  
      * @returns {(Integer)}  
      * The numerical version of value.  
-     * @throws TypeError Value cannot be converted  
+     * @throws TypeError - Value cannot be converted  
      * To prevent this, use {@link https://www.autohotkey.com/docs/v2/lib/Is.htm#number|IsNumber()} first.  
      * @see
      * {@link https://www.autohotkey.com/docs/v2/lib/Type.htm|Type()} |
@@ -12709,8 +12695,7 @@ ClipWait([TimeoutInSec:=unset, WaitForType:=0]) => String
  * `Cdecl` is supported but is generally not used by COM interface methods.
  * @returns {(String|Integer)}  
  * The actual value returned by the method  
- * @throws OSError  
- * Any result indicating failure
+ * @throws OSError - Any result indicating failure
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer object} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ComObject.htm|ComObject} |
@@ -12801,8 +12786,7 @@ ComObjConnect(ComObj [,PrefixOrSink:=unset]) => EmptyString
  * A bitmask of flags to change.  
  * @returns {(Integer)}  
  * New flags of the specified COM object  
- * @throws TypeError  
- * If `ComObj` not a valid COM wrapper object  
+ * @throws TypeError - If `ComObj` not a valid COM wrapper object  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|ComValue} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ComObjActive.htm|ComObjActive()} |
@@ -12888,8 +12872,7 @@ ComObjGet(Name) => ComObject
  *   The script can call properties/methods using normal {@link https://www.autohotkey.com/docs/v2/Objects.htm#Usage_Objects|object syntax}.
  * - `Any other IID` => ({@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|ComValue}) - VT_UNKNOWN (13)  
  *   Provides a `Ptr` property that can be passed to {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm|DllCall()} or {@link https://www.autohotkey.com/docs/v2/lib/ComCall.htm|ComCall}.
- * @throws Error  
- * Any failure, such as "interface not supported."
+ * @throws Error - Any failure, such as "interface not supported."
  * @see 
  * {@link https://www.autohotkey.com/docs/v2/lib/ComObjGet.htm|ComObjGet()}
  * {@link https://www.autohotkey.com/docs/v2/lib/ComCall.htm|ComCall()}
@@ -12939,8 +12922,7 @@ ComObjType(ComObj [,InfoType:=unset]) => Integer | String
  * COM object or typed value. See {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|ComValue} for details.
  * @returns {(Integer)}  
  * A 64-bit signed integer
- * @throws TypeError  
- * `ComObj` is not a COM wrapper object
+ * @throws TypeError - `ComObj` is not a COM wrapper object
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ComObject.htm|ComObject} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ComObjType.htm|ComObjType()} |
@@ -12974,11 +12956,9 @@ ComObjValue(ComObj) => String
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * Index of the new item  
- * @throws TargetError  
- * Window or control could not be found  
+ * @throws TargetError - Window or control could not be found  
  * Or control's class does not contain `Combo` or `List`
- * @throws Error|OSError  
- * Item could not be added  
+ * @throws Error|OSError - Item could not be added  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlDeleteItem.htm|ControlDeleteItem()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlFindItem.htm|ControlFindItem()} |
@@ -13151,12 +13131,9 @@ ControlChooseString(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', No
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * The target window or target control could not be found.  
- * @throws OSError  
- * X and Y coords were omited and control's position was undetermined.  
- * @throws ValueError|TypeError  
- * Invalid parameters were detected.  
+ * @throws TargetError - The target window or target control could not be found.  
+ * @throws OSError - X and Y coords were omited and control's position was undetermined.  
+ * @throws ValueError|TypeError - Invalid parameters were detected.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SetControlDelay.htm|SetControlDelay()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Control.htm|Control functions} |
@@ -13203,11 +13180,9 @@ ControlClick([ConOrPos:=unset, WinTitle:='', WinText:='', Button:='Left', Count:
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window or control could not be found  
+ * @throws TargetError - Window or control could not be found  
  * Or control's class does not contain `Combo` or `List`
- * @throws Error|OSError  
- * Item could not be added  
+ * @throws Error|OSError - Item could not be added  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlAddItem.htm|ControlAddItem()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlFindItem.htm|ControlFindItem()} |
@@ -13259,11 +13234,9 @@ ControlDeleteItem(N, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinT
  * @returns {(Integer)}  
  * The index of the found item.  
  * If no match is found, an exception is thrown.  
- * @throws TargetError  
- * Window or control could not be found  
+ * @throws TargetError - Window or control could not be found  
  * Or control's class does not contain `Combo` or `List` 
- * @throws Error  
- * Item could not be found.  
+ * @throws Error - Item could not be found.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlAddItem.htm|ControlAddItem()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlDeleteItem.htm|ControlDeleteItem()} |
@@ -13323,8 +13296,7 @@ ControlFindItem(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinT
  * {@link https://www.autohotkey.com/docs/v2/lib/SetTitleMatchMode.htm|SetTitleMatchMode()} |
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle Window Matching} |
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}
- * @throws TargetError  
- * Window or control could not be found  
+ * @throws TargetError - Window or control could not be found  
  * @example <caption>  
  * </caption>
  * goo := Gui()
@@ -13368,10 +13340,8 @@ ControlFocus(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']
  * Use WindowSpy to view window text.
  * @returns {(Boolean)}  
  * `1` if checkbox/radio is checked, else `0`  
- * @throws TargetError  
- * Window or control could not be found  
- * @throws OSError  
- * Message could not be sent to the control  
+ * @throws TargetError - Window or control could not be found  
+ * @throws OSError - Message could not be sent to the control  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlSetChecked.htm|ControlSetChecked()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|GuiControl.Value} |
@@ -13466,10 +13436,8 @@ ControlGetChoice(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * The ClassNN of the control  
- * @throws TargetError  
- * A problem determining the target window or control
- * @throws Error|OSError  
- * ClassNN could not be determined
+ * @throws TargetError - A problem determining the target window or control
+ * @throws Error|OSError - ClassNN could not be determined
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetClass.htm|WinGetClass()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetControls.htm|WinGetControls()} |
@@ -13526,8 +13494,7 @@ ControlGetClassNN(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * Use WindowSpy to view window text.
  * @returns {(Boolean)}  
  * `1` if control is enabled, otherwise `0`  
- * @throws TargetError  
- * The window or control could not be found  
+ * @throws TargetError - The window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlSetEnabled.htm|ControlSetEnabled()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetEnabled.htm|WinSetEnabled()} |
@@ -13577,10 +13544,8 @@ ControlGetEnabled(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * @returns {(Integer)}  
  * The {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|handle (HWND)} of the focused control.  
  * `0` if none of the controls have focus.  
- * @throws TargetError  
- * Problem determining the target window or control  
- * @throws OSError  
- * Problem determining the control focus
+ * @throws TargetError - Problem determining the target window or control  
+ * @throws OSError - Problem determining the control focus
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlFocus.htm|ControlFocus()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Control.htm|Control functions} |
@@ -13626,8 +13591,7 @@ ControlGetFocus([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => I
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * The {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|handle (HWND)} of the specified control.  
- * @throws TargetError  
- * The target window or control could not be found  
+ * @throws TargetError - The target window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetID.htm|WinGetID()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Hwnd|GuiControl.Hwnd} |
@@ -13669,11 +13633,9 @@ ControlGetHwnd(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='
  * @returns {(Integer)}  
  * The index of the tab or the ListBox/ComboBox selected entry.  
  * `0` if no tab/entry is selected.  
- * @throws TargetError  
- * The window or control could not be found  
+ * @throws TargetError - The window or control could not be found  
  * Or the control's class name does not contain "Combo", "List" or "Tab"
- * @throws OSError  
- * Message could not be sent to the control  
+ * @throws OSError - Message could not be sent to the control  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlChooseIndex.htm|ControlChooseIndex()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetChoice.htm|ControlGetChoice()} |
@@ -13723,8 +13685,7 @@ ControlGetIndex(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=
  * Use WindowSpy to view window text.
  * @returns {(Array)}  
  * An array containing the text of each item or row.  
- * @throws TargetError  
- * The window or control could not be found  
+ * @throws TargetError - The window or control could not be found  
  * Or the control's class name does not contain "Combo" or "List"  
  * @see 
  * {@link https://www.autohotkey.com/docs/v2/lib/ListViewGetContent.htm|ListViewGetContent()} |
@@ -13771,8 +13732,7 @@ ControlGetItems(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * The window or control could not be found.  
+ * @throws TargetError - The window or control could not be found.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlMove.htm|ControlMove()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetPos.htm|WinGetPos()} |
@@ -13806,8 +13766,7 @@ ControlGetPos([&OutX, &OutY, &OutWidth, &OutHeight, Control:=unset, WinTitle:=''
  * Text that must not appear in the window.  
  * Use WindowSpy to view window text.
  * @returns {{Integer}} The controls' style number.
- * @throws TargetError  
- * Window or control could not be found
+ * @throws TargetError - Window or control could not be found
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlSetStyle.htm|ControlSetStyle()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetStyle.htm|WinGetStyle()} |
@@ -13842,8 +13801,7 @@ ControlGetStyle(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=
  * Text that must not appear in the window.  
  * Use WindowSpy to view window text.
  * @returns {{Integer}} The controls' style number.
- * @throws TargetError  
- * Window or control could not be found
+ * @throws TargetError - Window or control could not be found
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlSetStyle.htm|ControlSetExStyle()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetStyle.htm|WinGetExStyle()} |
@@ -13912,8 +13870,7 @@ ControlGetText(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='
  * Text that must not appear in the window.  
  * Use WindowSpy to view window text.
  * @returns {{Boolean}} `1` if control is visible, otherwise `0`
- * @throws TargetError  
- * The window or control could not be found  
+ * @throws TargetError - The window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlHide.htm|ControlHide()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlShow.htm|ControlShow()} |
@@ -13949,8 +13906,7 @@ ControlGetVisible(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * The window or control could not be found  
+ * @throws TargetError - The window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlShow.htm|ControlShow()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetVisible.htm|ControlGetVisible()} |
@@ -13987,10 +13943,8 @@ ControlHide(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=''])
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * The window or control could not be found  
- * @throws OSError  
- * Message could not be sent to the control
+ * @throws TargetError - The window or control could not be found  
+ * @throws OSError - Message could not be sent to the control
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlShowDropDown.htm|ControlShowDropDown()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Control.htm|Control functions} |
@@ -14034,10 +13988,8 @@ ControlHideDropDown(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window or control could not be found  
- * @throws OSError  
- * Control's current position could not be determined  
+ * @throws TargetError - Window or control could not be found  
+ * @throws OSError - Control's current position could not be determined  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetPos.htm|ControlGetPos()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMove.htm|WinMove()} |
@@ -14077,8 +14029,7 @@ ControlMove([X, Y, Width, Height, Control, WinTitle:='', WinText:='', NoWinTitle
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window or control could not be found  
+ * @throws TargetError - Window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SetKeyDelay.htm|SetKeyDelay()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Send.htm|Send()} |
@@ -14120,8 +14071,7 @@ ControlSend(Keys [,Control:=unset, WinTitle:='', WinText:='', NoWinTitle:='', No
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window or control could not be found  
+ * @throws TargetError - Window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SetKeyDelay.htm|SetKeyDelay()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Send.htm|Send()} |
@@ -14164,10 +14114,8 @@ ControlSendText(Keys [,Control:=unset, WinTitle:='', WinText:='', NoWinTitle:=''
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window or control could not be found  
- * @throws OSError  
- * A message could not be sent to the control
+ * @throws TargetError - Window or control could not be found  
+ * @throws OSError - A message could not be sent to the control
  * @see 
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetChecked.htm|ControlGetChecked()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Value|GuiControl.Value} |
@@ -14207,8 +14155,7 @@ ControlSetChecked(NewSetting, Control [,WinTitle:='', WinText:='', NoWinTitle:='
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window or control could not be found  
+ * @throws TargetError - Window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetEnabled.htm|ControlGetEnabled()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetEnabled.htm|WinSetEnabled()} |
@@ -14250,10 +14197,8 @@ ControlSetEnabled(NewSetting, Control [,WinTitle:='', WinText:='', NoWinTitle:='
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window or control could not be found  
- * @throws OSError  
- * The style could not be changed  
+ * @throws TargetError - Window or control could not be found  
+ * @throws OSError - The style could not be changed  
  * Partial change is considered a success.
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetStyle.htm|ControlGetStyle()} |
@@ -14296,10 +14241,8 @@ ControlSetStyle(Value, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWi
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window or control could not be found  
- * @throws OSError  
- * The style could not be changed  
+ * @throws TargetError - Window or control could not be found  
+ * @throws OSError - The style could not be changed  
  * Partial change is considered a success.
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetStyle.htm|ControlGetExStyle()} |
@@ -14339,8 +14282,7 @@ ControlSetExStyle(Value, Control [,WinTitle:='', WinText:='', NoWinTitle:='', No
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window or control could not be found  
+ * @throws TargetError - Window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SetControlDelay.htm|SetControlDelay()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetText.htm|ControlGetText()} |
@@ -14375,8 +14317,7 @@ ControlSetText(NewText, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoW
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window or control could not be found  
+ * @throws TargetError - Window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlHide.htm|ControlHide()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetVisible.htm|ControlGetVisible()} |
@@ -14413,10 +14354,8 @@ ControlShow(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=''])
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window or control could not be found  
- * @throws OSError  
- * Message could not be sent to the control
+ * @throws TargetError - Window or control could not be found  
+ * @throws OSError - Message could not be sent to the control
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlHideDropDown.htm|ControlHideDropDown()}
  * {@link https://www.autohotkey.com/docs/v2/lib/Control.htm|Control functions} |
@@ -14533,8 +14472,7 @@ Critical([Setting:='On']) => Integer
  * - `D` / `Days`  
  * @returns {(String)}  
  * The `DateTime` after alteration in {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|YYYYMMDDHH24MISS} format.  
- * @throws ValueError  
- * `DateTime` is invalid or prior to 1601  
+ * @throws ValueError - `DateTime` is invalid or prior to 1601  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/DateDiff.htm|DateDiff()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/FileGetTime.htm|FileGetTime()} |
@@ -14563,8 +14501,7 @@ DateAdd(DateTime, Time, TimeUnits) => String
  * @returns {(Integer)}  
  * Difference between the two timestamps in the units requested.  
  * The difference is negative if DateTime1 is earlier than DateTime2.  
- * @throws ValueError  
- * If a date-time stamp is invalid or year is prior to 1601  
+ * @throws ValueError - If a date-time stamp is invalid or year is prior to 1601  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/DateAdd.htm|DateAdd()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/FileGetTime.htm|FileGetTime()} |
@@ -14618,8 +14555,7 @@ DetectHiddenWindows(NewSetting) => Integer
  * - `1` = Overwrite existing files.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * An exception is thrown if any error occurs  
+ * @throws Error - An exception is thrown if any error occurs  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/DirMove.htm|DirMove()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/FileCopy.htm|FileCopy()} |
@@ -14640,8 +14576,7 @@ DirCopy(Source, Dest [,Overwrite:=0]) => EmptyString
  * If a full path isn't used, DirName is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws OSError  
- * Any errors occur.  
+ * @throws OSError - Any errors occur.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/DirDelete.htm|DirDelete()}  
@@ -14662,8 +14597,7 @@ DirCreate(DirName) => EmptyString
  * - `0` = If directory contains anything (files or sub-directories), directory is not deleted.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws OSError  
- * Any errors occur.  
+ * @throws OSError - Any errors occur.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/DirCreate.htm|DirCreate()} |
@@ -14719,8 +14653,7 @@ DirExist(FilePattern) => String
  *   The function fails if Dest already exists.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * An exception is thrown if any error occurs.  
+ * @throws Error - An exception is thrown if any error occurs.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/DirCopy.htm|DirCopy()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/FileCopy.htm|FileCopy()} |
@@ -14803,25 +14736,16 @@ DirSelect([StartingFolder:=A_MyDocuments, Options:=1, Prompt:='Select Folder - '
  * If omitted, return type defaults to {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#HRESULT|HRESULT}  
  * If there is no return type (such as C's `void`), specify `Int` or another numeric type.  
  * `Cdecl` is supported but is generally not used by COM interface methods.
- * @throws PropertyError  
- * An object passed to DLLNameOrPath is missing or has an invalid `Ptr` property  
- * @throws OSError  
- * {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#HRESULT|HRESULT} type used and function {@link https://learn.microsoft.com/windows/win32/api/winerror/nf-winerror-failed|returned error}.  
- * @throws TypeError  
- * The DLLNameOrPath parameter is a floating point number. A string or positive integer is required.  
- * @throws ValueError  
- * The {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#types|return type} or one of the specified {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#types|arg types} is invalid.  
- * @throws TypeError  
- * An argument was passed a value of an unexpected type.  
- * @throws Error  
- * The specified DllFile could not be accessed or loaded.  
- * @throws Error  
- * The specified function could not be found inside the DLL.  
- * @throws Error  
- * The function was called but it aborted with a fatal exception.  
+ * @throws PropertyError - An object passed to DLLNameOrPath is missing or has an invalid `Ptr` property  
+ * @throws OSError - {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#HRESULT|HRESULT} type used and function {@link https://learn.microsoft.com/windows/win32/api/winerror/nf-winerror-failed|returned error}.  
+ * @throws TypeError - The DLLNameOrPath parameter is a floating point number. A string or positive integer is required.  
+ * @throws TypeError - An argument was passed a value of an unexpected type.  
+ * @throws ValueError - The {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#types|return type} or one of the specified {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm#types|arg types} is invalid.  
+ * @throws Error - The specified DllFile could not be accessed or loaded.  
+ * @throws Error - The specified function could not be found inside the DLL.  
+ * @throws Error - The function was called but it aborted with a fatal exception.  
  * The {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#Extra|Error.Extra} property contains the exception code.  
- * @throws Error  
- * Too many or too few arguments were passed to the function.  
+ * @throws Error - Too many or too few arguments were passed to the function.  
  * The {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#Extra|Error.Extra} property contains the number of bytes the data type was off by.  
  * @returns {(Primitive)}  
  * The value returned by Function.  
@@ -14856,8 +14780,7 @@ DllCall(DLLNameOrPath [,Type1, Arg1, Type_Arg_Pairs*, ReturnType:='Int']) => Str
  * To download to a variable, see {@link https://www.autohotkey.com/docs/v2/lib/Download.htm#ExWHR|this example}.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * An exception is thrown on failure.  
+ * @throws Error - An exception is thrown on failure.  
  * Note that a download may seem successful only because an "error page" is returned.  
  * That error page is what gets saved.  
  * @see  
@@ -14877,8 +14800,7 @@ Download(URL, SaveFile) => String
  * Device paths can be used and gotten from {@link https://learn.microsoft.com/windows-server/administration/windows-commands/mountvol|mountvol}. `\\?\Volume{...}`
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * No drive was found  
+ * @throws Error - No drive was found  
  * The underlying system functions do not always report failure.  
  * An exception may or may not be thrown.  
  * @see  
@@ -14896,8 +14818,7 @@ DriveEject([Drive:=unset]) => EmptyString
  * May work with UNC paths and mapped drives.  
  * @returns {(Integer)}  
  * Total capacity of the drive in megabytes.  
- * @throws Error  
- * An exception is thrown on failure.  
+ * @throws Error - An exception is thrown on failure.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions} |
  * {@link https://www.autohotkey.com/docs/v2/lib/DriveGetSpaceFree.htm|DriveGetSpaceFree()}
@@ -14913,8 +14834,7 @@ DriveGetCapacity(Path) => Integer
  * @returns {(String)}  
  * The file system type for the provided Drive.  
  * Including (but not limited to): `NTFS`, `HPFS`, `FAT32`, `FAT`, `CDFS`, `UDF`
- * @throws Error  
- * An exception is thrown on failure
+ * @throws Error - An exception is thrown on failure
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions}
  * @example <caption>  
@@ -14929,8 +14849,7 @@ DriveGetFileSystem(Drive) => String
  * UNC names are allowed. `\srv1\dir1`  
  * @returns {(String)}  
  * - Volume name of Drive
- * @throws Error  
- * An exception is thrown on failure
+ * @throws Error - An exception is thrown on failure
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions} |
  * {@link https://www.autohotkey.com/docs/v2/lib/DriveSetLabel.htm|DriveSetLabel()}
@@ -14970,8 +14889,7 @@ DriveGetList([DriveType:=unset]) => String
  * @returns {(Integer)}  
  * Drive's volume serial.  
  * To convert to hex, use {@link https://www.autohotkey.com/docs/v2/lib/Format.htm|Format()}. See example below.  
- * @throws Error  
- * An exception is thrown on failure
+ * @throws Error - An exception is thrown on failure
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions} |
  * @example <caption>  
@@ -14989,8 +14907,7 @@ DriveGetSerial(Drive) => Integer
  * May work with UNC paths and mapped drives.  
  * @returns {(Integer)}  
  * The free amount of disk space on the drive Path belongs to in megabytes.  
- * @throws Error  
- * An exception is thrown on failure  
+ * @throws Error - An exception is thrown on failure  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions} |
  * {@link https://www.autohotkey.com/docs/v2/lib/DriveGetCapacity.htm|DriveGetCapacity()}
@@ -15010,8 +14927,7 @@ DriveGetSpaceFree(Path) => Integer
  * - `NotReady` = Typical for removable drives that don't contain media.
  * - `Unknown` = Might indicate unformatted/RAW file system.
  * - `Invalid` = Path does not exist or is a network drive that is presently inaccessible, etc.
- * @throws Error  
- * An exception is thrown on failure  
+ * @throws Error - An exception is thrown on failure  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions}
  * @example <caption>  
@@ -15033,8 +14949,7 @@ DriveGetStatus(Path) => String
  * - `paused` = The previously playing audio or video is now paused.  
  * - `seeking` = The drive is seeking.  
  * - `stopped` = The drive contains a CD but is not currently accessing it.  
- * @throws Error  
- * An exception is thrown on failure  
+ * @throws Error - An exception is thrown on failure  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions} |
  * {@link https://www.autohotkey.com/docs/v2/lib/DriveEject.htm|DriveEject()}
@@ -15057,8 +14972,7 @@ DriveGetStatusCD([Drive:=unset]) => String
  * - `Network`
  * - `CDROM`
  * - `RAMDisk`
- * @throws Error  
- * An exception is thrown on failure  
+ * @throws Error - An exception is thrown on failure  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions} |
  * @example <caption>  
@@ -15074,8 +14988,7 @@ DriveGetType(Path) => String
  * May work with UNC paths and mapped drives.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * Drive does not exist or does not support the locking feature  
+ * @throws Error - Drive does not exist or does not support the locking feature  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions} |
  * {@link https://www.autohotkey.com/docs/v2/lib/DriveUnlock.htm|DriveUnlock()}
@@ -15093,8 +15006,7 @@ DriveLock(Drive) => EmptyString
  * Device paths can be used and gotten from {@link https://learn.microsoft.com/windows-server/administration/windows-commands/mountvol|mountvol}. `\\?\Volume{...}`
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * No drive was found  
+ * @throws Error - No drive was found  
  * The underlying system functions do not always report failure.  
  * An exception may or may not be thrown.  
  * @see  
@@ -15115,8 +15027,7 @@ DriveRetract([Drive:=unset]) => EmptyString
  * If omitted, drive label is blanked.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * An exception is thrown on failure  
+ * @throws Error - An exception is thrown on failure  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions} |
  * {@link https://www.autohotkey.com/docs/v2/lib/DriveGetLabel.htm|DriveGetLabel()}  
@@ -15133,8 +15044,7 @@ DriveSetLabel(Drive [,NewLabel:=unset]) => EmptyString
  * May work with UNC paths and mapped drives.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * An exception is thrown on failure  
+ * @throws Error - An exception is thrown on failure  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Drive.htm|Drive functions} |
  * {@link https://www.autohotkey.com/docs/v2/lib/DriveLock.htm|DriveLock()}
@@ -15178,8 +15088,7 @@ Edit() => EmptyString
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * The column number in the Edit control where the caret resides.  
- * @throws Error  
- * Window or control could not be found
+ * @throws Error - Window or control could not be found
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentLine.htm|EditGetCurrentLine()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetLineCount.htm|EditGetLineCount()} |
@@ -15216,8 +15125,7 @@ EditGetCurrentCol(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * The line number in the Edit control where the caret resides.  
- * @throws Error  
- * Window or control could not be found  
+ * @throws Error - Window or control could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentCol.htm|EditGetCurrentCol()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetLineCount.htm|EditGetLineCount()} |
@@ -15258,12 +15166,9 @@ EditGetCurrentLine(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinTex
  * @returns {(String)}  
  * Text from line N of the Edit control.  
  * May end in `` `r `` or `` `r`n ``, depending on the control.  
- * @throws TargetError  
- * Window or control could not be found  
- * @throws ValueError  
- * N is out of range or otherwise invalid  
- * @throws OSError  
- * Message could not be sent to the control  
+ * @throws TargetError - Window or control could not be found  
+ * @throws ValueError - N is out of range or otherwise invalid  
+ * @throws OSError - Message could not be sent to the control  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentCol.htm|EditGetCurrentCol()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentLine.htm|EditGetCurrentLine()} |
@@ -15302,10 +15207,8 @@ EditGetLine(N, Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='
  * @returns {(Integer)}  
  * The number of lines in an Edit control.  
  * All Edit controls have at least 1 line, even if it has no text. 
- * @throws TargetError  
- * Window or control could not be found  
- * @throws OSError  
- * Message could not be sent to the control  
+ * @throws TargetError - Window or control could not be found  
+ * @throws OSError - Message could not be sent to the control  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentCol.htm|EditGetCurrentCol()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentLine.htm|EditGetCurrentLine()} |
@@ -15344,10 +15247,8 @@ EditGetLineCount(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:
  * @returns {(String)}  
  * The selected text in the Edit control.  
  * An empty string is returned if no text is selected.  
- * @throws TargetError  
- * Window or control could not be found  
- * @throws Error|OSError  
- * There was a problem retrieving the text  
+ * @throws TargetError - Window or control could not be found  
+ * @throws Error|OSError - There was a problem retrieving the text  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentCol.htm|EditGetCurrentCol()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/EditGetCurrentLine.htm|EditGetCurrentLine()} |
@@ -15387,10 +15288,8 @@ EditGetSelectedText(Control [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window or control could not be found  
- * @throws OSError  
- * A message could not be sent to the control  
+ * @throws TargetError - Window or control could not be found  
+ * @throws OSError - A message could not be sent to the control  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlSetText.htm|ControlSetText()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Control.htm|Control functions} |
@@ -15429,8 +15328,7 @@ EnvGet(EnvVar) => String
  * Omitting value deletes the variable.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws OSError  
- * Any failure  
+ * @throws OSError - Any failure  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/EnvGet.htm|EnvGet()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|Run()} |
@@ -15518,8 +15416,7 @@ Exp(N) => String
  * - `` `n ``=  Inserts a carriage return `` `r `` before all linefeeds `` `n ``.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws OSError  
- * Thrown on failure.  
+ * @throws OSError - Thrown on failure.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileEncoding.htm|FileEncoding()} |
@@ -15559,14 +15456,11 @@ FileAppend(Text [,Filename:=unset, Options:='']) => EmptyString
  * Other values are reserved for future use.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * If any files failed to be copied.  
+ * @throws Error - If any files failed to be copied.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#Extra|Error.Extra} is set to the number of failures.  
- * @throws Error  
- * The specific file was not found.  
+ * @throws Error - The specific file was not found.  
  * Patterns using broad matching with `?` and `*` do not error on match failure.  
- * @throws Error  
- * Copying a file over itself, even with a OverWrite set to 1.  
+ * @throws Error - Copying a file over itself, even with a OverWrite set to 1.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileMove.htm|FileMove()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/DirCopy.htm|DirCopy()} |
@@ -15610,8 +15504,7 @@ FileCopy(SourcePattern, DestPattern [,Overwrite:=0]) => EmptyString
  * - `7` = Minimized
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * Any failure.  
+ * @throws Error - Any failure.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileGetShortcut.htm|FileGetShortcut()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/FileAppend.htm|FileAppend()}
@@ -15628,8 +15521,7 @@ FileCreateShortcut(File, LinkFile [,WorkingDir:=A_WorkingDir, Args:=unset, Descr
  * If a full path isn't used, FilePattern is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * Any files failed to delete.  
+ * @throws Error - Any files failed to delete.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#Extra|Error.Extra} is set to the number of failures.  
  * Patterns using broad matching with `?` and `*` do not error on match failure.  
  * @see  
@@ -15714,10 +15606,8 @@ FileExist(FilePattern) => String
  * Other values are reserved for future use.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * An exception is thrown on failure  
- * @throws Error  
- * Any case where the file cannot be written to the destination  
+ * @throws Error - An exception is thrown on failure  
+ * @throws Error - Any case where the file cannot be written to the destination  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileCopy.htm|FileCopy()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/_Include.htm|#Include}
@@ -15745,8 +15635,7 @@ FileInstall(Source, Dest [,Overwrite:=0]) => EmptyString
  * - `C` = Compressed  
  * - `T` = Temporary  
  * - `L` = REPARSE_POINT (typically a symbolic link)  
- * @throws OSError  
- * Thrown on failure.  
+ * @throws OSError - Thrown on failure.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileExist.htm|FileExist()} |
@@ -15787,8 +15676,7 @@ FileGetAttrib([Filename]) => String
  * - `7` = Minimized
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws OSError  
- * Thrown on failure  
+ * @throws OSError - Thrown on failure  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileCreateShortcut.htm|FileCreateShortcut()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/SplitPath.htm|SplitPath()}
@@ -15810,8 +15698,7 @@ FileGetShortcut(LinkFile [,&OutFile, &OutDir, &OutArgs, &OutDesc, &OutIcon, &Out
  * - `M` = Megabytes
  * @returns {(Integer)}  
  * The size of the specified file, rounded down to the nearest whole number.  
- * @throws OSError  
- * Thrown on failure.  
+ * @throws OSError - Thrown on failure.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileGetAttrib.htm|FileGetAttrib()} |
@@ -15839,8 +15726,7 @@ FileGetSize([Filename:=unset, Units:='B']) => Integer
  * @returns {(String)}  
  * Get file time in {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|YYYYMMDDHH24MISS} format.  
  * Time is in local time, not UTC/GMT.  
- * @throws OSError  
- * Thrown on failure.  
+ * @throws OSError - Thrown on failure.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm|FileSetTime()} |
@@ -15865,8 +15751,7 @@ FileGetTime([Filename:=unset, TimeType:='M']) => String
  * FileName can be omitted if inside a {@link https://www.autohotkey.com/docs/v2/lib/LoopRead.htm|Loop-Files} that's using an {@link https://www.autohotkey.com/docs/v2/lib/LoopRead.htm#OutputFile|OutputFile}.  
  * @returns {(String)}  
  * Version number of the specified file
- * @throws OSError  
- * Thrown on failure.  
+ * @throws OSError - Thrown on failure.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm|FileSetTime()} |
@@ -15901,8 +15786,7 @@ FileGetVersion([Filename]) => String
  * Other values are reserved for future use.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * If any files failed to be moved.  
+ * @throws Error - If any files failed to be moved.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#Extra|Error.Extra} is set to the number of failures.  
  * Patterns using broad matching with `?` and `*` do not error on match failure.  
  * @see  
@@ -15974,8 +15858,7 @@ FileMove(SourcePattern, DestPattern [,Overwrite:=0]) => EmptyString
  * @returns {(File)}  
  * A new {@link https://www.autohotkey.com/docs/v2/lib/File.htm|File object} to handle the file.  
  * A File object uses properties and methods to work with a text file.  
- * @throws OSError  
- * The file cannot be opened  
+ * @throws OSError - The file cannot be opened  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileEncoding.htm|FileEncoding()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/FileRead.htm|FileRead()} |
@@ -16010,12 +15893,9 @@ FileOpen(Filename, Flags [,Encoding]) => File
  * If the `RAW` option is used, a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer object} is returned.  
  * Otherwise, a string is returned.  
  * An empty string is returned if the file does not exist or cannot be opened.  
- * @throws OSError  
- * Problem opening or reading the file  
- * @throws MemoryError  
- * A file is greater than 4GB in size  
- * @throws MemoryError  
- * The program is unable to allocate enough memory for the requested size  
+ * @throws OSError - Problem opening or reading the file  
+ * @throws MemoryError - A file is greater than 4GB in size  
+ * @throws MemoryError - The program is unable to allocate enough memory for the requested size  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileEncoding.htm|FileEncoding()} |
@@ -16040,8 +15920,7 @@ FileRead(Filename [,Options]) => String | Object
  * If a full path isn't used, FilePattern is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * An exception is thrown on failure.  
+ * @throws Error - An exception is thrown on failure.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileRecycleEmpty.htm|FileRecycleEmpty()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/FileDelete.htm|FileDelete()} |
@@ -16059,8 +15938,7 @@ FileRecycle(FilePattern) => EmptyString
  * Omit DriveLetter to empty all drive recycle bins.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws OSError  
- * Thrown on failure.  
+ * @throws OSError - Thrown on failure.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/FileRecycle.htm|FileRecycle()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/FileDelete.htm|FileDelete()} |
@@ -16153,8 +16031,7 @@ FileSelect([Options:=0, RootOrFilename:=A_WorkingDir, Title:=unset, Filter:=''])
  * - `R` = Recurse. Recurses into all sub-folders  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * Any files failed to be changed.  
+ * @throws Error - Any files failed to be changed.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#Extra|Error.Extra} is set to the number of failures.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to 0 if files are found, otherwise it gets the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
@@ -16188,8 +16065,7 @@ FileSetAttrib(Attributes [,FilePattern:=unset, Mode:='F']) => EmptyString
  * - `R` = Recurse. Recurses into all sub-folders  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * Any files failed to be changed.  
+ * @throws Error - Any files failed to be changed.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#Extra|Error.Extra} is set to the number of failures.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to 0 if files are found, otherwise it gets the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
@@ -16591,8 +16467,7 @@ GetKeySC(KeyName) => Integer
  *   - `27000` = 270 degrees POV left
  * - `JoyName` `JoyButtons` `JoyAxes` `JoyInfo`  
  *   Value varies. See {@link https://www.autohotkey.com/docs/v2/KeyList.htm#Controller|Game Controllers}.
- * @throws ValueError  
- * An invalid parameter is detected.  
+ * @throws ValueError - An invalid parameter is detected.  
  * KeyName does not exist on the current keyboard.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/GetKeyVK.htm|GetKeyVK()} |
@@ -16624,10 +16499,8 @@ GetKeyState(KeyName [,Mode]) => String
  * If omitted or paramcount failed, a basic check for a `Call()` method is done.
  * @returns {(FuncObj)}  
  * A function object containing a reference to the method.  
- * @throws MethodError  
- * Method was not found or cannot be retrieved
- * @throws ValueError|MethodError  
- * Validation failed
+ * @throws MethodError - Method was not found or cannot be retrieved
+ * @throws ValueError|MethodError - Validation failed
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/Objects.htm|Objects} |
  * {@link https://www.autohotkey.com/docs/v2/lib/HasMethod.htm|HasMethod()} |
@@ -16870,8 +16743,7 @@ HasProp(Value, Name) => String
  *       HotIf((HotName) => some_func(HotName))
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * A parameter is invalid.  
+ * @throws Error - A parameter is invalid.  
  * No matchine expression found or callback was invalid.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()} |
@@ -16898,8 +16770,7 @@ HotIf([ExpressionOrCallback]) => EmptyString
  * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * A parameter is invalid.  
+ * @throws Error - A parameter is invalid.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|Hotstring()} |
@@ -16930,8 +16801,7 @@ HotIfWinActive([WinTitle:='', WinText:='']) => EmptyString
  * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * A parameter is invalid.  
+ * @throws Error - A parameter is invalid.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|Hotstring()} |
@@ -16962,8 +16832,7 @@ HotIfWinExist([WinTitle:='', WinText:='']) => EmptyString
  * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * A parameter is invalid.  
+ * @throws Error - A parameter is invalid.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|Hotstring()} |
@@ -16994,8 +16863,7 @@ HotIfWinNotActive([WinTitle:='', WinText:='']) => EmptyString
  * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * A parameter is invalid.  
+ * @throws Error - A parameter is invalid.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Hotkey.htm|Hotkey()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|Hotstring()} |
@@ -17071,20 +16939,13 @@ HotIfWinNotExist([WinTitle:='', WinText:='']) => EmptyString
  * - `I#` = Set Input level, where `#` is the hotkey's {@link https://www.autohotkey.com/docs/v2/lib/_InputLevel.htm|input level}
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws ValueError  
- * Invalid key name
- * @throws ValueError  
- * Unsupported prefix key
- * @throws ValueError  
- * AltTab hotkey must have exactly one modifier/prefix
- * @throws ValueError  
- * SltTab hotkey must specify a Left or Right side key
- * @throws TargetError  
- * Nonexistent hotkey
- * @throws TargetError  
- * Nonexistent hotkey variant
- * @throws Error  
- * Max amount of hotkeys created
+ * @throws ValueError - Invalid key name
+ * @throws ValueError - Unsupported prefix key
+ * @throws ValueError - AltTab hotkey must have exactly one modifier/prefix
+ * @throws ValueError - SltTab hotkey must specify a Left or Right side key
+ * @throws TargetError - Nonexistent hotkey
+ * @throws TargetError - Nonexistent hotkey variant
+ * @throws Error - Max amount of hotkeys created
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/HotIf.htm|HotIf()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Suspend.htm|Suspend()} |
@@ -17170,10 +17031,8 @@ Hotkey(KeyName [,Action, Options]) => EmptyString
  * If using `"EndChars"` without the `Value` param, a string of ending characters is returned.  
  * If using `"MouseReset"` without a `Value` param, a `1` is returned for on, otherwise `0`.  
  * An empty string is returned for everything else.  
- * @throws Error  
- * A parameter is invalid or memory allocation failed.  
- * @throws TargetError  
- * `Option` was a hotstring that hasn't previously been declared and `Value` was omitted.  
+ * @throws Error - A parameter is invalid or memory allocation failed.  
+ * @throws TargetError - `Option` was a hotstring that hasn't previously been declared and `Value` was omitted.  
  * The only time a hotstring value is omitted is when `Enabled` is being altered.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Suspend.htm|Suspend()} |
@@ -17258,8 +17117,7 @@ Hotstring(Option [,Value, Enabled]) => String | Integer
  * - `1` = ImageList will contain large icons
  * @returns {(Integer)}  
  * On success, a unique ID for the ImageList, otherwise `0`  
- * @throws  
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 IL_Create([InitialCount:=2, GrowCount:=5, LargeIcons:=0]) => Integer
@@ -17283,12 +17141,8 @@ IL_Create([InitialCount:=2, GrowCount:=5, LargeIcons:=0]) => Integer
  * @param {(Boolean)} Resize  
  * - `1` = Picture is scaled to become a single icon  
  * - `0` = Picture is divided into a number of icons that fit inside the given width  
- * @returns {(Integer)}  
- * On success, the ImageList index position of the icon was stored is returned
- * @returns {(Integer)}  
- * A `0` is returned on failure  
- * Otherwise, the index (1, 2, 3, ...) where the icon was stored in the ImageList is returned  
- * @example <caption>__
+ * @returns {(Integer)} - On success, the ImageList index position the icon was stored in is returned, otherwise `0`.
+ * @example <caption>  
  * </caption>
  * IL_Add(ImageListID, 'C:\Path\to\application.exe', 2)
  * IL_Add(ImageListID, 'C:\Path\to\image.bmp', 0xFFFFFF, )
@@ -17302,7 +17156,7 @@ IL_Add(ImageListID, IconOrPic, Num, Resize) => Integer
  * The identifying number of an image list generated by {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL_Create|IL_Create()}.
  * @returns {(Boolean)}  
  * `1` on success, otherwise `0`.  
- * @example <caption>__
+ * @example <caption>  
  * il_id := IL_Create()
  * result := IL_Destroy(il_id)
  * if result
@@ -17346,16 +17200,14 @@ IL_Destroy(ImageListID) => Integer
  *   To preserve aspect ratio, set a width or height and use `-1` for the other: `*W300 *H-1`  
  * @returns {(Integer)}  
  * `1` if the image was found, otherwise `0`
- * @throws ValueError  
- * An invalid parameter was detected or the image could not be loaded
- * @throws OSError  
- * An OS internal function call failed
+ * @throws ValueError - An invalid parameter was detected or the image could not be loaded
+ * @throws OSError - An OS internal function call failed
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/PixelSearch.htm|PixelSearch()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/PixelGetColor.htm|PixelGetColor()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/CoordMode.htm|CoordMode()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/MouseGetPos.htm|MouseGetPos()}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 ImageSearch(&OutputVarX, &OutputVarY, X1, Y1, X2, Y2, ImageFile) => Integer
@@ -17372,15 +17224,14 @@ ImageSearch(&OutputVarX, &OutputVarY, X1, Y1, X2, Y2, ImageFile) => Integer
  * If omitted, all keys in the section are deleted.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws OSError  
- * Thrown on failure.  
+ * @throws OSError - Thrown on failure.  
  * Regardless of an error, {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/IniRead.htm|IniRead()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/IniWrite.htm|IniWrite()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/RegDelete.htm|RegDelete()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/RegDeleteKey.htm|RegDeleteKey()}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  * ; Standard INI file format:
  * 
@@ -17411,8 +17262,7 @@ IniDelete(FileLocation, Section [,Key]) => EmptyString
  * If no default value was provided, an error is thrown  
  * If `Key` is omitted, a list of all keys from the specified section is returned  
  * If `Section` is omitted, a list of all sections from the specified INI file is returned  
- * @throws OSError  
- * Thrown if key doesn't exist and no default was provided  
+ * @throws OSError - Thrown if key doesn't exist and no default was provided  
  * Regardless of an error, {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/IniWrite.htm|IniWrite()} |
@@ -17420,7 +17270,7 @@ IniDelete(FileLocation, Section [,Key]) => EmptyString
  * {@link https://www.autohotkey.com/docs/v2/lib/RegRead.htm|RegRead()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/FileRead.htm|FileRead()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/LoopRead.htm|Loop-Files}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  * ; Standard INI file format:
  * 
@@ -17449,14 +17299,13 @@ IniRead(FileLocation [,Section, Key, Default]) => String
  * Key **must** be omitted when `Value` is a section of key=value pairs.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws OSError  
- * Thrown on failure.  
+ * @throws OSError - Thrown on failure.  
  * Regardless of an error, {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()}.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/IniRead.htm|IniRead()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/IniDelete.htm|IniDelete()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/RegWrite.htm|RegWrite()}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  * ; Writing a single value to a key
  * IniWrite('true', A_Desktop '\test.ini', 'Test Section', 'my_key')
@@ -17509,7 +17358,7 @@ IniWrite(Value, FileLocation, Section, Key) => String
  * {@link https://www.autohotkey.com/docs/v2/lib/ToolTip.htm|ToolTip()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm|Gui object} |
  * {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm|InputHook object}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 InputBox([Prompt:='', Title:=A_ScriptName, Options:='', DefaultText:='']) => Object
@@ -17541,7 +17390,7 @@ InputBox([Prompt:='', Title:=A_ScriptName, Options:='', DefaultText:='']) => Obj
  * {@link https://www.autohotkey.com/docs/v2/lib/_UseHook.htm|#UseHook}
  * {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm|Hotkeys::} |
  * {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm|::Hotstrings::} |
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 InstallKeybdHook([Install:=1, Force:=0]) => EmptyString
@@ -17573,7 +17422,7 @@ InstallKeybdHook([Install:=1, Force:=0]) => EmptyString
  * {@link https://www.autohotkey.com/docs/v2/lib/_UseHook.htm|#UseHook}
  * {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm|Hotkeys::} |
  * {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm|::Hotstrings::} |
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 InstallMouseHook([Install:=1, Force:=0]) => EmptyString
@@ -17612,16 +17461,13 @@ InstallMouseHook([Install:=1, Force:=0]) => EmptyString
  * @returns {(Integer)}  
  * The position in the string the of the first found instance.  
  * If `Occurrence` is set, the position reflects the position of that 
- * @throws ValueError  
- * `Needle` is an empty string (zero-length)
- * @throws ValueError  
- * `CaseSense` is invalid
- * @throws ValueError  
- * `Occurrence` or `StartPos` is not a number greater than 0
+ * @throws ValueError - `Needle` is an empty string (zero-length)
+ * @throws ValueError - `CaseSense` is invalid
+ * @throws ValueError - `Occurrence` or `StartPos` is not a number greater than 0
  * @see
  * {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm|RegExMatch()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Is.htm|Is functions}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 InStr(Haystack, Needle [,CaseSense:=0, StartPos:=1, Occurrence:=1]) => Integer
@@ -17919,7 +17765,7 @@ IsXDigit(Value) => Integer
  * {@link https://www.autohotkey.com/docs/v2/lib/KeyWait.htm|KeyWait()} |
  * {@link https://www.autohotkey.com/docs/v2/KeyList.htm#Controller|Controller} |
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#PriorKey|A_PriorKey}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 KeyHistory([MaxEvents:=unset]) => EmptyString
@@ -17949,7 +17795,7 @@ KeyHistory([MaxEvents:=unset]) => EmptyString
  * {@link https://www.autohotkey.com/docs/v2/lib/WinWait.htm|WinWait()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm|InputHook} |
  * {@link https://www.autohotkey.com/docs/v2/KeyList.htm|Key List}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 KeyWait(KeyName [,Options]) => Integer
@@ -17968,7 +17814,7 @@ KeyWait(KeyName [,Options]) => Integer
  * {@link https://www.autohotkey.com/docs/v2/lib/A_MaxHotkeysPerInterval.htm|A_MaxHotkeysPerInterval} |
  * {@link https://www.autohotkey.com/docs/v2/lib/_MaxThreadsPerHotkey.htm|#MaxThreadsPerHotkey} |
  * {@link https://www.autohotkey.com/docs/v2/lib/_UseHook.htm|#UseHook}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 ListHotkeys() => EmptyString
@@ -17988,7 +17834,7 @@ ListHotkeys() => EmptyString
  * {@link https://www.autohotkey.com/docs/v2/lib/KeyHistory.htm|KeyHistory()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ListHotkeys.htm|ListHotkeys()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ListVars.htm|ListVars()}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 ListLines([Mode]) => Integer
@@ -18000,7 +17846,7 @@ ListLines([Mode]) => Integer
  * An empty string is always returned.  
  * @see
 
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 ListVars() => EmptyString
@@ -18042,12 +17888,9 @@ ListVars() => EmptyString
  * Text representing lists/columns from the ListView.  
  * Each column is separated by a tab `` `t `` and each row is separated by a new line `` `n ``.  
  * An integer is returned for `Col#`, `Count`, and `Count Col` options.  
- * @throws TargetError  
- * Window or control could not be found  
- * @throws OSError  
- * A message could not be sent to the control or the ListView could not be opened  
- * @throws ValueError  
- * Col# specified a nonexistent column  
+ * @throws TargetError - Window or control could not be found  
+ * @throws OSError - A message could not be sent to the control or the ListView could not be opened  
+ * @throws ValueError - Col# specified a nonexistent column  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetItems.htm|ControlGetItems()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetList.htm|WinGetList()} |
@@ -18057,7 +17900,7 @@ ListVars() => EmptyString
  * {@link https://www.autohotkey.com/docs/v2/lib/SetTitleMatchMode.htm|SetTitleMatchMode()} |
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle Window Matching} |
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  * ; Include a double parse loop example
  * list := ListViewGetContent()
@@ -18093,10 +17936,9 @@ ListViewGetContent([Options:='', Control:=unset, WinTitle:='', WinText:='', NoWi
  * - `2` = IMAGE_CURSOR
  * @returns {(Integer)}  
  * A {@link https://www.autohotkey.com/docs/v2/misc/ImageHandles.htm|handle to a bitmap or icon}.  
- * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/misc/ImageHandles.htm|Image Handles}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 LoadPicture(Filename [,Options, &OutImageType]) => Integer
@@ -18107,9 +17949,8 @@ LoadPicture(Filename [,Options, &OutImageType]) => Integer
  * The number to get the log of.  
  * @returns {(Float)}  
  * The logarithm of Num.  
- * @throws ValueError  
- * Num is a negative number
- * @example <caption>__
+ * @throws ValueError - Num is a negative number
+ * @example <caption>  
  * </caption>
  * Log(1.2) => 0.079181
  */
@@ -18121,9 +17962,8 @@ Log(Num) => Float
  * The number to get the natural log of.  
  * @returns {(Float)}  
  * The natural logarithm of Num.  
- * @throws ValueError  
- * Num is a negative number
- * @example <caption>__
+ * @throws ValueError - Num is a negative number
+ * @example <caption>  
  * </caption>
  */
 Ln(Num) => Float
@@ -18155,7 +17995,7 @@ LTrim(Str [,OmitChars:=' `t']) => String
  * Any amount of additional numbers.  
  * @returns {(Number)}  
  * The highest number provided is returned. 
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 Max(Value1 [,ValueN*]) => Number
@@ -18172,7 +18012,7 @@ Max(Value1 [,ValueN*]) => Number
  * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Handle|Menu.Handle} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm|Menu/MenuBar object} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Menu.htm#Win32_Menus|Win32 Menus}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 MenuFromHandle(Handle) => Menu
@@ -18204,14 +18044,10 @@ MenuFromHandle(Handle) => Menu
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window or control could not be found  
- * @throws TargetError  
- * Does not have a standard Win32 menu
- * @throws ValueError  
- * Menu, submenu, or menu item could not be found  
- * @throws ValueError  
- * The final menu parameter points to a menu item which opens a submenu
+ * @throws TargetError - Window or control could not be found  
+ * @throws TargetError - Does not have a standard Win32 menu
+ * @throws ValueError - Menu, submenu, or menu item could not be found  
+ * @throws ValueError - The final menu parameter points to a menu item which opens a submenu
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlSend.htm|ControlSend()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/PostMessage.htm|PostMessage()} |
@@ -18220,7 +18056,7 @@ MenuFromHandle(Handle) => Menu
  * {@link https://www.autohotkey.com/docs/v2/lib/SetTitleMatchMode.htm|SetTitleMatchMode()} |
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm|WinTitle Window Matching} |
  * {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#LastFoundWindow|Last Found Window}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 MenuSelect(WinTitle, WinText, MenuName [,SubMenu1:=unset, SubMenuN:=unset, NoWinTitle:='', NoWinText:='']) => EmptyString
@@ -18237,7 +18073,7 @@ MenuSelect(WinTitle, WinText, MenuName [,SubMenu1:=unset, SubMenuN:=unset, NoWin
  * Any amount of additional numbers.  
  * @returns {(Number)}  
  * The lowest number provided is returned
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 Min(Value1 [,ValueN*]) => Number
@@ -18252,9 +18088,8 @@ Min(Value1 [,ValueN*]) => Number
  * Remainder after division occurs.  
  * Return value is integer if the divdend and divisor are both integers.  
  * Otherwise, return value is float.  
- * @throws ZeroDivisionError  
- * Divisor was set to 0  
- * @example <caption>__
+ * @throws ZeroDivisionError - Divisor was set to 0  
+ * @example <caption>  
  * </caption>
  */
 Mod(Dividend, Divisor) => Number
@@ -18276,13 +18111,12 @@ Mod(Dividend, Divisor) => Number
  * @returns {(Integer)}  
  * The monitor number used to get the provided coordinates.  
  * This is equal to `Num` if `Num` is provided.  
- * @throws Error  
- * On failure, an exception is thrown and var refs are not modified
+ * @throws Error - On failure, an exception is thrown and var refs are not modified
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/MonitorGetWorkArea.htm|MonitorGetWorkArea()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/SysGet.htm|SysGet()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Monitor.htm|Monitor functions}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 MonitorGet([Num, &Left, &Top, &Right, &Bottom]) => Integer
@@ -18294,7 +18128,7 @@ MonitorGet([Num, &Left, &Top, &Right, &Bottom]) => Integer
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SysGet.htm|SysGet()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Monitor.htm|Monitor functions}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 MonitorGetCount() => Integer
@@ -18307,12 +18141,11 @@ MonitorGetCount() => Integer
  * If omitted, the primary monitor is used.  
  * @returns {(String)}  
  * The operating system's name for the specified monitor.  
- * @throws Error  
- * Thrown on failure.  
+ * @throws Error - Thrown on failure.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SysGet.htm|SysGet()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Monitor.htm|Monitor functions}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 MonitorGetName([Num]) => String
@@ -18325,7 +18158,7 @@ MonitorGetName([Num]) => String
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SysGet.htm|SysGet()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Monitor.htm|Monitor functions}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 MonitorGetPrimary() => String
@@ -18348,13 +18181,12 @@ MonitorGetPrimary() => String
  * @returns {(Integer)}  
  * The monitor number used to get the provided coordinates.  
  * This is equal to `Num` if `Num` is provided.  
- * @throws Error  
- * On failure, an exception is thrown and var refs are not modified
+ * @throws Error - On failure, an exception is thrown and var refs are not modified
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/MonitorGet.htm|MonitorGet()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/SysGet.htm|SysGet()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Monitor.htm|Monitor functions}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 MonitorGetWorkArea([Num, &Left, &Top, &Right, &Bottom]) => String
@@ -18405,7 +18237,7 @@ MonitorGetWorkArea([Num, &Left, &Top, &Right, &Bottom]) => String
  * {@link https://www.autohotkey.com/docs/v2/lib/MouseMove.htm|MouseMove()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlClick.htm|ControlClick()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/BlockInput.htm|BlockInput()}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 MouseClick([Button:='L', X:=CurrentX, Y:=CurrentY, Count:=1, Speed:=2, State:=unset, Relative:=unset]) => EmptyString
@@ -18448,7 +18280,7 @@ MouseClick([Button:='L', X:=CurrentX, Y:=CurrentY, Count:=1, Speed:=2, State:=un
  * {@link https://www.autohotkey.com/docs/v2/lib/MouseGetPos.htm|MouseGetPos()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/MouseMove.htm|MouseMove()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/BlockInput.htm|BlockInput()}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 MouseClickDrag(Button, StartX, StartY, EndX, EndY [,Speed:=2, Relative:=unset]) => EmptyString
@@ -18480,7 +18312,7 @@ MouseClickDrag(Button, StartX, StartY, EndX, EndY [,Speed:=2, Relative:=unset]) 
  * {@link https://www.autohotkey.com/docs/v2/lib/SetDefaultMouseSpeed.htm|SetDefaultMouseSpeed()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Click.htm|Click()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Win.htm|Win functions}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 MouseGetPos([&OutputX, &OutputY, &OutputWin, &OutputControl, ControlFlag:=0]) => EmptyString
@@ -18513,7 +18345,7 @@ MouseGetPos([&OutputX, &OutputY, &OutputWin, &OutputControl, ControlFlag:=0]) =>
  * {@link https://www.autohotkey.com/docs/v2/lib/MouseClickDrag.htm|MouseClickDrag()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/MouseGetPos.htm|MouseGetPos()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/BlockInput.htm|BlockInput()}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 MouseMove(X, Y [,Speed, Relative]) => EmptyString
@@ -18573,19 +18405,16 @@ MouseMove(X, Y [,Speed, Relative]) => EmptyString
  * - `OK` button only => `OK`
  * - `Cancel` button present => `Cancel`
  * - `AbortRetryIgnore`, `YesNo` => `X` is disabled
- * @throws Error  
- * `Options` are invalid
- * @throws Error  
- * {@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm#max|MsgBox limit} has been reached
- * @throws Error  
- * Message box could not be displayed
+ * @throws Error - `Options` are invalid
+ * @throws Error - {@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm#max|MsgBox limit} has been reached
+ * @throws Error - Message box could not be displayed
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/InputBox.htm|InputBox()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/FileSelect.htm|FileSelect()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/DirSelect.htm|DirSelect()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ToolTip.htm|ToolTip()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm|Gui object}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 MsgBox([Text:='', Title:=A_ScriptName, Options:=0]) => String
@@ -18617,15 +18446,14 @@ MsgBox([Text:='', Title:=A_ScriptName, Options:=0]) => String
  *   To work with numbers greater than or equal to `0x8000000000000000`, omit the U prfix and interpret negative values as large integers.  
  * @returns {(Number)}  
  * The Integer or Float retrieved from the specified address and offset.  
- * @throws Error  
- * The `Source` address was not valid  
+ * @throws Error - The `Source` address was not valid  
  * Using a buffer object can help ensure memory addresses are always valid.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/NumPut.htm|NumPut()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm|DllCall()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/VarSetStrCapacity.htm|VarSetStrCapacity()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer object}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 NumGet(Source, [OffsetOrDataType:=0, OffsetType:=unset]) => Number
@@ -18652,15 +18480,14 @@ NumGet(Source, [OffsetOrDataType:=0, OffsetType:=unset]) => Number
  * The next memory address that comes after the data that was just written.  
  * This return value can be used as an offset for repeated NumPut() calls.  
  * If the data is contiguous, it's better to just included multiple `TypePair`-`TypeNumber` declarations.  
- * @throws Error  
- * The `Target` address was not valid  
+ * @throws Error - The `Target` address was not valid  
  * Using a buffer object can help ensure memory addresses are always valid.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/NumGet.htm|NumGet()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm|DllCall()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/VarSetStrCapacity.htm|VarSetStrCapacity()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|Buffer object}
- * @example <caption>__
+ * @example <caption>  
  * </caption>
  */
 NumPut(TypePair, NumberPair, Target [,Offset:=0]) => Integer
@@ -18759,8 +18586,7 @@ ObjGetBase(Value) => Prototype
  * The object to check.  
  * @returns {(Integer)}  
  * The max capacity of the object.  
- * @throws TypeError  
- * Exception is thrown if `Obj` is incorrect type.  
+ * @throws TypeError - Exception is thrown if `Obj` is incorrect type.  
  * @example <caption>  
  * </caption>
  * obj1 := {}
@@ -18842,8 +18668,7 @@ ObjRelease(ptr) => Integer
  * The prototype of another object.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TypeError  
- * `Obj` or `BaseObj` is of an incorrect type.  
+ * @throws TypeError - `Obj` or `BaseObj` is of an incorrect type.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Any.htm#GetBase|ObjGetBase()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Object.htm#Base|Base property}
@@ -18861,8 +18686,7 @@ ObjSetBase(Obj, BaseObj) => EmptyString
  * If `MaxProps` is less than the total amount of properties, capacity is set to the total properties.  
  * @returns {(Integer)}  
  * The new capacity amount.  
- * @throws TypeError  
- * `Obj` is of an incorrect type.  
+ * @throws TypeError - `Obj` is of an incorrect type.  
  * @example <caption>  
  * </caption>
  */
@@ -18928,9 +18752,11 @@ OnClipboardChange(Callback [,AddRemove:=1]) => EmptyString
  * If a callback returns a non-zero integer, all subsequent callbacks are skipped.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws  
  * @see
-
+ * {@link https://www.autohotkey.com/docs/v2/lib/OnExit.htm|OnExit()},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Catch.htm|Catch},
+ * {@link https://www.autohotkey.com/docs/v2/lib/Throw.htm|Throw}
  * @example <caption>  
  * </caption>
  */
@@ -19046,7 +18872,6 @@ Ord(Str) => Integer
  * This can include newlines `` `n ``.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/Scripts.htm#debug|Other Debugging Methods} |
  * {@link https://www.autohotkey.com/docs/v2/lib/FileAppend.htm|FileAppend()} |
@@ -19067,7 +18892,6 @@ OutputDebug(Text) => EmptyString
  * - `-1` = Toggles the pauses state of the underlying thread.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Suspend.htm|`Suspend()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ExitApp.htm|`ExitApp()} |
@@ -19115,8 +18939,7 @@ Persistent([Enable:=1]) => Integer
  * @returns {(String)}  
  * A string in 6-digit RGB hex format: 0xRdGrBl
  * `0xFFA000` would be orange. 0xFF red, 0xA0 green, 0x00 blue  
- * @throws OSError  
- * Thrown on failure.  
+ * @throws OSError - Thrown on failure.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/PixelSearch.htm|PixelSearch()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ImageSearch.htm|ImageSearch()} |
@@ -19154,8 +18977,7 @@ PixelGetColor(X, Y [,Mode]) => String
  * If looking for `0x20C0B0` with a `0x10` variation, the colors `0x10B0A0` to `0x30D0C0` will cause a positive match.  
  * @returns {(Boolean)}  
  * `1` if the color was found, otherwise `0`
- * @throws OSError  
- * The function was unable to conduct the search.  
+ * @throws OSError - The function was unable to conduct the search.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/PixelGetColor.htm|PixelGetColor()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ImageSearch.htm|ImageSearch()} |
@@ -19196,10 +19018,8 @@ PixelSearch(&OutputX, &OutputY, X1, Y1, X2, Y2, ColorID [,Variation:=0]) => Inte
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window or control could not be found  
- * @throws OSError  
- * Message could not be posted  
+ * @throws TargetError - Window or control could not be found  
+ * @throws OSError - Message could not be posted  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/OnMessage.htm|OnMessage()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm|DllCall()} |
@@ -19279,10 +19099,8 @@ ProcessExist([NameOrPID:=unset]) => Integer
  *   This is different from a Window ID (HWND) that uniquely identifies a Window or control.  
  * @returns {(String)}  
  * The name of the specified process. `notepad.exe`
- * @throws TargetError  
- * The process could not be found  
- * @throws OSError  
- * The name could not be retrieved  
+ * @throws TargetError - The process could not be found  
+ * @throws OSError - The name could not be retrieved  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|Run()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetProcessName.htm|WinGetProcessName()} |
@@ -19307,8 +19125,7 @@ ProcessGetName([NameOrPID:=unset]) => String
  *   This is different from a Window ID (HWND) that uniquely identifies a Window or control.  
  * @returns {(Integer)}  
  * The parent process ID that created the specified process.  
- * @throws TargetError  
- * The process could not be found  
+ * @throws TargetError - The process could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Process.htm|Process functions}
  * @example <caption>  
@@ -19329,10 +19146,8 @@ ProcessGetParent([NameOrPID]) => Integer
  *   This is different from a Window ID (HWND) that uniquely identifies a Window or control.  
  * @returns {(String)}  
  * The full process path of the specified process. `C:\Windows\notepad.exe`
- * @throws TargetError  
- * The process could not be found  
- * @throws OSError  
- * The path could not be retrieved  
+ * @throws TargetError - The process could not be found  
+ * @throws OSError - The path could not be retrieved  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|Run()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetProcessName.htm|WinGetProcessName()} |
@@ -19365,10 +19180,8 @@ ProcessGetPath([NameOrPID]) => String
  * @returns {(Integer)}  
  * The Process ID of the specified process.  
  * `0` if the process cannot be found or altered.  
- * @throws TargetError  
- * The process could not be found  
- * @throws OSError  
- * The path could not be retrieved  
+ * @throws TargetError - The process could not be found  
+ * @throws OSError - The path could not be retrieved  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Run.htm|Run()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Process.htm|Process functions} |
@@ -19471,11 +19284,9 @@ Random([Num1, Num2]) => Number
  * @returns {(Integer)}  
  * The position in the string where the first match was found.  
  * `0` if pattern could not be found.  
- * @throws Error  
- * Pattern contains a syntax error  
+ * @throws Error - Pattern contains a syntax error  
  * Error format: *Compile error [PCRE ERROR NUMBER] at offset [ERROR POSITION]: description*
- * @throws Error  
- * An error occurred during RegEx execution  
+ * @throws Error - An error occurred during RegEx execution  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/RegExReplace.htm|RegExReplace()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/InStr.htm|InStr()} |
@@ -19635,11 +19446,9 @@ RegExMatch(Haystack, RegExNeedle [,&MatchObj, StartPos]) => Integer
  * @returns {(String)}  
  * A string containing the updated text from `Haystack`.  
  * If no replacements are made, the string is identical to `Haystack`.  
- * @throws Error  
- * Pattern contains a syntax error  
+ * @throws Error - Pattern contains a syntax error  
  * Error format: *Compile error [PCRE ERROR NUMBER] at offset [ERROR POSITION]: description*
- * @throws Error  
- * An error occurred during RegEx execution  
+ * @throws Error - An error occurred during RegEx execution  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm|RegExMatch()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/InStr.htm|InStr()} |
@@ -19792,8 +19601,7 @@ RegExReplace(Haystack, RegExNeedle [,Replacement:='', &OutputReplaceTotal, Repla
  * Use {@link https://www.autohotkey.com/docs/v2/lib/SetRegView.htm|SetRegView()} to set 32-bit or 64-bit mode when working with the registry.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws OSError  
- * Thrown on failure.  
+ * @throws OSError - Thrown on failure.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the operating system's {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()} function  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/RegDelete.htm|RegDelete()} |
@@ -19829,8 +19637,7 @@ RegCreateKey([KeyName]) => EmptyString
  * If omitted, the key's `(Default)` value will be deleted.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws OSError  
- * Thrown on failure.  
+ * @throws OSError - Thrown on failure.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the operating system's {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()} function  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/RegCreateKey.htm|RegCreateKey()} |
@@ -19864,8 +19671,7 @@ RegDelete([KeyName, K]) => EmptyString
  * Use {@link https://www.autohotkey.com/docs/v2/lib/SetRegView.htm|SetRegView()} to set 32-bit or 64-bit mode when working with the registry.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws OSError  
- * Thrown on failure.  
+ * @throws OSError - Thrown on failure.  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the operating system's {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()} function  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/RegCreateKey.htm|RegCreateKey()} |
@@ -19905,13 +19711,10 @@ RegDeleteKey([KeyName]) => EmptyString
  * If omitted, the script will throw an {@link https://www.autohotkey.com/docs/v2/lib/Error.htm#OSError|OSError}.  
  * @returns {(Primitive)}  
  * The value retrieved from the registry key.  
- * @throws OSError  
- * Thrown on failure such as a permission error  
+ * @throws OSError - Thrown on failure such as a permission error  
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#LastError|A_LastError} is set to the result of the operating system's {@link https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror|GetLastError()} function  
- * @throws OSError  
- * Key does not exist  
- * @throws OSError  
- * Key's value does not exist and no `Default` parameter was provided  
+ * @throws OSError - Key does not exist  
+ * @throws OSError - Key's value does not exist and no `Default` parameter was provided  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/RegCreateKey.htm|RegCreateKey()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/RegDelete.htm|RegDelete()} |
@@ -19958,7 +19761,6 @@ RegRead([KeyName, ValueName, Default]) => Primitive
  * If omitted, the key's `(Default)` value will be used.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/RegCreateKey.htm|RegCreateKey()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/RegDelete.htm|RegDelete()} |
@@ -20038,8 +19840,7 @@ RTrim(Str [,OmitChars:=' `t']) => String
  * An empty string is used if the PID can't be determined.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * Target cannot be launched.  
+ * @throws Error - Target cannot be launched.  
  * Use a {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try}/{@link https://www.autohotkey.com/docs/v2/lib/Catch.htm|Catch} to prevent this.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/RunAs.htm|RunAs()} |
@@ -20116,8 +19917,7 @@ RunAs([User, Password, Domain]) => EmptyString
  * The program's exit code.  
  * Some programs will immediately launch another process and then close.  
  * This will cause RunWait() to return even though the program is still running.  
- * @throws Error  
- * Target cannot be launched.  
+ * @throws Error - Target cannot be launched.  
  * Use a {@link https://www.autohotkey.com/docs/v2/lib/Try.htm|Try}/{@link https://www.autohotkey.com/docs/v2/lib/Catch.htm|Catch} to prevent this.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/RunAs.htm|RunAs()} |
@@ -20479,12 +20279,9 @@ SendLevel(Level) => Integer
  * Defaults to `5000`.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window or control could not be found  
- * @throws TimeoutError  
- * Message was not processed in the specified time  
- * @throws OSError  
- * Message could not be posted  
+ * @throws TargetError - Window or control could not be found  
+ * @throws TimeoutError - Message was not processed in the specified time  
+ * @throws OSError - Message could not be posted  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/OnMessage.htm|OnMessage()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm|DllCall()} |
@@ -20555,7 +20352,6 @@ SetCapsLockState([State]) => EmptyString
  * - `-1` = No delay
  * @returns {(Integer)}  
  * The previous delay is returned.  
- * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SetWinDelay.htm|SetWinDelay()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/SetKeyDelay.htm|SetKeyDelay()} |
@@ -20826,8 +20622,7 @@ SetWinDelay(Delay) => Integer
  * If a full path isn't used, DirName is assumed to be a subfolder of the current {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws OSError  
- * Thrown on failure.  
+ * @throws OSError - Thrown on failure.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/DirSelect.htm|DirSelect()} |
  * {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir} |
@@ -20996,10 +20791,8 @@ SoundBeep([Frequency:=523, Duration:=150]) => EmptyString
  * If omitted or empty string, the system's default device is retrieved.  
  * @returns {(Integer)}  
  * `0` if interface is not supported, otherwise an interface pointer is returned.  
- * @throws OSError  
- * Thrown on failure other than TargetError.  
- * @throws TargetError  
- * Device or component could not be found.  
+ * @throws OSError - Thrown on failure other than TargetError.  
+ * @throws TargetError - Device or component could not be found.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Sound.htm|Sound Functions} |
  * {@link https://learn.microsoft.com/windows/win32/coreaudio/devicetopology-api|DeviceTopology API}
@@ -21020,10 +20813,8 @@ SoundGetInterface(IID [,Component:='', Device:='']) => Integer
  * If omitted or empty string, the system's default device is retrieved.  
  * @returns {(Boolean)}  
  * `1` for muted, `0` for unmuted.  
- * @throws OSError  
- * Thrown on failure other than TargetError.  
- * @throws TargetError  
- * Device or component could not be found or component does not support this control type.  
+ * @throws OSError - Thrown on failure other than TargetError.  
+ * @throws TargetError - Device or component could not be found or component does not support this control type.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SoundSetMute.htm|SoundSetMute()}
  * {@link https://www.autohotkey.com/docs/v2/lib/Sound.htm|Sound Functions} |
@@ -21046,10 +20837,8 @@ SoundGetMute([Component:='', Device:='']) => Integer
  * @returns {(String)}  
  * The name of the device or component.  
  * This value can be a blank string.  
- * @throws OSError  
- * Thrown on failure other than TargetError.  
- * @throws TargetError  
- * Device or component could not be found.  
+ * @throws OSError - Thrown on failure other than TargetError.  
+ * @throws TargetError - Device or component could not be found.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Sound.htm|Sound Functions} |
  * @example <caption>  
@@ -21069,10 +20858,8 @@ SoundGetName([Component:='', Device:='']) => String
  * If omitted or empty string, the system's default device is retrieved.  
  * @returns {(Float)}  
  * The current volume between `0.0` and `100.0`
- * @throws OSError  
- * Thrown on failure other than TargetError.  
- * @throws TargetError  
- * Device or component could not be found or component does not support this control type.  
+ * @throws OSError - Thrown on failure other than TargetError.  
+ * @throws TargetError - Device or component could not be found or component does not support this control type.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SoundSetVolume.htm|SoundSetVolume()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Sound.htm|Sound Functions} |
@@ -21099,8 +20886,7 @@ SoundGetVolume([Component:='', Device:='']) => Float
  * - `0` = The current thread immediately continues.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws Error  
- * Thrown on failure.  
+ * @throws Error - Thrown on failure.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SoundBeep.htm|SoundBeep()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm|MsgBox()} |
@@ -21127,10 +20913,8 @@ SoundPlay(Filename [,Wait:=0]) => EmptyString
  * If omitted or empty string, the system's default device is retrieved.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws OSError  
- * Thrown on failure other than TargetError.  
- * @throws TargetError  
- * Device or component could not be found or component does not support this control type.  
+ * @throws OSError - Thrown on failure other than TargetError.  
+ * @throws TargetError - Device or component could not be found or component does not support this control type.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Sound.htm|Sound Functions} |
  * {@link https://www.autohotkey.com/docs/v2/lib/SoundGetMute.htm|SoundGetMute()} |
@@ -21157,10 +20941,8 @@ SoundSetMute(NewSetting [,Component:='', Device:='']) => EmptyString
  * If omitted or empty string, the system's default device is retrieved.  
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws OSError  
- * Thrown on failure other than TargetError.  
- * @throws TargetError  
- * Device or component could not be found or component does not support this control type.  
+ * @throws OSError - Thrown on failure other than TargetError.  
+ * @throws TargetError - Device or component could not be found or component does not support this control type.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Sound.htm|Sound Functions} |
  * {@link https://www.autohotkey.com/docs/v2/lib/SoundGetMute.htm|SoundGetMute()} |
@@ -21227,8 +21009,7 @@ SplitPath(Path [,&OutName, &OutDir, &OutExt, &OutNameNoExt, &OutDrive]) => Empty
  * A positive number.  
  * @returns {(Float)}  
  * The square root of `Num`.  
- * @throws ValueError  
- * Number is negative
+ * @throws ValueError - Number is negative
  * @example <caption>  
  * Square Root Examples.</caption>
  * x := Sqrt(9)
@@ -21264,14 +21045,10 @@ Sqrt(Num) => Float
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * The text of the specified section.  
- * @throws TargetError  
- * Target window could not be found or does not contain a standard status bar.  
- * @throws OSError  
- * There was a problem sending SB_GETPARTS message  
- * @throws OSError  
- * No reply was received within 2000 ms  
- * @throws OSError  
- * Memory could not be allocated within the process that owns the status bar  
+ * @throws TargetError - Target window could not be found or does not contain a standard status bar.  
+ * @throws OSError - There was a problem sending SB_GETPARTS message  
+ * @throws OSError - No reply was received within 2000 ms  
+ * @throws OSError - Memory could not be allocated within the process that owns the status bar  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/StatusBarWait.htm|StatusBarWait()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetTitle.htm|WinGetTitle()} |
@@ -21316,14 +21093,10 @@ StatusBarGetText([Section:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * @param {(String)} [NoWinText]  
  * Text that must not appear in the window.  
  * Use WindowSpy to view window text.
- * @throws TargetError  
- * Target window could not be found or does not contain a standard status bar.  
- * @throws OSError  
- * There was a problem sending SB_GETPARTS message  
- * @throws OSError  
- * No reply was received within 2000 ms  
- * @throws OSError  
- * Memory could not be allocated within the process that owns the status bar  
+ * @throws TargetError - Target window could not be found or does not contain a standard status bar.  
+ * @throws OSError - There was a problem sending SB_GETPARTS message  
+ * @throws OSError - No reply was received within 2000 ms  
+ * @throws OSError - Memory could not be allocated within the process that owns the status bar  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/StatusBarGetText.htm|StatusBarGetText()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetTitle.htm|WinGetTitle()} |
@@ -21359,7 +21132,6 @@ StatusBarWait([BarText:='', Timeout:=unset, Section:=1, WinTitle:='', WinText:='
  * Positive = Str2 comes before Str1 in lexicographical order.
  * 
  * No other assumptions should be made from the returned value.  
- * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Sort.htm|Sort()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/VerCompare.htm|VerCompare()} |
@@ -21395,10 +21167,8 @@ StrCompare(String1, String2 [,CaseSense]) => Integer
  * Encoding can be passed to the `Length` parameter and the string's full length will be used for `Length`.  
  * @returns {(String)}  
  * The string retrieved from `Source`.  
- * @throws ValueError  
- * An invalid parameter is detected
- * @throws OSError  
- * Conversion could not be performed
+ * @throws ValueError - An invalid parameter is detected
+ * @throws OSError - Conversion could not be performed
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/StrPut.htm|StrPut()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/FileEncoding.htm|FileEncoding()} |
@@ -21457,7 +21227,6 @@ StrLower(Str) => String
  * A variable containing a string.  
  * @returns {(Integer)}  
  * The current memory address of the string.  
- * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/VarSetStrCapacity.htm|VarSetStrCapacity()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/DllCall.htm|DllCall()} |
@@ -21497,14 +21266,10 @@ StrPtr(Str) => Integer
  * If `Target` is used, the function returns number of bytes written.  
  * A null terminator is written if there is space to add it.  
  * If `Target` is omitted, the function returns the bytes requires to make a buffer for `Str`.  
- * @throws Error  
- * Length is zero or length is smaller than required size after conversion
- * @throws Error  
- * Length is larger than buffer size, even if string would fit in the buffer  
- * @throws ValueError  
- * An invalid parameter is detected
- * @throws OSError  
- * Conversion could not be performed
+ * @throws Error - Length is zero or length is smaller than required size after conversion
+ * @throws Error - Length is larger than buffer size, even if string would fit in the buffer  
+ * @throws ValueError - An invalid parameter is detected
+ * @throws OSError - Conversion could not be performed
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/StrGet.htm|StrGet()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/FileEncoding.htm|FileEncoding()} |
@@ -21581,7 +21346,6 @@ StrReplace(Haystack, Needle [,ReplaceText:='', CaseSense:=0, &OutputVarCount, Li
  * If omitted, `-1` is used indicating no array size limit.  
  * @returns {(Array)}  
  * An array of the substrings from splitting `Str`.  
- * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Sort.htm|Sort()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/SplitPath.htm|SplitPath()} |
@@ -21657,7 +21421,6 @@ StrUpper(Str) => String
  * The captured substring.  
  * If `Length` is a negative number equal to or greater than the substring's length, an empty string is returned.  
  * If position is `0` or greater than string length, an empty string is returned.  
- * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm|RegExMatch()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/InStr.htm|InStr()}
@@ -21942,7 +21705,6 @@ TraySetIcon([FileName:=unset, IconNumber:=1, Freeze:=unset]) => EmptyString
  * | `Use large icon`  | `32`  | `0x20` | `N/A`    |
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ToolTip.htm|ToolTip()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/SetTimer.htm|SetTimer()} |
@@ -22006,14 +21768,10 @@ Type(Value) => String
  * The number of characters that `TargetVar` can now hold.  
  * This number may return greater than the `RequestedCapactiy`.  
  * If no `Capacity` is provided, the current capacity of `TargetVar` is returned.  
- * @throws TargetError  
- * `TargetVar` is not a valid variable reference  
- * @throws ValueError  
- * `Capacity` is less than `-1`  
- * @throws ValueError  
- * `Capacity` is greater than the available memory  
- * @throws MemoryError  
- * The requested capacity is too larget to fit within any single contiguous memory block  
+ * @throws TargetError - `TargetVar` is not a valid variable reference  
+ * @throws ValueError - `Capacity` is less than `-1`  
+ * @throws ValueError - `Capacity` is greater than the available memory  
+ * @throws MemoryError - The requested capacity is too larget to fit within any single contiguous memory block  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/NumGet.htm|NumGet()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/NumPut.htm|NumPut()} |
@@ -22071,8 +21829,7 @@ VerCompare(VersionA, VersionB) => Integer
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinActivateBottom.htm|WinActivateBottom()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinExist.htm|WinExist()} |
@@ -22113,8 +21870,7 @@ WinActivate([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Empty
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinExist.htm|WinExist()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinActive.htm|WinActive()} |
@@ -22149,8 +21905,7 @@ WinActivateBottom([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =>
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * The {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|unique ID (HWND)} if the active window matches the specified criteria, otherwise `0`.
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/SetTitleMatchMode.htm|SetTitleMatchMode()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/DetectHiddenWindows.htm|DetectHiddenWindows()} |
@@ -22191,8 +21946,7 @@ WinActive([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * No exception is thrown when a window is found but cannot be closed  
  * Use {@link https://www.autohotkey.com/docs/v2/lib/WinExist.htm|WinExist()} or {@link https://www.autohotkey.com/docs/v2/lib/WinWaitClose.htm|WinWaitClose()}  
  * @see  
@@ -22272,10 +22026,8 @@ WinExist([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * The {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_class|class name} of the specified window.  
- * @throws TargetError  
- * Window could not be found  
- * @throws OSError  
- * The class name could not be retrieved  
+ * @throws TargetError - Window could not be found  
+ * @throws OSError - The class name could not be retrieved  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetProcessPath.htm|WinGetProcessPath()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetProcessName.htm|WinGetProcessName()} |
@@ -22325,8 +22077,7 @@ WinGetClass([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Strin
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetPos.htm|WinGetPos()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMove.htm|WinMove()} |
@@ -22363,8 +22114,7 @@ WinGetClientPos([&OutX, &OutY, &OutWidth, &OutHeight, WinTitle:='', WinText:='',
  * @returns {(Array)}  
  * An array containing the {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#ClassNN|ClassNN} of every control.  
  * The order is based on the control's z-order which is usually the order they're declared and the order of focus when tabbing.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetControlsHwnd.htm|WinGetControlsHwnd()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Win.htm|Win functions} |
@@ -22398,8 +22148,7 @@ WinGetControls([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Ar
  * @returns {(Array)}  
  * An array containing the {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|window handle (HWND)} of every control.  
  * The order is based on the control's z-order which is usually the order they're declared and the order of focus when tabbing.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetControls.htm|WinGetControls()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Win.htm|Win functions} |
@@ -22464,8 +22213,7 @@ WinGetCount([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integ
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * The {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|window handle (HWND)} of the specified window.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetIDLast.htm|WinGetIDLast()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetHwnd.htm|ControlGetHwnd()} |
@@ -22506,8 +22254,7 @@ WinGetID([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * The {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|window handle (HWND)} of the bottommost (last) window.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetID.htm|WinGetID()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetHwnd.htm|ControlGetHwnd()} |
@@ -22582,8 +22329,7 @@ WinGetList([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Array
  * - `-1` = Window is minimized  
  *   Use {@link https://www.autohotkey.com/docs/v2/lib/WinRestore.htm|WinRestore()} to revert from minimize.  
  * - `0` = Window is normal (not minimized or maximized)
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMaximize.htm|WinMaximize()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMinimize.htm|WinMinimize()} |
@@ -22617,8 +22363,7 @@ WinGetMinMax([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Inte
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * The {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_pid|Process ID (PID)} of the specified window.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetProcessPath.htm|WinGetProcessPath()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetProcessName.htm|WinGetProcessName()} |
@@ -22667,8 +22412,7 @@ WinGetPID([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integer
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMove.htm|WinMove()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetClientPos.htm|WinGetClientPos()} |
@@ -22699,8 +22443,7 @@ WinGetPos([&OutX, &OutY, &OutWidth, &OutHeight, WinTitle:='', WinText:='', NoWin
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * The process name that owns the specified window.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetProcessPath.htm|WinGetProcessPath()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetClass.htm|WinGetClass()} |
@@ -22738,8 +22481,7 @@ WinGetProcessName([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =>
  * WindowSpy, found in the AHK install folder, can be used to see window text.  
  * @returns {(String)}  
  * The full path of the process that owns the specified window.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetProcessName.htm|WinGetProcessName()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetClass.htm|WinGetClass()} |
@@ -22777,10 +22519,8 @@ WinGetProcessPath([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =>
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * The {@link https://www.autohotkey.com/docs/v2/misc/Styles.htm|style} of the specified window.  
- * @throws TargetError  
- * Window could not be found  
- * @throws OSError  
- * The class name could not be retrieved  
+ * @throws TargetError - Window could not be found  
+ * @throws OSError - The class name could not be retrieved  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetStyle.htm|WinSetStyle()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetStyle.htm|WinSetExStyle()} |
@@ -22817,8 +22557,7 @@ WinGetStyle([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Integ
  * Use WindowSpy to view window text.
  * @returns {(Integer)}  
  * The {@link https://www.autohotkey.com/docs/v2/misc/Styles.htm|extended style} of the specified window.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetStyle.htm|WinSetStyle()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetStyle.htm|WinSetExStyle()} |
@@ -22855,10 +22594,8 @@ WinGetExStyle([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Int
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * The text of the specified window.  
- * @throws TargetError  
- * Window could not be found  
- * @throws OSError  
- * There was a problem retrieving the window's text  
+ * @throws TargetError - Window could not be found  
+ * @throws OSError - There was a problem retrieving the window's text  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlGetText.htm|ControlGetText()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetTitle.htm|WinGetTitle()} |
@@ -22936,8 +22673,7 @@ WinGetTitle([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Strin
  * - No window matches
  * - No transparency is set
  * - A window has been altered (minimized/resized/restored) since being made transparent  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetTransColor.htm|WinSetTransColor()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetTransparent.htm|WinGetTransparent()} |
@@ -22981,8 +22717,7 @@ WinGetTransColor([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => 
  * - No window matches
  * - No transparency is set
  * - A window has been altered (minimized/resized/restored) since being made transparent  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetTransparent.htm|`WinSetTransparent()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetTransColor.htm|`WinGetTransColor()} |
@@ -23022,8 +22757,7 @@ WinGetTransparent([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =>
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * This does not apply when using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|window group}.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinShow.htm|WinShow()} |
@@ -23062,8 +22796,7 @@ WinHide([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyStri
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * This does not apply when using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|window group}.  
  * No exception is thrown when a window is found but cannot be closed  
  * Use {@link https://www.autohotkey.com/docs/v2/lib/WinExist.htm|WinExist()} or {@link https://www.autohotkey.com/docs/v2/lib/WinWaitClose.htm|WinWaitClose()}  
@@ -23107,8 +22840,7 @@ WinKill([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyStri
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * This does not apply when using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|window group}.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinRestore.htm|WinRestore()} |
@@ -23149,8 +22881,7 @@ WinMaximize([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Empty
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * This does not apply when using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|window group}.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinRestore.htm|WinRestore()} |
@@ -23236,10 +22967,8 @@ WinMinimizeAllUndo() => EmptyString
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
- * @throws OSError  
- * An internal function reported a failure.  
+ * @throws TargetError - Window could not be found  
+ * @throws OSError - An internal function reported a failure.  
  * Success may be reported even if the window doesn't move, such as it being restricted from moving by its own rules.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlMove.htm|ControlMove()} |
@@ -23282,10 +23011,8 @@ WinMove([X, Y, Width, Height, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
- * @throws OSError  
- * May be thrown on error  
+ * @throws TargetError - Window could not be found  
+ * @throws OSError - May be thrown on error  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMoveTop.htm|WinMoveTop()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetAlwaysOnTop.htm|WinSetAlwaysOnTop()} |
@@ -23319,10 +23046,8 @@ WinMoveBottom([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => Emp
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
- * @throws OSError  
- * May be thrown on error  
+ * @throws TargetError - Window could not be found  
+ * @throws OSError - May be thrown on error  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMoveBottom.htm|WinMoveBottom()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetAlwaysOnTop.htm|WinSetAlwaysOnTop()} |
@@ -23357,8 +23082,7 @@ WinMoveTop([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyS
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMoveBottom.htm|WinMoveBottom()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetAlwaysOnTop.htm|WinSetAlwaysOnTop()} |
@@ -23392,8 +23116,7 @@ WinRedraw([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptySt
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * This does not apply when using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|window group}.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMinimize.htm|WinMinimize()} |
@@ -23431,10 +23154,8 @@ WinRestore([WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) => EmptyS
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
- * @throws OSError  
- * May be thrown on failure.  
+ * @throws TargetError - Window could not be found  
+ * @throws OSError - May be thrown on failure.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMoveTop.htm|WinMoveTop()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMoveBottom.htm|WinMoveBottom()} |
@@ -23471,10 +23192,8 @@ WinSetAlwaysOnTop([NewSetting:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoW
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
- * @throws OSError  
- * The change could not be applied  
+ * @throws TargetError - Window could not be found  
+ * @throws OSError - The change could not be applied  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlSetEnabled.htm|ControlSetEnabled()}
  * {@link https://www.autohotkey.com/docs/v2/lib/Win.htm|Win functions} |
@@ -23520,14 +23239,10 @@ WinSetEnabled([NewSetting:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
- * @throws ValueError  
- * One or more options are invalid  
- * @throws OSError  
- * The specified region is invalid  
- * @throws OSError  
- * The specified region could not be applied to the target window  
+ * @throws TargetError - Window could not be found  
+ * @throws ValueError - One or more options are invalid  
+ * @throws OSError - The specified region is invalid  
+ * @throws OSError - The specified region could not be applied to the target window  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/Win.htm|Win functions} |
  * {@link https://www.autohotkey.com/docs/v2/lib/DetectHiddenWindows.htm|DetectHiddenWindows()} |
@@ -23568,10 +23283,8 @@ WinSetRegion([Options:='', WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
- * @throws OSError  
- * The change could not be applied  
+ * @throws TargetError - Window could not be found  
+ * @throws OSError - The change could not be applied  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetStyle.htm|WinGetStyle()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlSetStyle.htm|ControlSetStyle()} |
@@ -23615,10 +23328,8 @@ WinSetStyle(Value [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']) =
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
- * @throws OSError  
- * The change could not be applied  
+ * @throws TargetError - Window could not be found  
+ * @throws OSError - The change could not be applied  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetStyle.htm|WinGetStyle()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/ControlSetStyle.htm|ControlSetStyle()} |
@@ -23654,10 +23365,8 @@ WinSetExStyle(Value [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:=''])
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
- * @throws OSError  
- * The change could not be applied  
+ * @throws TargetError - Window could not be found  
+ * @throws OSError - The change could not be applied  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinMove.htm|WinMove()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/WinGetTitle.htm|WinGetTitle()} |
@@ -23699,10 +23408,8 @@ WinSetTitle(NewTitle [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='']
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
- * @throws OSError  
- * The change could not be applied  
+ * @throws TargetError - Window could not be found  
+ * @throws OSError - The change could not be applied  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetTransparent.htm|WinSetTransparent()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Win.htm|Win functions} |
@@ -23738,10 +23445,8 @@ WinSetTransColor(Color [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinText:='
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
- * @throws OSError  
- * The change could not be applied  
+ * @throws TargetError - Window could not be found  
+ * @throws OSError - The change could not be applied  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinSetTransColor.htm|WinSetTransColor()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/Win.htm|Win functions} |
@@ -23773,8 +23478,7 @@ WinSetTransparent(NewSetting [,WinTitle:='', WinText:='', NoWinTitle:='', NoWinT
  * Use WindowSpy to view window text.
  * @returns {(String)}  
  * An empty string is always returned.  
- * @throws TargetError  
- * Window could not be found  
+ * @throws TargetError - Window could not be found  
  * This does not apply when using a {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_group|window group}.  
  * @see  
  * {@link https://www.autohotkey.com/docs/v2/lib/WinHide.htm|WinHide()} |
