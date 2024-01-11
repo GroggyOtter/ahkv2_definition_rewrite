@@ -16227,159 +16227,162 @@ Floor(Num) => Integer
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Format.htm|`Format()`} - Takes in varaibles and creates custom-formatted string.  
  * Can be used to tranform data types, align, pad, prefix, or build entire strings.  
  * @param {(String)} FormStr  
- * A string describing the desired new format.  
- * Any text can be used. Variables are inserted, and optionally altered, using a curly brace format.  
- * To use literal curly braces, wrap them in curly braces `{{}` `{}}`.  
- * `{ParamNum:NewForm}`  
+ * A string of text that describes how the finished string should be displayed.  
+ * Special tags are used to transform variables appearance and data type: `{ParamNum:NewFormat}`  
+ * To use literal curly braces in this string, they must be wrapped in curly braces: `{{}` `{}}`.  
  * - `ParamNum`  
- *   The `Value` parameter number, starting at 1.  
- *   If `Value1*` is an array, ParaNum is used as an index.  
- *   Omitting `ParamNum` will use parameter numbers in order. 1, 2, 3, ...  
- * 
- * - `NewForm` = A string made up of one or more options, in order, with no separators  
+ *   All parameters after `FormStr` are numbered 1, 2, 3, etc.  
+ *   `ParamNum` indicates the variable's parameter number spot.  
+ *   If an array is used, `ParamNum` indicates the array index to use.  
+ *   If omitted, the number used is 1 higher than the previous number, or 1 if it's the first tag.  
+ * - `NewFormat`  
+ *   A string that describes how the value should be transformed.  
+ *   Options need to be in the following order and should have no separators:  
  *   `Flags Width .Precision StrCase DataType`  
+ *   Examples: `+08.3f` or `-10.10Ts`
  * 
  * ### Flags  
  * Alignment, prefix, padding, and display options:  
- * - `-` = Left align text within `Width`.  
- *   Empty areas are filled with spaces.  
+ * - `-` = Align text to the left of the given space.  
+ *   The right side is padded with spaces to meet the width requirement.  
  *   Right alignment is used when this flag is omitted.  
  * 
- *       Format('{1:-5}', 1) => '1    '
+ *       Format('{1:-5}', 1) ; => '1    '
  * - `+` = Show positive sign.  
  * 
- *       Format('{1:+d}', 100) => '+100'
+ *       Format('{1:+d}', 100) ; => '+100'
  * - `0` = Pad with zeroes.  
- *   The left align `-` flag overrides this flag.  
+ *   The `-` "Left Align" flag overrides this flag.  
  * 
- *       Format('{1:+04}', 1) => '0001'
+ *       Format('{1:+04}', 1) ; => '0001'
  * - ` ` Space = Add space if signed and positive.  
- *   The show positive sign `+` flag overrides this flag.  
+ *   The `+` "Show Positive Sign" flag overrides this flag.  
  * 
- *       Format('{1: 04i}', 1) => ' 001'
+ *       Format('{1: 04i}', 1) ; => ' 001'
  * - `#` = Show prefix or decimal  
- *   Dependent on `DataType`:  
+ *   Dependent on the `DataType` used:  
  *   - `c` `d` `i` `u` `s` = No effect.  
  *   - `o` = Add octal `0` prefix.  
  * 
- *         Format('{1:#o}', 128) => '0200'
+ *         Format('{1:#o}', 128) ; => '0200'
  *   - `x`/`X` = Add hex `0x`/`0X` prefix.  
  * 
- *         Format('{1:#x}', 255) => '0xff'
- *         Format("0x{1:X}", 1194684) => '0xABC123'
+ *         Format('{1:#x}', 255) ; => '0xff'
+ *         Format("0x{1:X}", 1194684) ; => '0xABC123'
  *   - `e` `E` `f` `a` `A` = Force decimal point to show.  
  * 
- *         Format('{1:#.0f}', 10) => '10.'
+ *         Format('{1:#.0f}', 10) ; => '10.'
  *   - `g` `G` = Force decimal point to show and trailing zeroes are not truncated.  
  * 
- *         Format('{1:g}', 4.2e01) => '42'
- *         Format('{1:#g}', 4.2e01) => '42.000'
+ *         Format('{1:g}', 4.2e01) ; => '42'
+ *         Format('{1:#g}', 4.2e01) ; => '42.000'
  * 
  * ### Width  
- * - The expected width in characters after any changes are made.  
- *   Value is padded with spaces and right-aligned.  
- *   Use `-` flag to align left and `0` flag to pad with zeroes.  
+ * - The expected width, in characters, after all transformations are made.  
+ *   Value is padded with spaces and right-aligned by default.  
+ *   The `-` "Left Align` flag and `0` 'Pad With Zeroes" flag can override this.  
  * 
- *       Format('{1:7d}', 1234) => '   1234'
- *       Format('{1:-7d}', 1234) => '1234   '
- *       Format('{1:07d}', 1234) => '0001234'
+ *       Format('{1:7d}', 1234) ; => '   1234'
+ *       Format('{1:-7d}', 1234) ; => '1234   '
+ *       Format('{1:07d}', 1234) ; => '0001234'
  * 
  * ### .Precision 
  * - Precision of the value. The dot `.` is required.  
- *   Dependent on `DataType`:  
- *   - `f` `e` `E` = Set decimal point length.  
+ *   Dependent on the `DataType` used:  
+ *   - `f` `e` `E` = Set number of decimal places.  
  *     Default: 6
  * 
- *         Format('{1:.3f}', 0.123456) => '0.123'
- *         Format('{1:.0f}', 42) => '42.0'
+ *         Format('{1:.3f}', 0.123456) ; => '0.123'
+ *         Format('{1:.0f}', 42) ; => '42.0'
  *   - `g` `G` = Sets max signficant digits.  
  *     Default: 6
  * 
- *         Format('{1:.4g}', 123456) => '1235e+05'
+ *         Format('{1:.4g}', 123456) ; => '1.235e+05'
  *   - `s` = Set max number of characters to use.  
  * 
- *         Format('{1:.7s}', 'Hello World') => 'Hello W'
- *   - `d` `i` `u` `x` `X` `o` = Set width, pad with zeroes.  
- *     This will override `0` Flag + Width.  
+ *         Format('{1:.8s}', 'Hello World') ; => 'Hello Wo'
+ *   - `d` `i` `u` `x` `X` `o` = Set width and pad with zeroes.  
+ *     This will override the combination of `0` 'Pad With Zeroes" + a Width value.  
  *     Default: 1
  * 
- *         Format('|{1:#.6x}|', 0xABC) => '0x000abc'
- *         Format('|{1:010.5d}|', 123) => '00123'
+ *         Format('|{1:#.6x}|', 0xABC) ; => '0x000abc'
+ *         Format('|{1:010.5d}|', 123) ; => '00123'
  * 
  * ### StrCase
  * Adjust the case type of a string.  
- * `DataType` must be `s`  
+ * Only works when the `DataType` is `s`  
  * - `U` = STRING UPPERCASE.  
  * - `L` = string lowercase.  
  * - `T` = String Title Case.  
  * 
  * ### DataType
- * Set the type of `Value`:  
+ * The expected data type after transformation:  
  * - Integer 
  *   - `d` `i` = Signed Decimal   
  * 
- *         Format('{1:d}', -1.5) => '1'
+ *         Format('{1:d}', -1.5) ; => '1'
  *   - `u` = Unsigned Decimal  
  * 
- *         Format('{1:u}', -1.5) => '18446744073709551615'
+ *         Format('{1:u}', -1.5) ; => '18446744073709551615'
  *   - `x` `X` = Unsigned Hexadecimal  
  *     Case of `x`/`X` sets hex case `abcdef`/`ABCDEF`
  * 
- *         Format('{1:x}', 1194684) => '123abc'
- *         Format('0x{1:X}', 1194684) => '0xABC123'
+ *         Format('{1:x}', 1194684) ; => '123abc'
+ *         Format('0x{1:X}', 1194684) ; => '0xABC123'
  *   - `o` = Unsigned Octal
  * 
- *         Format('{1:o}', 128) => '200'
+ *         Format('{1:o}', 128) ; => '200'
  *   - `p` = Hexidecimal Address  
  *     Width is determined by pointer size.  
  * 
- *         Format('{:p}', 956887554989) => '000000DECAF15BAD' ; 64-bit
- *         Format('{:p}', 1194684) => '00123ABC' ; 32-bit
+ *         Format('{:p}', 956887554989) ; => '000000DECAF15BAD' ; 64-bit
+ *         Format('{:p}', 1194684) ; => '00123ABC' ; 32-bit
  * - Floating-point  
  *   Decimal length is set by `.Precision`  
  *   - `f` = Float  
  *     `[-]123456789.000000`  
  * 
- *         Format('{1:f}', 123) => '123.000000'
+ *         Format('{1:f}', 123) ; => '123.000000'
  *   - `e` `E` = Float with exponent  
  *     `[-]123456789.000000[eE][-+]000`  
  *     Exponent is always 2-3 digits.  
  *     `e`/`E` case sets exponent symbol case `e`/`E`  
  * 
- *         Format('{:e}', 12345.6789) => '1.234568e+04'
+ *         Format('{:e}', 12345.6789) ; => '1.234568e+04'
  *   - `g` `G` = General format  
  *     Uses `e` or `f` format, whichever is more compact.  
  *     `e` is used if exponent is less than e-4 or greater than .Preciion.  
  *     `g`/`G` case sets exponent symbol case `e`/`E`.  
  * 
- *         Format('{:.4g}', 0.0000042) => '4.2e-06'
- *         Format('{:.4g}', 1.2e+02) => '120'
+ *         Format('{:.4g}', 0.0000042) ; => '4.2e-06'
+ *         Format('{:.4g}', 1.2e+02) ; => '120'
  *   - `a` `A` = Hexadecimal double precision  
  *     `[-]0xFEDCBA987.654321[pP][-+]0`  
  *     Exponent is denoted with p/P as e/E is a hex value.  
  *     `a`/`A` case sets exponent symbol case `p`/`P`.  
  * 
- *         Format('{:A}', -255.8) => '-0x1.ff9999999999aP+7'
+ *         Format('{:A}', -255.8) ; => '-0x1.ff9999999999aP+7'
  * - String  
  *   - `s` String  
  *     Numeric values are converted to string.  
  *     `Width` affects total chars, adding spaces for padding
  *     `.Precision` determines number of chars to use from `ParamNum`
  * 
- *         Format('{2:.4s}{1:.6s}', 'Hotkey()', 'Automation') => 'AutoHotkey'  
+ *         Format('{2:.4s}{1:.6s}', 'Hotkey()', 'Automation') ; => 'AutoHotkey'  
  *   - `c` Character Code  
  *     Converts number to its ordinal value just like {@link https://www.autohotkey.com/docs/v2/lib/Chr.htm|Chr()}
  * 
- *         Format('{:c}{:c}{:c}', 65, 72, 75) => 'AHK'  
- *         Format('¯\_({1:c})_/¯', 0x30C4) => '¯\_(ツ)_/¯'  
- * @param {(Primitive|Array)} [Value1]  
- * `ParamNum` 1 for the `FormStr`
- * This can also be an array of primitives if it's declared {@link https://www.autohotkey.com/docs/v2/Functions.htm#VariadicCall|variadic}:
+ *         Format('{:c}{:c}{:c}', 65, 72, 75) ; => 'AHK'  
+ *         Format('¯\_({1:c})_/¯', 0x30C4) ; => '¯\_(ツ)_/¯'  
+ * @param {(Primitive|Array)} [Values]  
+ * One or more variables to be used in the `FormStr` parameter.  
+ * Any number of parameter values can be passed in.  
+ * 
+ *     Format('{1:Us}{2:Ls}{3:Ts}', var1, var2, var3)
+ * An array of values can be used if it's the only value and is marked {@link https://www.autohotkey.com/docs/v2/Functions.htm#VariadicCall|variadic}.  
  * 
  *     arr := ['World', 'Hello']
- *     Format('{2}, {1}!', arr*) => 'Hello, World!'
- * @param {(Primitive)} [ValueN]  
- * Any number of additional parameters, used as `ParamNum` 2, 3, etc.  
+ *     Format('{2}, {1}!', arr*) ; => 'Hello, World!'
  * @returns {(String)}  
  * The string after formatting.  
  * @see  
@@ -16387,7 +16390,7 @@ Floor(Num) => Integer
  * @example <caption>  
  * </caption>
  */
-Format(FormStr [,Value1, ValueN*]) => String
+Format(FormStr [,Values*]) => String
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/FormatTime.htm|`FormatTime()`} - Transforms a YYYYMMDDHH24MISS timestamp into the specified date/time format.  
