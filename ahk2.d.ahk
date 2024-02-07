@@ -735,6 +735,9 @@ class Class extends Object {
      *     ClassObj.Prototype.base == ClassObj.base.Prototype
      * Prototype is automatically defined as an own property of any class object created by a class definition.  
      * @type Prototype
+     * @example 
+     * myClass.Prototype.myMethod := myNewMethod
+     * myNewMethod() => MsgBox "hello from myNewMethod"
      */
     Prototype => Prototype
 }
