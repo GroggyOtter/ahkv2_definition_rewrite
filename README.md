@@ -8,6 +8,7 @@ This is a full update for the definition file `ahk2.d.ahk` and the directive/flo
 - [Why use this update](#why-use-this-update)
 - [Installation](#installation)
 - [Change Log](#change-log)
+  - [2024-03-18](#2024-03-18)
   - [2024-01-10](#2024-01-10)
   - [2024-01-09](#2024-01-09)
   - [2024-01-08](#2024-01-08)
@@ -49,6 +50,239 @@ Alternatively, you can open the two files in the syntaxes folder and copy + past
 ***
 
 ### Change Log
+##### 2024-03-18
+- **This is one of a few big updates that will be coming to fix lots of things, continuously adding example code, and doing other improvements.**
+
+- ahk2.json updates:
+    - Added a version key to the main json file for anyone who wants to use an auto-updater
+        - Format: `"version": 1.1`
+    - Core revisions based on updates made by THQBY.
+    - ahk_criteria, such as ahk_exe, ahk_class, etc., are now recognized in any field that expects a WinTitle.
+        - This includes functions like WinActivate(), WinExist(), ControlClick(), ControlGetPos(), etc.
+    - THQBY has moved most built-in var descriptions to the ahk2.d.ahk file.
+        - I've applied standardized tags to all of them including hyperlinks to their docs pages, formatted text, improved descriptions, and many examples of how to utilize them.
+    - Hotstring options have been added to the json file but I haven't figured out exactly what they do. HotString() seems to perform the same with and without them.
+    - The keyword Static now has an autocomplete for creating variables and methods
+    - Per /u/Laser-Made's request, each loop type's definition includes a list of A_LoopVARTYPE variables available to that specific loop.
+        - Examples:
+            - Parse-loop's definition now shows it has access to A_Index and A_LoopField.
+            - Registry-Loops have access to A_Index, A_LoopRegName, A_LoopRegType, A_LoopRegKey, and A_LoopRegTimeModified.
+
+- ahk2.d.ahk updates:
+    - Added a version tag to the top of the file for anyone who wants to use an auto-updater
+        - Format: `;@region v1.1`
+    - Per THQBY's update, most built-in variables are now included in the ahk2.d.ahk file instead of the JSON file.  
+    - Lots of small changes throughout the file. Grammar/captializations/corrected errors/etc.
+    - The @see tags are now separated by pipes to make them more distinguishable from each other.
+        - They're also stored on one line intstead of individual lines.
+    - Added many more examples.
+        - Started adding comments to some of the example code to assist with learning and understanding.
+        - I've made it a point to not write everything the same way in an attempt to expose people to the many ways things can be structured and written.
+            - Examples: Using both traditional and fat arrow functions
+            - Parsing text by using both parse-loops and StrSplit()
+            - Writing if-statements with curly braces (code blocks) and without by utilizing commas (multi-statement operator)
+            - Putting commands on the same line as Else or Try to illustrate the different ways to use them
+        - Most examples are written in a way that they can be copy+pasted into a blank file and ran.
+            - Some examples are not meant to be ran, but instead illustrate the the multiple ways of using them, such as Click().
+
+- ahk2.d.ahk specifics:
+    - Any class:
+        - Improved description.
+    - Any.GetMethod():
+        - Updated return value.
+    - Any.HasBas():
+        - Updated description and corrected return type from bool to integer.
+    - Any.HasMethod():
+        - Rewrote to be more understandable and clearly worded.
+        - Added new examples.
+    - Any.HasProp():
+        - Updated description.
+        - Added example.
+    - __Init():
+        - Added a description as it lacked one.
+    - __Delete():
+        - Added to the definition file and should appear in autocomplete now.
+        - Given a description.
+    
+    - Object class:
+        - Updated description.
+        - Added examples.
+    - Object.Clone():
+        - Updated description.
+        - Improved example code.
+    - Object.DefineProp():
+        - Updated description.
+        - Added more example code.
+    - Object.DeleteProp():
+        - Updated description.
+        - Added better example code.
+    - Object.GetOwnPropDesc():
+        - Updated description.
+        - Added better example code.
+    - Object.OwnProps():
+        - Updated description.
+        - Added better example code.
+    
+    - Array class:
+        - Updated description.  
+    - Array.__Item:
+        - Updated description.
+        - Corrected an error.
+        - Updated and improved examples.
+    - Array.Default:
+    - Array.__Item:
+        - Uprdated definition to be more clear and inclusive.
+    - Array.Clone():
+        - Updated definition to be more clear about shallow copies.
+        - Improved example code.
+    - Array.Delete():
+        - Corrected an error in its description.
+        - Added error.
+        - Improved example.
+    - Array.Get():
+        - Clarified return value.
+        - Updated example to show more variation and usage.
+    - Array.Has():
+        - Clarified when it returns true.
+        - Improved example.  
+    - Array.InsertAt():
+        - Rewrote definition to clarify multiple things.
+        - Corrected an error in the description.
+        - Improved existing code and added more examples for clairfication.
+        - Updated AdditionalValues parameter to be variadic.
+    - Array.Pop():
+        - Improved definition.
+    - Array.Push():
+        - Rewrote definiton to be more accurate and informative.  
+        - Added more examples.
+    - Array.RemoveAt():
+        - Corrected erroneous information in the description.
+        - Improved overall description.
+        - Improved example code.
+    - Array.__New():
+        - Updated definition to clarify __New() should not be called directly
+    - Array.__Enum():
+        - Updated enumerator's definition.
+        - Updated and added to examples.
+    
+    - Buffer class:
+        - Updated definition.
+        - Corrected default values from Unset to 0.
+    - Buffer.__New():
+        - Updated definition.
+        - Included default values.
+    
+    - ClipboardAll class:
+        - Updated definition.
+        - Added example code.
+    - ClipboardAll.Ptr:
+        - Updated definition.
+             - Added @throw error
+    - ClipboardAll.Call():
+        - Updated definition to be more clear.
+        - Included information I missed before.
+    - Class():
+        - Improved and expanded the definition.
+    - Class.Prototype:
+        - Improved definition
+        - Changed return type from Prototype to Object, as this is how the addon needs to see it
+            - There is no "prototype object" in AHK. Just an object we refer to as the "prototype".
+    
+    - Error class:
+        - Did a full update to all error sub-types and descriptions
+    - Error.Stack:
+        - Rewrote definition to be easier to understand.
+        - Improved what the output structure looks like.
+    - Error():
+        - Example code was improved.
+    - All the error subtypes:
+        - Updated definitions to be more clear.
+        - Provided type-specific properties and parameters.
+            - Such as Message and Extra info for TypeError and ValueError
+    
+    - OSError Class:
+        - Added missing number property and definition (Thanks THQBY)
+        - Updated definition.
+        - Changed the first parameter to ErrorNumber and assigned the correct default value to it.
+    
+    - File class:
+        - Updated definitions for almost all properties and methods.
+        - Included number range and byte sizes with each type of Read()/Write() method.
+        - Ensured each method now has some form of example.
+    
+    - Func.Bind():
+        - Improved description.
+        - Added more examples.
+    
+    - Func.IsByRef():
+        - Improved description.
+        - Added more examples.
+    
+    - Func.IsOptional():
+        - Improved description.
+        - Added more examples.
+    
+    - BoundFunc Class:
+        - Updated description.
+        - Added examples for both types of boundfuncs.
+    
+    - Enumerator Class:
+        - Added new examples to show enumerator structure and use.
+        - Included examples for making any object enumerable with a custom enumerator.
+    
+    - Closure Class:
+        - Updated definition and added better example code that differntiates between closures and static nested functions.
+    
+    - Gui Class:
+        - New example code showing the many fascets of making a GUI.
+    
+    - Gui.Control Class:
+        - Added a description and properties to class definition.
+        - Updated the description of almost all properties and methods belonging to this class.
+        - Added example code to all properties and methods of this class.
+    
+    - ComCall():
+        - Made function call variadic as multiple type/args can be passed. (Thanks /u/bleurgh96230)
+        - Changed return type form an `String | Integer` to `Primitive`.
+    
+    - DateDiff():
+        - Updated description to state required format.
+    
+    - Exp():
+        - Fixed return value type from String to Number.
+    
+    - NumGet():
+        - Completely overhauled this function.
+        - Corrected a syntax error.
+        - Made things more understandable
+        - Created a new "data type" table, including byte/bit information.
+        - Added multiple examples.
+    
+    - NumPut():
+        - Completely overhauled this function.
+        - Corrected a syntax error.
+        - Made things more understandable
+        - Created a new "data type" table, including byte/bit information.
+        - Added multiple examples.
+        - Made function variadic as to not cause an error when setting multiple numbers.
+            - Due to limitations, the variadic parameter is the offset, which is incorrect.
+            - Currently, there is no way to tell the addon that the first 2 parameters can be repeated any number of times.
+            - It's a bandaid until THQBY comes up with a more elegant solution to this.
+
+    - ObjBindMethod():
+        - Made function variadic to pre
+
+    - PixelGetColor:
+        - Added example code.
+    
+    - SendMessage():
+        - Fixed doc URL.
+    - SendMode():
+        - Fixed doc URL.
+    
+    - WinGetTransparent():
+        - Fixed @see links
+
 
 ##### 2024-01-10
 - Updated a lot of the verbiage in the `Format()` tag to make it more understandable.
