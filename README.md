@@ -7,6 +7,7 @@ This is a full update for the definition file `ahk2.d.ahk` and the directive/flo
 ### Contents
 - [Why use this update](#why-use-this-update)
 - [Installation](#installation)
+- [Auto-Updater](#Auto-Updater)
 - [Change Log](#change-log)
   - [2024-03-18](#2024-03-18)
   - [2024-01-10](#2024-01-10)
@@ -49,10 +50,26 @@ Alternatively, you can open the two files in the syntaxes folder and copy + past
 
 ***
 
+### Auto-Updater
+I've written an auto-updater so you don't have to keep updating the file.  
+It can be ran as its own script or can be copy and pasted into a main script, as the updater is self-contained and will auto-run.
+There are 2 properties and 2 methods that can be used:
+- Methods:
+  - `Start()` = Starts/enables update checking  
+  - `Stop()` = Stops/disables update checking  
+- Properties:
+  - `frequency` = How often to check for updates, in hours.  
+    This can be a fractional number: 1.5 = 1 hr 30 min  
+    Default value is 4.  
+  - `notify` = If set to true, TrayTips will pop up to notify of updates or errors.  
+    Setting this to false will suspend all TrayTip popups.  
+
+***
+
 ### Change Log
 ##### 2024-03-18
 - **This is one of a few big updates that will be coming to fix lots of things, continuously adding example code, and doing other improvements.**
-
+- Added an auto-updater to the repository that should automatically keep the defintion files up-to-date.
 - ahk2.json updates:
     - Added a version key to the main json file for anyone who wants to use an auto-updater
         - Format: `"version": 1.1`
