@@ -12,6 +12,17 @@ class definition_enhancement_updater {
     static frequency := 4
     static notify := 1
     
+    static start() {
+        this.running := 1
+        this.run()
+    }
+    
+    static stop() {
+        this.running := 0
+        this.run_again(1)
+    }
+    
+    ; Internal stuff
     static rgx := Map(
         'lsp_ver',  'lsp-(\d+)\.(\d+)\.(\d+)',
         'thqby',    'thqby.*?lsp'
@@ -37,16 +48,6 @@ class definition_enhancement_updater {
     static running := 0
     
     static __New() => this.start()
-    
-    static start() {
-        this.running := 1
-        this.run()
-    }
-    
-    static stop() {
-        this.running := 0
-        this.run_again(1)
-    }
     
     static run() {
         if !this.running
