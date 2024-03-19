@@ -9,7 +9,7 @@
  * - `1` = 
  */
 class definition_enhancement_updater {
-    static version := 1.0
+    static version := 1.1
     static frequency := 4
     static notify := 1
     static update_updater := 1
