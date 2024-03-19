@@ -52,7 +52,7 @@ class definition_enhancement_updater {
         )
     )
     
-    static version := 1.1
+    static version := 1.0
     static running := 0
     
     static __New() => this.start()
@@ -105,6 +105,7 @@ class definition_enhancement_updater {
     }  
     
     static get_file_location(data) {
+        path := ''
         if (data['filename'] = 'definition_updater.v2.ahk') {
             default_path := A_ScriptDir
             loop files default_path '\*', 'FR'
@@ -115,7 +116,6 @@ class definition_enhancement_updater {
         else {
             default_path := A_AppData '\..\..\.vscode\extensions'
             v_list := []
-            path := ''
             loop files default_path '\*', 'D'
                 if RegExMatch(A_LoopFileFullPath, this.rgx['thqby'])
                     v_list.Push(A_LoopFileFullPath)
