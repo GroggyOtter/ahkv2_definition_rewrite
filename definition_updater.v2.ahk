@@ -9,6 +9,7 @@
  * - `1` = 
  */
 class definition_enhancement_updater {
+    static version := 1.1
     static frequency := 4
     static notify := 1
     
@@ -44,7 +45,7 @@ class definition_enhancement_updater {
             'rgx_ver' , '"version": +(\d+)\.(\d+)'
         ),
         'updater', Map(
-            'url'     , 'https://raw.githubusercontent.com/GroggyOtter/ahkv2_definition_rewrite/main/definition_autoupdater.v2.ahk',
+            'url'     , 'https://raw.githubusercontent.com/GroggyOtter/ahkv2_definition_rewrite/main/definition_updater.v2.ahk',
             'filename', 'definition_updater.v2.ahk',
             'filepath', '',
             'filetype', 'AHK File (*.ahk)',
@@ -52,7 +53,6 @@ class definition_enhancement_updater {
         )
     )
     
-    static version := 1.1
     static running := 0
     
     static __New() => this.start()
@@ -81,10 +81,15 @@ class definition_enhancement_updater {
         online_txt := this.get_http(data['url'])
         online_ver := this.get_version(online_txt, data['rgx_ver'])
         
+        for i, v in install_ver{
+            MsgBox('index: ' i '`ninstall: ' install_ver[i])
+            MsgBox('index: ' i '`nonline: ' online_ver[i])
+        }
         for index, install_num in install_ver
             if (index = 0)
                 continue
             else if (online_ver[index] > install_num) {
+                MsgBox(data['filepath'])
                 FileDelete(data['filepath'])
                 FileAppend(online_txt, data['filepath'], 'UTF-8')
                 this.notify_user(data['filename'] ' has been updated.'
