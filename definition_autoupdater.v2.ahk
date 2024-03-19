@@ -37,14 +37,22 @@ class definition_enhancement_updater {
             'rgx_ver' , ';@region v(\d+)\.(\d+)'
         ),
         'json', Map(
-            'url'     ,'https://raw.githubusercontent.com/GroggyOtter/ahkv2_definition_rewrite/main/ahk2.json',
+            'url'     , 'https://raw.githubusercontent.com/GroggyOtter/ahkv2_definition_rewrite/main/ahk2.json',
             'filename', 'ahk2.json',
             'filepath', '',
             'filetype', 'JSON File (*.json)',
             'rgx_ver' , '"version": +(\d+)\.(\d+)'
+        ),
+        'json', Map(
+            'url'     , 'https://raw.githubusercontent.com/GroggyOtter/ahkv2_definition_rewrite/main/definition_autoupdater.v2.ahk',
+            'filename', 'definition_autoupdater.v2.ahk',
+            'filepath', '',
+            'filetype', 'AHK File (*.ahk)',
+            'rgx_ver' , 'static version := (\d+)\.(\d+)'
         )
     )
     
+    static version := 1.1
     static running := 0
     
     static __New() => this.start()
@@ -77,7 +85,7 @@ class definition_enhancement_updater {
                 continue
             else if (online_ver[index] > install_num) {
                 FileDelete(data['filepath'])
-                FileAppend(online_txt, data['filepath'])
+                FileAppend(online_txt, data['filepath'], 'UTF-8')
                 this.notify_user(data['filename'] ' has been updated.'
                     '`nVS Code needs to be reloaded for changes to take effect.')
                 break
