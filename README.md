@@ -10,7 +10,7 @@ This is a full update for the definition file `ahk2.d.ahk` and the directive/flo
 - [Auto-Updater](#Auto-Updater)
 - [Change Log](#change-log)
   - [2024-03-19](#2024-03-19)
-  - [2024-03-18 (Big Update)](#2024-03-18 (Big Update))
+  - [2024-03-18 (Big Update)](#2024-03-18-big-update)
   - [2024-01-10](#2024-01-10)
   - [2024-01-09](#2024-01-09)
   - [2024-01-08](#2024-01-08)
