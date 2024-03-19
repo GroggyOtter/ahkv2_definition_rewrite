@@ -81,10 +81,6 @@ class definition_enhancement_updater {
         online_txt := this.get_http(data['url'])
         online_ver := this.get_version(online_txt, data['rgx_ver'])
         
-        for i, v in install_ver{
-            MsgBox('index: ' i '`ninstall: ' install_ver[i])
-            MsgBox('index: ' i '`nonline: ' online_ver[i])
-        }
         for index, install_num in install_ver
             if (index = 0)
                 continue
