@@ -43,7 +43,7 @@ class definition_enhancement_updater {
             'filetype', 'JSON File (*.json)',
             'rgx_ver' , '"version": +(\d+)\.(\d+)'
         ),
-        'json', Map(
+        'updater', Map(
             'url'     , 'https://raw.githubusercontent.com/GroggyOtter/ahkv2_definition_rewrite/main/definition_autoupdater.v2.ahk',
             'filename', 'definition_updater.v2.ahk',
             'filepath', '',
@@ -52,7 +52,7 @@ class definition_enhancement_updater {
         )
     )
     
-    static version := 1.0
+    static version := 1.1
     static running := 0
     
     static __New() => this.start()
@@ -119,18 +119,16 @@ class definition_enhancement_updater {
             loop files default_path '\*', 'D'
                 if RegExMatch(A_LoopFileFullPath, this.rgx['thqby'])
                     v_list.Push(A_LoopFileFullPath)
-        }
-        
-        if (v_list.Length = 0)
-            path := ''
-        else if (v_list.Length = 1)
-            path := v_list[1]
-        else 
-            for value in v_list
-                path := this.get_most_recent(value, path, this.rgx['lsp_ver'])
-        
-        if (data['filename'] != 'definition_updater.v2.ahk')
+            
+            if (v_list.Length = 0)
+                path := ''
+            else if (v_list.Length = 1)
+                path := v_list[1]
+            else 
+                for value in v_list
+                    path := this.get_most_recent(value, path, this.rgx['lsp_ver'])
             path .= '\syntaxes\' data['filename']
+        }
         
         if !FileExist(path)
             path := ask_user(data)
