@@ -6,7 +6,11 @@
  * Fractional numbers can be used: `1.5` = 1 hr 30 min  
  * Default is every 4 hours.  
  * @property {Integer} notify - Controls if TrayTip notifications show up.  
- * - `1` = 
+ * - `1` = Enable TrayTip notifications
+ * - `0` = Disable TrayTip notifications
+ * @property {Integer} update_updater - Enables/disables the auto-updater own auto-updater.
+ * - `1` = Allow auto-updater to update itself.
+ * - `0` = Prevent auto-updater from updating itself.
  */
 class definition_enhancement_updater {
     static version := 1.1
