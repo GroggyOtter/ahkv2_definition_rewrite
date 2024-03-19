@@ -9,9 +9,10 @@
  * - `1` = 
  */
 class definition_enhancement_updater {
-    static version := 1.1
+    static version := 1.0
     static frequency := 4
     static notify := 1
+    static update_updater := 1
     
     static start() {
         this.running := 1
@@ -85,7 +86,6 @@ class definition_enhancement_updater {
             if (index = 0)
                 continue
             else if (online_ver[index] > install_num) {
-                MsgBox(data['filepath'])
                 FileDelete(data['filepath'])
                 FileAppend(online_txt, data['filepath'], 'UTF-8')
                 this.notify_user(data['filename'] ' has been updated.'
@@ -108,6 +108,8 @@ class definition_enhancement_updater {
     static get_file_location(data) {
         path := ''
         if (data['filename'] = 'definition_updater.v2.ahk') {
+            if !this.update_updater
+                return 0
             default_path := A_ScriptDir
             loop files default_path '\*', 'FR'
                 if RegExMatch(A_LoopFileFullPath, this.rgx['thqby'])
