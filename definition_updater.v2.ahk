@@ -45,7 +45,7 @@ class definition_enhancement_updater {
         ),
         'json', Map(
             'url'     , 'https://raw.githubusercontent.com/GroggyOtter/ahkv2_definition_rewrite/main/definition_autoupdater.v2.ahk',
-            'filename', 'definition_autoupdater.v2.ahk',
+            'filename', 'definition_updater.v2.ahk',
             'filepath', '',
             'filetype', 'AHK File (*.ahk)',
             'rgx_ver' , 'static version := (\d+)\.(\d+)'
@@ -76,6 +76,7 @@ class definition_enhancement_updater {
         if !data['filepath'] || !FileExist(data['filepath'])
             if !this.get_file_location(data)
                 return
+        
         install_ver := this.get_version(FileRead(data['filepath']), data['rgx_ver'])
         online_txt := this.get_http(data['url'])
         online_ver := this.get_version(online_txt, data['rgx_ver'])
@@ -104,13 +105,21 @@ class definition_enhancement_updater {
     }  
     
     static get_file_location(data) {
-        default_path := A_AppData '\..\..\.vscode\extensions'
-        v_list := []
-        path := ''
-        
-        loop files default_path '\*', 'D'
-            if RegExMatch(A_LoopFileFullPath, this.rgx['thqby'])
-                v_list.Push(A_LoopFileFullPath)
+        if (data['filename'] = 'definition_updater.v2.ahk') {
+            default_path := A_ScriptDir
+            loop files default_path '\*', 'FR'
+                if RegExMatch(A_LoopFileFullPath, this.rgx['thqby'])
+                    path := A_LoopFileFullPath
+            until (path)
+        }    
+        else {
+            default_path := A_AppData '\..\..\.vscode\extensions'
+            v_list := []
+            path := ''
+            loop files default_path '\*', 'D'
+                if RegExMatch(A_LoopFileFullPath, this.rgx['thqby'])
+                    v_list.Push(A_LoopFileFullPath)
+        }
         
         if (v_list.Length = 0)
             path := ''
@@ -120,7 +129,8 @@ class definition_enhancement_updater {
             for value in v_list
                 path := this.get_most_recent(value, path, this.rgx['lsp_ver'])
         
-        path .= '\syntaxes\' data['filename']
+        if (data['filename'] != 'definition_updater.v2.ahk')
+            path .= '\syntaxes\' data['filename']
         
         if !FileExist(path)
             path := ask_user(data)
@@ -130,11 +140,10 @@ class definition_enhancement_updater {
         return 1
         
         ask_user(data) {
-            static last := A_AppData
             path := ''
             filename := data['filename']
             loop
-                path := FileSelect(0x1, last '\' filename, 'Please select the file: ' filename, data['filetype'])
+                path := FileSelect(0x1, default_path '\' filename, 'Please select the file: ' filename, data['filetype'])
             until (InStr(path, filename) && FileExist(path)) || (path = '')
             if (path = '')
                 this.error(filename ' could not be found.')
