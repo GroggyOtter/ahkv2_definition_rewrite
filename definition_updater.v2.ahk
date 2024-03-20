@@ -67,7 +67,7 @@ class definition_enhancement_updater {
         for id, data in this.file_list
             if (id = 'updater') && !this.update_updater
                 continue
-            else noitfy_str .= this.check_for_update(id, data)
+            else this.check_for_update(id, data)
         
         if this.announcement
             TrayTip(this.announcement
