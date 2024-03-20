@@ -13,7 +13,7 @@
  * - `0` = Prevent auto-updater from updating itself.
  */
 class definition_enhancement_updater {
-    static version := 1.1
+    static version := 1.2
     static frequency := 4
     static notify := 1
     static update_updater := 1
@@ -29,44 +29,51 @@ class definition_enhancement_updater {
     }
     
     ; Internal stuff
-    static rgx := Map(
-        'lsp_ver',  'lsp-(\d+)\.(\d+)\.(\d+)',
-        'thqby',    'thqby.*?lsp'
-    )
-    
     static file_list := Map(
         'dahk', Map(
             'url'     , 'https://raw.githubusercontent.com/GroggyOtter/ahkv2_definition_rewrite/main/ahk2.d.ahk',
             'filename', 'ahk2.d.ahk',
-            'filepath', '',
             'filetype', 'AHK File (*.ahk)',
-            'rgx_ver' , ';@region v(\d+)\.(\d+)'
+            'rgx_ver' , ';@region v(\d+)\.(\d+)',
+            'def_ver' , ';@region v1.0'
         ),
         'json', Map(
             'url'     , 'https://raw.githubusercontent.com/GroggyOtter/ahkv2_definition_rewrite/main/ahk2.json',
             'filename', 'ahk2.json',
-            'filepath', '',
             'filetype', 'JSON File (*.json)',
-            'rgx_ver' , '"version": +(\d+)\.(\d+)'
+            'rgx_ver' , '"version": +(\d+)\.(\d+)',
+            'def_ver' , '"version": 1.0'
         ),
         'updater', Map(
             'url'     , 'https://raw.githubusercontent.com/GroggyOtter/ahkv2_definition_rewrite/main/definition_updater.v2.ahk',
             'filename', 'definition_updater.v2.ahk',
-            'filepath', '',
-            'filetype', 'AHK File (*.ahk)',
-            'rgx_ver' , 'static version := (\d+)\.(\d+)'
+            'rgx_ver' , 'static version := (\d+)\.(\d+)',
+            'def_ver' , 'static version := 1.0'
         )
     )
     
     static running := 0
+    static addon_path := ''
+    static announcement := ''
     
     static __New() => this.start()
     
     static run() {
         if !this.running
             return
+        this.announcement := ''
+        
+        this.get_addon_location()
         for id, data in this.file_list
-            this.check_for_update(data)
+            if (id = 'updater') && !this.update_updater
+                continue
+            else noitfy_str .= this.check_for_update(id, data)
+        
+        if this.announcement
+            TrayTip(this.announcement
+                'Reload VS Code for changes to take effect.'
+                ,'AHKv2 Enhanced Definition Updated')
+        
         this.run_again()
     }
     
@@ -77,25 +84,56 @@ class definition_enhancement_updater {
         else SetTimer(callback, Abs(this.frequency * 3600000) * -1)
     }
     
-    static check_for_update(data) {
-        if !data['filepath'] || !FileExist(data['filepath'])
-            if !this.get_file_location(data)
-                return
+    static check_for_update(id, data) {
+        if (id = 'updater')
+            file_path := A_ScriptFullPath
+        else file_path := this.addon_path '\syntaxes\' data['filename']
         
-        install_ver := this.get_version(FileRead(data['filepath']), data['rgx_ver'])
         online_txt := this.get_http(data['url'])
-        online_ver := this.get_version(online_txt, data['rgx_ver'])
+        ,online_ver := this.get_version(online_txt, data)
         
-        for index, install_num in install_ver
+        for index, install_num in this.get_version(FileRead(file_path), data)
             if (index = 0)
                 continue
             else if (online_ver[index] > install_num) {
-                FileDelete(data['filepath'])
-                FileAppend(online_txt, data['filepath'], 'UTF-8')
-                this.notify_user(data['filename'] ' has been updated.'
-                    '`nVS Code needs to be reloaded for changes to take effect.')
+                FileDelete(file_path)
+                FileAppend(online_txt, file_path, 'UTF-8')
+                this.announcement .= data['filename'] ' has been updated.`n'
                 break
             }
+    }
+    
+    static get_addon_location() {
+        addon_path_default := A_AppData '\..\..\.vscode\extensions'
+        thqby_rgx := 'thqby\.vscode-autohotkey2-lsp-(\d+)\.(\d+)\.(\d+)'
+        while !DirExist(this.addon_path) {
+            check_again:
+            path := ''
+            v_list := []
+            loop files addon_path_default '\*', 'D'
+                if RegExMatch(A_LoopFileFullPath, thqby_rgx)
+                    v_list.Push(A_LoopFileFullPath)
+            
+            if (v_list.Length = 0) {
+                addon_path_default := ask_user()
+                if (addon_path_default = '')
+                    TrayTip('Addon location is not set.`nUpdate check is being skipped.')
+                    ,Exit()
+                goto('check_again')
+            } else if (v_list.Length = 1)
+                path := v_list[1]
+            else 
+                for value in v_list
+                    path := this.get_most_recent(value, path, thqby_rgx)
+            
+            this.addon_path := path
+        }
+        return
+        
+        ask_user() => DirSelect('*' A_AppData,
+                , 'Select the "extensions" folder in the ".vscode" main folder. '
+                '`nThe default install folder is normally:'
+                '`nC:\Users\<USERNAME>\.vscode\extensions')
     }
     
     static notify_user(msg) {
@@ -103,75 +141,28 @@ class definition_enhancement_updater {
             TrayTip(msg)
     }
     
-    static get_version(txt, rgx) {
-        if RegExMatch(txt, rgx, &match)
-            return match
-        return [0, 0, 0]
+    static get_version(txt, data) {
+        if !RegExMatch(txt, data['rgx_ver'], &match)
+            RegExMatch(data['def_ver'], data['rgx_ver'], &match)
+        return match
     }  
     
-    static get_file_location(data) {
-        path := ''
-        if (data['filename'] = 'definition_updater.v2.ahk') {
-            if !this.update_updater
-                return 0
-            default_path := A_ScriptDir
-            loop files default_path '\*', 'FR'
-                if RegExMatch(A_LoopFileFullPath, this.rgx['thqby'])
-                    path := A_LoopFileFullPath
-            until (path)
-        }    
-        else {
-            default_path := A_AppData '\..\..\.vscode\extensions'
-            v_list := []
-            loop files default_path '\*', 'D'
-                if RegExMatch(A_LoopFileFullPath, this.rgx['thqby'])
-                    v_list.Push(A_LoopFileFullPath)
-            
-            if (v_list.Length = 0)
-                path := ''
-            else if (v_list.Length = 1)
-                path := v_list[1]
-            else 
-                for value in v_list
-                    path := this.get_most_recent(value, path, this.rgx['lsp_ver'])
-            path .= '\syntaxes\' data['filename']
-        }
-        
-        if !FileExist(path)
-            path := ask_user(data)
-        if (path = '')
-            return 0
-        data['filepath'] := path
-        return 1
-        
-        ask_user(data) {
-            path := ''
-            filename := data['filename']
-            loop
-                path := FileSelect(0x1, default_path '\' filename, 'Please select the file: ' filename, data['filetype'])
-            until (InStr(path, filename) && FileExist(path)) || (path = '')
-            if (path = '')
-                this.error(filename ' could not be found.')
-            else SplitPath(path, , &last)
-            return path
-        }
-    }
-    
     static get_most_recent(v1, v2, version_rgx) {
-        if !v1
-            return v2
-        if !v2
-            return v1
-        if !RegExMatch(v1, version_rgx, &match1)
-            return v2
-        if !RegExMatch(v2, version_rgx, &match2)
-            return v1
-        for index, value in match1
-            if (match2[index] > value)
+        switch {
+            case !v1: return v2
+            case !v2: return v1
+            case !RegExMatch(v1, version_rgx, &match1): return v2
+            case !RegExMatch(v2, version_rgx, &match2): return v1
+            default: 
+                for key, value in match1
+                    if (key = 0)
+                        continue
+                    else if (match2[key] > value)
+                        return v2
+                    else if (match2[key] < value)
+                        return v1
                 return v1
-            else if (match2[index] < value)
-                return v2
-        return v1
+        }
     }
     
     static error(msg) {
