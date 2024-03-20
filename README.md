@@ -72,10 +72,10 @@ Properties and methods of the updater:
 ### Change Log
 
 ##### 2024-03-20
-Did a full rewrite of the updater to fix some bugs and an error in the code.
-Reduced code size and streamlined things. (The code looks way better now.)
+- Did a full rewrite of the updater to fix some bugs and an error in the code.
+- Reduced code size and streamlined things. (The code looks way better now.)
 
-Pushed a second update because I got confirmation that encoding must be UTF-8-RAW as the file expected to be without BOM.
+- Pushed a second update because I got confirmation that encoding must be UTF-8-RAW as the file expected to be without BOM.
 
 ##### 2024-03-19
 - Fixed some bugs in the auto-updater.
