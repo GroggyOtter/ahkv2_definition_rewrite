@@ -13,7 +13,7 @@
  * - `0` = Prevent auto-updater from updating itself.
  */
 class definition_enhancement_updater {
-    static version := 1.2
+    static version := 1.3
     static frequency := 4
     static notify := 1
     static update_updater := 1
@@ -71,8 +71,7 @@ class definition_enhancement_updater {
         
         if this.announcement
             TrayTip(this.announcement
-                'Reload VS Code for changes to take effect.'
-                ,'AHKv2 Enhanced Definition Updated')
+                'Reload VS Code for changes to take effect.')
         
         this.run_again()
     }
@@ -97,7 +96,7 @@ class definition_enhancement_updater {
                 continue
             else if (online_ver[index] > install_num) {
                 FileDelete(file_path)
-                FileAppend(online_txt, file_path, 'UTF-8')
+                FileAppend(online_txt, file_path, 'UTF-8-RAW')
                 this.announcement .= data['filename'] ' has been updated.`n'
                 break
             }
