@@ -39,26 +39,34 @@ There are pictures and videos for almost every topic covered.
 ***
 
 ### Installation
-It's super easy.  
-First, optionally backup the old files, just in case you want to revert.  
-If you delete them and want them back, [get them from THQBY's GitHub](https://github.com/thqby/vscode-autohotkey2-lsp/tree/main/syntaxes).  
+There are multiple ways to update the definition file.  
 
-Next, download these two files and install them in the addon's `syntaxes` folder.  
+To do it automatically, use the provided Auto Updater file.  
+`definition_updater.v2.ahk`
+
+To do it manually, start by optionally backing up your original files.  
+`ahk2.d.ahk` and `ahk2.json`  
+If you delete them and decide you want to go back to the standard definition files, they can always be redownloaded from [THQBY's GitHub for the addon](https://github.com/thqby/vscode-autohotkey2-lsp/tree/main/syntaxes).  
+
+Now download the `ahk2.d.ahk` and `ahk2.json` files.  
+Copy them into the addon's `syntaxes` folder.  
 The default location for this folder is:
 
-    C:\Users\<YourUsername>\.vscode\extensions\thqby.vscode-autohotkey2-lsp-<SomeVersionNumber>\syntaxes
+    C:\Users\<YourUsername>\.vscode\extensions\thqby.vscode-autohotkey2-lsp-<HighestVersionNumber>\syntaxes
 
-Alternatively, you can open the two files in the syntaxes folder and copy + paste the updated code directly over the old code.
-
+Alternatively, you can always copy and paste the text from here to the installed ones on your computer.  
 ***
 
 ### Auto-Updater
 I've written an auto-updater so you don't have to keep updating the file.  
 It can be ran as its own script or can be copy and pasted into a main script, as the updater is self-contained and will auto-run.
+
 Properties and methods of the updater:
+
 - Methods:
   - `Start()` = Starts/enables update checking  
   - `Stop()` = Stops/disables update checking  
+
 - Properties:
   - `frequency` = How often to check for updates, in hours.  
     This can be a fractional number: 1.5 = 1 hr 30 min  
