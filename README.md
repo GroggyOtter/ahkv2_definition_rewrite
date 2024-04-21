@@ -9,6 +9,7 @@ This is a full update for the definition file `ahk2.d.ahk` and the directive/flo
 - [Installation](#installation)
 - [Auto-Updater](#Auto-Updater)
 - [Change Log](#change-log)
+  - [2024-04-20](#2024-03-20)
   - [2024-03-20](#2024-03-20)
   - [2024-03-19](#2024-03-19)
   - [2024-03-18 (Big Update)](#2024-03-18-big-update)
@@ -78,6 +79,9 @@ Properties and methods of the updater:
 ***
 
 ### Change Log
+
+##### 2024-03-20
+- Updated JSON file to include new version.
 
 ##### 2024-03-20
 - Did a full rewrite of the updater to fix some bugs and an error in the code.
