@@ -1,13 +1,12 @@
 # Full Definition Upgrade and Enhancement for THQBY's AutoHotkey v2 VS Code Support Addon
-
-***
-
 This is a full update for the definition file `ahk2.d.ahk` and the directive/flow control/variable file `ahk2.json` for [THQBY's AHKv2 support addon](https://github.com/thqby/vscode-autohotkey2-lsp).
-
+***
+Announcement 29Jun2024: The v1.3 update is coming soon and will be a big one.
+***
 ### Contents
 - [Why use this update](#why-use-this-update)
 - [Installation](#installation)
-- [Auto-Updater](#Auto-Updater)
+- [Auto-Updater](#auto-updater)
 - [Change Log](#change-log)
   - [2024-04-20](#2024-03-20)
   - [2024-03-20](#2024-03-20)
