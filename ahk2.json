@@ -1,5 +1,5 @@
 {
-	"version": 1.2,
+	"version": 1.3,
 	"directives": [
 		{
 			"body": "#ClipboardTimeout ${0:milliseconds}",
@@ -84,7 +84,7 @@
 			"description": "Removes the script's tray icon."
 		},
 		{
-			"body": "#Requires AutoHotkey${1| , >, >=, <, <=, =|}v2${2|.0,.1|}${3|.13,.12,.11,.10,.9,.8,.7,.6,.5,.4,.3,.2,.1,.0|}${4|+,+ 32-bit,+ 64-bit|}",
+			"body": "#Requires AutoHotkey${1| , >, >=, <, <=, =|}v2${2|.0,.1|}${3|.17,.16,.15,.14,.13,.12,.11,.10,.9,.8,.7,.6,.5,.4,.3,.2,.1,.0|}${4|+,+ 32-bit,+ 64-bit|}",
 			"description": "The required version of AutoHotkey for the script to run otherwise script s and quits.",
 			"prefix": "#Requires"
 		},
@@ -361,7 +361,7 @@
 			"prefix": "static"
 		},
 		{
-			"body": "throw(${1|Error,MemoryError,OSError,TargetError,TimeoutError,TypeError,UnsetError,MemberError,PropertyError,MethodError,UnsetItemError,ValueError,IndexError,ZeroDivisionError|}('${2:Message}', ${3:A_ThisFunc}, ${4:ExtraInfo}))",
+			"body": "throw ${1|Error,MemoryError,OSError,TargetError,TimeoutError,TypeError,UnsetError,MemberError,PropertyError,MethodError,UnsetItemError,ValueError,IndexError,ZeroDivisionError|}('${2:Message}', ${3:A_ThisFunc}, ${4:ExtraInfo})",
 			"description": "Indicates that an error has occurred. The signal can be caught by a try-catch statement.",
 			"prefix": "throw"
 		},
