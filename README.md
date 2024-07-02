@@ -8,6 +8,7 @@ Announcement 29Jun2024: The v1.3 update is coming soon and will be a big one.
 - [Installation](#installation)
 - [Auto-Updater](#auto-updater)
 - [Change Log](#change-log)
+  - [2024-07-02 (Big Update)](#2024-07-02-big-update)
   - [2024-04-20](#2024-03-20)
   - [2024-03-20](#2024-03-20)
   - [2024-03-19](#2024-03-19)
@@ -78,6 +79,29 @@ Properties and methods of the updater:
 ***
 
 ### Change Log
+
+##### 2024-07-02 (Big Update)
+- All functions and method parameters that have pre-defined values will now show up in the autocomplete when you're working with that parameter.
+- Added __Class property to the Any object.
+    - This is a property that everything in AHK has and is what Type() references.
+- Added new syntax to the definition file that defines set and get values.  
+- Enumerator information is now provided in the form of "generics" in the definition file.
+- Updated the IL_Add() method to be more accurate and fixed the optional parameter (thanks to visua0)
+- Updated all optional parameters with a value of :=[] to be :=Array to indicate an empty array.
+    - Pretty much did it just so I didn't have to see the VS Code error message.
+- ComObjQuery() 3rd param is set to optional (thanks to TJGinis)
+    - This prompted me to fix multiple parameter problems where a parameter was marked required when it should be optional.
+- Recreated all "color tables"
+- Color chart tables now include hex values next to each name.
+- Added "Default" to Button control options.
+- Fixed a TON of random backticks that were introduced during a mass replace I did a while ago.  
+  This will fix a lot of odd formatting problems you may have seen where random blocks of text are "code blocked" and they shouldn't be.
+- Added the StatusBar methods and Tab methods (I can't figure out how I missed these first time around.)
+- Fixed a TON of different stuff...to the point where I stopped keeping track of them.
+    - You can always look at a version diff if you want see them all.
+- Created MANY more examples.
+    - Almost every Gui method/property has an example now
+- Updated `#Requires` version numbers is ahk2.json file.
 
 ##### 2024-03-20
 - Updated JSON file to include new version.
