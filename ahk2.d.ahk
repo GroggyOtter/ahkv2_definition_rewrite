@@ -1,4 +1,4 @@
-;@region v1.2
+;@region v1.3
 ;@endregion
 
 ;@region classes
@@ -4178,7 +4178,6 @@ class Gui extends Object {
          * Sets the font typeface, size, style, and/or color for the control.  
          * Omitting both parameters sets the control font to the current Gui.SetFont() values.  
          * If Gui.SetFont() has not been set, the system default values are used.
-         * @param {(String)} [Options]  
          * @param {'bold'|'italic'|'strike'|'underline'|'norm'|'C'|'S'|'W'|'Q'} [Options]  
          * Zero or more options separated by spaces.  
          * Styling words are applied in order.  
@@ -13092,7 +13091,6 @@ class Gui extends Object {
      * {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#GroupBox|`GroupBox`} |
      * {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#Hotkey|`Hotkey`} |
      * {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#StatusBar|`StatusBar`} |
-     * @param {(String)} Options  
      * @param {'AlwaysOnTop'|'Border'|'Caption'|'Disabled'|'DPIScale'|'LastFound'|'MaximizeBox'|'MaxSize'|'MinimizeBox'|'MinSize'|'OwnDialogs'|'Owner'|'Parent'|'Resize'|'SysMenu'|'Theme'|'ToolWindow'} Options  
      * Zero or more Gui options, separated by spaces and/or tabs.  
      * For best performance, set all options in 1 call and do so before the window is created.  
