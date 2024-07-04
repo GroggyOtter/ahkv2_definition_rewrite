@@ -3,29 +3,31 @@
  * files used in THQBY's AHK v2 addon for VS Code.  
  * Use the `Start()` and `Stop()` methods to control the auto-updater.  
  * @property {Integer} frequency - Set how often, in hours, to check for an update.  
- * Fractional numbers can be used: `1.5` = 1 hr 30 min  
- * Default is every 4 hours.  
+ * Fractional numbers can be used:  
+ * - `1.5` = 1 hr 30 min  
+ * - `0.1` = 6 min  
+ * Default is `4` hours.  
  * @property {Integer} notify - Controls if TrayTip notifications show up.  
  * - `1` = Enable TrayTip notifications
  * - `0` = Disable TrayTip notifications
- * @property {Integer} update_updater - Enables/disables the auto-updater own auto-updater.
+ * @property {Integer} update_updater - Enables/disables the auto-updater's own auto-updater.
  * - `1` = Allow auto-updater to update itself.
  * - `0` = Prevent auto-updater from updating itself.
  */
 class definition_enhancement_updater {
-    static version := 1.3
+    static version := 1.4
     static frequency := 4
     static notify := 1
     static update_updater := 1
     
-    static start() {
+    static start(*) {
         this.running := 1
         this.run()
     }
     
-    static stop() {
+    static stop(*) {
         this.running := 0
-        this.run_again(1)
+        this.run_again('stop')
     }
     
     ; Internal stuff
@@ -56,18 +58,23 @@ class definition_enhancement_updater {
     static addon_path := ''
     static announcement := ''
     
-    static __New() => this.start()
+    static __New() {
+        m := A_TrayMenu
+        m.Add()
+        m.Add('Force Definition Update', ObjBindMethod(this, 'start'))
+        this.start()
+    }
     
-    static run() {
+    static run(*) {
+        this.announcement := ''
         if !this.running
             return
-        this.announcement := ''
-        
-        this.get_addon_location()
+        if !DirExist(this.addon_path)
+            this.addon_path := this.get_addon_location()
         for id, data in this.file_list
             if (id = 'updater') && !this.update_updater
                 continue
-            else this.check_for_update(id, data)
+            else try this.check_for_update(id, data)
         
         if this.announcement
             TrayTip(this.announcement
@@ -77,10 +84,8 @@ class definition_enhancement_updater {
     }
     
     static run_again(stop:=0) {
-        callback := ObjBindMethod(this, 'run')
-        if stop
-            SetTimer(callback, 0)
-        else SetTimer(callback, Abs(this.frequency * 3600000) * -1)
+        period := stop ? 0 : Abs(this.frequency * 3600000) * -1
+        SetTimer(ObjBindMethod(this, 'run'), period)
     }
     
     static check_for_update(id, data) {
@@ -88,10 +93,10 @@ class definition_enhancement_updater {
             file_path := A_ScriptFullPath
         else file_path := this.addon_path '\syntaxes\' data['filename']
         
+        install_ver := this.get_version(FileRead(file_path), data)
         online_txt := this.get_http(data['url'])
-        ,online_ver := this.get_version(online_txt, data)
-        
-        for index, install_num in this.get_version(FileRead(file_path), data)
+        online_ver := this.get_version(online_txt, data)
+        for index, install_num in install_ver {
             if (index = 0)
                 continue
             else if (online_ver[index] > install_num) {
@@ -100,6 +105,7 @@ class definition_enhancement_updater {
                 this.announcement .= data['filename'] ' has been updated.`n'
                 break
             }
+        }
     }
     
     static get_addon_location() {
@@ -124,10 +130,8 @@ class definition_enhancement_updater {
             else 
                 for value in v_list
                     path := this.get_most_recent(value, path, thqby_rgx)
-            
-            this.addon_path := path
+            return path
         }
-        return
         
         ask_user() => DirSelect('*' A_AppData,
                 , 'Select the "extensions" folder in the ".vscode" main folder. '
@@ -135,10 +139,7 @@ class definition_enhancement_updater {
                 '`nC:\Users\<USERNAME>\.vscode\extensions')
     }
     
-    static notify_user(msg) {
-        if this.notify
-            TrayTip(msg)
-    }
+    static notify_user(msg) => this.notify ? TrayTip(msg) : 0
     
     static get_version(txt, data) {
         if !RegExMatch(txt, data['rgx_ver'], &match)
