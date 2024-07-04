@@ -1,4 +1,4 @@
-;@region v1.3
+;@region v1.4
 ;@endregion
 
 ;@region classes
@@ -1214,7 +1214,7 @@ class ClipboardAll extends Buffer {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/ClipboardAll.htm|`ClipboardAll()`}  
      * Save the contents of the clipboard to a clipboard buffer object or create a clipboard object using the provided binary data.  
      * This object can be assigned to {@link https://www.autohotkey.com/docs/v2/lib/A_Clipboard.htm|A_Clipboard} to restore the data to the clipboard.
-     * @param {(Object | Integer)} [Data]  
+     * @param {(Object|Integer)} [Data]  
      * A memory address or a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm|buffer-like} object (any object with a {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Ptr|Ptr} and {@link https://www.autohotkey.com/docs/v2/lib/Buffer.htm#Size|Size} property).  
      * The data must be in a {@link https://www.autohotkey.com/docs/v2/lib/ClipboardAll.htm#Remarks|specific format}, so typically it originates from a previous call to {@link https://www.autohotkey.com/docs/v2/lib/ClipboardAll.htm|ClipboardAll()}.  
      * Omitting this parameter and the `Size` parameter will retrieve the contents of the clipboard.  
@@ -4063,7 +4063,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control.  
-         * @param {'AltSubmit'|'Background'|'BackgroundTrans'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'AltSubmit'|'Background'|'BackgroundTrans'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Common Styles and Options**
@@ -4178,7 +4178,7 @@ class Gui extends Object {
          * Sets the font typeface, size, style, and/or color for the control.  
          * Omitting both parameters sets the control font to the current Gui.SetFont() values.  
          * If Gui.SetFont() has not been set, the system default values are used.
-         * @param {'bold'|'italic'|'strike'|'underline'|'norm'|'C'|'S'|'W'|'Q'} [Options]  
+         * @param {String|'bold'|'italic'|'strike'|'underline'|'norm'|'C'|'S'|'W'|'Q'} [Options]  
          * Zero or more options separated by spaces.  
          * Styling words are applied in order.  
          * `norm italic` would disable all options and apply only italics  
@@ -4377,7 +4377,7 @@ class Gui extends Object {
          * Sets various options and styles for the appearance and behavior of the control  
          * Sets various options to change a control's appearance or behaviors.  
 
-         * @param {'Default'|'Border'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Default'|'Border'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Control Specific Options**  
@@ -4561,7 +4561,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Check3'|'Checked'|'CheckedGray'|'Background'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Check3'|'Checked'|'CheckedGray'|'Background'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Control Specific Options**  
@@ -4665,7 +4665,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Positioning and Sizing of Controls**  
@@ -4839,7 +4839,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Choose'|'ChooseNone'|'Range'|'1'|'2'|'Colors'|'Background'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Choose'|'ChooseNone'|'Range'|'1'|'2'|'Colors'|'Background'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Control Specific Options**  
@@ -5079,7 +5079,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Limit'|'Lowercase'|'Multi'|'Number'|'Password'|'ReadOnly'|'T'|'Uppercase'|'WantCtrlA'|'WantReturn'|'WantTab'|'AltSubmit'|'Background'|'BackgroundTrans'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Limit'|'Lowercase'|'Multi'|'Number'|'Password'|'ReadOnly'|'T'|'Uppercase'|'WantCtrlA'|'WantReturn'|'WantTab'|'AltSubmit'|'Background'|'BackgroundTrans'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Control Specific Options**  
@@ -5264,7 +5264,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Background'|'BackgroundTrans'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Background'|'BackgroundTrans'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Positioning and Sizing of Controls**  
@@ -5357,7 +5357,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Events|`OnEvent()`}  
          * Assigns a {@link https://www.autohotkey.com/docs/v2/Functions.htm|Function}, {@link https://www.autohotkey.com/docs/v2/Concepts.htm#methods|Method}, {@link https://www.autohotkey.com/docs/v2/lib/Object.htm|Object}, or {@link https://www.autohotkey.com/docs/v2/misc/Functor.htm#BoundFunc|BoundFunc} to be called when the specified event is raised.  
-         * @param {'Change'|'ContextMenu'|} EventName  
+         * @param {'Change'|'ContextMenu'} EventName  
          * One of the following event(s). Expected callback format is included.  
          * - {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm#Change|`Change`} - The Edit's value changes.  
          * 
@@ -5415,7 +5415,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Limit'|'Background'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Limit'|'Background'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Control Specific Options**  
@@ -5594,7 +5594,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Right'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Right'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Positioning and Sizing of Controls**  
@@ -5990,7 +5990,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Choose'|'Uppercase'|'Lowercase'|'Sort'|'Limit'|'Simple'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Choose'|'Uppercase'|'Lowercase'|'Sort'|'Limit'|'Simple'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Control Specific Options**  
@@ -6322,7 +6322,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Choose'|'Uppercase'|'Lowercase'|'Sort'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Choose'|'Uppercase'|'Lowercase'|'Sort'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Control Specific Options**  
@@ -6607,7 +6607,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Choose'|'Uppercase'|'Lowercase'|'Sort'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Choose'|'Uppercase'|'Lowercase'|'Sort'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Control Specific Options**  
@@ -6898,7 +6898,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Choose'|'Multi'|'ReadOnly'|'Sort'|'T'|'0x100'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Choose'|'Multi'|'ReadOnly'|'Sort'|'T'|'0x100'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Control Specific Options**  
@@ -7184,7 +7184,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Choose'|'Buttons'|'Left'|'Right'|'Bottom'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Choose'|'Buttons'|'Left'|'Right'|'Bottom'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Control Specific Options**  
@@ -7303,7 +7303,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/ListView.htm#Add|`Add()`}  
          * Adds a new row to the bottom of the list.  
-         * @param {'Check'|'Col'|'Focus'|'Icon'|'Select'} [Options]  
+         * @param {String|'Check'|'Col'|'Focus'|'Icon'|'Select'} [Options]  
          * If omitted, no options are used.  
          * - `Check`  
          *   Shows a checkmark in the row.  
@@ -7691,7 +7691,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Checked'|'Count'|'Grid'|'Hdr'|'Multi'|'NoSortHdr'|'NoSort'|'ReadOnly'|'Sort'|'SortDesc'|'WantF2'|'Icon'|'Tile'|'IconSmall'|'List'|'Report'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Checked'|'Count'|'Grid'|'Hdr'|'Multi'|'NoSortHdr'|'NoSort'|'ReadOnly'|'Sort'|'SortDesc'|'WantF2'|'Icon'|'Tile'|'IconSmall'|'List'|'Report'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Control Specific Options**  
@@ -7880,7 +7880,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Multi'|'Range'|'4'|'8'|'16'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Multi'|'Range'|'4'|'8'|'16'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Control Specific Options**  
@@ -8077,7 +8077,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Icon'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Icon'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Control Specific Options**  
@@ -8264,7 +8264,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Icon'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Icon'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Control Specific Options**  
@@ -8426,7 +8426,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Range'|'Smooth'|'Vertical'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Range'|'Smooth'|'Vertical'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Control Specific Options**  
@@ -8642,7 +8642,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Checked'|'Group'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Left'|'Right'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Checked'|'Group'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Left'|'Right'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Control Specific Options**  
@@ -8831,7 +8831,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Background'|'Border'|'Disabled'|'Hidden'|'Redraw'|'Section'|'Theme'|'v'} Options  
+         * @param {String|'Background'|'Border'|'Disabled'|'Hidden'|'Redraw'|'Section'|'Theme'|'v'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Common Styles and Options**
@@ -9003,7 +9003,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Background'|'Border'|'Disabled'|'Hidden'|'Redraw'|'Section'|'Theme'|'v'} Options  
+         * @param {String|'Background'|'Border'|'Disabled'|'Hidden'|'Redraw'|'Section'|'Theme'|'v'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Common Styles and Options**
@@ -9318,7 +9318,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Background'|'BackgroundTrans'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Left'|'Right'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Background'|'BackgroundTrans'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Left'|'Right'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Positioning and Sizing of Controls**  
@@ -9529,7 +9529,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Buttons'|'Checked'|'ImageList'|'Lines'|'ReadOnly'|'WantF2'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Buttons'|'Checked'|'ImageList'|'Lines'|'ReadOnly'|'WantF2'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Control Specific Options**  
@@ -9670,7 +9670,7 @@ class Gui extends Object {
         /**
          * @description {@link https://www.autohotkey.com/docs/v2/lib/GuiControl.htm#Opt|`Opt()`}  
          * Sets various options and styles for the appearance and behavior of the control  
-         * @param {'Horz'|'Left'|'Right'|'Range'|'Wrap'|'-16'|'0x80'|'Increments'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+         * @param {String|'Horz'|'Left'|'Right'|'Range'|'Wrap'|'-16'|'0x80'|'Increments'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
          * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
          * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
          * **Control Specific Options**  
@@ -9986,7 +9986,7 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm|`GUI`}  
      * Creates a new Gui object.  
-     * @param {'AlwaysOnTop'|'Border'|'Caption'|'Disabled'|'DPIScale'|'LastFound'|'MaximizeBox'|'MaxSize'|'MinimizeBox'|'MinSize'|'OwnDialogs'|'Owner'|'Parent'|'Resize'|'SysMenu'|'Theme'|'ToolWindow'} [Options]  
+     * @param {String|'AlwaysOnTop'|'Border'|'Caption'|'Disabled'|'DPIScale'|'LastFound'|'MaximizeBox'|'MaxSize'|'MinimizeBox'|'MinSize'|'OwnDialogs'|'Owner'|'Parent'|'Resize'|'SysMenu'|'Theme'|'ToolWindow'} [Options]  
      * Zero or more Gui options, separated by spaces and/or tabs.  
      * For best performance, set all options in 1 call and do so before the window is created.  
      * Use `-` before an option to remove it or `+` to add it. Using no sign is the same as using `+`.  
@@ -10064,7 +10064,7 @@ class Gui extends Object {
      * {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#Text|`Text`}   |
      * {@link https://www.autohotkey.com/docs/v2/lib/TreeView.htm|`TreeView`}   |
      * {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#UpDown|`UpDown`}  
-     * @param {'AltSubmit'|'Background'|'BackgroundTrans'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'AltSubmit'|'Background'|'BackgroundTrans'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Positioning and Sizing of Controls**  
@@ -10171,7 +10171,7 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddActiveX()`}  
      * Adds an ActiveX control to the Gui.  
      * When the control is created, the ActiveX object can be retrieved via GuiCtrl.Value
-     * @param {'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Positioning and Sizing of Controls**  
@@ -10241,7 +10241,7 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddButton()`}  
      * Adds a push button, which can be pressed to trigger an action.  
-     * @param {'Default'|'Border'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Default'|'Border'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Control Specific Options**  
@@ -10320,7 +10320,7 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddCheckbox()`}  
      * Adds a Checkbox control that can be checked or unchecked to represent a toggleable state.  
      * If the {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#CheckBox|Check3} option is used, checkboxes have a 3rd "graycheck" state.
-     * @param {'Check3'|'Checked'|'CheckedGray'|'Background'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Check3'|'Checked'|'CheckedGray'|'Background'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Control Specific Options**  
@@ -10431,7 +10431,7 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddCustom()`}  
      * Add a custom control that is not directly supported by AutoHotkey.  
      * To do so, include the word "Class" followed by the {@link https://learn.microsoft.com/en-us/windows/win32/controls/individual-control-info|Win32 class name} of the desired control in the options field.  
-     * @param {'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Positioning and Sizing of Controls**  
@@ -10498,7 +10498,7 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddDateTime()`}  
      * Adds a DateTime control to the Gui that provides a single-lined control for the date and/or time along with a calander dropdown button.  
-     * @param {'Choose'|'ChooseNone'|'Range'|'1'|'2'|'Colors'|'Background'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Choose'|'ChooseNone'|'Range'|'1'|'2'|'Colors'|'Background'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Control Specific Options**  
@@ -10614,7 +10614,7 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddEdit()`}  
      * Adds a control that provides a free-form text area for the user to type in.  
-     * @param {'Limit'|'Lowercase'|'Multi'|'Number'|'Password'|'ReadOnly'|'T'|'Uppercase'|'WantCtrlA'|'WantReturn'|'WantTab'|'AltSubmit'|'Background'|'BackgroundTrans'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Limit'|'Lowercase'|'Multi'|'Number'|'Password'|'ReadOnly'|'T'|'Uppercase'|'WantCtrlA'|'WantReturn'|'WantTab'|'AltSubmit'|'Background'|'BackgroundTrans'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Control Specific Options**  
@@ -10745,7 +10745,7 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddGroupBox()`}  
      * Adds a rectangular border/frame control that can be labeled and used to group related controls.  
-     * @param {'Background'|'BackgroundTrans'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Background'|'BackgroundTrans'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'Left'|'r'|'Redraw'|'Right'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Positioning and Sizing of Controls**  
@@ -10849,7 +10849,7 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddHotkey()`}  
      * Adds a Hotkey control to the Gui that looks similar to an edit control but will detect and show what keys are being pressed.  
-     * @param {'Limit'|'Background'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Limit'|'Background'|'Border'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'Wrap'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Control Specific Options**  
@@ -10959,7 +10959,7 @@ class Gui extends Object {
      * Adds a text control that accepts hyperlinks.  
      * Use {@link https://www.w3schools.com/tags/tag_a.asp|HTML anchor tags `<a></a>`} to create a hyperlink.  
      * `<a href="http://google.com">Google Search</a>`
-     * @param {'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Right'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Right'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Positioning and Sizing of Controls**  
@@ -11057,7 +11057,7 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddListView()`}  
      * Adds an elaborate control that handles  
      * rows and columns of information in a grid. Similar to Windows Explorer in Detail View mode.  
-     * @param {'Checked'|'Count'|'Grid'|'Hdr'|'Multi'|'NoSortHdr'|'NoSort'|'ReadOnly'|'Sort'|'SortDesc'|'WantF2'|'Icon'|'Tile'|'IconSmall'|'List'|'Report'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Checked'|'Count'|'Grid'|'Hdr'|'Multi'|'NoSortHdr'|'NoSort'|'ReadOnly'|'Sort'|'SortDesc'|'WantF2'|'Icon'|'Tile'|'IconSmall'|'List'|'Report'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Control Specific Options**  
@@ -11186,7 +11186,7 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddMonthCal()`}  
      * Adds a tall and wide control that displays all the days of the month in calendar format.  
      * The user may select a single date or a range of dates.  
-     * @param {'Multi'|'Range'|'4'|'8'|'16'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Multi'|'Range'|'4'|'8'|'16'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Control Specific Options**  
@@ -11293,7 +11293,7 @@ class Gui extends Object {
      * Adds control containing an image.  
      * Types: `ICO`,`CUR`,`ANI`,`EXE`,`DLL`,`CPL`,`SCR`,`PNG`,`TIF`,`Exif`,`WMF`,`EMF`, Other Icon Resources  
      * GDIPlus (AltSubmit): `GIF`,`JPG`,`BMP`,`ICO`,`CUR`,`ANI`,`PNG`,`TIF`,`Exif`,`WMF`,`EMF`  
-     * @param {'Icon'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Icon'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Control Specific Options**  
@@ -11393,7 +11393,7 @@ class Gui extends Object {
      * Adds control containing an image.  
      * Types: `ICO`,`CUR`,`ANI`,`EXE`,`DLL`,`CPL`,`SCR`,`PNG`,`TIF`,`Exif`,`WMF`,`EMF`, Other Icon Resources  
      * GDIPlus (AltSubmit): `GIF`,`JPG`,`BMP`,`ICO`,`CUR`,`ANI`,`PNG`,`TIF`,`Exif`,`WMF`,`EMF`  
-     * @param {'Icon'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Icon'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Control Specific Options**  
@@ -11492,7 +11492,7 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddProgress()`}  
      * Adds a dual-color bar that can progress from empty to full to indicate a filled range.  
      * Commonly used to show the completion status of an operation.  
-     * @param {'Range'|'Smooth'|'Vertical'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Range'|'Smooth'|'Vertical'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Control Specific Options**  
@@ -11606,7 +11606,7 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddRadio()`}  
      * Adds a small button that can be clicked.  
      * Radio buttons are added in groups and only 1 button in the group can be active at a time.  
-     * @param {'Checked'|'Group'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Left'|'Right'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Checked'|'Group'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Left'|'Right'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Control Specific Options**  
@@ -11712,7 +11712,7 @@ class Gui extends Object {
      * Adds a sliding bar (Trackbar) the user can move  
      * along a vertical or horizontal track to adjust values between a defined range.  
      * Window's volume bar is an example of a commonly used slider.
-     * @param {'Buddy1'|'Buddy2'|'Invert'|'NoTicks'|'Line'|'Page'|'Range'|'Thick'|'TickInterval'|'ToolTip'|'ToolTipLeft'|'ToolTipRight'|'ToolTipTop'|'ToolTipBottom'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Left'|'Right'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Buddy1'|'Buddy2'|'Invert'|'NoTicks'|'Line'|'Page'|'Range'|'Thick'|'TickInterval'|'ToolTip'|'ToolTipLeft'|'ToolTipRight'|'ToolTipTop'|'ToolTipBottom'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Left'|'Right'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * **Control Specific Options**  
      * - `Buddy1#` and `Buddy2#`: Specify controls to automatically reposition  
@@ -11843,7 +11843,7 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddStatusBar()`}  
      * Adds a row of text and/or icons to the bottom  
      * of a window and typically reports conditions and information about the GUI.
-     * @param {'Background'|'Border'|'Disabled'|'Hidden'|'Redraw'|'Section'|'Theme'|'v'} Options  
+     * @param {String|'Background'|'Border'|'Disabled'|'Hidden'|'Redraw'|'Section'|'Theme'|'v'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Common Styles and Options**
@@ -11919,7 +11919,7 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddText()`}  
      * Adds a control for text that the user cannot edit.  
      * Often used to label other controls or give details/instructions.  
-     * @param {'Background'|'BackgroundTrans'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Left'|'Right'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Background'|'BackgroundTrans'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Center'|'Left'|'Right'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Positioning and Sizing of Controls**  
@@ -12023,7 +12023,7 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddTreeView()`}  
      * Adds a TreeView display to represent a hierarchy of items by indenting child items beneath their parents.  
      * Window's Explorer drive/folder tree is a common example of a TreeView.  
-     * @param {'Buttons'|'Checked'|'ImageList'|'Lines'|'ReadOnly'|'WantF2'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Buttons'|'Checked'|'ImageList'|'Lines'|'ReadOnly'|'WantF2'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Control Specific Options**  
@@ -12136,7 +12136,7 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddUpDown()`}  
      * Attaches a clickable up and down arrow button to the previous control (called a `Buddy`) that can increase or decrease the Buddy's value.  
-     * @param {'Horz'|'Left'|'Right'|'Range'|'Wrap'|'-16'|'0x80'|'Increments'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Horz'|'Left'|'Right'|'Range'|'Wrap'|'-16'|'0x80'|'Increments'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Control Specific Options**  
@@ -12233,7 +12233,7 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddComboBox()`}  
      * Adds a control that is combination of a DropDownList and an edit control.  
-     * @param {'Choose'|'Uppercase'|'Lowercase'|'Sort'|'Limit'|'Simple'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Choose'|'Uppercase'|'Lowercase'|'Sort'|'Limit'|'Simple'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Control Specific Options**  
@@ -12339,7 +12339,7 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddDDL()`}  
      * Adds a single-lined control that, when clicked, produces a list of items to select from.  
-     * @param {'Choose'|'Uppercase'|'Lowercase'|'Sort'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Choose'|'Uppercase'|'Lowercase'|'Sort'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Control Specific Options**  
@@ -12443,7 +12443,7 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddDropDownList()`}  
      * Adds a single-line control that, when clicked, drops down a list of choices to select from.  
-     * @param {'Choose'|'Uppercase'|'Lowercase'|'Sort'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Choose'|'Uppercase'|'Lowercase'|'Sort'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Control Specific Options**  
@@ -12548,7 +12548,7 @@ class Gui extends Object {
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Add|`AddListBox()`}  
      * Adds a box control containing a list of choices that can be chosen from.  
      * This is the same list type used with {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#ComboBox|Simple ComboBoxes}.  
-     * @param {'Choose'|'Multi'|'ReadOnly'|'Sort'|'T'|'0x100'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Choose'|'Multi'|'ReadOnly'|'Sort'|'T'|'0x100'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Control Specific Options**  
@@ -12680,7 +12680,7 @@ class Gui extends Object {
      * Adds a large control used to contain organize other controls.  
      * Each tab acts as it's own "page" of individual controls.  
      * Avoid using AddTab() and AddTab2() as they're only kept for backward compatability.  
-     * @param {'Choose'|'Buttons'|'Left'|'Right'|'Bottom'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
+     * @param {String|'Choose'|'Buttons'|'Left'|'Right'|'Bottom'|'AltSubmit'|'Background'|'c'|'cBlack'|'cSilver'|'cGray'|'cWhite'|'cMaroon'|'cRed'|'cPurple'|'cFuchsia'|'cGreen'|'cLime'|'cOlive'|'cYellow'|'cNavy'|'cBlue'|'cTeal'|'cAqua'|'Wrap'|'Border'|'Disabled'|'h'|'hp'|'Hidden'|'HScroll'|'r'|'Redraw'|'Section'|'Tabstop'|'Theme'|'v'|'VScroll'|'w'|'wp'|'x'|'xp'|'xs'|'y'|'yp'|'ys'} Options  
      * Any {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#OtherOptions|general} or {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm|control-specific} options, separated by spaces/tabs.  
      * All control events are handled using the {@link https://www.autohotkey.com/docs/v2/lib/GuiOnEvent.htm|`OnEvent()` method}.  
      * **Control Specific Options**  
@@ -13091,7 +13091,7 @@ class Gui extends Object {
      * {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#GroupBox|`GroupBox`} |
      * {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#Hotkey|`Hotkey`} |
      * {@link https://www.autohotkey.com/docs/v2/lib/GuiControls.htm#StatusBar|`StatusBar`} |
-     * @param {'AlwaysOnTop'|'Border'|'Caption'|'Disabled'|'DPIScale'|'LastFound'|'MaximizeBox'|'MaxSize'|'MinimizeBox'|'MinSize'|'OwnDialogs'|'Owner'|'Parent'|'Resize'|'SysMenu'|'Theme'|'ToolWindow'} Options  
+     * @param {String|'AlwaysOnTop'|'Border'|'Caption'|'Disabled'|'DPIScale'|'LastFound'|'MaximizeBox'|'MaxSize'|'MinimizeBox'|'MinSize'|'OwnDialogs'|'Owner'|'Parent'|'Resize'|'SysMenu'|'Theme'|'ToolWindow'} Options  
      * Zero or more Gui options, separated by spaces and/or tabs.  
      * For best performance, set all options in 1 call and do so before the window is created.  
      * Use `-` before an option to remove it or `+` to add it. Using no sign is the same as using `+`.  
@@ -13152,7 +13152,7 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#SetFont|`SetFont()`}  
      * Sets the typeface, size, style, and text color for subsequently created controls.  
-     * @param {'bold'|'italic'|'strike'|'underline'|'norm'|'c'|'s'|'w'|'q'} [Options]  
+     * @param {String|'bold'|'italic'|'strike'|'underline'|'norm'|'c'|'s'|'w'|'q'} [Options]  
      * Zero or more options separated by spaces.  
      * Styling words are applied in order.  
      * `norm italic` would disable all options and apply only italics  
@@ -13205,7 +13205,7 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#Show|`Show()`}  
      * Makes the window visible, unminimizes it (if necessary) and {@link https://www.autohotkey.com/docs/v2/lib/WinActivate.htm|activates} it.  
-     * @param {'x'|'y'|'w'|'h'|'Center'|'xCenter'|'yCenter'|'AutoSize'|'Maximize'|'Minimize'|'Restore'|'NoActivate'|'NA'|'Hide'} [Options]  
+     * @param {String|'x'|'y'|'w'|'h'|'Center'|'xCenter'|'yCenter'|'AutoSize'|'Maximize'|'Minimize'|'Restore'|'NoActivate'|'NA'|'Hide'} [Options]  
      * Zero or more option sseparated by spaces.  
      * If X, Y, W, and H are omitted, the Gui will retrain its previous size and position otherwise it will be auto-centered.  
      * Only decimal numbers should be used. Hex is invalid.  
@@ -13308,7 +13308,7 @@ class Gui extends Object {
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Gui.htm#__New|`__New()`}  
      * Constructs a new Gui instance.  
-     * @param {'AlwaysOnTop'|'Border'|'Caption'|'Disabled'|'DPIScale'|'LastFound'|'MaximizeBox'|'MaxSize'|'MinimizeBox'|'MinSize'|'OwnDialogs'|'Owner'|'Parent'|'Resize'|'SysMenu'|'Theme'|'ToolWindow'} [Options]  
+     * @param {String|'AlwaysOnTop'|'Border'|'Caption'|'Disabled'|'DPIScale'|'LastFound'|'MaximizeBox'|'MaxSize'|'MinimizeBox'|'MinSize'|'OwnDialogs'|'Owner'|'Parent'|'Resize'|'SysMenu'|'Theme'|'ToolWindow'} [Options]  
      * Zero or more Gui options, separated by spaces and/or tabs.  
      * For best performance, set all options in 1 call and do so before the window is created.  
      * Use `-` before an option to remove it or `+` to add it. Using no sign is the same as using `+`.  
@@ -13607,7 +13607,7 @@ class InputHook extends Object {
     
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm|`Call()`}  
-     * @param {'B'|'C'|'E'|'I'|'L'|'M'|'T'|'V'|'*'} [Options]  
+     * @param {String|'B'|'C'|'E'|'I'|'L'|'M'|'T'|'V'|'*'} [Options]  
      * A string of zero or more options, with optional spaces between:  
      * - `B` = Sets the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#BackspaceIsUndo|BackspaceIsUndo} property to `0`. Backspace is ignored. 
      * - `C` = Sets the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#CaseSensitive|CaseSensitive} property to `1`, making the MatchList parameter case-sensitive.  
@@ -13654,7 +13654,7 @@ class InputHook extends Object {
      * Use braces to enclose key names/virtual codes/scan codes.  
      * Literal braces should be enclosed in braces: `{{}` `{}}`
      * Use `{All}` to apply `KeyOptions` to all VK and all SC.  
-     * @param {'E'|'I'|'N'|'S'|'V'} KeyOptions  
+     * @param {String|'E'|'I'|'N'|'S'|'V'} KeyOptions  
      * One or more of the following, separated by spaces/tabs.  
      * Use `-` to remove options and `+` to add them:  
      * - `E` = Set End key to terminate InputHook.  
@@ -13962,7 +13962,7 @@ class Menu extends Object {
      * Expected callback format:  
      * 
      *     menu_callback(ItemName, ItemPos, MenuRef)
-     * @param {'P'|'Radio'|'Right'|'Break'|'BarBreak'} [Options]  
+     * @param {String|'P'|'Radio'|'Right'|'Break'|'BarBreak'} [Options]  
      * Zero or more of the following options, separated by spaces/tabs.  
      * If omitted, no options are used.  
      * - `P#`  
@@ -14071,7 +14071,7 @@ class Menu extends Object {
      * Expected callback format:  
      * 
      *     menu_callback(ItemName, ItemPos, MenuRef)
-     * @param {'P'|'Radio'|'Right'|'Break'|'BarBreak'} [Options]  
+     * @param {String|'P'|'Radio'|'Right'|'Break'|'BarBreak'} [Options]  
      * Zero or more of the following options, separated by spaces/tabs.  
      * If omitted, no options are used.  
      * - `P#`  
@@ -14232,7 +14232,7 @@ class MenuBar extends Menu {
      * Expected callback format:  
      * 
      *     menu_callback(ItemName, ItemPos, MenuRef)
-     * @param {'P'|'Radio'|'Right'|'Break'|'BarBreak'} [Options]  
+     * @param {String|'P'|'Radio'|'Right'|'Break'|'BarBreak'} [Options]  
      * Zero or more of the following options, separated by spaces/tabs.  
      * If omitted, no options are used.  
      * - `P#`  
@@ -14268,7 +14268,7 @@ class MenuBar extends Menu {
      * Expected callback format:  
      * 
      *     menu_callback(ItemName, ItemPos, MenuRef)
-     * @param {'P'|'Radio'|'Right'|'Break'|'BarBreak'} [Options]  
+     * @param {String|'P'|'Radio'|'Right'|'Break'|'BarBreak'} [Options]  
      * Zero or more of the following options, separated by spaces/tabs.  
      * If omitted, no options are used.  
      * - `P#`  
@@ -14816,7 +14816,7 @@ ATan(Num) => Number
  * @description {@link https://www.autohotkey.com/docs/v2/lib/BlockInput.htm|`BlockInput()`}  
  * Disables or enables the user's  
  * ability to interact with the computer via keyboard and mouse.  
- * @param {'On'|'Off'|'Send'|'Mouse'|'Default'|'MouseMove'|'MouseMoveOff'|Integer} [Mode]  
+ * @param {'On'|'Off'|'Send'|'Mouse'|'Default'|'MouseMove'|'MouseMoveOff'} [Mode]  
  * A mode from one of the the 3 groups.  
  * Each of the 3 groups operate independently of each other.  
  * - OnOff Group:
@@ -15344,7 +15344,7 @@ ComObjQuery(ComObj, IIDorSID [,IID_of_SID]) => ComObject | ComValue
  * @param {(Object)} ComObj  
  * A wrapper object containing a COM object or typed value.  
  * zSee {@link https://www.autohotkey.com/docs/v2/lib/ComValue.htm|ComValue} for details.
- * @param {'Name'|'IID'|'Class'|'CLSID'|Integer} [InfoType]
+ * @param {'Name'|'IID'|'Class'|'CLSID'} [InfoType]
  * - Omitted = Integer {@link https://www.autohotkey.com/docs/v2/lib/ComObjType.htm#vt|variant type code} indicating COM type is retrieved.  
  * - `Name` = Name of the object's default interface.  
  * - `IID` = Object's default interface GUID.  
@@ -15561,8 +15561,8 @@ ControlChooseString(Str, Control [,WinTitle:='', WinText:='', NoWinTitle:='', No
  * `WU`/`WheelUp`, `WD`/`WheelDown`, `WR`/`WheelRight`, `WL`/`WheelLeft`  
  * @param {(Integer)} [Count]  
  * Number of times to click. Defaults to 1.  
- * @param {'NA'|'D'|'U'|'Pos'|'x y '} [Options]  
- * 
+ * @param {String|'NA'|'D'|'U'|'Pos'|'x y '} [Options]  
+ * One or more of the following options, separated by spaces:  
  * - Omitted: Down and then up events are sent to the middle of the control.  
  * - `NA`: May improve {@link https://www.autohotkey.com/docs/v2/lib/ControlClick.htm#Reliability|reliability}.  
  * - `D`: Set mouse button state to Down (hold).  
@@ -16848,7 +16848,7 @@ Cos(Num) => Float
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Critical.htm|`Critical()`}  
  * Enables or disables {@link https://www.autohotkey.com/docs/v2/misc/Threads.htm|current thread} the ability to interrupt other threads.
- * @param {'On'|'Off'|Integer} [Setting]  
+ * @param {'On'|'Off'} [Setting]  
  * New critical setting:  
  * - `On` = Current thread is set to critical.  
  *   It cannot be interrupted by another thread.
@@ -18186,7 +18186,7 @@ FileMove(SourcePattern, DestPattern [,Overwrite:=0]) => EmptyString
  * - `stderr` Error stream:  
  * 
  *       FileOpen('**', 'w')
- * @param {'r'|'w'|'a'|'rw'|'h'|'rwd'|'`n'|'`r'|String|Integer} Flags  
+ * @param {'r'|'w'|'a'|'rw'|'h'|'rwd'|'`n'|'`r'} Flags  
  * This can be either a string of flag characters or an integer sum of the desired options options.  
  * Integer can be decimal or hexidecimal.  
  * ### {@link https://www.autohotkey.com/docs/v2/lib/FileOpen.htm#Access_modes|Access modes (mutually-exclusive)}
@@ -18319,7 +18319,7 @@ FileRecycleEmpty([DriveLetter:=unset]) => EmptyString
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/FileSelect.htm|`FileSelect()`}  
  * Displays a standard dialog that allows the user to open or save file(s).  
- * @param {'D'|'M'|'S'|Integer} [Options]  
+ * @param {String|'D'|'M'|'S'} [Options]  
  * Zero or more options separted by spaces/tabs.  
  * - Empty string = No options.  
  * - `D` = Directory Select.  
@@ -18378,9 +18378,10 @@ FileSelect([Options:=0, RootOrFilename:=A_WorkingDir, Title:=unset, Filter:=''])
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/FileSetAttrib.htm|`FileSetAttrib()`}  
  * Changes the attributes of one or more files or folders. Wildcards are supported.  
- * @param {'R'|'A'|'S'|'H'|'N'|'O'|'T'} Attributes  
+ * @param {String|'R'|'A'|'S'|'H'|'N'|'O'|'T'} Attributes  
  * Alter an attribute.  
  * Add `+`, remove `-`, or toggle `^` an attribute.  
+ * Multiple attributes can be be adjusted at once: `+RAH`
  * - `R` = READONLY
  * - `A` = ARCHIVE
  * - `S` = SYSTEM
@@ -18392,7 +18393,7 @@ FileSelect([Options:=0, RootOrFilename:=A_WorkingDir, Title:=unset, Filter:=''])
  * Name of the file to get the version of.  
  * If a full path isn't used, FilePattern is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
  * FilePattern can be omitted if inside a {@link https://www.autohotkey.com/docs/v2/lib/LoopRead.htm|Loop-Files} that's using an {@link https://www.autohotkey.com/docs/v2/lib/LoopRead.htm#OutputFile|OutputFile}.  
- * @param {'F'|'D'|'R'} [Mode]
+ * @param {String|'F'|'D'|'R'} [Mode]
  * - `D` = Directory. Includes folders  
  * - `F` = Files. Include files  
  * - `R` = Recurse. Recurses into all sub-folders  
@@ -18407,7 +18408,15 @@ FileSelect([Options:=0, RootOrFilename:=A_WorkingDir, Title:=unset, Filter:=''])
  * {@link https://www.autohotkey.com/docs/v2/lib/FileGetSize.htm|FileGetSize()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/FileGetVersion.htm|FileGetVersion()} |
  * {@link https://www.autohotkey.com/docs/v2/lib/LoopFiles.htm|Loop-Files}
- * @example <caption></caption>  
+ * @example <caption>Different examples.</caption>  
+ * ; Add ReadOnly and Hidden to all files in C:\MyFiles\
+ * FileSetAttrib('+RH', 'C:\MyFiles\*.*', 'DF')
+ * ; Toggle the hidden state of the C:\MyFiles directory
+ * FileSetAttrib('^H', 'C:\MyFiles')
+ * ; Remove ReadOnly and Hidden then add Archive to New Text File.txt
+ * FileSetAttrib('-RH+A', 'C:\New Text File.txt')
+ * ; Add Archive to all ini files in C:
+ * FileSetAttrib('+A', 'C:\*.ini', 'R')
  */
 FileSetAttrib(Attributes [,FilePattern:=unset, Mode:='F']) => EmptyString
 
@@ -18425,7 +18434,7 @@ FileSetAttrib(Attributes [,FilePattern:=unset, Mode:='F']) => EmptyString
  * - `M` or Omitted = Modification time
  * - `C` = Creation time
  * - `A` = Last Access time
- * @param {'F'|'D'|'R'} [Mode]
+ * @param {String|'F'|'D'|'R'} [Mode]
  * - `D` = Directory. Includes folders  
  * - `F` = Files. Include files  
  * - `R` = Recurse. Recurses into all sub-folders  
@@ -18634,7 +18643,7 @@ Format(FormStr [,Values*]) => String
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/FormatTime.htm|`FormatTime()`}  
  * Transforms a YYYYMMDDHH24MISS timestamp into the specified date/time format.  
- * @param {'R'|'L'|'D'|'T'|String} [DateTimeStamp]  
+ * @param {String|'R'|'L'|'D'|'T'} [DateTimeStamp]  
  * All or the leading part of a {@link https://www.autohotkey.com/docs/v2/lib/FileSetTime.htm#YYYYMMDD|YYYYMMDDHH24MISS} date time stamp.  
  * If omitted, A_Now (the current DTS) is used.  
  * Any of the following options can be included after the date timestamp:
@@ -18661,7 +18670,7 @@ Format(FormStr [,Values*]) => String
  *   - `12` = Combination of options `4` and `8`.  
  *   - `0x40000000` = For string translation, use system ANSI code page instead of locale's code page.
  *   - `0x80000000` = Ignore all user overrides in effect for the system's default time format.  
- * @param {'d'|'dd'|'ddd'|'dddd'|'M'|'MM'|'MMM'|'MMMM'|'y'|'yy'|'yyyy'|'gg'|'h'|'hh'|'H'|'HH'|'m'|'mm'|'s'|'ss'|'t'|'tt'|'Time'|'ShortDate'|'LongDate'|'YearMonth'|'YDay'|'YDay0'|'WDay'|'YWeek'|String} [Form]  
+ * @param {String|'d'|'dd'|'ddd'|'dddd'|'M'|'MM'|'MMM'|'MMMM'|'y'|'yy'|'yyyy'|'gg'|'h'|'hh'|'H'|'HH'|'m'|'mm'|'s'|'ss'|'t'|'tt'|'Time'|'ShortDate'|'LongDate'|'YearMonth'|'YDay'|'YDay0'|'WDay'|'YWeek'|String} [Form]  
  * The desired format.  
  * If omitted, `Time` + `LongDate` are used.  
  * To put literal text in the string without having it formatted should be enclosed in single quotes.  
@@ -18736,7 +18745,7 @@ FormatTime([DateTimeStamp:=A_Now, Form:=unset]) => String
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/GetKeyName.htm|`GetKeyName()`}  
  * Retrieves the name/text of a key.  
- * @param {(String)} KeyName  
+ * @param {'Alt'|'AppsKey'|'Backspace'|'Browser_Back'|'Browser_Favorites'|'Browser_Forward'|'Browser_Home'|'Browser_Refresh'|'Browser_Search'|'Browser_Stop'|'CapsLock'|'Control'|'CtrlBreak'|'Delete'|'Down'|'End'|'Enter'|'Escape'|'F1'|'F10'|'F11'|'F12'|'F13'|'F14'|'F15'|'F16'|'F17'|'F18'|'F19'|'F2'|'F20'|'F21'|'F22'|'F23'|'F24'|'F3'|'F4'|'F5'|'F6'|'F7'|'F8'|'F9'|'Help'|'Home'|'Insert'|'LAlt'|'Launch_App1'|'Launch_App2'|'Launch_Mail'|'Launch_Media'|'LButton'|'LControl'|'Left'|'LShift'|'LWin'|'MButton'|'Media_Next'|'Media_Play_Pause'|'Media_Prev'|'Media_Stop'|'NumLock'|'Numpad0'|'Numpad1'|'Numpad2'|'Numpad3'|'Numpad4'|'Numpad5'|'Numpad6'|'Numpad7'|'Numpad8'|'Numpad9'|'NumpadAdd'|'NumpadClear'|'NumpadDel'|'NumpadDiv'|'NumpadDot'|'NumpadDown'|'NumpadEnd'|'NumpadEnter'|'NumpadHome'|'NumpadIns'|'NumpadLeft'|'NumpadMult'|'NumpadPgDn'|'NumpadPgUp'|'NumpadRight'|'NumpadSub'|'NumpadUp'|'Pause'|'PgDn'|'PgUp'|'PrintScreen'|'RAlt'|'RButton'|'RControl'|'Right'|'RShift'|'RWin	'|'SC###'|'ScrollLock'|'Shift'|'Sleep'|'Space'|'Tab'|'Up'|'VK##'|'Volume_Down'|'Volume_Mute'|'Volume_Up'|'WheelDown'|'WheelLeft'|'WheelRight'|'WheelUp'|'XButton1'|'XButton2'} KeyName  
  * A key from the {@link https://www.autohotkey.com/docs/v2/KeyList.htm|Key List}.  
  * Or a virtual key `vkFF`, scan code `sc01D`, or combination of the two in hexadecimal format.  
  * 
@@ -18755,7 +18764,7 @@ GetKeyName(KeyName) => String
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/GetKeyVK.htm|`GetKeyVK()`}  
  * Retrieves the virtual key code of a key.  
- * @param {(String)} KeyName  
+ * @param {'Alt'|'AppsKey'|'Backspace'|'Browser_Back'|'Browser_Favorites'|'Browser_Forward'|'Browser_Home'|'Browser_Refresh'|'Browser_Search'|'Browser_Stop'|'CapsLock'|'Control'|'CtrlBreak'|'Delete'|'Down'|'End'|'Enter'|'Escape'|'F1'|'F10'|'F11'|'F12'|'F13'|'F14'|'F15'|'F16'|'F17'|'F18'|'F19'|'F2'|'F20'|'F21'|'F22'|'F23'|'F24'|'F3'|'F4'|'F5'|'F6'|'F7'|'F8'|'F9'|'Help'|'Home'|'Insert'|'LAlt'|'Launch_App1'|'Launch_App2'|'Launch_Mail'|'Launch_Media'|'LButton'|'LControl'|'Left'|'LShift'|'LWin'|'MButton'|'Media_Next'|'Media_Play_Pause'|'Media_Prev'|'Media_Stop'|'NumLock'|'Numpad0'|'Numpad1'|'Numpad2'|'Numpad3'|'Numpad4'|'Numpad5'|'Numpad6'|'Numpad7'|'Numpad8'|'Numpad9'|'NumpadAdd'|'NumpadClear'|'NumpadDel'|'NumpadDiv'|'NumpadDot'|'NumpadDown'|'NumpadEnd'|'NumpadEnter'|'NumpadHome'|'NumpadIns'|'NumpadLeft'|'NumpadMult'|'NumpadPgDn'|'NumpadPgUp'|'NumpadRight'|'NumpadSub'|'NumpadUp'|'Pause'|'PgDn'|'PgUp'|'PrintScreen'|'RAlt'|'RButton'|'RControl'|'Right'|'RShift'|'RWin	'|'SC###'|'ScrollLock'|'Shift'|'Sleep'|'Space'|'Tab'|'Up'|'VK##'|'Volume_Down'|'Volume_Mute'|'Volume_Up'|'WheelDown'|'WheelLeft'|'WheelRight'|'WheelUp'|'XButton1'|'XButton2'} KeyName  
  * A key from the {@link https://www.autohotkey.com/docs/v2/KeyList.htm|Key List}.  
  * Or a virtual key `vkFF`, scan code `sc01D`, or combination of the two in hexadecimal format.  
  * 
@@ -18778,7 +18787,7 @@ GetKeyVK(KeyName) => Integer
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/GetKeySC.htm|`GetKeySC()`}  
  * Retrieves the scan code of a key.  
- * @param {(String)} KeyName  
+ * @param {'Alt'|'AppsKey'|'Backspace'|'Browser_Back'|'Browser_Favorites'|'Browser_Forward'|'Browser_Home'|'Browser_Refresh'|'Browser_Search'|'Browser_Stop'|'CapsLock'|'Control'|'CtrlBreak'|'Delete'|'Down'|'End'|'Enter'|'Escape'|'F1'|'F10'|'F11'|'F12'|'F13'|'F14'|'F15'|'F16'|'F17'|'F18'|'F19'|'F2'|'F20'|'F21'|'F22'|'F23'|'F24'|'F3'|'F4'|'F5'|'F6'|'F7'|'F8'|'F9'|'Help'|'Home'|'Insert'|'LAlt'|'Launch_App1'|'Launch_App2'|'Launch_Mail'|'Launch_Media'|'LButton'|'LControl'|'Left'|'LShift'|'LWin'|'MButton'|'Media_Next'|'Media_Play_Pause'|'Media_Prev'|'Media_Stop'|'NumLock'|'Numpad0'|'Numpad1'|'Numpad2'|'Numpad3'|'Numpad4'|'Numpad5'|'Numpad6'|'Numpad7'|'Numpad8'|'Numpad9'|'NumpadAdd'|'NumpadClear'|'NumpadDel'|'NumpadDiv'|'NumpadDot'|'NumpadDown'|'NumpadEnd'|'NumpadEnter'|'NumpadHome'|'NumpadIns'|'NumpadLeft'|'NumpadMult'|'NumpadPgDn'|'NumpadPgUp'|'NumpadRight'|'NumpadSub'|'NumpadUp'|'Pause'|'PgDn'|'PgUp'|'PrintScreen'|'RAlt'|'RButton'|'RControl'|'Right'|'RShift'|'RWin	'|'SC###'|'ScrollLock'|'Shift'|'Sleep'|'Space'|'Tab'|'Up'|'VK##'|'Volume_Down'|'Volume_Mute'|'Volume_Up'|'WheelDown'|'WheelLeft'|'WheelRight'|'WheelUp'|'XButton1'|'XButton2'} KeyName  
  * A key from the {@link https://www.autohotkey.com/docs/v2/KeyList.htm|Key List}.  
  * Or a virtual key `vkFF`, scan code `sc01D`, or combination of the two in hexadecimal format.  
  * 
@@ -18801,7 +18810,7 @@ GetKeySC(KeyName) => Integer
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm|`GetKeyState()`}  
  * Gets the physical, logical, or toggle status of keyboard keys, mouse buttons, and controller joys.  
- * @param {(String)} KeyName  
+ * @param {'Alt'|'AppsKey'|'Backspace'|'Browser_Back'|'Browser_Favorites'|'Browser_Forward'|'Browser_Home'|'Browser_Refresh'|'Browser_Search'|'Browser_Stop'|'CapsLock'|'Control'|'CtrlBreak'|'Delete'|'Down'|'End'|'Enter'|'Escape'|'F1'|'F10'|'F11'|'F12'|'F13'|'F14'|'F15'|'F16'|'F17'|'F18'|'F19'|'F2'|'F20'|'F21'|'F22'|'F23'|'F24'|'F3'|'F4'|'F5'|'F6'|'F7'|'F8'|'F9'|'Help'|'Home'|'Insert'|'LAlt'|'Launch_App1'|'Launch_App2'|'Launch_Mail'|'Launch_Media'|'LButton'|'LControl'|'Left'|'LShift'|'LWin'|'MButton'|'Media_Next'|'Media_Play_Pause'|'Media_Prev'|'Media_Stop'|'NumLock'|'Numpad0'|'Numpad1'|'Numpad2'|'Numpad3'|'Numpad4'|'Numpad5'|'Numpad6'|'Numpad7'|'Numpad8'|'Numpad9'|'NumpadAdd'|'NumpadClear'|'NumpadDel'|'NumpadDiv'|'NumpadDot'|'NumpadDown'|'NumpadEnd'|'NumpadEnter'|'NumpadHome'|'NumpadIns'|'NumpadLeft'|'NumpadMult'|'NumpadPgDn'|'NumpadPgUp'|'NumpadRight'|'NumpadSub'|'NumpadUp'|'Pause'|'PgDn'|'PgUp'|'PrintScreen'|'RAlt'|'RButton'|'RControl'|'Right'|'RShift'|'RWin	'|'SC###'|'ScrollLock'|'Shift'|'Sleep'|'Space'|'Tab'|'Up'|'VK##'|'Volume_Down'|'Volume_Mute'|'Volume_Up'|'WheelDown'|'WheelLeft'|'WheelRight'|'WheelUp'|'XButton1'|'XButton2'} KeyName  
  * A key from the {@link https://www.autohotkey.com/docs/v2/KeyList.htm|Key List}.  
  * Or a virtual key `vkFF`, scan code `sc01D`, or combination of the two in hexadecimal format.  
  * @param {'P'|'T'} [Mode]  
@@ -19256,7 +19265,7 @@ HotIfWinNotExist([WinTitle:='', WinText:='']) => EmptyString
  * - `Up` = Hotkey activates on release instead of on press.  
  *   The word `Up` must be 
  *   This option hooks the hotkey  
- * @param {(FuncObj|String)} [Action]  
+ * @param {'On'|'Off'|'Toggle'|'AltTab'|'ShiftAltTab'|'AltTabMenu'|'AltTabeAndMenu'|'AltTabMenuDismiss'} [Action]  
  * The action to take on hotkey activation.  
  * This can be a callback, the name of a {@link https://www.autohotkey.com/docs/v2/Hotkeys.htm|`Hotkey::`}, or one of the following keywords:  
  * - `On` = The hotkey becomes enabled  
@@ -19272,7 +19281,7 @@ HotIfWinNotExist([WinTitle:='', WinText:='']) => EmptyString
  *   - `AltTabMenuDismiss` = Close the AltTab menu  
  * 
  * `Action` can be omitted when only updating a hotkey's `Options` parameter.  
- * @param {'On'|'Off'|'B'|'P'|'S'|'T'|'I'} [Options]  
+ * @param {String|'On'|'Off'|'B'|'P'|'S'|'T'|'I'} [Options]  
  * Zero or more of the following options. Space separators are optional.  
  * - `On` = Enable hotkey
  * - `Off` =  Disable hotkey
@@ -19313,7 +19322,7 @@ Hotkey(KeyName [,Action, Options]) => EmptyString
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|`Hotstring()`}  
  * Creates, modifies, enables, or disables a hotstring.  
  * The case used to type the hotstring (UPPERCASE, lowercase, Title Case) carries over to the auto-replce text.
- * @param {'*'|'?'|'B'|'C'|'K'|'O'|'P'|'S'|'SI'|'SE'|'SP'|'T'|'R'|'X'|'Z'} Option  
+ * @param {String|'*'|'?'|'B'|'C'|'K'|'O'|'P'|'S'|'SI'|'SE'|'SP'|'T'|'R'|'X'|'Z'} Option  
  * - Hotstring = An activation string and options using the {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm|`::Hotstring`} format.  
  *   This creates (or updates an already existing) hotstring.  
  *   Options should be placed between the double colons `::` and are listed below in the `NewOptions` section  
@@ -19529,7 +19538,7 @@ IL_Destroy(ImageListID) => Integer
  * X coordinate of the right edge of the area to search
  * @param {(Integer)} Y2  
  * Y coordinate of the bottom edge of the area to search
- * @param {'Icon'|'*'|'*Trans'|'*W'|'*H'} ImageFile  
+ * @param {String|'Icon'|'*'|'*Trans'|'*W'|'*H'} ImageFile  
  * Options followed by an image file name or path to an image file.  
  * If a full path isn't used, ImageFile is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
  * Supported formats: .ANI .BMP .CUR .EMF .Exif .GIF .ICO .JPG .PNG .TIF .WMF .EXE .DLL .CPL .SCR and other icon resources  
@@ -19676,7 +19685,7 @@ IniWrite(Value, FileLocation, Section, Key) => String
  * @param {(String)} [Title]  
  * A title to give to the input box GUI.  
  * If omitted, {@link https://www.autohotkey.com/docs/v2/Variables.htm#ScriptName|A_ScriptName} is used.  
- * @param {'X'|'Y'|'W'|'H'|'T'|'Password'} [Options]  
+ * @param {String|'X'|'Y'|'W'|'H'|'T'|'Password'} [Options]  
  * Zero or more of the following options, separated by spaces/tabs  
  * - `X#` `Y#` = Set the X and/or Y coordinates of the input box's upper-left corner, where `#` is a coordinate number.  
  *   If either is omitted, the input box will be centered on that axis.  
@@ -20129,7 +20138,7 @@ KeyHistory([MaxEvents:=unset]) => EmptyString
  * Controller buttons can be used but none of the others controller inputs.  
  * A virtual code such as `vkFF` can be used for {@link https://www.autohotkey.com/docs/v2/KeyList.htm#SpecialKeys|special cases}.  
  * To wait for two or more keys to be released, use KeyWait() consecutively.  
- * @param {'D'|'L'|'T'} [Options]  
+ * @param {String|'D'|'L'|'T'} [Options]  
  * - `D` = Down. Wait for key to be in the down state.  
  * - `L` = Logical. Checks for the logical state of the key, not the physical state.  
  * - `T#` = Timeout. The function stops waiting and returns 0 after `#` seconds have passed.  
@@ -20202,7 +20211,7 @@ ListVars() => EmptyString
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/ListViewGetContent.htm|`ListViewGetContent()`}  
  * Returns a list of items/rows from a ListView.  
- * @param {'Selected'|'Focused'|'Col'|'Count'|'Count Selected'|'Count Focused'|'Count Col'} [Options]  
+ * @param {String|'Selected'|'Focused'|'Col'|'Count'|'Count Selected'|'Count Focused'|'Count Col'} [Options]  
  * Specify what to retrieve.  
  * Include zero or more options separated by spaces/tabs.  
  * - Omit = All text in the ListView is retrieved.  
@@ -20269,7 +20278,7 @@ ListViewGetContent([Options:='', Control:=unset, WinTitle:='', WinText:='', NoWi
  * @param {(String)} Filename  
  * The filename or path of the picture.  
  * If a full path isn't used, Filename is assumed to start in {@link https://www.autohotkey.com/docs/v2/Variables.htm#WorkingDir|A_WorkingDir}.  
- * @param {'W'|'H'|'Icon'|'GDI+'} [Options]  
+ * @param {String|'W'|'H'|'Icon'|'GDI+'} [Options]  
  * Zero or more of the following options, separated by spaces/tabs  
  * - `W#` `H#` = Load picture to specified size, where `#` is number of pixels.  
  *   To resize and maintain aspect ratio, set `W` or `H` to the desired number and set the other to `-1`.  
@@ -20707,7 +20716,7 @@ MouseMove(X, Y [,Speed, Relative]) => EmptyString
  * @param {(String)} [Title]  
  * A title to give the window.  
  * If omitted, {@link https://www.autohotkey.com/docs/v2/Variables.htm#ScriptName|A_ScriptName} is used.  
- * @param {'OK'|'OKCancel'|'AbortRetryIgnore'|'YesNoCancel'|'YesNo'|'RetryCancel'|'CancelTryAgainContinue'|'IconX'|'Icon?'|'Icon!'|'Iconi'|'Default2'|'Default3'|'Default4'} [Options]  
+ * @param {String|'OK'|'OKCancel'|'AbortRetryIgnore'|'YesNoCancel'|'YesNo'|'RetryCancel'|'CancelTryAgainContinue'|'IconX'|'Icon?'|'Icon!'|'Iconi'|'Default2'|'Default3'|'Default4'} [Options]  
  * Zero or more of the following options:  
  * - `Owner#` = Specify a window to make {@link https://www.autohotkey.com/docs/v2/lib/MsgBox.htm#Owner|owner} of the message box, where `#` is the {@link https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id|window handle (HWND)} of the owner.  
  * - `T#` = Timeout. Max time the message box can remain open before closing, where `#` is the number of seconds.  
@@ -22372,7 +22381,7 @@ RunWait(Target [,WorkingDir:=A_WorkingDir, LaunchOpt:='', &OutputPID]) => Intege
  * Transmits keystrokes to the system.  
  * Send is an alias for {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendInputDetail|SendInput()} by default.  
  * It can be changed to {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendEvent|SendEvent()} or {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendPlayDetail|SendPlay()} by using {@link https://www.autohotkey.com/docs/v2/lib/SendMode.htm|SendMode()}.  
- * @param {(String)} Keys  
+ * @param {String|'{Raw}'|'{Text}'|'{Blind}'|'{!}'|'{#}'|'{+}'|'{^}'|'{{}'|'{}}'|'{Alt}'|'{AppsKey}'|'{Backspace}'|'{Browser_Back}'|'{Browser_Favorites}'|'{Browser_Forward}'|'{Browser_Home}'|'{Browser_Refresh}'|'{Browser_Search}'|'{Browser_Stop}'|'{CapsLock}'|'{Click}'|'{Control}'|'{Ctrl}'|'{CtrlBreak}'|'{Delete}'|'{Down}'|'{End}'|'{Enter}'|'{Escape}'|'{F1}'|'{F10}'|'{F11}'|'{F12}'|'{F13}'|'{F14}'|'{F15}'|'{F16}'|'{F17}'|'{F18}'|'{F19}'|'{F2}'|'{F20}'|'{F21}'|'{F22}'|'{F23}'|'{F24}'|'{F3}'|'{F4}'|'{F5}'|'{F6}'|'{F7}'|'{F8}'|'{F9}'|'{Help}'|'{Home}'|'{Insert}'|'{LAlt}'|'{Launch_App1}'|'{Launch_App2}'|'{Launch_Mail}'|'{Launch_Media}'|'{LButton}'|'{LControl}'|'{LCtrl}'|'{Left}'|'{LShift}'|'{LWin}'|'{MButton}'|'{Media_Next}'|'{Media_Play_Pause}'|'{Media_Prev}'|'{Media_Stop}'|'{NumLock}'|'{Numpad0}'|'{Numpad1}'|'{Numpad2}'|'{Numpad3}'|'{Numpad4}'|'{Numpad5}'|'{Numpad6}'|'{Numpad7}'|'{Numpad8}'|'{Numpad9}'|'{NumpadAdd}'|'{NumpadClear}'|'{NumpadDel}'|'{NumpadDiv}'|'{NumpadDot}'|'{NumpadDown}'|'{NumpadEnd}'|'{NumpadEnter}'|'{NumpadHome}'|'{NumpadIns}'|'{NumpadLeft}'|'{NumpadMult}'|'{NumpadPgDn}'|'{NumpadPgUp}'|'{NumpadRight}'|'{NumpadSub}'|'{NumpadUp}'|'{Pause}'|'{PgDn}'|'{PgUp}'|'{PrintScreen}'|'{RAlt}'|'{RButton}'|'{RControl}'|'{RCtrl}'|'{Right}'|'{RShift}'|'{RWin	}'|'{SC###}'|'{ScrollLock}'|'{Shift}'|'{Sleep}'|'{Space}'|'{Tab}'|'{U+####}'|'{ASC+####}'|'{Up}'|'{VK##}'|'{VK##SC###}'|'{Volume_Down}'|'{Volume_Mute}'|'{Volume_Up}'|'{WheelDown}'|'{WheelLeft}'|'{WheelRight}'|'{WheelUp}'|'{XButton1}'|'{XButton2}'} SendKeys  
  * Sequence of keys to send.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#keynames|Key names}, literal {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#modifierkeys|modifier symbols}, and literal curly braces must be wrapped in curly braces: `{!} {#} {+} {^} {{} {}}`  
  * Using braces forces the key to be sent by virtual keycode, even if the character does not exist on the current keyboard layout.  
@@ -22392,7 +22401,7 @@ RunWait(Target [,WorkingDir:=A_WorkingDir, LaunchOpt:='', &OutputPID]) => Intege
  *   - `` `r `` = Carriage Return
  *   - `` `t `` = Tab
  *   - `` `s `` = Space
- *   - `` `' ``|`` `" `` = Literal quote (prevents end of string)
+ *   - `` `' ``|`` `" `` = Literal quotes (prevents end of string)
  *  
  * - {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#Special_modes|**Special modes**}: Must be the first part of the string
  *   - [`{Blind}`](https://www.autohotkey.com/docs/v2/lib/Send.htm#Blind)  
@@ -22433,7 +22442,7 @@ RunWait(Target [,WorkingDir:=A_WorkingDir, LaunchOpt:='', &OutputPID]) => Intege
  * {@link https://www.autohotkey.com/docs/v2/misc/EscapeChar.htm|Escape sequences}
  * @example <caption></caption>  
  */
-Send(Keys) => EmptyString
+Send(SendKeys) => EmptyString
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendEvent|`SendEvent()`}  
@@ -22441,7 +22450,7 @@ Send(Keys) => EmptyString
  * While {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendInputDetail|SendInput()} and {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendPlayDetail|SendPlay()} are generally faster and more reliable, SendEvent() has some unique benefits.  
  * There are situations where SendEvent() will work when SendInput()/SendPlay() fail.  
  * SendEvent() can make use of {@link https://www.autohotkey.com/docs/v2/lib/SetKeyDelay.htm|SetKeyDelay()} to define key press duration and delay between keystrokes, eliminating the need to add Sleep() between keystroke events.  
- * @param {(String)} Keys  
+ * @param {String|'{Raw}'|'{Text}'|'{Blind}'|'{!}'|'{#}'|'{+}'|'{^}'|'{{}'|'{}}'|'{Alt}'|'{AppsKey}'|'{Backspace}'|'{Browser_Back}'|'{Browser_Favorites}'|'{Browser_Forward}'|'{Browser_Home}'|'{Browser_Refresh}'|'{Browser_Search}'|'{Browser_Stop}'|'{CapsLock}'|'{Click}'|'{Control}'|'{Ctrl}'|'{CtrlBreak}'|'{Delete}'|'{Down}'|'{End}'|'{Enter}'|'{Escape}'|'{F1}'|'{F10}'|'{F11}'|'{F12}'|'{F13}'|'{F14}'|'{F15}'|'{F16}'|'{F17}'|'{F18}'|'{F19}'|'{F2}'|'{F20}'|'{F21}'|'{F22}'|'{F23}'|'{F24}'|'{F3}'|'{F4}'|'{F5}'|'{F6}'|'{F7}'|'{F8}'|'{F9}'|'{Help}'|'{Home}'|'{Insert}'|'{LAlt}'|'{Launch_App1}'|'{Launch_App2}'|'{Launch_Mail}'|'{Launch_Media}'|'{LButton}'|'{LControl}'|'{LCtrl}'|'{Left}'|'{LShift}'|'{LWin}'|'{MButton}'|'{Media_Next}'|'{Media_Play_Pause}'|'{Media_Prev}'|'{Media_Stop}'|'{NumLock}'|'{Numpad0}'|'{Numpad1}'|'{Numpad2}'|'{Numpad3}'|'{Numpad4}'|'{Numpad5}'|'{Numpad6}'|'{Numpad7}'|'{Numpad8}'|'{Numpad9}'|'{NumpadAdd}'|'{NumpadClear}'|'{NumpadDel}'|'{NumpadDiv}'|'{NumpadDot}'|'{NumpadDown}'|'{NumpadEnd}'|'{NumpadEnter}'|'{NumpadHome}'|'{NumpadIns}'|'{NumpadLeft}'|'{NumpadMult}'|'{NumpadPgDn}'|'{NumpadPgUp}'|'{NumpadRight}'|'{NumpadSub}'|'{NumpadUp}'|'{Pause}'|'{PgDn}'|'{PgUp}'|'{PrintScreen}'|'{RAlt}'|'{RButton}'|'{RControl}'|'{RCtrl}'|'{Right}'|'{RShift}'|'{RWin	}'|'{SC###}'|'{ScrollLock}'|'{Shift}'|'{Sleep}'|'{Space}'|'{Tab}'|'{U+####}'|'{ASC+####}'|'{Up}'|'{VK##}'|'{VK##SC###}'|'{Volume_Down}'|'{Volume_Mute}'|'{Volume_Up}'|'{WheelDown}'|'{WheelLeft}'|'{WheelRight}'|'{WheelUp}'|'{XButton1}'|'{XButton2}'} SendKeys  
  * Sequence of keys to send.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#keynames|Key names}, literal {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#modifierkeys|modifier symbols}, and literal curly braces must be wrapped in curly braces: `{!} {#} {+} {^} {{} {}}`  
  * Using braces forces the key to be sent by virtual keycode, even if the character does not exist on the current keyboard layout.  
@@ -22461,7 +22470,7 @@ Send(Keys) => EmptyString
  *   - `` `r `` = Carriage Return
  *   - `` `t `` = Tab
  *   - `` `s `` = Space
- *   - `` `' ``|`` `" `` = Literal quote (prevents end of string)
+ *   - `` `' ``|`` `" `` = Literal quotes (prevents end of string)
  *  
  * - {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#Special_modes|**Special modes**}: Must be the first part of the string
  *   - [`{Raw}`](https://www.autohotkey.com/docs/v2/lib/Send.htm#Raw)  
@@ -22497,7 +22506,7 @@ Send(Keys) => EmptyString
  * {@link https://www.autohotkey.com/docs/v2/misc/EscapeChar.htm|Escape sequences}
  * @example <caption></caption>  
  */
-SendEvent(Keys) => EmptyString
+SendEvent(SendKeys) => EmptyString
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendInput|`SendInput()`}  
@@ -22505,7 +22514,7 @@ SendEvent(Keys) => EmptyString
  * Unlike {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendEvent|SendEvent()}, SendInput() buffers (stores) keyboard and mouse actions until sending finishes, preventing interruption during the send.  
  * All buffered key strokes and mouse actions are sent after SendInput() finishes.  
  * SendInput() has a limit of roughtly ~5000 characters per send.  
- * @param {(String)} Keys  
+ * @param {String|'{Raw}'|'{Text}'|'{Blind}'|'{!}'|'{#}'|'{+}'|'{^}'|'{{}'|'{}}'|'{Alt}'|'{AppsKey}'|'{Backspace}'|'{Browser_Back}'|'{Browser_Favorites}'|'{Browser_Forward}'|'{Browser_Home}'|'{Browser_Refresh}'|'{Browser_Search}'|'{Browser_Stop}'|'{CapsLock}'|'{Click}'|'{Control}'|'{Ctrl}'|'{CtrlBreak}'|'{Delete}'|'{Down}'|'{End}'|'{Enter}'|'{Escape}'|'{F1}'|'{F10}'|'{F11}'|'{F12}'|'{F13}'|'{F14}'|'{F15}'|'{F16}'|'{F17}'|'{F18}'|'{F19}'|'{F2}'|'{F20}'|'{F21}'|'{F22}'|'{F23}'|'{F24}'|'{F3}'|'{F4}'|'{F5}'|'{F6}'|'{F7}'|'{F8}'|'{F9}'|'{Help}'|'{Home}'|'{Insert}'|'{LAlt}'|'{Launch_App1}'|'{Launch_App2}'|'{Launch_Mail}'|'{Launch_Media}'|'{LButton}'|'{LControl}'|'{LCtrl}'|'{Left}'|'{LShift}'|'{LWin}'|'{MButton}'|'{Media_Next}'|'{Media_Play_Pause}'|'{Media_Prev}'|'{Media_Stop}'|'{NumLock}'|'{Numpad0}'|'{Numpad1}'|'{Numpad2}'|'{Numpad3}'|'{Numpad4}'|'{Numpad5}'|'{Numpad6}'|'{Numpad7}'|'{Numpad8}'|'{Numpad9}'|'{NumpadAdd}'|'{NumpadClear}'|'{NumpadDel}'|'{NumpadDiv}'|'{NumpadDot}'|'{NumpadDown}'|'{NumpadEnd}'|'{NumpadEnter}'|'{NumpadHome}'|'{NumpadIns}'|'{NumpadLeft}'|'{NumpadMult}'|'{NumpadPgDn}'|'{NumpadPgUp}'|'{NumpadRight}'|'{NumpadSub}'|'{NumpadUp}'|'{Pause}'|'{PgDn}'|'{PgUp}'|'{PrintScreen}'|'{RAlt}'|'{RButton}'|'{RControl}'|'{RCtrl}'|'{Right}'|'{RShift}'|'{RWin	}'|'{SC###}'|'{ScrollLock}'|'{Shift}'|'{Sleep}'|'{Space}'|'{Tab}'|'{U+####}'|'{ASC+####}'|'{Up}'|'{VK##}'|'{VK##SC###}'|'{Volume_Down}'|'{Volume_Mute}'|'{Volume_Up}'|'{WheelDown}'|'{WheelLeft}'|'{WheelRight}'|'{WheelUp}'|'{XButton1}'|'{XButton2}'} SendKeys  
  * Sequence of keys to send.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#keynames|Key names}, literal {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#modifierkeys|modifier symbols}, and literal curly braces must be wrapped in curly braces: `{!} {#} {+} {^} {{} {}}`  
  * Using braces forces the key to be sent by virtual keycode, even if the character does not exist on the current keyboard layout.  
@@ -22525,7 +22534,7 @@ SendEvent(Keys) => EmptyString
  *   - `` `r `` = Carriage Return
  *   - `` `t `` = Tab
  *   - `` `s `` = Space
- *   - `` `' ``|`` `" `` = Literal quote (prevents end of string)
+ *   - `` `' ``|`` `" `` = Literal quotes (prevents end of string)
  *  
  * - {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#Special_modes|**Special modes**}: Must be the first part of the string
  *   - [`{Raw}`](https://www.autohotkey.com/docs/v2/lib/Send.htm#Raw)  
@@ -22561,14 +22570,14 @@ SendEvent(Keys) => EmptyString
  * {@link https://www.autohotkey.com/docs/v2/misc/EscapeChar.htm|Escape sequences}
  * @example <caption></caption>  
  */
-SendInput(Keys) => EmptyString
+SendInput(SendKeys) => EmptyString
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendPlay|`SendPlay()`}  
  * Transmits keystrokes to the system in a "play back" manner.  
  * There are times when SendPlay() works where other send types fail, especially in video games.  
  * SendPlay() sends keystroke events (messages) directly to the active window, similar to a low level {@link https://www.autohotkey.com/docs/v2/lib/ControlSend.htm|ControlSend()} for a Window.  
- * @param {(String)} Keys  
+ * @param {String|'{Raw}'|'{Text}'|'{Blind}'|'{!}'|'{#}'|'{+}'|'{^}'|'{{}'|'{}}'|'{Alt}'|'{AppsKey}'|'{Backspace}'|'{Browser_Back}'|'{Browser_Favorites}'|'{Browser_Forward}'|'{Browser_Home}'|'{Browser_Refresh}'|'{Browser_Search}'|'{Browser_Stop}'|'{CapsLock}'|'{Click}'|'{Control}'|'{Ctrl}'|'{CtrlBreak}'|'{Delete}'|'{Down}'|'{End}'|'{Enter}'|'{Escape}'|'{F1}'|'{F10}'|'{F11}'|'{F12}'|'{F13}'|'{F14}'|'{F15}'|'{F16}'|'{F17}'|'{F18}'|'{F19}'|'{F2}'|'{F20}'|'{F21}'|'{F22}'|'{F23}'|'{F24}'|'{F3}'|'{F4}'|'{F5}'|'{F6}'|'{F7}'|'{F8}'|'{F9}'|'{Help}'|'{Home}'|'{Insert}'|'{LAlt}'|'{Launch_App1}'|'{Launch_App2}'|'{Launch_Mail}'|'{Launch_Media}'|'{LButton}'|'{LControl}'|'{LCtrl}'|'{Left}'|'{LShift}'|'{LWin}'|'{MButton}'|'{Media_Next}'|'{Media_Play_Pause}'|'{Media_Prev}'|'{Media_Stop}'|'{NumLock}'|'{Numpad0}'|'{Numpad1}'|'{Numpad2}'|'{Numpad3}'|'{Numpad4}'|'{Numpad5}'|'{Numpad6}'|'{Numpad7}'|'{Numpad8}'|'{Numpad9}'|'{NumpadAdd}'|'{NumpadClear}'|'{NumpadDel}'|'{NumpadDiv}'|'{NumpadDot}'|'{NumpadDown}'|'{NumpadEnd}'|'{NumpadEnter}'|'{NumpadHome}'|'{NumpadIns}'|'{NumpadLeft}'|'{NumpadMult}'|'{NumpadPgDn}'|'{NumpadPgUp}'|'{NumpadRight}'|'{NumpadSub}'|'{NumpadUp}'|'{Pause}'|'{PgDn}'|'{PgUp}'|'{PrintScreen}'|'{RAlt}'|'{RButton}'|'{RControl}'|'{RCtrl}'|'{Right}'|'{RShift}'|'{RWin	}'|'{SC###}'|'{ScrollLock}'|'{Shift}'|'{Sleep}'|'{Space}'|'{Tab}'|'{U+####}'|'{ASC+####}'|'{Up}'|'{VK##}'|'{VK##SC###}'|'{Volume_Down}'|'{Volume_Mute}'|'{Volume_Up}'|'{WheelDown}'|'{WheelLeft}'|'{WheelRight}'|'{WheelUp}'|'{XButton1}'|'{XButton2}'} SendKeys  
  * Sequence of keys to send.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#keynames|Key names}, literal {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#modifierkeys|modifier symbols}, and literal curly braces must be wrapped in curly braces: `{!} {#} {+} {^} {{} {}}`  
  * Using braces forces the key to be sent by virtual keycode, even if the character does not exist on the current keyboard layout.  
@@ -22588,7 +22597,7 @@ SendInput(Keys) => EmptyString
  *   - `` `r `` = Carriage Return
  *   - `` `t `` = Tab
  *   - `` `s `` = Space
- *   - `` `' ``|`` `" `` = Literal quote (prevents end of string)
+ *   - `` `' ``|`` `" `` = Literal quotes (prevents end of string)
  *  
  * - {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#Special_modes|**Special modes**}: Must be the first part of the string
  *   - [`{Raw}`](https://www.autohotkey.com/docs/v2/lib/Send.htm#Raw)  
@@ -22624,13 +22633,13 @@ SendInput(Keys) => EmptyString
  * {@link https://www.autohotkey.com/docs/v2/misc/EscapeChar.htm|Escape sequences}
  * @example <caption></caption>  
  */
-SendPlay(Keys) => EmptyString
+SendPlay(SendKeys) => EmptyString
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendText|`SendText()`}  
  * Transmits keys to the system using [`{Text}` mode](https://www.autohotkey.com/docs/v2/lib/Send.htm#Text).  
  * {@link https://www.autohotkey.com/docs/v2/misc/EscapeChar.htm|Escape Sequences} are respected.  
- * @param {(String)} Keys  
+ * @param {String|'{Raw}'|'{Text}'|'{Blind}'|'{!}'|'{#}'|'{+}'|'{^}'|'{{}'|'{}}'|'{Alt}'|'{AppsKey}'|'{Backspace}'|'{Browser_Back}'|'{Browser_Favorites}'|'{Browser_Forward}'|'{Browser_Home}'|'{Browser_Refresh}'|'{Browser_Search}'|'{Browser_Stop}'|'{CapsLock}'|'{Click}'|'{Control}'|'{Ctrl}'|'{CtrlBreak}'|'{Delete}'|'{Down}'|'{End}'|'{Enter}'|'{Escape}'|'{F1}'|'{F10}'|'{F11}'|'{F12}'|'{F13}'|'{F14}'|'{F15}'|'{F16}'|'{F17}'|'{F18}'|'{F19}'|'{F2}'|'{F20}'|'{F21}'|'{F22}'|'{F23}'|'{F24}'|'{F3}'|'{F4}'|'{F5}'|'{F6}'|'{F7}'|'{F8}'|'{F9}'|'{Help}'|'{Home}'|'{Insert}'|'{LAlt}'|'{Launch_App1}'|'{Launch_App2}'|'{Launch_Mail}'|'{Launch_Media}'|'{LButton}'|'{LControl}'|'{LCtrl}'|'{Left}'|'{LShift}'|'{LWin}'|'{MButton}'|'{Media_Next}'|'{Media_Play_Pause}'|'{Media_Prev}'|'{Media_Stop}'|'{NumLock}'|'{Numpad0}'|'{Numpad1}'|'{Numpad2}'|'{Numpad3}'|'{Numpad4}'|'{Numpad5}'|'{Numpad6}'|'{Numpad7}'|'{Numpad8}'|'{Numpad9}'|'{NumpadAdd}'|'{NumpadClear}'|'{NumpadDel}'|'{NumpadDiv}'|'{NumpadDot}'|'{NumpadDown}'|'{NumpadEnd}'|'{NumpadEnter}'|'{NumpadHome}'|'{NumpadIns}'|'{NumpadLeft}'|'{NumpadMult}'|'{NumpadPgDn}'|'{NumpadPgUp}'|'{NumpadRight}'|'{NumpadSub}'|'{NumpadUp}'|'{Pause}'|'{PgDn}'|'{PgUp}'|'{PrintScreen}'|'{RAlt}'|'{RButton}'|'{RControl}'|'{RCtrl}'|'{Right}'|'{RShift}'|'{RWin	}'|'{SC###}'|'{ScrollLock}'|'{Shift}'|'{Sleep}'|'{Space}'|'{Tab}'|'{U+####}'|'{ASC+####}'|'{Up}'|'{VK##}'|'{VK##SC###}'|'{Volume_Down}'|'{Volume_Mute}'|'{Volume_Up}'|'{WheelDown}'|'{WheelLeft}'|'{WheelRight}'|'{WheelUp}'|'{XButton1}'|'{XButton2}'} SendKeys  
  * Sequence of keys to send.  
  * - {@link https://www.autohotkey.com/docs/v2/misc/EscapeChar.htm|**Escape Sequences**} `` ` ``:
  *   - ``` `` ``` = Literal grave accent.  
@@ -22639,7 +22648,7 @@ SendPlay(Keys) => EmptyString
  *   - `` `r `` = Carriage Return
  *   - `` `t `` = Tab
  *   - `` `s `` = Space
- *   - `` `' `` `` `" `` = Literal quote (prevents end of string)
+ *   - `` `' `` `` `" `` = Literal quotes (prevents end of string)
  *  
  * - {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#Special_modes|**Special modes**}: Must be the first part of the string
  *   - [`{Blind}`](https://www.autohotkey.com/docs/v2/lib/Send.htm#Blind)  
@@ -22659,7 +22668,7 @@ SendPlay(Keys) => EmptyString
  * {@link https://www.autohotkey.com/docs/v2/misc/EscapeChar.htm|Escape sequences}
  * @example <caption></caption>  
  */
-SendText(Keys) => EmptyString
+SendText(SendKeys) => EmptyString
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/SendLevel.htm|`SendLevel()`}  
@@ -22762,7 +22771,7 @@ SendMode(Mode) => String
  * @description {@link https://www.autohotkey.com/docs/v2/lib/SetNumScrollCapsLockState.htm|`SetCapsLockState()`}  
  * Sets the toggle state of CapsLock.  
  * Can also permanently enable or disable the key state.  
- * @param {'On'|'Off'|'AlwaysOn'|'AlwaysOff'|Integer} [State]  
+ * @param {'On'|'Off'|'AlwaysOn'|'AlwaysOff'} [State]  
  * - Omit or Empty String = Disables the `AlwaysOn` and `AlwaysOff` options.  
  * - `1` `On` = Set CapsLock toggle to on and disable `AlwaysOn` and `AlwaysOff` options.  
  * - `0` `Off` = Set CapsLock toggle to off and disables `AlwaysOn` and `AlwaysOff` options.  
@@ -23124,7 +23133,7 @@ Sleep(Delay) => EmptyString
  * Arranges a variable's contents in alphabetical, numerical, or random order (optionally removing duplicates).  
  * @param {(String)} Text  
  * The string to sort.  
- * @param {'C'|'CL'|'CLogical'|'D'|'N'|'P'|'R'|'Random'|'U'|'Z'|'\:'} [Options]  
+ * @param {String|'C'|'CL'|'CLogical'|'D'|'N'|'P'|'R'|'Random'|'U'|'Z'|'\:'} [Options]  
  * Zero or more of the following {@link https://www.autohotkey.com/docs/v2/lib/Sort.htm#Options|options}:  
  * - `C` `C1` `COn`: Case-sensitive sort. Uppercase comes before lowercase.  
  *   The `N` option overrides this setting.  
@@ -23706,7 +23715,7 @@ StrPut(Str [,Target, Length, Encoding]) => Integer
  * @param {(String)} [ReplaceText]  
  * The replacement text for the found `Needle`.  
  * If this parameter is omitted or is an empty string, the found text is removed.  
- * @param {'On'|'Off'|'Locale'|'1'|'0'|Integer} [CaseSense]  
+ * @param {'On'|'Off'|'Locale'|'1'|'0'} [CaseSense]  
  * The case-sensitivity setting for this replacement.  
  * - `1` `On` = The search is case-sensitive. `a` does not equal `A`
  * - `0` `Off` = The search is not case-sensitive. `a` and `A` are equal.  
@@ -24098,7 +24107,7 @@ TraySetIcon([FileName:=unset, IconNumber:=1, Freeze:=unset]) => EmptyString
  * @param {(String)} [Title]  
  * The title of the TrayTip. There is a display limit of 75 characters.  
  * If omitted or an empty string, no text is shown and the traytip becomes shorter.  
- * @param {'IconI'|'Icon!'|'IconX'|'Mute'|String|Integer} [Options]  
+ * @param {String|'IconI'|'Icon!'|'IconX'|'Mute'|String|Integer} [Options]  
  * Zero or more of the following options.  
  * If the string version is used, separate items with a space or tab.  
  * If a dec or hex is used, use the sum of the numbers for multiple options.  
@@ -24195,11 +24204,11 @@ VarSetStrCapacity(&TargetVar [,Capacity:=unset]) => Integer
  * Each group is compared numerically, not by character codes: `v1.01` = `v1.1`  
  * A missing group is `0`: `1.37.0.0` = `1.37`  
  * Pre-releases are considered lower than standard versions: `2.0` > `2.0-alpha.1`
- * @param {'<'|'<='|'>'|'>='|'='|String} VersionA  
+ * @param {'<'|'<='|'>'|'>='|'='} VersionA  
  * A string containing a version.  
  * Can optionally start with one of these operators: `<` `<=` `>` `>=` `=`  
  * These operators do not affect the comparison: `2.0` = `>2.0` = `<2.0`
- * @param {'<'|'<='|'>'|'>='|'='|String} VersionB  
+ * @param {'<'|'<='|'>'|'>='|'='} VersionB  
  * A string containing a version to compare against `VersionA`  
  * Can optionally start with one of these operators: `<` `<=` `>` `>=` `=`  
  * These operators do not affect the comparison: `2.0` = `>2.0` = `<2.0`
@@ -25578,7 +25587,7 @@ WinSetEnabled([NewSetting:=1, WinTitle:='', WinText:='', NoWinTitle:='', NoWinTe
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/WinSetRegion.htm|`WinSetRegion()`}  
  * Changes the shape of the specified window to be the specified rectangle, ellipse, or polygon.  
- * @param {'W'|'H'|'X-Y'|'E'|'R'|'Polygons'|'Wind'} [Options]  
+ * @param {String|'W'|'H'|'X-Y'|'E'|'R'|'Polygons'|'Wind'} [Options]  
  * Zero or more of the following, spearated by spaces:  
  * - Omit - Restores window to original/default display area.  
  * - `W#` `H#` = Set the width of the rectangle or ellipse in pixels: `w100 h450`
@@ -26441,7 +26450,7 @@ A_Desktop: String
 A_DesktopCommon: String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/Variables.htm#|}  
+ * @description {@link https://www.autohotkey.com/docs/v2/Variables.htm#|A_DetectHiddenText}  
  * Used to get or set the whether hidden text is detected.  
  * This variable can be set to the following values:  
  * - `1` = Hidden text is detected. This is the default value.
@@ -26617,7 +26626,7 @@ A_Hour: String
 A_IconFile: String
 
 /**
- * @description {@link https://www.autohotkey.com/docs/v2/Variables.htm#|}  
+ * @description {@link https://www.autohotkey.com/docs/v2/Variables.htm#|A_IconHidden}  
  * Used to get or set the visibility of the tray icon.  
  * This variable can be set to the following values:
  * - `0` = Tray icon is set to visible.
