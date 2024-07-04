@@ -1,4 +1,4 @@
-;@region v1.4
+;@region v1.5
 ;@endregion
 
 ;@region classes
@@ -13624,7 +13624,7 @@ class InputHook extends Object {
      *   Sends the user's keystrokes through instead of blocking them when captured.  
      * - `*` = Wildcard. Sets the {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#FindAnywhere|FindAnywhere} property to `1`.  
      *   Allows matches to found at any point during Input.  
-     * @param {(String)} [EndKeys]  
+     * @param {String|'{All}'|'{Alt}'|'{AppsKey}'|'{Backspace}'|'{Browser_Back}'|'{Browser_Favorites}'|'{Browser_Forward}'|'{Browser_Home}'|'{Browser_Refresh}'|'{Browser_Search}'|'{Browser_Stop}'|'{CapsLock}'|'{Control}'|'{CtrlBreak}'|'{Delete}'|'{Down}'|'{End}'|'{Enter}'|'{Escape}'|'{F1}'|'{F10}'|'{F11}'|'{F12}'|'{F13}'|'{F14}'|'{F15}'|'{F16}'|'{F17}'|'{F18}'|'{F19}'|'{F2}'|'{F20}'|'{F21}'|'{F22}'|'{F23}'|'{F24}'|'{F3}'|'{F4}'|'{F5}'|'{F6}'|'{F7}'|'{F8}'|'{F9}'|'{Help}'|'{Home}'|'{Insert}'|'{LAlt}'|'{Launch_App1}'|'{Launch_App2}'|'{Launch_Mail}'|'{Launch_Media}'|'{LButton}'|'{LControl}'|'{Left}'|'{LShift}'|'{LWin}'|'{MButton}'|'{Media_Next}'|'{Media_Play_Pause}'|'{Media_Prev}'|'{Media_Stop}'|'{NumLock}'|'{Numpad0}'|'{Numpad1}'|'{Numpad2}'|'{Numpad3}'|'{Numpad4}'|'{Numpad5}'|'{Numpad6}'|'{Numpad7}'|'{Numpad8}'|'{Numpad9}'|'{NumpadAdd}'|'{NumpadClear}'|'{NumpadDel}'|'{NumpadDiv}'|'{NumpadDot}'|'{NumpadDown}'|'{NumpadEnd}'|'{NumpadEnter}'|'{NumpadHome}'|'{NumpadIns}'|'{NumpadLeft}'|'{NumpadMult}'|'{NumpadPgDn}'|'{NumpadPgUp}'|'{NumpadRight}'|'{NumpadSub}'|'{NumpadUp}'|'{Pause}'|'{PgDn}'|'{PgUp}'|'{PrintScreen}'|'{RAlt}'|'{RButton}'|'{RControl}'|'{Right}'|'{RShift}'|'{RWin	}'|'{SC###}'|'{ScrollLock}'|'{Shift}'|'{Sleep}'|'{Space}'|'{Tab}'|'{Up}'|'{VK##}'|'{Volume_Down}'|'{Volume_Mute}'|'{Volume_Up}'|'{WheelDown}'|'{WheelLeft}'|'{WheelRight}'|'{WheelUp}'|'{XButton1}'|'{XButton2}'} [EndKeys]  
      * List of zero or more keys that will end the running InputHook.  
      * The {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#FindAnywhere|EndReason} property is set to `EndKey`.  
      * The {@link https://www.autohotkey.com/docs/v2/lib/InputHook.htm#EndKey|EndKey} property is set to the name of the key pressed.  
@@ -13881,7 +13881,7 @@ class Map<K = Any, V = Any> extends Object {
      *     MsgBox('Key: ' key '`nValue: ' value)
      */
     __Enum() => Enumerator
-    w
+    
     /**
      * @description {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#__New|`__New()`}  
      * Sets items. Equivalent to {@link https://www.autohotkey.com/docs/v2/lib/Map.htm#Set|Set}.  
@@ -19322,7 +19322,7 @@ Hotkey(KeyName [,Action, Options]) => EmptyString
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Hotstring.htm|`Hotstring()`}  
  * Creates, modifies, enables, or disables a hotstring.  
  * The case used to type the hotstring (UPPERCASE, lowercase, Title Case) carries over to the auto-replce text.
- * @param {String|'*'|'?'|'B'|'C'|'K'|'O'|'P'|'S'|'SI'|'SE'|'SP'|'T'|'R'|'X'|'Z'} Option  
+ * @param {String|'*'|'?'|'B'|'C'|'K'|'O'|'P'|'S'|'SI'|'SE'|'SP'|'T'|'R'|'X'|'Z'|'EndChards'|'MouseReset'|'Reset'} Option  
  * - Hotstring = An activation string and options using the {@link https://www.autohotkey.com/docs/v2/Hotstrings.htm|`::Hotstring`} format.  
  *   This creates (or updates an already existing) hotstring.  
  *   Options should be placed between the double colons `::` and are listed below in the `NewOptions` section  
@@ -22381,7 +22381,7 @@ RunWait(Target [,WorkingDir:=A_WorkingDir, LaunchOpt:='', &OutputPID]) => Intege
  * Transmits keystrokes to the system.  
  * Send is an alias for {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendInputDetail|SendInput()} by default.  
  * It can be changed to {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendEvent|SendEvent()} or {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendPlayDetail|SendPlay()} by using {@link https://www.autohotkey.com/docs/v2/lib/SendMode.htm|SendMode()}.  
- * @param {String|'{Raw}'|'{Text}'|'{Blind}'|'{!}'|'{#}'|'{+}'|'{^}'|'{{}'|'{}}'|'{Alt}'|'{AppsKey}'|'{Backspace}'|'{Browser_Back}'|'{Browser_Favorites}'|'{Browser_Forward}'|'{Browser_Home}'|'{Browser_Refresh}'|'{Browser_Search}'|'{Browser_Stop}'|'{CapsLock}'|'{Click}'|'{Control}'|'{Ctrl}'|'{CtrlBreak}'|'{Delete}'|'{Down}'|'{End}'|'{Enter}'|'{Escape}'|'{F1}'|'{F10}'|'{F11}'|'{F12}'|'{F13}'|'{F14}'|'{F15}'|'{F16}'|'{F17}'|'{F18}'|'{F19}'|'{F2}'|'{F20}'|'{F21}'|'{F22}'|'{F23}'|'{F24}'|'{F3}'|'{F4}'|'{F5}'|'{F6}'|'{F7}'|'{F8}'|'{F9}'|'{Help}'|'{Home}'|'{Insert}'|'{LAlt}'|'{Launch_App1}'|'{Launch_App2}'|'{Launch_Mail}'|'{Launch_Media}'|'{LButton}'|'{LControl}'|'{LCtrl}'|'{Left}'|'{LShift}'|'{LWin}'|'{MButton}'|'{Media_Next}'|'{Media_Play_Pause}'|'{Media_Prev}'|'{Media_Stop}'|'{NumLock}'|'{Numpad0}'|'{Numpad1}'|'{Numpad2}'|'{Numpad3}'|'{Numpad4}'|'{Numpad5}'|'{Numpad6}'|'{Numpad7}'|'{Numpad8}'|'{Numpad9}'|'{NumpadAdd}'|'{NumpadClear}'|'{NumpadDel}'|'{NumpadDiv}'|'{NumpadDot}'|'{NumpadDown}'|'{NumpadEnd}'|'{NumpadEnter}'|'{NumpadHome}'|'{NumpadIns}'|'{NumpadLeft}'|'{NumpadMult}'|'{NumpadPgDn}'|'{NumpadPgUp}'|'{NumpadRight}'|'{NumpadSub}'|'{NumpadUp}'|'{Pause}'|'{PgDn}'|'{PgUp}'|'{PrintScreen}'|'{RAlt}'|'{RButton}'|'{RControl}'|'{RCtrl}'|'{Right}'|'{RShift}'|'{RWin	}'|'{SC###}'|'{ScrollLock}'|'{Shift}'|'{Sleep}'|'{Space}'|'{Tab}'|'{U+####}'|'{ASC+####}'|'{Up}'|'{VK##}'|'{VK##SC###}'|'{Volume_Down}'|'{Volume_Mute}'|'{Volume_Up}'|'{WheelDown}'|'{WheelLeft}'|'{WheelRight}'|'{WheelUp}'|'{XButton1}'|'{XButton2}'} SendKeys  
+ * @param {String|'{Raw}'|'{Text}'|'{Blind}'|'{!}'|'{#}'|'{+}'|'{^}'|'{{}'|'{}}'|'{Alt}'|'{AppsKey}'|'{Backspace}'|'{Browser_Back}'|'{Browser_Favorites}'|'{Browser_Forward}'|'{Browser_Home}'|'{Browser_Refresh}'|'{Browser_Search}'|'{Browser_Stop}'|'{CapsLock}'|'{Click}'|'{Control}'|'{Ctrl}'|'{CtrlBreak}'|'{Delete}'|'{Down}'|'{End}'|'{Enter}'|'{Escape}'|'{F1}'|'{F10}'|'{F11}'|'{F12}'|'{F13}'|'{F14}'|'{F15}'|'{F16}'|'{F17}'|'{F18}'|'{F19}'|'{F2}'|'{F20}'|'{F21}'|'{F22}'|'{F23}'|'{F24}'|'{F3}'|'{F4}'|'{F5}'|'{F6}'|'{F7}'|'{F8}'|'{F9}'|'{Help}'|'{Home}'|'{Insert}'|'{LAlt}'|'{Launch_App1}'|'{Launch_App2}'|'{Launch_Mail}'|'{Launch_Media}'|'{LButton}'|'{LControl}'|'{LCtrl}'|'{Left}'|'{LShift}'|'{LWin}'|'{MButton}'|'{Media_Next}'|'{Media_Play_Pause}'|'{Media_Prev}'|'{Media_Stop}'|'{NumLock}'|'{Numpad0}'|'{Numpad1}'|'{Numpad2}'|'{Numpad3}'|'{Numpad4}'|'{Numpad5}'|'{Numpad6}'|'{Numpad7}'|'{Numpad8}'|'{Numpad9}'|'{NumpadAdd}'|'{NumpadClear}'|'{NumpadDel}'|'{NumpadDiv}'|'{NumpadDot}'|'{NumpadDown}'|'{NumpadEnd}'|'{NumpadEnter}'|'{NumpadHome}'|'{NumpadIns}'|'{NumpadLeft}'|'{NumpadMult}'|'{NumpadPgDn}'|'{NumpadPgUp}'|'{NumpadRight}'|'{NumpadSub}'|'{NumpadUp}'|'{Pause}'|'{PgDn}'|'{PgUp}'|'{PrintScreen}'|'{RAlt}'|'{RButton}'|'{RControl}'|'{RCtrl}'|'{Right}'|'{RShift}'|'{RWin	}'|'{SC###}'|'{ScrollLock}'|'{Shift}'|'{Sleep}'|'{Space}'|'{Tab}'|'{U+####}'|'{ASC+####}'|'{Up}'|'{VK##}'|'{VK##SC###}'|'{Volume_Down}'|'{Volume_Mute}'|'{Volume_Up}'|'{WheelDown}'|'{WheelLeft}'|'{WheelRight}'|'{WheelUp}'|'{XButton1}'|'{XButton2}'} KeySend  
  * Sequence of keys to send.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#keynames|Key names}, literal {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#modifierkeys|modifier symbols}, and literal curly braces must be wrapped in curly braces: `{!} {#} {+} {^} {{} {}}`  
  * Using braces forces the key to be sent by virtual keycode, even if the character does not exist on the current keyboard layout.  
@@ -22442,7 +22442,7 @@ RunWait(Target [,WorkingDir:=A_WorkingDir, LaunchOpt:='', &OutputPID]) => Intege
  * {@link https://www.autohotkey.com/docs/v2/misc/EscapeChar.htm|Escape sequences}
  * @example <caption></caption>  
  */
-Send(SendKeys) => EmptyString
+Send(KeySend) => EmptyString
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendEvent|`SendEvent()`}  
@@ -22450,7 +22450,7 @@ Send(SendKeys) => EmptyString
  * While {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendInputDetail|SendInput()} and {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendPlayDetail|SendPlay()} are generally faster and more reliable, SendEvent() has some unique benefits.  
  * There are situations where SendEvent() will work when SendInput()/SendPlay() fail.  
  * SendEvent() can make use of {@link https://www.autohotkey.com/docs/v2/lib/SetKeyDelay.htm|SetKeyDelay()} to define key press duration and delay between keystrokes, eliminating the need to add Sleep() between keystroke events.  
- * @param {String|'{Raw}'|'{Text}'|'{Blind}'|'{!}'|'{#}'|'{+}'|'{^}'|'{{}'|'{}}'|'{Alt}'|'{AppsKey}'|'{Backspace}'|'{Browser_Back}'|'{Browser_Favorites}'|'{Browser_Forward}'|'{Browser_Home}'|'{Browser_Refresh}'|'{Browser_Search}'|'{Browser_Stop}'|'{CapsLock}'|'{Click}'|'{Control}'|'{Ctrl}'|'{CtrlBreak}'|'{Delete}'|'{Down}'|'{End}'|'{Enter}'|'{Escape}'|'{F1}'|'{F10}'|'{F11}'|'{F12}'|'{F13}'|'{F14}'|'{F15}'|'{F16}'|'{F17}'|'{F18}'|'{F19}'|'{F2}'|'{F20}'|'{F21}'|'{F22}'|'{F23}'|'{F24}'|'{F3}'|'{F4}'|'{F5}'|'{F6}'|'{F7}'|'{F8}'|'{F9}'|'{Help}'|'{Home}'|'{Insert}'|'{LAlt}'|'{Launch_App1}'|'{Launch_App2}'|'{Launch_Mail}'|'{Launch_Media}'|'{LButton}'|'{LControl}'|'{LCtrl}'|'{Left}'|'{LShift}'|'{LWin}'|'{MButton}'|'{Media_Next}'|'{Media_Play_Pause}'|'{Media_Prev}'|'{Media_Stop}'|'{NumLock}'|'{Numpad0}'|'{Numpad1}'|'{Numpad2}'|'{Numpad3}'|'{Numpad4}'|'{Numpad5}'|'{Numpad6}'|'{Numpad7}'|'{Numpad8}'|'{Numpad9}'|'{NumpadAdd}'|'{NumpadClear}'|'{NumpadDel}'|'{NumpadDiv}'|'{NumpadDot}'|'{NumpadDown}'|'{NumpadEnd}'|'{NumpadEnter}'|'{NumpadHome}'|'{NumpadIns}'|'{NumpadLeft}'|'{NumpadMult}'|'{NumpadPgDn}'|'{NumpadPgUp}'|'{NumpadRight}'|'{NumpadSub}'|'{NumpadUp}'|'{Pause}'|'{PgDn}'|'{PgUp}'|'{PrintScreen}'|'{RAlt}'|'{RButton}'|'{RControl}'|'{RCtrl}'|'{Right}'|'{RShift}'|'{RWin	}'|'{SC###}'|'{ScrollLock}'|'{Shift}'|'{Sleep}'|'{Space}'|'{Tab}'|'{U+####}'|'{ASC+####}'|'{Up}'|'{VK##}'|'{VK##SC###}'|'{Volume_Down}'|'{Volume_Mute}'|'{Volume_Up}'|'{WheelDown}'|'{WheelLeft}'|'{WheelRight}'|'{WheelUp}'|'{XButton1}'|'{XButton2}'} SendKeys  
+ * @param {String|'{Raw}'|'{Text}'|'{Blind}'|'{!}'|'{#}'|'{+}'|'{^}'|'{{}'|'{}}'|'{Alt}'|'{AppsKey}'|'{Backspace}'|'{Browser_Back}'|'{Browser_Favorites}'|'{Browser_Forward}'|'{Browser_Home}'|'{Browser_Refresh}'|'{Browser_Search}'|'{Browser_Stop}'|'{CapsLock}'|'{Click}'|'{Control}'|'{Ctrl}'|'{CtrlBreak}'|'{Delete}'|'{Down}'|'{End}'|'{Enter}'|'{Escape}'|'{F1}'|'{F10}'|'{F11}'|'{F12}'|'{F13}'|'{F14}'|'{F15}'|'{F16}'|'{F17}'|'{F18}'|'{F19}'|'{F2}'|'{F20}'|'{F21}'|'{F22}'|'{F23}'|'{F24}'|'{F3}'|'{F4}'|'{F5}'|'{F6}'|'{F7}'|'{F8}'|'{F9}'|'{Help}'|'{Home}'|'{Insert}'|'{LAlt}'|'{Launch_App1}'|'{Launch_App2}'|'{Launch_Mail}'|'{Launch_Media}'|'{LButton}'|'{LControl}'|'{LCtrl}'|'{Left}'|'{LShift}'|'{LWin}'|'{MButton}'|'{Media_Next}'|'{Media_Play_Pause}'|'{Media_Prev}'|'{Media_Stop}'|'{NumLock}'|'{Numpad0}'|'{Numpad1}'|'{Numpad2}'|'{Numpad3}'|'{Numpad4}'|'{Numpad5}'|'{Numpad6}'|'{Numpad7}'|'{Numpad8}'|'{Numpad9}'|'{NumpadAdd}'|'{NumpadClear}'|'{NumpadDel}'|'{NumpadDiv}'|'{NumpadDot}'|'{NumpadDown}'|'{NumpadEnd}'|'{NumpadEnter}'|'{NumpadHome}'|'{NumpadIns}'|'{NumpadLeft}'|'{NumpadMult}'|'{NumpadPgDn}'|'{NumpadPgUp}'|'{NumpadRight}'|'{NumpadSub}'|'{NumpadUp}'|'{Pause}'|'{PgDn}'|'{PgUp}'|'{PrintScreen}'|'{RAlt}'|'{RButton}'|'{RControl}'|'{RCtrl}'|'{Right}'|'{RShift}'|'{RWin	}'|'{SC###}'|'{ScrollLock}'|'{Shift}'|'{Sleep}'|'{Space}'|'{Tab}'|'{U+####}'|'{ASC+####}'|'{Up}'|'{VK##}'|'{VK##SC###}'|'{Volume_Down}'|'{Volume_Mute}'|'{Volume_Up}'|'{WheelDown}'|'{WheelLeft}'|'{WheelRight}'|'{WheelUp}'|'{XButton1}'|'{XButton2}'} KeySend  
  * Sequence of keys to send.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#keynames|Key names}, literal {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#modifierkeys|modifier symbols}, and literal curly braces must be wrapped in curly braces: `{!} {#} {+} {^} {{} {}}`  
  * Using braces forces the key to be sent by virtual keycode, even if the character does not exist on the current keyboard layout.  
@@ -22506,7 +22506,7 @@ Send(SendKeys) => EmptyString
  * {@link https://www.autohotkey.com/docs/v2/misc/EscapeChar.htm|Escape sequences}
  * @example <caption></caption>  
  */
-SendEvent(SendKeys) => EmptyString
+SendEvent(KeySend) => EmptyString
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendInput|`SendInput()`}  
@@ -22514,7 +22514,7 @@ SendEvent(SendKeys) => EmptyString
  * Unlike {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendEvent|SendEvent()}, SendInput() buffers (stores) keyboard and mouse actions until sending finishes, preventing interruption during the send.  
  * All buffered key strokes and mouse actions are sent after SendInput() finishes.  
  * SendInput() has a limit of roughtly ~5000 characters per send.  
- * @param {String|'{Raw}'|'{Text}'|'{Blind}'|'{!}'|'{#}'|'{+}'|'{^}'|'{{}'|'{}}'|'{Alt}'|'{AppsKey}'|'{Backspace}'|'{Browser_Back}'|'{Browser_Favorites}'|'{Browser_Forward}'|'{Browser_Home}'|'{Browser_Refresh}'|'{Browser_Search}'|'{Browser_Stop}'|'{CapsLock}'|'{Click}'|'{Control}'|'{Ctrl}'|'{CtrlBreak}'|'{Delete}'|'{Down}'|'{End}'|'{Enter}'|'{Escape}'|'{F1}'|'{F10}'|'{F11}'|'{F12}'|'{F13}'|'{F14}'|'{F15}'|'{F16}'|'{F17}'|'{F18}'|'{F19}'|'{F2}'|'{F20}'|'{F21}'|'{F22}'|'{F23}'|'{F24}'|'{F3}'|'{F4}'|'{F5}'|'{F6}'|'{F7}'|'{F8}'|'{F9}'|'{Help}'|'{Home}'|'{Insert}'|'{LAlt}'|'{Launch_App1}'|'{Launch_App2}'|'{Launch_Mail}'|'{Launch_Media}'|'{LButton}'|'{LControl}'|'{LCtrl}'|'{Left}'|'{LShift}'|'{LWin}'|'{MButton}'|'{Media_Next}'|'{Media_Play_Pause}'|'{Media_Prev}'|'{Media_Stop}'|'{NumLock}'|'{Numpad0}'|'{Numpad1}'|'{Numpad2}'|'{Numpad3}'|'{Numpad4}'|'{Numpad5}'|'{Numpad6}'|'{Numpad7}'|'{Numpad8}'|'{Numpad9}'|'{NumpadAdd}'|'{NumpadClear}'|'{NumpadDel}'|'{NumpadDiv}'|'{NumpadDot}'|'{NumpadDown}'|'{NumpadEnd}'|'{NumpadEnter}'|'{NumpadHome}'|'{NumpadIns}'|'{NumpadLeft}'|'{NumpadMult}'|'{NumpadPgDn}'|'{NumpadPgUp}'|'{NumpadRight}'|'{NumpadSub}'|'{NumpadUp}'|'{Pause}'|'{PgDn}'|'{PgUp}'|'{PrintScreen}'|'{RAlt}'|'{RButton}'|'{RControl}'|'{RCtrl}'|'{Right}'|'{RShift}'|'{RWin	}'|'{SC###}'|'{ScrollLock}'|'{Shift}'|'{Sleep}'|'{Space}'|'{Tab}'|'{U+####}'|'{ASC+####}'|'{Up}'|'{VK##}'|'{VK##SC###}'|'{Volume_Down}'|'{Volume_Mute}'|'{Volume_Up}'|'{WheelDown}'|'{WheelLeft}'|'{WheelRight}'|'{WheelUp}'|'{XButton1}'|'{XButton2}'} SendKeys  
+ * @param {String|'{Raw}'|'{Text}'|'{Blind}'|'{!}'|'{#}'|'{+}'|'{^}'|'{{}'|'{}}'|'{Alt}'|'{AppsKey}'|'{Backspace}'|'{Browser_Back}'|'{Browser_Favorites}'|'{Browser_Forward}'|'{Browser_Home}'|'{Browser_Refresh}'|'{Browser_Search}'|'{Browser_Stop}'|'{CapsLock}'|'{Click}'|'{Control}'|'{Ctrl}'|'{CtrlBreak}'|'{Delete}'|'{Down}'|'{End}'|'{Enter}'|'{Escape}'|'{F1}'|'{F10}'|'{F11}'|'{F12}'|'{F13}'|'{F14}'|'{F15}'|'{F16}'|'{F17}'|'{F18}'|'{F19}'|'{F2}'|'{F20}'|'{F21}'|'{F22}'|'{F23}'|'{F24}'|'{F3}'|'{F4}'|'{F5}'|'{F6}'|'{F7}'|'{F8}'|'{F9}'|'{Help}'|'{Home}'|'{Insert}'|'{LAlt}'|'{Launch_App1}'|'{Launch_App2}'|'{Launch_Mail}'|'{Launch_Media}'|'{LButton}'|'{LControl}'|'{LCtrl}'|'{Left}'|'{LShift}'|'{LWin}'|'{MButton}'|'{Media_Next}'|'{Media_Play_Pause}'|'{Media_Prev}'|'{Media_Stop}'|'{NumLock}'|'{Numpad0}'|'{Numpad1}'|'{Numpad2}'|'{Numpad3}'|'{Numpad4}'|'{Numpad5}'|'{Numpad6}'|'{Numpad7}'|'{Numpad8}'|'{Numpad9}'|'{NumpadAdd}'|'{NumpadClear}'|'{NumpadDel}'|'{NumpadDiv}'|'{NumpadDot}'|'{NumpadDown}'|'{NumpadEnd}'|'{NumpadEnter}'|'{NumpadHome}'|'{NumpadIns}'|'{NumpadLeft}'|'{NumpadMult}'|'{NumpadPgDn}'|'{NumpadPgUp}'|'{NumpadRight}'|'{NumpadSub}'|'{NumpadUp}'|'{Pause}'|'{PgDn}'|'{PgUp}'|'{PrintScreen}'|'{RAlt}'|'{RButton}'|'{RControl}'|'{RCtrl}'|'{Right}'|'{RShift}'|'{RWin	}'|'{SC###}'|'{ScrollLock}'|'{Shift}'|'{Sleep}'|'{Space}'|'{Tab}'|'{U+####}'|'{ASC+####}'|'{Up}'|'{VK##}'|'{VK##SC###}'|'{Volume_Down}'|'{Volume_Mute}'|'{Volume_Up}'|'{WheelDown}'|'{WheelLeft}'|'{WheelRight}'|'{WheelUp}'|'{XButton1}'|'{XButton2}'} KeySend  
  * Sequence of keys to send.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#keynames|Key names}, literal {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#modifierkeys|modifier symbols}, and literal curly braces must be wrapped in curly braces: `{!} {#} {+} {^} {{} {}}`  
  * Using braces forces the key to be sent by virtual keycode, even if the character does not exist on the current keyboard layout.  
@@ -22570,14 +22570,14 @@ SendEvent(SendKeys) => EmptyString
  * {@link https://www.autohotkey.com/docs/v2/misc/EscapeChar.htm|Escape sequences}
  * @example <caption></caption>  
  */
-SendInput(SendKeys) => EmptyString
+SendInput(KeySend) => EmptyString
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendPlay|`SendPlay()`}  
  * Transmits keystrokes to the system in a "play back" manner.  
  * There are times when SendPlay() works where other send types fail, especially in video games.  
  * SendPlay() sends keystroke events (messages) directly to the active window, similar to a low level {@link https://www.autohotkey.com/docs/v2/lib/ControlSend.htm|ControlSend()} for a Window.  
- * @param {String|'{Raw}'|'{Text}'|'{Blind}'|'{!}'|'{#}'|'{+}'|'{^}'|'{{}'|'{}}'|'{Alt}'|'{AppsKey}'|'{Backspace}'|'{Browser_Back}'|'{Browser_Favorites}'|'{Browser_Forward}'|'{Browser_Home}'|'{Browser_Refresh}'|'{Browser_Search}'|'{Browser_Stop}'|'{CapsLock}'|'{Click}'|'{Control}'|'{Ctrl}'|'{CtrlBreak}'|'{Delete}'|'{Down}'|'{End}'|'{Enter}'|'{Escape}'|'{F1}'|'{F10}'|'{F11}'|'{F12}'|'{F13}'|'{F14}'|'{F15}'|'{F16}'|'{F17}'|'{F18}'|'{F19}'|'{F2}'|'{F20}'|'{F21}'|'{F22}'|'{F23}'|'{F24}'|'{F3}'|'{F4}'|'{F5}'|'{F6}'|'{F7}'|'{F8}'|'{F9}'|'{Help}'|'{Home}'|'{Insert}'|'{LAlt}'|'{Launch_App1}'|'{Launch_App2}'|'{Launch_Mail}'|'{Launch_Media}'|'{LButton}'|'{LControl}'|'{LCtrl}'|'{Left}'|'{LShift}'|'{LWin}'|'{MButton}'|'{Media_Next}'|'{Media_Play_Pause}'|'{Media_Prev}'|'{Media_Stop}'|'{NumLock}'|'{Numpad0}'|'{Numpad1}'|'{Numpad2}'|'{Numpad3}'|'{Numpad4}'|'{Numpad5}'|'{Numpad6}'|'{Numpad7}'|'{Numpad8}'|'{Numpad9}'|'{NumpadAdd}'|'{NumpadClear}'|'{NumpadDel}'|'{NumpadDiv}'|'{NumpadDot}'|'{NumpadDown}'|'{NumpadEnd}'|'{NumpadEnter}'|'{NumpadHome}'|'{NumpadIns}'|'{NumpadLeft}'|'{NumpadMult}'|'{NumpadPgDn}'|'{NumpadPgUp}'|'{NumpadRight}'|'{NumpadSub}'|'{NumpadUp}'|'{Pause}'|'{PgDn}'|'{PgUp}'|'{PrintScreen}'|'{RAlt}'|'{RButton}'|'{RControl}'|'{RCtrl}'|'{Right}'|'{RShift}'|'{RWin	}'|'{SC###}'|'{ScrollLock}'|'{Shift}'|'{Sleep}'|'{Space}'|'{Tab}'|'{U+####}'|'{ASC+####}'|'{Up}'|'{VK##}'|'{VK##SC###}'|'{Volume_Down}'|'{Volume_Mute}'|'{Volume_Up}'|'{WheelDown}'|'{WheelLeft}'|'{WheelRight}'|'{WheelUp}'|'{XButton1}'|'{XButton2}'} SendKeys  
+ * @param {String|'{Raw}'|'{Text}'|'{Blind}'|'{!}'|'{#}'|'{+}'|'{^}'|'{{}'|'{}}'|'{Alt}'|'{AppsKey}'|'{Backspace}'|'{Browser_Back}'|'{Browser_Favorites}'|'{Browser_Forward}'|'{Browser_Home}'|'{Browser_Refresh}'|'{Browser_Search}'|'{Browser_Stop}'|'{CapsLock}'|'{Click}'|'{Control}'|'{Ctrl}'|'{CtrlBreak}'|'{Delete}'|'{Down}'|'{End}'|'{Enter}'|'{Escape}'|'{F1}'|'{F10}'|'{F11}'|'{F12}'|'{F13}'|'{F14}'|'{F15}'|'{F16}'|'{F17}'|'{F18}'|'{F19}'|'{F2}'|'{F20}'|'{F21}'|'{F22}'|'{F23}'|'{F24}'|'{F3}'|'{F4}'|'{F5}'|'{F6}'|'{F7}'|'{F8}'|'{F9}'|'{Help}'|'{Home}'|'{Insert}'|'{LAlt}'|'{Launch_App1}'|'{Launch_App2}'|'{Launch_Mail}'|'{Launch_Media}'|'{LButton}'|'{LControl}'|'{LCtrl}'|'{Left}'|'{LShift}'|'{LWin}'|'{MButton}'|'{Media_Next}'|'{Media_Play_Pause}'|'{Media_Prev}'|'{Media_Stop}'|'{NumLock}'|'{Numpad0}'|'{Numpad1}'|'{Numpad2}'|'{Numpad3}'|'{Numpad4}'|'{Numpad5}'|'{Numpad6}'|'{Numpad7}'|'{Numpad8}'|'{Numpad9}'|'{NumpadAdd}'|'{NumpadClear}'|'{NumpadDel}'|'{NumpadDiv}'|'{NumpadDot}'|'{NumpadDown}'|'{NumpadEnd}'|'{NumpadEnter}'|'{NumpadHome}'|'{NumpadIns}'|'{NumpadLeft}'|'{NumpadMult}'|'{NumpadPgDn}'|'{NumpadPgUp}'|'{NumpadRight}'|'{NumpadSub}'|'{NumpadUp}'|'{Pause}'|'{PgDn}'|'{PgUp}'|'{PrintScreen}'|'{RAlt}'|'{RButton}'|'{RControl}'|'{RCtrl}'|'{Right}'|'{RShift}'|'{RWin	}'|'{SC###}'|'{ScrollLock}'|'{Shift}'|'{Sleep}'|'{Space}'|'{Tab}'|'{U+####}'|'{ASC+####}'|'{Up}'|'{VK##}'|'{VK##SC###}'|'{Volume_Down}'|'{Volume_Mute}'|'{Volume_Up}'|'{WheelDown}'|'{WheelLeft}'|'{WheelRight}'|'{WheelUp}'|'{XButton1}'|'{XButton2}'} KeySend  
  * Sequence of keys to send.  
  * {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#keynames|Key names}, literal {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#modifierkeys|modifier symbols}, and literal curly braces must be wrapped in curly braces: `{!} {#} {+} {^} {{} {}}`  
  * Using braces forces the key to be sent by virtual keycode, even if the character does not exist on the current keyboard layout.  
@@ -22633,13 +22633,13 @@ SendInput(SendKeys) => EmptyString
  * {@link https://www.autohotkey.com/docs/v2/misc/EscapeChar.htm|Escape sequences}
  * @example <caption></caption>  
  */
-SendPlay(SendKeys) => EmptyString
+SendPlay(KeySend) => EmptyString
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/Send.htm#SendText|`SendText()`}  
  * Transmits keys to the system using [`{Text}` mode](https://www.autohotkey.com/docs/v2/lib/Send.htm#Text).  
  * {@link https://www.autohotkey.com/docs/v2/misc/EscapeChar.htm|Escape Sequences} are respected.  
- * @param {String|'{Raw}'|'{Text}'|'{Blind}'|'{!}'|'{#}'|'{+}'|'{^}'|'{{}'|'{}}'|'{Alt}'|'{AppsKey}'|'{Backspace}'|'{Browser_Back}'|'{Browser_Favorites}'|'{Browser_Forward}'|'{Browser_Home}'|'{Browser_Refresh}'|'{Browser_Search}'|'{Browser_Stop}'|'{CapsLock}'|'{Click}'|'{Control}'|'{Ctrl}'|'{CtrlBreak}'|'{Delete}'|'{Down}'|'{End}'|'{Enter}'|'{Escape}'|'{F1}'|'{F10}'|'{F11}'|'{F12}'|'{F13}'|'{F14}'|'{F15}'|'{F16}'|'{F17}'|'{F18}'|'{F19}'|'{F2}'|'{F20}'|'{F21}'|'{F22}'|'{F23}'|'{F24}'|'{F3}'|'{F4}'|'{F5}'|'{F6}'|'{F7}'|'{F8}'|'{F9}'|'{Help}'|'{Home}'|'{Insert}'|'{LAlt}'|'{Launch_App1}'|'{Launch_App2}'|'{Launch_Mail}'|'{Launch_Media}'|'{LButton}'|'{LControl}'|'{LCtrl}'|'{Left}'|'{LShift}'|'{LWin}'|'{MButton}'|'{Media_Next}'|'{Media_Play_Pause}'|'{Media_Prev}'|'{Media_Stop}'|'{NumLock}'|'{Numpad0}'|'{Numpad1}'|'{Numpad2}'|'{Numpad3}'|'{Numpad4}'|'{Numpad5}'|'{Numpad6}'|'{Numpad7}'|'{Numpad8}'|'{Numpad9}'|'{NumpadAdd}'|'{NumpadClear}'|'{NumpadDel}'|'{NumpadDiv}'|'{NumpadDot}'|'{NumpadDown}'|'{NumpadEnd}'|'{NumpadEnter}'|'{NumpadHome}'|'{NumpadIns}'|'{NumpadLeft}'|'{NumpadMult}'|'{NumpadPgDn}'|'{NumpadPgUp}'|'{NumpadRight}'|'{NumpadSub}'|'{NumpadUp}'|'{Pause}'|'{PgDn}'|'{PgUp}'|'{PrintScreen}'|'{RAlt}'|'{RButton}'|'{RControl}'|'{RCtrl}'|'{Right}'|'{RShift}'|'{RWin	}'|'{SC###}'|'{ScrollLock}'|'{Shift}'|'{Sleep}'|'{Space}'|'{Tab}'|'{U+####}'|'{ASC+####}'|'{Up}'|'{VK##}'|'{VK##SC###}'|'{Volume_Down}'|'{Volume_Mute}'|'{Volume_Up}'|'{WheelDown}'|'{WheelLeft}'|'{WheelRight}'|'{WheelUp}'|'{XButton1}'|'{XButton2}'} SendKeys  
+ * @param {(String)} KeySend  
  * Sequence of keys to send.  
  * - {@link https://www.autohotkey.com/docs/v2/misc/EscapeChar.htm|**Escape Sequences**} `` ` ``:
  *   - ``` `` ``` = Literal grave accent.  
@@ -22668,7 +22668,7 @@ SendPlay(SendKeys) => EmptyString
  * {@link https://www.autohotkey.com/docs/v2/misc/EscapeChar.htm|Escape sequences}
  * @example <caption></caption>  
  */
-SendText(SendKeys) => EmptyString
+SendText(KeySend) => EmptyString
 
 /**
  * @description {@link https://www.autohotkey.com/docs/v2/lib/SendLevel.htm|`SendLevel()`}  
