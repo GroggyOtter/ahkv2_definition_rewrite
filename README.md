@@ -8,6 +8,7 @@ Announcement 29Jun2024: The v1.3 update is coming soon and will be a big one.
 - [Installation](#installation)
 - [Auto-Updater](#auto-updater)
 - [Change Log](#change-log)
+  - [2024-07-04](#2024-07-04)
   - [2024-07-02 (Big Update)](#2024-07-02-big-update)
   - [2024-04-20](#2024-03-20)
   - [2024-03-20](#2024-03-20)
@@ -79,6 +80,22 @@ Properties and methods of the updater:
 ***
 
 ### Change Log
+
+##### 2024-07-04
+- Updated the `definition_updater.v2.ahk` script to v1.4:
+  - Fixed a problem where it would sometimes throw an error b/c it couldn't find a file.
+  - Added a new "Force Definition Update" to the program's system tray menu.
+    - [Right click the AHK icon](https://i.imgur.com/PGiMJ9g.png) in the system tray.
+    - This immediately runs the update checker.
+- Updated definition file to v1.5:
+  - Added key names to all parameters that expect a key name.
+    - Examples: GetKeyState() and GetKeySc()
+    - I was using GetKeyState() and thought "this is stupid that I have to type out the whole key name...", hence this update.
+  - Took it a step further and updated all Send() variants and InputHook() to include key names that are already wrapped in curly braces.
+    - This means you no longer need to type curly braces or the full key word.
+      - Example: [Typing `ent` and pressing enter](https://i.imgur.com/5kpTqa8.mp4) will insert `{Enter}`.  
+      - Typing [`nump` shows all Numpad options](https://i.imgur.com/jY9sOdf.png).  
+  - Added some missed options for hotstrings.
 
 ##### 2024-07-02 (Big Update)
 - All functions and method parameters that have pre-defined values will now show up in the autocomplete when you're working with that parameter.
