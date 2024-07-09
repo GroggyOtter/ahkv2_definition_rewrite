@@ -65,8 +65,10 @@ It can be ran as its own script or can be copy and pasted into a main script, as
 Properties and methods of the updater:
 
 - Methods:
-  - `Start()` = Starts/enables update checking  
-  - `Stop()` = Stops/disables update checking  
+  - `start()` = Starts/enables update checking  
+  - `stop()` = Stops/disables update checking  
+  - `force_check()` = Forces a 1-time check.
+      - This does not affect on/off status.
 
 - Properties:
   - `frequency` = How often to check for updates, in hours.  
