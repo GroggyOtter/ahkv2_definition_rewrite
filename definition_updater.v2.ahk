@@ -14,23 +14,40 @@
  * - `1` = Allow auto-updater to update itself.
  * - `0` = Prevent auto-updater from updating itself.
  */
-class definition_enhancement_updater {
-    static version := 1.4
+class _def_enhance_updater {
+    static version := 1.6
     static frequency := 4
     static notify := 1
     static update_updater := 1
     
+    /**
+     * Run the updater and check regularly on a timer.  
+     */
     static start(*) {
         this.running := 1
         this.run()
     }
     
+    /**
+     * Stops the updater and cancels all timers.  
+     */
     static stop(*) {
         this.running := 0
         this.run_again('stop')
     }
     
-    ; Internal stuff
+    /**
+     * Forces an update check immediately.  
+     * If running status is false, the timer is disabled after the update check.  
+     * If running status is true, the timer will start fresh after the update check.  
+     */
+    static force_check(*) {
+        running := this.running
+        this.start()
+        if !running
+            this.stop()
+    }
+    
     static file_list := Map(
         'dahk', Map(
             'url'     , 'https://raw.githubusercontent.com/GroggyOtter/ahkv2_definition_rewrite/main/ahk2.d.ahk',
@@ -60,8 +77,12 @@ class definition_enhancement_updater {
     
     static __New() {
         m := A_TrayMenu
-        m.Add()
-        m.Add('Force Definition Update', ObjBindMethod(this, 'start'))
+        m.Insert('10&')
+        m.Insert('11&', 'Start Definition Updater', ObjBindMethod(this, 'start'))
+        m.Insert('12&', 'Stop Definition Updater', ObjBindMethod(this, 'stop'))
+        m.Insert('13&')
+        m.Insert('14&', 'Force Definition Update', ObjBindMethod(this, 'force_check'))
+        m.Insert('15&')
         this.start()
     }
     
@@ -92,17 +113,27 @@ class definition_enhancement_updater {
         if (id = 'updater')
             file_path := A_ScriptFullPath
         else file_path := this.addon_path '\syntaxes\' data['filename']
-        
         install_ver := this.get_version(FileRead(file_path), data)
         online_txt := this.get_http(data['url'])
+        if !online_txt
+            return
         online_ver := this.get_version(online_txt, data)
         for index, install_num in install_ver {
             if (index = 0)
                 continue
             else if (online_ver[index] > install_num) {
-                FileDelete(file_path)
+                name := data['filename']
+                msg := 'Update available for : ' name
+                    . '`nNew Version: v' online_ver[1] '.' online_ver[2]
+                    . '`nCurrent Version: v' install_ver[1] '.' install_ver[2]
+                    . '`n`nDo you want to update/overwrite this file: '
+                    . '`nThis will move the original file to the recycle bin and replace it with the current one.'
+                    . '`n`nLocation: ' file_path
+                if (MsgBox(msg, 'AHK Definition Enhancement Update: ' name, 'YesNo') = 'No')
+                    continue
+                FileRecycle(file_path)
                 FileAppend(online_txt, file_path, 'UTF-8-RAW')
-                this.announcement .= data['filename'] ' has been updated.`n'
+                this.announcement .= name ' has been updated.`n'
                 break
             }
         }
@@ -171,10 +202,12 @@ class definition_enhancement_updater {
     }
     
     static get_http(url) {
+        timeout := 5
         web := ComObject('WinHttp.WinHttpRequest.5.1')
         web.Open('GET', url)
         web.Send()
-        web.WaitForResponse()
-        return web.ResponseText
+        if web.WaitForResponse(timeout)
+            return web.ResponseText
+        return 0
     }
 }
