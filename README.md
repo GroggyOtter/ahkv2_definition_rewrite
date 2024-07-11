@@ -9,6 +9,7 @@ This is a full update for the definition file `ahk2.d.ahk` and the directive/flo
 - [Different Widget Types](#different-widget-types)
 - [Will THQBY Implement This?](#will-thqby-implement-this)
 - [Change Log](#change-log)
+  - [2024-07-11](#2024-07-11)
   - [2024-07-04](#2024-07-04)
   - [2024-07-02 (Big Update)](#2024-07-02-big-update)
   - [2024-04-20](#2024-03-20)
@@ -219,6 +220,14 @@ Until then, I fully intend on maintaining these files and keeping them up to dat
 
 ### Change Log
 [`[Return to Contents]`](#contents)  
+
+##### 2024-07-11
+- Updated JSON file to v1.4
+  - #Requires now has the most up-to-date version
+- Updated the definition updater file to v1.6
+  - I was concerned that users who implement the updater into a main script file would have their main script deleted by an update.
+  - Updater will now notify you of the file that needs to be updated, the version, and it will request permission before updating each file.
+  - Deleted files are no longer explicitly deleted but instead moved to the recycle bin, allowing for retrieval.
 
 ##### 2024-07-04
 - Updated the `definition_updater.v2.ahk` script to v1.4:
