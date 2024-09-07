@@ -4,6 +4,9 @@ This is a full update for the definition file `ahk2.d.ahk` and the directive/flo
 ### Contents
 - [Why use this update](#why-use-this-update)
 - [Installation](#installation)
+  - [Updater script](#install-option-1-updater-script)
+  - [Addon Path](#install-option-2-addon-path)
+  - [Manual](#install-option-3-manual-installation)
 - [Auto-Updater](#auto-updater)
 - [In-depth Showcase](#in-depth-showcase)
 - [Different Widget Types](#different-widget-types)
@@ -42,30 +45,48 @@ There are pictures and videos for almost every topic covered.
 
 ### Installation 
 [`[Return to Contents]`](#contents)  
-There are multiple ways to update the definition file.  
+Installation is simple and there are multiple ways to accomplish it.  
 
-To do it automatically, use the provided Auto Updater file.  
-`definition_updater.v2.ahk`
+##### Install option 1: Updater Script  
+Download the `definition_updater.v2.ahk` and run it.  
+It's that simple.
 
-To do it manually, start by optionally backing up your original files.  
-`ahk2.d.ahk` and `ahk2.json`  
-If you delete them and decide you want to go back to the standard definition files, they can always be redownloaded from [THQBY's GitHub for the addon](https://github.com/thqby/vscode-autohotkey2-lsp/tree/main/syntaxes).  
+##### Install option 2: Addon Path
+After requesting this feature, THQBY added it to the addon. A path to the custom defintion files can now be provided.  
+This path is remembered by the addon so you do not need to reapply the definition files.  
+However, please be aware that the addon will NOT update my definition files.  
+Because of this, I still advise people to use the `definition_updater.v2.ahk` so my most-up-to-date files are used.  
+Note that it's OK to use both this method and the script method.
 
-Now download the `ahk2.d.ahk` and `ahk2.json` files.  
-Copy them into the addon's `syntaxes` folder.  
-The default location for this folder is:
+1. [Download the files from GitHub](https://github.com/GroggyOtter/ahkv2_definition_rewrite/archive/refs/heads/main.zip).  
+1. Unzip the files to a single folder.  
+![explorer_eqOjVGEG5c](https://github.com/user-attachments/assets/85f1fa57-1c05-4975-bc6e-6615713a6f3e)  
+1. Copy the path of the folder containing all the files. They have to be in the folder.  
+1. Copy the folder's path. In my example, it's: `D:\Code\AHK\ahkv2_definition_rewrite-main`  
+1. Open up VS Code and open settings. Use Ctrl+Comma or click the "Manage" gear and choose settings.  
+1. Choose Extensions > AutoHotkey 2 > Scroll down to the syntaxes box > Paste the folder path  
+![Code_nmclXW86Ix](https://github.com/user-attachments/assets/a4e9b400-74b0-42eb-809c-452b27fe10c4)
 
-    C:\Users\<YourUsername>\.vscode\extensions\thqby.vscode-autohotkey2-lsp-<HighestVersionNumber>\syntaxes
+##### Install option 3: Manual installation
+1. Download the files from this repo.  
+1. Go to the installation folder for the addon.
+   It should be defaulted to here:
+   `C:\Users\<YourUsername>\.vscode\extensions\thqby.vscode-autohotkey2-lsp-<HighestVersionNumber>\syntaxes`
+1. Paste the downlaoded files over the ones in the syntaxes folder.
 
-Alternatively, you can always copy and paste the text from here to the installed ones on your computer.  
+If you ever want the original files, you can always redownload them from [THQBY's addon GitHub](https://github.com/thqby/vscode-autohotkey2-lsp/tree/main/syntaxes).  
+
 ***
 
 ### Auto-Updater
 [`[Return to Contents]`](#contents)  
-I've written an auto-updater so you don't have to keep updating the file.  
-It can be ran as its own script or can be copy and pasted into a main script, as the updater is self-contained and will auto-run.
-
-Properties and methods of the updater:
+As mentioned previously, I've written an auto-updater.  
+This script is class structureed and comes with methods and properties to give you control of it.
+It's designed to be ran by itself as a stand-alone script.  
+The reason it's not advised to incorporate this script into another script is the auto-updater deletes the original script and replaces it with the newly downloaded version.  
+This will result in everything in the old script being moved to the recycle bin (allowing it be recovered if an accident should occur).  
+I did add an `update_updater` property that can be set to false to prevent updates. This acts as a safety for those who prefer to incorporate this into their main script.  
+(The lawyer in me requires me to say: I am not responsible for any accidental loss of data!)
 
 - Methods:
   - `start()` = Starts/enables update checking  
@@ -76,10 +97,13 @@ Properties and methods of the updater:
 - Properties:
   - `frequency` = How often to check for updates, in hours.  
     This can be a fractional number: 1.5 = 1 hr 30 min  
-    Default value is 4.  
+    Default value is 4 hours.  
   - `notify` = If set to true, TrayTips will pop up to notify of updates or errors.  
     Setting this to false will suspend all TrayTip popups.
-  - `update_updater` = Set to false if you don't want the auto-updater updating itself.
+  - `update_updater` = If set to true, updater file will update iself.
+    This property was added so people can incorporate this into a main script.
+    
+    
 
 ***
 
